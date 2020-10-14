@@ -1,3 +1,0 @@
-1-	As a Host, I want to be able to accept or decline Guest’s request, so I can control who is gonna be in my house
-2-	As a Guest, I want to share the Room to my friends, so I can create a study group
-3-	As a Guest, I want to filter the Rooms by time, so I can choose the one that fit my needs the best
