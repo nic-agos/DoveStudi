@@ -1,0 +1,5 @@
+- As a Host, I want to specify the offered services in my Room, so that I can make my Room more desirable. 
+
+- As a Host, I want to rate a Guest's behaviour, so that other Hosts can have an insight about him.
+
+- As a Guest, I want to rate an hosting experience, so that I can help other Guests to choose the best Room.
