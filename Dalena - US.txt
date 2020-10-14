@@ -1,0 +1,5 @@
+- As a user with a free space in my house, I want to become a Host, so I can accommodate some students who need a place to study 
+
+- As a Guest who wants a quiet place, I want to see how many people are gonna be there, so I can choose the Room with fewer people. 
+
+- As a Guest, I want to use an interactive map, so I can choose the Room closest to me
