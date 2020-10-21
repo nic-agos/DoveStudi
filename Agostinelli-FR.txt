@@ -1,3 +1,6 @@
 1-	The system shall provide a GMaps link to the Guest to reach the Room, once the Host accepts the request.
 2-	The system shall send an e-mail to the Guest as a reminder 2 hours before the meeting.
 3-	The system shall allow logging in with a Google Account 
+
+
+ciao
