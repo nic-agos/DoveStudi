@@ -4,8 +4,8 @@ jdk:
 
 addons:
   sonarcloud:
-    organization: nic-agos
-    token: 
+    organization: "nic-agos"
+    token: "c05298fa7470f9471f08d45c274ba9222bac5cfa"
 
 script:
   - ant build
