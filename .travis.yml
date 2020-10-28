@@ -4,7 +4,7 @@ jdk:
 
 addons:
   sonarcloud:
-    organization: 
+    organization: nic-agos
     token: 
 
 script:
