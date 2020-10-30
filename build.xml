@@ -11,6 +11,12 @@
     <path id="DoveStudi.git.classpath">
         <pathelement location="bin"/>
     </path>
+    <path id="run.Hello.classpath">
+        <path refid="DoveStudi.git.classpath"/>
+    </path>
+    <path id="run.nuovotest.classpath">
+        <path refid="DoveStudi.git.classpath"/>
+    </path>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
@@ -46,5 +52,15 @@
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
+    </target>
+    <target name="Hello">
+        <java classname="proviamo.Hello" failonerror="true" fork="yes">
+            <classpath refid="run.Hello.classpath"/>
+        </java>
+    </target>
+    <target name="nuovotest">
+        <java classname="proviamo.nuovotest" failonerror="true" fork="yes">
+            <classpath refid="run.nuovotest.classpath"/>
+        </java>
     </target>
 </project>
