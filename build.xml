@@ -11,6 +11,9 @@
     <path id="DoveStudi.git.classpath">
         <pathelement location="bin"/>
     </path>
+    <path id="run.bella.classpath">
+        <path refid="DoveStudi.git.classpath"/>
+    </path>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
@@ -46,5 +49,10 @@
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
+    </target>
+    <target name="bella">
+        <java classname="proviamo.bella" failonerror="true" fork="yes">
+            <classpath refid="run.bella.classpath"/>
+        </java>
     </target>
 </project>
