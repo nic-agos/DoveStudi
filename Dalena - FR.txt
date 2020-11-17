@@ -1,5 +1,0 @@
-- The system shall provide a user-friendly interactive map 
-
-- The system shall provide a filtered searching functionality (by offered services, distance, available sits). 
-
-- The system shall show to the Guest the approximate location on the interactive map (radius 150mt) of the Room, before requesting. 
