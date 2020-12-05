@@ -1,5 +1,0 @@
-- The system shall allow every user to be Guest or Host with the same account.
-
-- The system shall provide a review service, both for Guests and Hosts, based on other users' experience. Every Host can rate his/her Guest and every Guest can rate his/her Host.
-
-- The system shall provide a user-friendly form that the Host has to compile to describe his/her Room.
