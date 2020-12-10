@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-12-10T11:48:34.337Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.57" etag="hvpp2RWn3voqzA-l5n3z" version="14.0.0" type="github">
+<mxfile host="app.diagrams.net" modified="2020-12-10T11:48:59.199Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.57" etag="2L-A0i7epiVJ7RDP8JlB" version="14.0.0" type="github">
   <diagram id="Dc7GeFzG-FcH2cuk2T8l" name="Page-1">
     <mxGraphModel dx="1363" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -65,7 +65,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="vYNlGMxEGL44ToYFTLxL-1" value="&lt;&lt;boundary&gt;&gt;&#xa;PartecipantsBoundary" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
-          <mxGeometry x="900" y="50" width="160" height="100" as="geometry" />
+          <mxGeometry x="900" y="40" width="160" height="100" as="geometry" />
         </mxCell>
         <mxCell id="vYNlGMxEGL44ToYFTLxL-2" value="+ field: type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="vYNlGMxEGL44ToYFTLxL-1" vertex="1">
           <mxGeometry y="40" width="160" height="26" as="geometry" />
