@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-12-10T15:21:38.387Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.57" etag="7c58VhmFfc0Dp7wXBq9R" version="14.0.0" type="github">
+<mxfile host="app.diagrams.net" modified="2020-12-10T16:05:26.479Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.57" etag="5g4hlmFkeBJLiuBbA0w4" version="14.0.0" type="github">
   <diagram id="Dc7GeFzG-FcH2cuk2T8l" name="Page-1">
-    <mxGraphModel dx="677" dy="363" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -68,7 +68,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="rdVfTWeEJSaxkg9jLC8A-2" value="&lt;&lt;entity&gt;&gt;&#xa;Person" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="860" y="414" width="200" height="380" as="geometry" />
+          <mxGeometry x="485" y="630" width="200" height="380" as="geometry" />
         </mxCell>
         <mxCell id="rdVfTWeEJSaxkg9jLC8A-3" value="- ID: Integer&#xa;- username: String&#xa;- studyGrade: String&#xa;- school: String&#xa;- account: Account&#xa;- hostRating: Float&#xa;- guestRating: Float&#xa;- reviews: ArrayList&lt;Review&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="rdVfTWeEJSaxkg9jLC8A-2">
           <mxGeometry y="40" width="200" height="120" as="geometry" />
