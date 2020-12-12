@@ -1,1 +1,123 @@
-<mxfile host="app.diagrams.net" modified="2020-12-12T12:07:13.067Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.60" version="14.0.1" etag="YLMs5E_b-AcQqMzZpsJv" type="github"><diagram id="xbRaA5l_0iceEt46TK0b">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2020-12-12T16:40:17.007Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.60" etag="gDxtluUrSzCnwYQAhL8l" version="14.0.1" type="github">
+  <diagram id="xbRaA5l_0iceEt46TK0b" name="Page-1">
+    <mxGraphModel dx="2031" dy="1089" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="gDaYZ-myov2PqWbHqzSd-1" target="gDaYZ-myov2PqWbHqzSd-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-1" value="" style="ellipse;fillColor=#000000;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="60" y="267.5" width="25" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-2" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="2240" y="267.5" width="25" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="gDaYZ-myov2PqWbHqzSd-6" target="gDaYZ-myov2PqWbHqzSd-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-6" value="&lt;span style=&quot;font-size: 10px&quot;&gt;On Login Page&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="260" width="92.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="gDaYZ-myov2PqWbHqzSd-7" target="gDaYZ-myov2PqWbHqzSd-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-7" value="&lt;span style=&quot;font-size: 10px&quot;&gt;On Homepage&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="260" width="92.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="gDaYZ-myov2PqWbHqzSd-8" target="gDaYZ-myov2PqWbHqzSd-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-8" value="&lt;span style=&quot;font-size: 10px&quot;&gt;On MyAccount Page&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="260" width="92.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="gDaYZ-myov2PqWbHqzSd-10" target="gDaYZ-myov2PqWbHqzSd-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-10" value="&lt;span style=&quot;font-size: 10px&quot;&gt;On MyReservations List&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="260" width="92.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="gDaYZ-myov2PqWbHqzSd-12" target="gDaYZ-myov2PqWbHqzSd-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="gDaYZ-myov2PqWbHqzSd-12" target="gDaYZ-myov2PqWbHqzSd-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-12" value="&lt;span style=&quot;font-size: 10px&quot;&gt;On Stanza Resume Page&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="260" width="92.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="gDaYZ-myov2PqWbHqzSd-14" target="gDaYZ-myov2PqWbHqzSd-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="gDaYZ-myov2PqWbHqzSd-14" target="gDaYZ-myov2PqWbHqzSd-10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1766" y="220" />
+              <mxPoint x="1046" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-14" value="&lt;span style=&quot;font-size: 10px&quot;&gt;On Review Form&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1720" y="260" width="92.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="gDaYZ-myov2PqWbHqzSd-15" target="gDaYZ-myov2PqWbHqzSd-14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2025" y="320" />
+              <mxPoint x="1766" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="gDaYZ-myov2PqWbHqzSd-15" target="gDaYZ-myov2PqWbHqzSd-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2240" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-15" value="&lt;span style=&quot;font-size: 10px&quot;&gt;On Review Check Page&amp;nbsp;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1979" y="260" width="92.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-18" value="&lt;font style=&quot;font-size: 10px&quot;&gt;keystroke [User != validUser || Psw != ValidPsw]&lt;br&gt;/ display Login Page&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="71.25" y="190" width="230" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-20" value="&lt;font style=&quot;font-size: 10px&quot;&gt;&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none&quot;&gt;keystroke [User == validUser &amp;amp;&amp;amp; Psw == ValidPsw]&lt;/span&gt;&lt;br style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250)&quot;&gt;&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none&quot;&gt;/ display HomePage&lt;/span&gt;&lt;/font&gt;" style="text;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="232.5" y="242.5" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gDaYZ-myov2PqWbHqzSd-6" target="gDaYZ-myov2PqWbHqzSd-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="209" y="230" />
+              <mxPoint x="163" y="230" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-26" value="&lt;font style=&quot;font-size: 10px&quot;&gt;click [button == MyAccount]&amp;nbsp;&lt;br&gt;/ display MyAccount Page&lt;br&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="242.5" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-28" value="&lt;font style=&quot;font-size: 10px&quot;&gt;click [button == MyReservations]&lt;br&gt;/ display MyReservations Page&lt;br&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="830" y="242.5" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-30" value="&lt;font size=&quot;1&quot;&gt;click [onSelectedReservation == True]&lt;br&gt;/ display Reservation Resume Page&amp;nbsp;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="242.5" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-32" value="&lt;font style=&quot;font-size: 10px&quot;&gt;click [button == MakeReview &amp;amp;&amp;amp; Stanza not yet reviewed &amp;amp;&amp;amp; visit ended]&lt;br&gt;/ display Review Form&lt;br&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="242.5" width="340" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-36" value="&lt;font style=&quot;font-size: 10px&quot;&gt;click [button == Edit Review]&lt;br&gt;/ display Review Form&lt;br&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="1825" y="320" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-40" value="&lt;font size=&quot;1&quot;&gt;click [Button == Post Review]&lt;br&gt;/ save Review&lt;br&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="2080" y="242.5" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-41" value="&lt;font size=&quot;1&quot;&gt;click [button == Enter]&lt;br&gt;/ display Review Check Page&lt;br&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="1820" y="242.5" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-44" value="&lt;font style=&quot;font-size: 10px&quot;&gt;click [button == Back || Stanza yet reviewed || visit not ended ]&lt;br&gt;/ display MyReservations List&lt;br&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="1045" y="320" width="290" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gDaYZ-myov2PqWbHqzSd-46" value="&lt;font size=&quot;1&quot;&gt;click [button == Exit]&amp;nbsp;&lt;br&gt;/ display MyReservation List&amp;nbsp;&lt;br&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="1266.25" y="180" width="140" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
