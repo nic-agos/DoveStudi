@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-12-11T11:57:55.331Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.57" etag="VkEODxqX3M2JTBHVA19m" version="14.0.0" type="github">
+<mxfile host="app.diagrams.net" modified="2020-12-12T11:11:45.121Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.57" etag="HTZJx_wSvpm7Pkdh6qSp" version="14.0.0" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="981" dy="526" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1635" dy="913" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -105,7 +105,7 @@
         <mxCell id="vfxE1XWkJNAnzS6LpCng-12" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="vfxE1XWkJNAnzS6LpCng-10" vertex="1">
           <mxGeometry y="160" width="220" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="vfxE1XWkJNAnzS6LpCng-13" value="+ setID(Integer): void &#xa;+ getID(): Integer&#xa;+ setDate(DateTime): void&#xa;+ getDate(): DateTime&#xa;+ setStartTime(?): void&#xa;+ getStartTime(): ?&#xa;+ setEndTime(?): void&#xa;+ getEndTime(): ?&#xa;+ setReservingUser(Account): void&#xa;+ getReservingUser(): Account&#xa;+ setRoom(Room): void&#xa;+ getRoom(): Room&#xa;+ setPartecipants(Person): void&#xa;+ getPartecipants(): ArrayList&lt;Person&gt;&#xa;+ setIsGroup(Boolean): void&#xa;+getIsGroup(): Boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="vfxE1XWkJNAnzS6LpCng-10" vertex="1">
+        <mxCell id="vfxE1XWkJNAnzS6LpCng-13" value="+ setID(Integer): void &#xa;+ getID(): Integer&#xa;+ setDate(DateTime): void&#xa;+ getDate(): DateTime&#xa;+ setStartTime(?): void&#xa;+ getStartTime(): ?&#xa;+ setEndTime(?): void&#xa;+ getEndTime(): ?&#xa;+ setReservingUser(Account): void&#xa;+ getReservingUser(): Account&#xa;+ setRoom(Room): void&#xa;+ getRoom(): Room&#xa;+ setPartecipants(Person): void&#xa;+ getPartecipants(): ArrayList&lt;Person&gt;&#xa;+ setIsGroup(Boolean): void&#xa;+ getIsGroup(): Boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="vfxE1XWkJNAnzS6LpCng-10" vertex="1">
           <mxGeometry y="168" width="220" height="240" as="geometry" />
         </mxCell>
         <mxCell id="vfxE1XWkJNAnzS6LpCng-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.998;entryY=0.091;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="vfxE1XWkJNAnzS6LpCng-14" target="vfxE1XWkJNAnzS6LpCng-13" edge="1">
