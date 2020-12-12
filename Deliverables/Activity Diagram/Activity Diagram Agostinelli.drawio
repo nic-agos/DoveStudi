@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-12-12T14:17:52.450Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.60" etag="0AN__6Leb_eV5uvPJ5ZF" version="14.0.1" type="github">
+<mxfile host="app.diagrams.net" modified="2020-12-12T16:17:22.221Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.60" etag="gzpnSJ7-RqB3CR-nXPbS" version="14.0.1" type="github">
   <diagram id="H5IA_fxO9X-dKAMKV9YF" name="Page-1">
     <mxGraphModel dx="981" dy="526" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -34,13 +34,13 @@
         <mxCell id="coR2YGzdEhiw7b8zGxlB-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="coR2YGzdEhiw7b8zGxlB-7" target="coR2YGzdEhiw7b8zGxlB-5">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="coR2YGzdEhiw7b8zGxlB-7" value="&lt;span style=&quot;font-size: 10px&quot;&gt;Select Reservations&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;" vertex="1" parent="1">
+        <mxCell id="coR2YGzdEhiw7b8zGxlB-7" value="&lt;span style=&quot;font-size: 10px&quot;&gt;Select MyReservations&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;" vertex="1" parent="1">
           <mxGeometry x="151.19" y="262" width="92.5" height="30" as="geometry" />
         </mxCell>
         <mxCell id="coR2YGzdEhiw7b8zGxlB-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="coR2YGzdEhiw7b8zGxlB-9" target="coR2YGzdEhiw7b8zGxlB-10">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="coR2YGzdEhiw7b8zGxlB-9" value="&lt;span style=&quot;font-size: 10px&quot;&gt;Select a Reservation&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;" vertex="1" parent="1">
+        <mxCell id="coR2YGzdEhiw7b8zGxlB-9" value="&lt;span style=&quot;font-size: 10px&quot;&gt;Select a Stanza&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;" vertex="1" parent="1">
           <mxGeometry x="151.19" y="442" width="92.5" height="30" as="geometry" />
         </mxCell>
         <mxCell id="coR2YGzdEhiw7b8zGxlB-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="coR2YGzdEhiw7b8zGxlB-10" target="coR2YGzdEhiw7b8zGxlB-11">
