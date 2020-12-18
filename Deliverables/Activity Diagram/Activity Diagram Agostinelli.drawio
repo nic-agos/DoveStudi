@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-12-18T17:43:24.323Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.60" etag="yMyWQ33kRaJsmKvxsRDI" version="14.0.3" type="github">
+<mxfile host="app.diagrams.net" modified="2020-12-18T17:45:24.410Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.60" etag="ShARieZOjHtnChinWbBJ" version="14.0.3" type="github">
   <diagram id="H5IA_fxO9X-dKAMKV9YF" name="Page-1">
     <mxGraphModel dx="981" dy="526" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -252,6 +252,12 @@
         </mxCell>
         <mxCell id="coR2YGzdEhiw7b8zGxlB-72" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" parent="1" vertex="1">
           <mxGeometry x="607.5" y="472" width="25" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="78tx78qT8j8PEvZIkw83-1" value="&lt;span style=&quot;font-size: 10px&quot;&gt;Not valid&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="287" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="78tx78qT8j8PEvZIkw83-2" value="Not valid" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="530" y="287" width="60" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
