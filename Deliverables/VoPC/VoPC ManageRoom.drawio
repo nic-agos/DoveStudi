@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-12-11T12:05:50.157Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.57" etag="zJZ5RfqN-_hPXHC3z4la" version="14.0.0" type="github">
+<mxfile host="app.diagrams.net" modified="2020-12-22T11:06:49.421Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.66" etag="tlBz95Q_XdieQnPqbSyc" version="14.1.1" type="github">
   <diagram id="ppjFP_ajsQMXtEplo2P9" name="Page-1">
-    <mxGraphModel dx="981" dy="526" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1673" dy="896" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -42,13 +42,13 @@
         <mxCell id="RCmuUbWNnD3-luvuWC29-21" value="&lt;&lt;entity&gt;&gt;&#xa;Reservation" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
           <mxGeometry x="170" y="250" width="220" height="408" as="geometry" />
         </mxCell>
-        <mxCell id="RCmuUbWNnD3-luvuWC29-22" value="- ID: Integer&#xa;- date: DateTime&#xa;- startTime: Time?&#xa;- endTime: Time?&#xa;- reservingUser: Account&#xa;- room: Room&#xa;- partecipants: ArrayList&lt;Person&gt;&#xa;- isGroup: Boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="RCmuUbWNnD3-luvuWC29-21" vertex="1">
+        <mxCell id="RCmuUbWNnD3-luvuWC29-22" value="- ID: Integer&#xa;- date: DateTime&#xa;- startTime: Time&#xa;- endTime: Time&#xa;- reservingUser: Account&#xa;- room: Room&#xa;- partecipants: ArrayList&lt;Person&gt;&#xa;- isGroup: Boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="RCmuUbWNnD3-luvuWC29-21" vertex="1">
           <mxGeometry y="40" width="220" height="120" as="geometry" />
         </mxCell>
         <mxCell id="RCmuUbWNnD3-luvuWC29-23" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="RCmuUbWNnD3-luvuWC29-21" vertex="1">
           <mxGeometry y="160" width="220" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="RCmuUbWNnD3-luvuWC29-24" value="+ setID(Integer): void &#xa;+ getID(): Integer&#xa;+ setDate(DateTime): void&#xa;+ getDate(): DateTime&#xa;+ setStartTime(?): void&#xa;+ getStartTime(): ?&#xa;+ setEndTime(?): void&#xa;+ getEndTime(): ?&#xa;+ setReservingUser(Account): void&#xa;+ getReservingUser(): Account&#xa;+ setRoom(Room): void&#xa;+ getRoom(): Room&#xa;+ setPartecipants(Person): void&#xa;+ getPartecipants(): ArrayList&lt;Person&gt;&#xa;+ setIsGroup(Boolean): void&#xa;+getIsGroup(): Boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="RCmuUbWNnD3-luvuWC29-21" vertex="1">
+        <mxCell id="RCmuUbWNnD3-luvuWC29-24" value="+ setID(Integer): void &#xa;+ getID(): Integer&#xa;+ setDate(DateTime): void&#xa;+ getDate(): DateTime&#xa;+ setStartTime(Time): void&#xa;+ getStartTime(): Time&#xa;+ setEndTime(Time): void&#xa;+ getEndTime(): Time&#xa;+ setReservingUser(Account): void&#xa;+ getReservingUser(): Account&#xa;+ setRoom(Room): void&#xa;+ getRoom(): Room&#xa;+ setPartecipants(Person): void&#xa;+ getPartecipants(): ArrayList&lt;Person&gt;&#xa;+ setIsGroup(Boolean): void&#xa;+getIsGroup(): Boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="RCmuUbWNnD3-luvuWC29-21" vertex="1">
           <mxGeometry y="168" width="220" height="240" as="geometry" />
         </mxCell>
         <mxCell id="RCmuUbWNnD3-luvuWC29-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;endFill=0;" parent="1" source="RCmuUbWNnD3-luvuWC29-12" target="RCmuUbWNnD3-luvuWC29-8" edge="1">
