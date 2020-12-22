@@ -1,5 +1,5 @@
 package logic.bean;
 
-public class A {
+public class ReviewBean {
 
 }
