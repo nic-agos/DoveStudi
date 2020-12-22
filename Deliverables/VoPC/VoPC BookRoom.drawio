@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-12-12T11:11:45.121Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.57" etag="HTZJx_wSvpm7Pkdh6qSp" version="14.0.0" type="github">
+<mxfile host="app.diagrams.net" modified="2020-12-22T13:47:06.264Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.66" etag="xdOeBPvk7gQe6y8kvLGF" version="14.1.1" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="1635" dy="913" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1128" dy="630" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -94,24 +94,29 @@
         <mxCell id="vfxE1XWkJNAnzS6LpCng-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;entryX=1.005;entryY=0.172;entryDx=0;entryDy=0;entryPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="vfxE1XWkJNAnzS6LpCng-10" target="vfxE1XWkJNAnzS6LpCng-3" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="370" y="560" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="450" y="560" />
+              <mxPoint x="450" y="560" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="vfxE1XWkJNAnzS6LpCng-10" value="&lt;&lt;entity&gt;&gt;&#xa;Reservation" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="475" y="356" width="220" height="408" as="geometry" />
+          <mxGeometry x="475" y="356" width="220" height="428" as="geometry" />
         </mxCell>
-        <mxCell id="vfxE1XWkJNAnzS6LpCng-11" value="- ID: Integer&#xa;- date: DateTime&#xa;- startTime: Time?&#xa;- endTime: Time?&#xa;- reservingUser: Account&#xa;- room: Room&#xa;- partecipants: ArrayList&lt;Person&gt;&#xa;- isGroup: Boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="vfxE1XWkJNAnzS6LpCng-10" vertex="1">
-          <mxGeometry y="40" width="220" height="120" as="geometry" />
+        <mxCell id="vfxE1XWkJNAnzS6LpCng-11" value="- ID: Integer&#xa;- date: DateTime&#xa;- startTime: Time?&#xa;- endTime: Time?&#xa;- reservingUser: Account&#xa;- room: Room&#xa;- roomOwner: Person&#xa;- partecipants: ArrayList&lt;Person&gt;&#xa;- isGroup: Boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="vfxE1XWkJNAnzS6LpCng-10" vertex="1">
+          <mxGeometry y="40" width="220" height="140" as="geometry" />
         </mxCell>
         <mxCell id="vfxE1XWkJNAnzS6LpCng-12" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="vfxE1XWkJNAnzS6LpCng-10" vertex="1">
-          <mxGeometry y="160" width="220" height="8" as="geometry" />
+          <mxGeometry y="180" width="220" height="8" as="geometry" />
         </mxCell>
         <mxCell id="vfxE1XWkJNAnzS6LpCng-13" value="+ setID(Integer): void &#xa;+ getID(): Integer&#xa;+ setDate(DateTime): void&#xa;+ getDate(): DateTime&#xa;+ setStartTime(?): void&#xa;+ getStartTime(): ?&#xa;+ setEndTime(?): void&#xa;+ getEndTime(): ?&#xa;+ setReservingUser(Account): void&#xa;+ getReservingUser(): Account&#xa;+ setRoom(Room): void&#xa;+ getRoom(): Room&#xa;+ setPartecipants(Person): void&#xa;+ getPartecipants(): ArrayList&lt;Person&gt;&#xa;+ setIsGroup(Boolean): void&#xa;+ getIsGroup(): Boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="vfxE1XWkJNAnzS6LpCng-10" vertex="1">
-          <mxGeometry y="168" width="220" height="240" as="geometry" />
+          <mxGeometry y="188" width="220" height="240" as="geometry" />
         </mxCell>
         <mxCell id="vfxE1XWkJNAnzS6LpCng-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.998;entryY=0.091;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="vfxE1XWkJNAnzS6LpCng-14" target="vfxE1XWkJNAnzS6LpCng-13" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="773" y="546" />
+              <mxPoint x="770" y="566" />
+              <mxPoint x="770" y="566" />
             </Array>
           </mxGeometry>
         </mxCell>
