@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-12-22T13:49:20.896Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.66" etag="Du_ublmgVT46FxIaL8ei" version="14.1.1" type="github">
+<mxfile host="app.diagrams.net" modified="2020-12-22T13:51:22.321Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.66" etag="IAMq00OEeTU6Qj-5OhIg" version="14.1.1" type="github">
   <diagram id="JOhjzsmogX-i1-dI5Z1-" name="Page-1">
     <mxGraphModel dx="1635" dy="913" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -50,7 +50,11 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="rRvSJusbjCj-WQePCbV2-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.342;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" parent="1" source="rRvSJusbjCj-WQePCbV2-1" target="rRvSJusbjCj-WQePCbV2-8" edge="1">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="660" y="490" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="rRvSJusbjCj-WQePCbV2-1" value="&lt;&lt;entity&gt;&gt;&#xa;Room" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
           <mxGeometry x="760" y="240" width="310" height="500" as="geometry" />
