@@ -11,7 +11,7 @@ import javafx.scene.Node;
 
 public class HomeGController {
 	
-	public void onMouseClick(MouseEvent mouseEvent) throws Exception {
+	public void mouseClick(MouseEvent mouseEvent) throws Exception {
 		
 		Button button = (Button) mouseEvent.getSource();
 		String buttonText = button.getText();
@@ -28,7 +28,9 @@ public class HomeGController {
 				scene= new Scene(root);
 				stage.setScene(scene);
 				currentWindow.hide();
+				stage.setTitle("Log In");
 				stage.show();
+				break;
 		}
 	}
 }
