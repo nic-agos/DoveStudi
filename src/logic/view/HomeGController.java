@@ -19,7 +19,9 @@ public class HomeGController {
 		Node source = (Node) mouseEvent.getSource();
 		Window currentWindow = source.getScene().getWindow();
 		
-		Parent root; Scene scene; Stage stage;
+		Parent root;
+		Scene scene;
+		Stage stage;
 		
 		switch (buttonText){
 			case("Log In"):
