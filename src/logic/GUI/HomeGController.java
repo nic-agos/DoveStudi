@@ -31,6 +31,12 @@ public class HomeGController {
 				stage.setTitle("Log In");
 				stage.show();
 				break;
+			case("Groups"):
+				System.out.println("Groups View");
+				break;
+			case("Account"):
+				System.out.println("Account View");
+				break;
 		}
 	}
 }

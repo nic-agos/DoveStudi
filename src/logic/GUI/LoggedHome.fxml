@@ -7,8 +7,8 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.GUI.HomeGController">
    <children>
       <Button layoutX="20.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#mouseClick" text="Account" />
-      <Button layoutX="22.0" layoutY="64.0" mnemonicParsing="false" text="Groups" />
-      <Button layoutX="20.0" layoutY="102.0" mnemonicParsing="false" text="Settings" />
+      <Button layoutX="22.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#mouseClick" text="Groups" />
+      <Button layoutX="20.0" layoutY="102.0" mnemonicParsing="false" onMouseClicked="#mouseClick" text="Settings" />
       <TitledPane animated="false" collapsible="false" expanded="false" layoutX="105.0" prefHeight="400.0" prefWidth="495.0" text="Rooms Near You" />
    </children>
 </AnchorPane>
