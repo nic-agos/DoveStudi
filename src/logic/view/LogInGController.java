@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class LogInGController {
+	
+		//This method is an Event Listner for the buttons in the Log In Page
 		public void mouseClick(MouseEvent mouseEvent) throws Exception {
 		
 		Button button = (Button) mouseEvent.getSource();
@@ -24,6 +26,8 @@ public class LogInGController {
 		
 		switch (buttonText){
 			case("Back"):
+				
+				//Recreate the Home Scene closing the Log In one
 				root= FXMLLoader.load(getClass().getResource("Home.fxml"));
 				stage=new Stage();
 				scene= new Scene(root);
@@ -34,6 +38,8 @@ public class LogInGController {
 				break;
 				
 			case ("Enter"):
+				
+				//If Log In is succesful, redirect to the Logged Home
 				System.out.println("You logged in");
 				root= FXMLLoader.load(getClass().getResource("LoggedHome.fxml"));
 				stage=new Stage();
