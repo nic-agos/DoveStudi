@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.GUI.HomeGController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.HomeGController">
    <children>
       <Button layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#mouseClick" text="Log In" />
       <Button layoutX="22.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#mouseClick" text="Groups" />
