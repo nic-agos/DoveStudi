@@ -17,14 +17,14 @@ public class Room {
 
 	private int numAvailableSeats;
 	
-	private LocalDate date;
+	private String date;
 	
 	private String startTime;
 	
 	private String endTime;
 	
 
-	public Room(String name, String description, String address, int numPartecipants, int numAvailableSeats, LocalDate date, String startTime, String endTime) {
+	public Room(String name, String description, String address, int numPartecipants, int numAvailableSeats, String date, String startTime, String endTime) {
 		
 		this.name = name;
 		
@@ -56,6 +56,16 @@ public class Room {
 	
 	public int getId () {
 		return this.id;
+		
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+		
+	}
+	
+	public String getName() {
+		return this.name;
 		
 	}
 	
@@ -99,12 +109,12 @@ public class Room {
 		
 	}
 	
-	public void setDate(LocalDate date) {
+	public void setDate(String date) {
 		this.date = date;
 		
 	}
 	
-	public LocalDate getDate() {
+	public String getDate() {
 		return this.date;
 		
 	}

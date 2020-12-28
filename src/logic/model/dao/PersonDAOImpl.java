@@ -1,5 +1,5 @@
 package logic.model.dao;
 
-public interface PersonDAO {
+public class PersonDAOImpl {
 
 }
