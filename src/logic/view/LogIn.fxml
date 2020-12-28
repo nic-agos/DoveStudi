@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
@@ -8,10 +9,10 @@
 <AnchorPane prefHeight="310.0" prefWidth="297.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.LogInGController">
    <children>
       <TextField layoutX="74.0" layoutY="98.0" promptText="Username" />
-      <TextField layoutX="74.0" layoutY="143.0" promptText="Password" />
       <Text layoutX="132.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log In" />
       <Button layoutX="14.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#mouseClick" text="Back" />
       <Button layoutX="127.0" layoutY="181.0" mnemonicParsing="false" onMouseClicked="#mouseClick" text="Enter" />
       <Button layoutX="143.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#mouseClick" text="I don't have an account" />
+      <PasswordField layoutX="74.0" layoutY="130.0" promptText="Password" />
    </children>
 </AnchorPane>
