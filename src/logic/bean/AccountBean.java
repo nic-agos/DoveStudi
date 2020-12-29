@@ -1,13 +1,14 @@
-package logic.model;
+package logic.bean;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import logic.bean.*;
+import logic.model.Reservation;
+import logic.model.Room;
 
-public class Account {
+public class AccountBean {
 
-	private String CF;
+private String CF;
 	
 	private String name;
 	
@@ -27,7 +28,7 @@ public class Account {
 	
 	private List<Room> rooms;
 	
-	public Account(String cf, String name, String surname, String email, String password, String dateBirth, String cityBirth, int numberToken) {
+	public AccountBean(String cf, String name, String surname, String email, String password, String dateBirth, String cityBirth, int numberToken) {
 		
 		this.CF = cf;
 		
@@ -51,7 +52,7 @@ public class Account {
 		
 	}
 	
-	public Account(AccountBean accountBean) {
+	public AccountBean(AccountBean accountBean) {
 		
 	}
 	
@@ -154,5 +155,4 @@ public class Account {
 		return this.rooms;
 		
 	}
-	
 }

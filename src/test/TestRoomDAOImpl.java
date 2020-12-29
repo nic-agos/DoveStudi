@@ -48,6 +48,4 @@ public class TestRoomDAOImpl {
 		int res = d.removeRoom(r);
 		assertEquals(res, 1);
 	}
-	
-	
 }

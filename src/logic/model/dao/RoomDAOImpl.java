@@ -19,7 +19,7 @@ public class RoomDAOImpl implements RoomDAO {
 	private static final String DELETE_QUERY = "DELETE FROM room WHERE ID = ?";
 	
 	@Override
-	public int createRoom(RoomBean roomBean) throws Exception, SQLException{
+	public int createRoom(RoomBean roomBean) throws Exception, SQLException {
 		
 		Connection connection = null;
 		PreparedStatement stmt = null;
@@ -77,7 +77,7 @@ public class RoomDAOImpl implements RoomDAO {
 	}
 	
 	@Override
-	public List<RoomBean> getAllRooms() throws Exception, SQLException{
+	public List<RoomBean> getAllRooms() throws Exception, SQLException {
 
 		List<RoomBean> roomsList = new ArrayList<>();
 		RoomBean room = null;
