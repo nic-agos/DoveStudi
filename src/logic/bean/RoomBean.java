@@ -1,7 +1,5 @@
 package logic.bean;
 
-import java.time.LocalDate;
-
 public class RoomBean {
 	
 	private int id;

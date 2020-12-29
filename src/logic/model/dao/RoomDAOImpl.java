@@ -1,7 +1,6 @@
 package logic.model.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -65,7 +64,7 @@ public class RoomDAOImpl implements RoomDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			boolean result = DAOQueries.printRoomList(connection);
+			DAOQueries.printRoomList(connection);
 
 		
 		}finally {

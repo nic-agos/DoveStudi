@@ -1,7 +1,6 @@
 package logic.model;
 
 import logic.bean.*;
-import java.time.LocalDate;
 
 public class Room {
 	
@@ -49,7 +48,11 @@ public class Room {
 	}
 	
 	public Room(RoomBean roomBean) {
-		// not yet implemented
+		
+		this(roomBean.getName(), roomBean.getDescription(), roomBean.getAddress(), roomBean.getNumPartecipants(), 
+				roomBean.getNumAvailableSeats(), roomBean.getDate(),roomBean.getStartTime(), roomBean.getEndTime(), roomBean.getOwner());
+		
+		this.id = roomBean.getId();
 		
 	}
 	
