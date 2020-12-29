@@ -12,22 +12,18 @@ import logic.bean.*;
 
 public class DAOQueries {
 	
-	public static boolean insertRoom(Statement stmt, RoomBean roomBean) throws SQLException{
-		
-		return true;
-	}
+	private static final String GETALL_QUERY = "SELECT * FROM room";
 	
 	public static boolean printRoomList(Connection conn) throws SQLException{
 		
-		String query = "SELECT * FROM room";
 		Statement stmt = null;
 		
 		try {
 		stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);	
-		ResultSet res = stmt.executeQuery(query);
+		ResultSet res = stmt.executeQuery(GETALL_QUERY);
 		
 		while (res.next()) {
-			System.out.printf("%s, %s, %s, %s, %s, %s, %s, %s, %s\n", res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getInt(6), res.getString(7), res.getString(8), res.getString(9));
+			System.out.printf("%s, %s, %s, %s, %s, %s, %s,  %s, %s\n", res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getInt(6), res.getString(7), res.getString(8), res.getString(9));
 		}
 		
 		res.close();
@@ -42,38 +38,26 @@ public class DAOQueries {
             	stmt.close();
             }
                 
-		}   
+		}
 	}
 	
-	public static List<RoomBean> getRoomList(Connection conn) throws SQLException{
+	public static int getRoomId(Connection conn, RoomBean roomBean) throws SQLException {
 		
-		String query = "SELECT * FROM room";
-		Statement stmt = null;
-		List<RoomBean> rooms = new ArrayList<>();
-		RoomBean room = null;
+		PreparedStatement stmt = null;
+		String query = "SELECT ID FROM room WHERE Name = ? AND Address = ? AND Date = ?";
+		int id = 0;		
 		
-		try {
-			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-			
-			ResultSet res = stmt.executeQuery(query);
-				while (res.next()) {
-					room = new RoomBean(res.getString(2),res.getString(3), res.getString(4), res.getInt(5), res.getInt(6), res.getString(7), res.getString(8), res.getString(9));
-					rooms.add(room);
-				}
-		res.close();
-		return rooms;
-			
-		}finally {
-            if (conn != null) {
-            	conn.close();
-            	
-            }
-            if (stmt != null ) {
-            	stmt.close();
-            	
-            }
+		stmt = conn.prepareStatement(query);
+		stmt.setString(1, roomBean.getName());
+		stmt.setString(2, roomBean.getAddress());
+		stmt.setString(3, roomBean.getDate());
+
+		ResultSet r = stmt.executeQuery();
+		while (r.next()) {
+			id = r.getInt(1);
 		}
-            
-		
+		return id;
 	}
+	
+    
 }

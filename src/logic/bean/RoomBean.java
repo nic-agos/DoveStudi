@@ -22,11 +22,13 @@ public class RoomBean {
 	
 	private String endTime;
 	
+	private String owner;
+	
 	public RoomBean() {
 		
 	}
 	
-public RoomBean(String name, String description, String address, int numPartecipants, int numAvailableSeats, String date, String startTime, String endTime) {
+public RoomBean(String name, String description, String address, int numPartecipants, int numAvailableSeats, String date, String startTime, String endTime, String owner) {
 		
 		this.name = name;
 		
@@ -43,6 +45,8 @@ public RoomBean(String name, String description, String address, int numPartecip
 		this.startTime = startTime;
 		
 		this.endTime = endTime;
+		
+		this.owner = owner;
 		
 	}
 	
@@ -93,6 +97,16 @@ public RoomBean(String name, String description, String address, int numPartecip
 	
 	public void setId (int id) {
 		this.id = id;
+		
+	}
+	
+	public void setOwner(String owner) {
+		this.owner = owner;
+		
+	}
+	
+	public String getOwner() {
+		return this.owner;
 		
 	}
 }

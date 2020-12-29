@@ -23,8 +23,10 @@ public class Room {
 	
 	private String endTime;
 	
+	private String owner;
+	
 
-	public Room(String name, String description, String address, int numPartecipants, int numAvailableSeats, String date, String startTime, String endTime) {
+	public Room(String name, String description, String address, int numPartecipants, int numAvailableSeats, String date, String startTime, String endTime, String owner) {
 		
 		this.name = name;
 		
@@ -41,6 +43,8 @@ public class Room {
 		this.startTime = startTime;
 		
 		this.endTime = endTime;
+		
+		this.owner = owner;
 		
 	}
 	
@@ -139,6 +143,15 @@ public class Room {
 		
 	}
 	
+	public void setOwner(String owner) {
+		this.owner = owner;
+		
+	}
+	
+	public String getOwner() {
+		return this.owner;
+		
+	}
 	
 	
 }
