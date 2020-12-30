@@ -83,43 +83,7 @@
         <path refid="EAR Libraries.libraryclasspath"/>
         <path refid="JUnit 5.libraryclasspath"/>
     </path>
-    <path id="run.B.classpath">
-        <path refid="DoveStudi.git.classpath"/>
-        <path refid="JavaFX.userclasspath"/>
-        <path refid="MySQLConnector.userclasspath"/>
-        <path refid="Tomcat 9.0.40.userclasspath"/>
-        <path refid="Web App Libraries.libraryclasspath"/>
-        <path refid="EAR Libraries.libraryclasspath"/>
-        <path refid="JUnit 5.libraryclasspath"/>
-    </path>
-    <path id="run.Ciao.classpath">
-        <path refid="DoveStudi.git.classpath"/>
-        <path refid="JavaFX.userclasspath"/>
-        <path refid="MySQLConnector.userclasspath"/>
-        <path refid="Tomcat 9.0.40.userclasspath"/>
-        <path refid="Web App Libraries.libraryclasspath"/>
-        <path refid="EAR Libraries.libraryclasspath"/>
-        <path refid="JUnit 5.libraryclasspath"/>
-    </path>
-    <path id="run.Hello.classpath">
-        <path refid="DoveStudi.git.classpath"/>
-        <path refid="JavaFX.userclasspath"/>
-        <path refid="MySQLConnector.userclasspath"/>
-        <path refid="Tomcat 9.0.40.userclasspath"/>
-        <path refid="Web App Libraries.libraryclasspath"/>
-        <path refid="EAR Libraries.libraryclasspath"/>
-        <path refid="JUnit 5.libraryclasspath"/>
-    </path>
-    <path id="run.launcher.classpath">
-        <path refid="DoveStudi.git.classpath"/>
-        <path refid="JavaFX.userclasspath"/>
-        <path refid="MySQLConnector.userclasspath"/>
-        <path refid="Tomcat 9.0.40.userclasspath"/>
-        <path refid="Web App Libraries.libraryclasspath"/>
-        <path refid="EAR Libraries.libraryclasspath"/>
-        <path refid="JUnit 5.libraryclasspath"/>
-    </path>
-    <path id="run.New_configuration (1).classpath">
+    <path id="run.DoveStudi.classpath">
         <path refid="DoveStudi.git.classpath"/>
         <path refid="JavaFX.userclasspath"/>
         <path refid="MySQLConnector.userclasspath"/>
@@ -152,31 +116,10 @@
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target name="B">
-        <java classname="logic.controller.B" failonerror="true" fork="yes">
-            <jvmarg line="--add-modules javafx.controls,javafx.fxml,javafx.web"/>
-            <classpath refid="run.B.classpath"/>
-        </java>
-    </target>
-    <target name="Ciao">
-        <java classname="proviamo.Ciao" failonerror="true" fork="yes">
-            <classpath refid="run.Ciao.classpath"/>
-        </java>
-    </target>
-    <target name="Hello">
-        <java classname="proviamo.Hello" failonerror="true" fork="yes">
-            <classpath refid="run.Hello.classpath"/>
-        </java>
-    </target>
-    <target name="launcher">
-        <java classname="logic.GUI.launcher" failonerror="true" fork="yes">
-            <classpath refid="run.launcher.classpath"/>
-        </java>
-    </target>
-    <target name="New_configuration (1)">
-        <java classname="logic.GUI.launcher" failonerror="true" fork="yes">
-            <jvmarg line="--module-path &quot;\path\to\javafx-sdk-15.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml"/>
-            <classpath refid="run.New_configuration (1).classpath"/>
+    <target name="DoveStudi">
+        <java classname="logic.view.Launcher" failonerror="true" fork="yes">
+            <jvmarg line="--add-modules javafx.controls,javafx.fxml,javafx.media"/>
+            <classpath refid="run.DoveStudi.classpath"/>
         </java>
     </target>
 </project>
