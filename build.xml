@@ -14,7 +14,6 @@
         <pathelement location="../../../../DoveStudi.git/lib/JavaFX/javafx.fxml.jar"/>
         <pathelement location="../../../../DoveStudi.git/lib/JavaFX/javafx.graphics.jar"/>
         <pathelement location="../../../../DoveStudi.git/lib/JavaFX/javafx.media.jar"/>
-        <pathelement location="../../../../DoveStudi.git/lib/JavaFX/javafx.properties"/>
         <pathelement location="../../../../DoveStudi.git/lib/JavaFX/javafx.swing.jar"/>
         <pathelement location="../../../../DoveStudi.git/lib/JavaFX/javafx.web.jar"/>
         <pathelement location="../../../../DoveStudi.git/lib/JavaFX/javafx-swt.jar"/>
@@ -96,8 +95,6 @@
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
-                <exclude name="**/*.launch"/>
-                <exclude name="**/*.xtend"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
