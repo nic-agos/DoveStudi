@@ -6,8 +6,8 @@
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="DoveStudi.git">
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="14"/>
-    <property name="source" value="14"/>
+    <property name="target" value="11"/>
+    <property name="source" value="11"/>
     <path id="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath">
         <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/annotations-api.jar"/>
         <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/catalina-ant.jar"/>
