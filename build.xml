@@ -5,45 +5,44 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="DoveStudi.git">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../eclipse/java-2020-09/eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="14"/>
     <property name="source" value="14"/>
     <path id="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath">
-        <pathelement location="../../apache-tomcat-9.0.40/lib/annotations-api.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/catalina-ant.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/catalina-ha.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/catalina-ssi.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/catalina-storeconfig.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/catalina-tribes.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/catalina.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/ecj-4.17.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/el-api.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/jasper-el.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/jasper.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/jaspic-api.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/jsp-api.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/servlet-api.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-api.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-coyote.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-dbcp.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-i18n-cs.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-i18n-de.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-i18n-es.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-i18n-fr.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-i18n-ja.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-i18n-ko.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-i18n-pt-BR.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-i18n-ru.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-i18n-zh-CN.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-jdbc.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-jni.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-util-scan.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-util.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/tomcat-websocket.jar"/>
-        <pathelement location="../../apache-tomcat-9.0.40/lib/websocket-api.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/annotations-api.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/catalina-ant.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/catalina-ha.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/catalina-ssi.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/catalina-storeconfig.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/catalina-tribes.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/catalina.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/ecj-4.17.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/el-api.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/jasper-el.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/jasper.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/jaspic-api.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/jsp-api.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/servlet-api.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-api.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-i18n-cs.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-i18n-de.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-i18n-ko.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-i18n-pt-BR.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-i18n-ru.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-i18n-zh-CN.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-jdbc.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-jni.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-util-scan.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-util.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/tomcat-websocket.jar"/>
+        <pathelement location="../../Documents/apache-tomcat-9.0.40/lib/websocket-api.jar"/>
     </path>
-    <path id="JavaFX15.userclasspath">
+    <path id="JavaFX.userclasspath">
         <pathelement location="../../lib/java/javafx-sdk-15.0.1/lib/javafx.base.jar"/>
         <pathelement location="../../lib/java/javafx-sdk-15.0.1/lib/javafx.controls.jar"/>
         <pathelement location="../../lib/java/javafx-sdk-15.0.1/lib/javafx.fxml.jar"/>
@@ -55,19 +54,75 @@
     </path>
     <path id="Web App Libraries.libraryclasspath"/>
     <path id="EAR Libraries.libraryclasspath"/>
+    <path id="JUnit 5.libraryclasspath">
+        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.api_5.6.0.v20200203-2009.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.engine_5.6.0.v20200203-2009.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.migrationsupport_5.6.0.v20200203-2009.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.params_5.6.0.v20200203-2009.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.commons_1.6.0.v20200203-2009.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.engine_1.6.0.v20200203-2009.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.launcher_1.6.0.v20200203-2009.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.runner_1.6.0.v20200203-2009.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.suite.api_1.6.0.v20200203-2009.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.vintage.engine_5.6.0.v20200203-2009.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.opentest4j_1.2.0.v20190826-0900.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.apiguardian_1.1.0.v20190826-0900.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit_4.13.0.v20200204-1500.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+    </path>
     <path id="DoveStudi.git.classpath">
         <pathelement location="bin"/>
         <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
-        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX.userclasspath"/>
+        <pathelement location="../../../nicco/eclipse/mysql-connector-java-5.1.46-bin.jar"/>
         <path refid="Web App Libraries.libraryclasspath"/>
         <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+    </path>
+    <path id="run.B.classpath">
+        <path refid="DoveStudi.git.classpath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="JavaFX.userclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+    </path>
+    <path id="run.Ciao.classpath">
+        <path refid="DoveStudi.git.classpath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="JavaFX.userclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+    </path>
+    <path id="run.Hello.classpath">
+        <path refid="DoveStudi.git.classpath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="JavaFX.userclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+    </path>
+    <path id="run.launcher.classpath">
+        <path refid="DoveStudi.git.classpath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="JavaFX.userclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+    </path>
+    <path id="run.New_configuration (1).classpath">
+        <path refid="DoveStudi.git.classpath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="JavaFX.userclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="JUnit 5.libraryclasspath"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
-                <exclude name="**/*.launch"/>
-                <exclude name="**/*.xtend"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -86,17 +141,31 @@
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
-        <copy todir="${ant.library.dir}">
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </copy>
-        <unzip dest="${ant.library.dir}">
-            <patternset includes="jdtCompilerAdapter.jar"/>
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </unzip>
+    <target name="B">
+        <java classname="logic.controller.B" failonerror="true" fork="yes">
+            <jvmarg line="--add-modules javafx.controls,javafx.fxml,javafx.web"/>
+            <classpath refid="run.B.classpath"/>
+        </java>
     </target>
-    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
-        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-        <antcall target="build"/>
+    <target name="Ciao">
+        <java classname="proviamo.Ciao" failonerror="true" fork="yes">
+            <classpath refid="run.Ciao.classpath"/>
+        </java>
+    </target>
+    <target name="Hello">
+        <java classname="proviamo.Hello" failonerror="true" fork="yes">
+            <classpath refid="run.Hello.classpath"/>
+        </java>
+    </target>
+    <target name="launcher">
+        <java classname="logic.GUI.launcher" failonerror="true" fork="yes">
+            <classpath refid="run.launcher.classpath"/>
+        </java>
+    </target>
+    <target name="New_configuration (1)">
+        <java classname="logic.GUI.launcher" failonerror="true" fork="yes">
+            <jvmarg line="--module-path &quot;\path\to\javafx-sdk-15.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml"/>
+            <classpath refid="run.New_configuration (1).classpath"/>
+        </java>
     </target>
 </project>
