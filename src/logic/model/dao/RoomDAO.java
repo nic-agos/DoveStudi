@@ -9,12 +9,16 @@ public interface RoomDAO {
 	
 	public int createRoom(RoomBean roomBean) throws Exception, SQLException;
 	
-	public void readRooms() throws Exception;
+	public void printRooms() throws Exception;
 	
 	public List<RoomBean> getAllRooms() throws Exception, SQLException;
 	
 	public int updateRoom(RoomBean roomBean) throws Exception, SQLException;
 	
 	public int removeRoom(RoomBean roomBean) throws Exception, SQLException;
+
+	public RoomBean getRoom(int id) throws Exception, SQLException;
+	
+	public int getRoomId(RoomBean roomBean) throws Exception, SQLException;
 	
 }

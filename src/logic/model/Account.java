@@ -1,9 +1,11 @@
 package logic.model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import logic.bean.*;
+import logic.model.dao.*;
 
 public class Account {
 
@@ -51,8 +53,21 @@ public class Account {
 		
 	}
 	
-	public Account(AccountBean accountBean) {
+	public Account(AccountBean accountBean) throws SQLException, Exception {
+		this(accountBean.getCF(), accountBean.getName(), accountBean.getSurname(), accountBean.getEmail(), accountBean.getPassword(), accountBean.getDateBirth(), 
+				accountBean.getCityBirth(), accountBean.getNumberToken());
 		
+		AccountDAOImpl dao = new AccountDAOImpl();
+		
+		List<ReservationBean> reservationBeans = dao.getAllAccountReservations(accountBean);
+		for(ReservationBean reservationBean : reservationBeans) {
+			this.reservations.add(new Reservation(reservationBean));
+		}
+			
+		List<RoomBean> roomBeans = dao.getAllAccountRooms(accountBean);
+		for(RoomBean roomBean : roomBeans) {
+			this.rooms.add(new Room(roomBean));
+		}	
 	}
 	
 	public void setCF(String cf) {

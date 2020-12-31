@@ -44,5 +44,14 @@ public class TestAccountDAOImpl {
 		int res = i.removeAccount(a);
 		assertEquals(res, 1);
 	}
+	
+	@Test
+	public void testGetAllAccountRooms() throws SQLException, Exception {
+		AccountBean a = new AccountBean("marco", "n", "c", "c", "c", "c", "c", 9);
+		AccountDAOImpl d = new AccountDAOImpl();
+		List<RoomBean> l = new ArrayList<RoomBean>();
+		List<RoomBean> n = d.getAllAccountRooms(a);
+		assertEquals(n, l);
+	}
 
 }

@@ -48,4 +48,22 @@ public class TestRoomDAOImpl {
 		int res = d.removeRoom(r);
 		assertEquals(res, 1);
 	}
+	
+	@Test
+	public void testGetRoom() throws SQLException, Exception {
+		RoomDAOImpl dao = new RoomDAOImpl();
+		RoomBean r = dao.getRoom(24);
+		assertEquals(r, 1);
+		
+	}
+	
+	@Test
+	public void testGetRoomId() throws SQLException, Exception {
+		RoomDAOImpl dao = new RoomDAOImpl();
+		RoomBean r = new RoomBean("bella", "b","b", 6, 4, "2020-01-12", "09:00", "13:00", "marco");
+		int res = dao.getRoomId(r);
+		assertEquals(res, 24);
+	}
+	
+	
 }

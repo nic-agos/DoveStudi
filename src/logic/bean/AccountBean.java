@@ -8,7 +8,7 @@ import logic.model.Room;
 
 public class AccountBean {
 
-private String CF;
+	private String CF;
 	
 	private String name;
 	
@@ -27,6 +27,10 @@ private String CF;
 	private List<Reservation> reservations;
 	
 	private List<Room> rooms;
+	
+	public AccountBean() {
+		
+	}
 	
 	public AccountBean(String cf, String name, String surname, String email, String password, String dateBirth, String cityBirth, int numberToken) {
 		
@@ -49,10 +53,6 @@ private String CF;
 		this.reservations = new ArrayList<>();
 		
 		this.rooms = new ArrayList<>();
-		
-	}
-	
-	public AccountBean(AccountBean accountBean) {
 		
 	}
 	

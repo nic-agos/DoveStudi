@@ -17,6 +17,8 @@ public class RoomDAOImpl implements RoomDAO {
 	private static final String UPDATE_PARTECIPANTS_QUERY = "UPDATE room SET Num_Partecipants = ?, Num_Available_Seats = ? WHERE ID = ?";
 	private static final String GETALL_QUERY = "SELECT * FROM room" ;
 	private static final String DELETE_QUERY = "DELETE FROM room WHERE ID = ?";
+	private static final String GET_ROOM_QUERY = "SELECT * FROM room WHERE ID = ?";
+	private static final String GET_ID_QUERY = "SELECT ID FROM room WHERE Name = ?";
 	
 	@Override
 	public int createRoom(RoomBean roomBean) throws Exception, SQLException {
@@ -57,21 +59,30 @@ public class RoomDAOImpl implements RoomDAO {
 		}
 	}
 	@Override
-	public void readRooms() throws Exception {
+	public void printRooms() throws Exception {
 		
 		Connection connection = null;
+		Statement stmt = null;
 		
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			DAOQueries.printRoomList(connection);
+			stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);	
+			ResultSet res = stmt.executeQuery(GETALL_QUERY);
+			
+			while (res.next()) {
+				System.out.printf("%s, %s, %s, %s, %s, %s, %s,  %s, %s\n", res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getInt(6), res.getString(7), res.getString(8), res.getString(9));
+			}
+			
+			res.close();
 
-		
 		}finally {
 			if (connection != null) {
 				connection.close();
 			}
-			
+			if (stmt != null) {
+				stmt.close();
+			}
 		}
 		
 	}
@@ -91,7 +102,7 @@ public class RoomDAOImpl implements RoomDAO {
 			
 			ResultSet res = stmt.executeQuery(GETALL_QUERY);
 			while (res.next()) {
-				room = new RoomBean(res.getString(2),res.getString(3), res.getString(4), res.getInt(5), res.getInt(6), res.getString(7), res.getString(8), res.getString(9), res.getString(10));
+				room = new RoomBean(res.getInt(1), res.getString(2),res.getString(3), res.getString(4), res.getInt(5), res.getInt(6), res.getString(7), res.getString(8), res.getString(9), res.getString(10));
 				roomsList.add(room);
 			}
 			
@@ -155,6 +166,37 @@ public class RoomDAOImpl implements RoomDAO {
 			
 			return res;
 			
+		}finally {
+			if (connection != null ) {
+				connection.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+		}
+		
+	}
+	
+	@Override
+	public RoomBean getRoom(int id) throws Exception, SQLException{
+		
+		PreparedStatement stmt = null;
+		Connection connection = null;
+		RoomBean room = null;
+		
+		try {
+			connection = DBConnection.getInstanceConnection().getConnection();
+			
+			stmt = connection.prepareStatement(GET_ROOM_QUERY);
+			stmt.setInt(1, id);
+			
+			ResultSet res = stmt.executeQuery();
+			
+			while(res.next()) {
+				room = new RoomBean(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getInt(6), res.getString(7), res.getString(8), res.getString(9), res.getString(10));
+			}
+			
+			return room;
 			
 		}finally {
 			if (connection != null ) {
@@ -165,6 +207,36 @@ public class RoomDAOImpl implements RoomDAO {
 			}
 		}
 		
+	}
+	
+	@Override
+	public int getRoomId(RoomBean roomBean) throws Exception, SQLException {
+		
+		PreparedStatement stmt = null;
+		Connection connection = null;
+		int id = 0;		
+		
+		try {
+			connection = DBConnection.getInstanceConnection().getConnection();
+			
+			stmt = connection.prepareStatement(GET_ID_QUERY);
+			stmt.setString(1, roomBean.getName());
+
+			ResultSet r = stmt.executeQuery();
+			while (r.next()) {
+				id = r.getInt(1);
+			}
+			
+			return id;
+			
+		}finally {
+			if (connection != null ) {
+				connection.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+		}
 	}
 	
 	

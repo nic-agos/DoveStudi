@@ -16,7 +16,8 @@ public class AccountDAOImpl {
 	private static final String DELETE_QUERY = "DELETE FROM account WHERE CF = ?";
 	private static final String GET_TOKEN_QUERY = "SELECT Number_Token FROM account WHERE CF = ?";
 	private static final String UPDATE_TOKEN_QUERY = "UPDATE account SET Number_Token = ? WHERE CF = ?";
-	
+	private static final String GET_ACCOUNT_ROOMS  = "SELECT * FROM room WHERE Owner = ?";
+	private static final String GET_ACCOUNT_RESERVATIONS = "SELECT * FROM reservation WHERE Reserving_User = ?";
 	
 	
 	public int createAccount(AccountBean accountBean) throws Exception, SQLException {
@@ -130,18 +131,73 @@ public class AccountDAOImpl {
 		}
 	}
 	
-	public List<RoomBean> getAllAccountRooms(AccountBean Account) throws Exception, SQLException {
+	public List<RoomBean> getAllAccountRooms(AccountBean accountBean) throws Exception, SQLException {
 		
 		List<RoomBean> accountRooms = new ArrayList<>();
+		RoomBean room = null;
 		
-		return accountRooms;
+		PreparedStatement stmt = null;
+		Connection connection = null;
+		
+		try {
+			connection = DBConnection.getInstanceConnection().getConnection();
+			
+			stmt = connection.prepareStatement(GET_ACCOUNT_ROOMS);
+			stmt.setString(1, accountBean.getCF());
+			
+			ResultSet res = stmt.executeQuery();
+				while (res.next()) {
+					room = new RoomBean(res.getString(2),res.getString(3), res.getString(4), res.getInt(5), res.getInt(6), res.getString(7), res.getString(8), res.getString(9), res.getString(10));
+					accountRooms.add(room);
+				}
+				
+			res.close();
+			
+			return accountRooms;
+			
+		}finally {
+			if (connection != null ) {
+				connection.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+		}
 	}
 	
-	public List<ReservationBean> getAllAccountReservations(AccountBean Account) throws Exception, SQLException {
+	public List<ReservationBean> getAllAccountReservations(AccountBean accountBean) throws Exception, SQLException {
 		
 		List<ReservationBean> accountReservations = new ArrayList<>();
 		
-		return accountReservations;
+		ReservationBean reservation = null;
+		
+		PreparedStatement stmt = null;
+		Connection connection = null;
+		
+		try {
+			connection = DBConnection.getInstanceConnection().getConnection();
+			
+			stmt = connection.prepareStatement(GET_ACCOUNT_RESERVATIONS);
+			stmt.setString(1, accountBean.getCF());
+			
+			ResultSet res = stmt.executeQuery();
+				while (res.next()) {
+//					reservation = new ReservationBean(res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getString(8)) ;
+					accountReservations.add(reservation);
+				}
+				
+			res.close();
+			
+			return accountReservations;
+			
+		}finally {
+			if (connection != null ) {
+				connection.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+		}
 	}
 	
 	public List<AccountBean> getAllAccounts() throws Exception, SQLException {
