@@ -54,17 +54,19 @@ public class Account {
 	}
 	
 	public Account(AccountBean accountBean) throws SQLException, Exception {
+		
 		this(accountBean.getCF(), accountBean.getName(), accountBean.getSurname(), accountBean.getEmail(), accountBean.getPassword(), accountBean.getDateBirth(), 
 				accountBean.getCityBirth(), accountBean.getNumberToken());
 		
-		AccountDAOImpl dao = new AccountDAOImpl();
+		RoomDAOImpl dao1 = new RoomDAOImpl();
+		ReservationDAOImpl dao2 = new ReservationDAOImpl(); 
 		
-		List<ReservationBean> reservationBeans = dao.getAllAccountReservations(accountBean);
+		List<ReservationBean> reservationBeans = dao2.getAllAccountReservations(accountBean);
 		for(ReservationBean reservationBean : reservationBeans) {
 			this.reservations.add(new Reservation(reservationBean));
 		}
 			
-		List<RoomBean> roomBeans = dao.getAllAccountRooms(accountBean);
+		List<RoomBean> roomBeans = dao1.getAllAccountRooms(accountBean);
 		for(RoomBean roomBean : roomBeans) {
 			this.rooms.add(new Room(roomBean));
 		}	

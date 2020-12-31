@@ -3,6 +3,7 @@ package logic.model.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import logic.bean.AccountBean;
 import logic.bean.RoomBean;
 
 public interface RoomDAO {
@@ -21,4 +22,6 @@ public interface RoomDAO {
 	
 	public int getRoomId(RoomBean roomBean) throws Exception, SQLException;
 	
+	public List<RoomBean> getAllAccountRooms(AccountBean accountBean) throws Exception, SQLException;
+
 }

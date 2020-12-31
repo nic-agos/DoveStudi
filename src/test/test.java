@@ -12,5 +12,9 @@ import logic.bean.*;
 
 public class test {
 	
-
+	@Test
+	public void testPrintRooms() throws Exception {
+		RoomDAOImpl r = new RoomDAOImpl();
+		r.printRooms();
+	}
 }

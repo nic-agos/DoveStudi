@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import logic.model.dao.AccountDAOImpl;
+import logic.model.dao.*;
 import logic.bean.*;
 
 public class TestAccountDAOImpl {
@@ -46,12 +46,26 @@ public class TestAccountDAOImpl {
 	}
 	
 	@Test
-	public void testGetAllAccountRooms() throws SQLException, Exception {
-		AccountBean a = new AccountBean("marco", "n", "c", "c", "c", "c", "c", 9);
-		AccountDAOImpl d = new AccountDAOImpl();
-		List<RoomBean> l = new ArrayList<RoomBean>();
-		List<RoomBean> n = d.getAllAccountRooms(a);
-		assertEquals(n, l);
+	public void testGetAllAccounts() throws SQLException, Exception {
+		AccountDAOImpl dao = new AccountDAOImpl();
+		List<AccountBean> res = dao.getAllAccounts();
+		System.out.println(res.get(1).getDateBirth());
+		assertEquals(res, 1);
+	}
+	
+	@Test
+	public void testGetAccount() throws SQLException, Exception {
+		AccountDAOImpl a = new AccountDAOImpl();
+		
+		AccountBean res = a.getAccount("marco");
+		System.out.println(res.getEmail());
+		assertEquals(res, 1);
+	}
+	
+	@Test
+	public void testPrintAccounts() throws Exception {
+		AccountDAOImpl r = new AccountDAOImpl();
+		r.printAccounts();
 	}
 
 }

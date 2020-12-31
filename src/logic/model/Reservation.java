@@ -1,5 +1,7 @@
 package logic.model;
 
+import java.sql.SQLException;
+
 import logic.bean.ReservationBean;
 import logic.model.dao.*;
 
@@ -49,12 +51,22 @@ public class Reservation {
 		this.endTime = endTime;
 	}
 	
-	public Reservation(ReservationBean reservationBean) {
+	public Reservation(ReservationBean reservationBean) throws SQLException, Exception {
 		
 		this(reservationBean.getIsGroup(), reservationBean.getDate(), reservationBean.getStartTime(), reservationBean.getEndTime());
 		
 		AccountDAOImpl dao1 = new AccountDAOImpl();
-//		this.reservingUser = dao1.get
+		
+		this.reservingUser = new Account(dao1.getAccount(reservationBean.getReservingUser()));
+		
+		RoomDAOImpl dao2 = new RoomDAOImpl();
+		
+		this.linkedRoom = new Room(dao2.getRoom(reservationBean.getRoomOwner()));
+		
+		PersonDAOImpl dao3 = new PersonDAOImpl();
+		
+//		missed the dao function for person
+		
 		this.id = reservationBean.getId();
 	}
 	

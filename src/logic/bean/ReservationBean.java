@@ -1,7 +1,5 @@
 package logic.bean;
 
-import logic.model.*;
-
 public class ReservationBean {
 	
 	private int id;
@@ -25,6 +23,25 @@ public class ReservationBean {
 	}
 	
 	public ReservationBean(String reservingUser, int linkedRoom, int roomOwner, boolean isGroup, String date, String startTime, String endTime ) {
+		
+		this.reservingUser = reservingUser;
+		
+		this.linkedRoom = linkedRoom;
+		
+		this.roomOwner = roomOwner;
+		
+		this.isGroup = isGroup;
+		
+		this.date = date;
+		
+		this.startTime = startTime;
+		
+		this.endTime = endTime;
+	}
+	
+	public ReservationBean(int id, String reservingUser, int linkedRoom, int roomOwner, boolean isGroup, String date, String startTime, String endTime ) {
+		
+		this.id = id;
 		
 		this.reservingUser = reservingUser;
 		
