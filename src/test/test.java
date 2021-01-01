@@ -29,10 +29,9 @@ public class test {
 	private String tag = "guest";
 	
 	@Test
-	public void testRemoveReview() throws SQLException {
+	public void testgetAllReviews() throws SQLException {
 		ReviewDAOImpl r = new ReviewDAOImpl();
-		ReviewBean a = new ReviewBean(id, title, reviewer, reviewed, rating, description, tag);
-		int res = r.removeReview(a);
+		List<ReviewBean> res = r.getAllReviews();
 		assertEquals(res, 1);
 	}
 	

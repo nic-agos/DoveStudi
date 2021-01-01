@@ -3,9 +3,12 @@ package test;
 import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.junit.Test;
 
+import logic.bean.AccountBean;
+import logic.bean.PersonBean;
 import logic.bean.ReviewBean;
 import logic.model.dao.ReviewDAOImpl;
 
@@ -38,6 +41,29 @@ public class TestReviewDAOImpl {
 		ReviewDAOImpl r = new ReviewDAOImpl();
 		ReviewBean a = new ReviewBean(id, title, reviewer, reviewed, rating, description, tag);
 		int res = r.removeReview(a);
+		assertEquals(res, 1);
+	}
+	
+	@Test
+	public void testgetAllWrittenReviews() throws SQLException {
+		ReviewDAOImpl r = new ReviewDAOImpl();
+		AccountBean a = new AccountBean("marco", "m", "a", "m", "m", "2020-12-27", "m", 10);
+		List<ReviewBean> res = r.getAllWrittenReviews(a);
+		assertEquals(res, 1);
+	}
+	
+	@Test
+	public void testgetAllReceivedReviews() throws SQLException {
+		ReviewDAOImpl r = new ReviewDAOImpl();
+		PersonBean a = new PersonBean(16, "f", "f", "f", "marco", 0, 0);
+		List<ReviewBean> res = r.getAllReceivedReviews(a);
+		assertEquals(res, 1);
+	}
+	
+	@Test
+	public void testgetAllReviews() throws SQLException {
+		ReviewDAOImpl r = new ReviewDAOImpl();
+		List<ReviewBean> res = r.getAllReviews();
 		assertEquals(res, 1);
 	}
 }
