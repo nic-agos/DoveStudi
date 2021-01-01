@@ -63,9 +63,9 @@ public class Reservation {
 		
 		this.linkedRoom = new Room(dao2.getRoom(reservationBean.getRoomOwner()));
 		
-//		PersonDAOImpl dao3 = new PersonDAOImpl();
+		PersonDAOImpl dao3 = new PersonDAOImpl();
 		
-//		missed the dao function for person
+		this.roomOwner = new Person(dao3.getPerson(reservationBean.getRoomOwner()));
 		
 		this.id = reservationBean.getId();
 	}

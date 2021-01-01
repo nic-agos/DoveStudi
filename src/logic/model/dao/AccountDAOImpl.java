@@ -18,7 +18,7 @@ public class AccountDAOImpl implements AccountDAO {
 	private static final String UPDATE_TOKEN_QUERY = "UPDATE account SET Number_Token = ? WHERE CF = ?";
 	private static final String GETALL_ACCOUNTS_QUERY = "SELECT * FROM account";
 	private static final String GET_ACCOUNT_QUERY = "SELECT * FROM account WHERE CF = ?";
-
+	
 	public int createAccount(AccountBean accountBean) throws SQLException {
 		
 		Connection connection = null;
@@ -193,7 +193,6 @@ public class AccountDAOImpl implements AccountDAO {
 			if (connection != null ) {
 				connection.close();
 			}
-		}
-		
+		}	
 	}
 }

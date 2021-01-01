@@ -1,6 +1,9 @@
 package logic.model;
 
+import java.sql.SQLException;
+
 import logic.bean.*;
+import logic.model.dao.*;
 
 public class Room {
 	
@@ -22,10 +25,9 @@ public class Room {
 	
 	private String endTime;
 	
-	private String owner;
+	private Account owner;
 	
-
-	public Room(String name, String description, String address, int numPartecipants, int numAvailableSeats, String date, String startTime, String endTime, String owner) {
+	public Room(String name, String description, String address, int numPartecipants, int numAvailableSeats, String date, String startTime, String endTime, Account owner) {
 		
 		this.name = name;
 		
@@ -47,10 +49,34 @@ public class Room {
 		
 	}
 	
-	public Room(RoomBean roomBean) {
+	public Room(String name, String description, String address, int numPartecipants, int numAvailableSeats, String date, String startTime, String endTime) {
+		
+		this.name = name;
+		
+		this.description = description;
+		
+		this.address = address;
+		
+		this.numPartecipants = numPartecipants;
+		
+		this.numAvailableSeats = numAvailableSeats;
+		
+		this.date = date;
+		
+		this.startTime = startTime;
+		
+		this.endTime = endTime;
+		
+	}
+	
+	public Room(RoomBean roomBean) throws SQLException {
 		
 		this(roomBean.getName(), roomBean.getDescription(), roomBean.getAddress(), roomBean.getNumPartecipants(), 
-				roomBean.getNumAvailableSeats(), roomBean.getDate(),roomBean.getStartTime(), roomBean.getEndTime(), roomBean.getOwner());
+				roomBean.getNumAvailableSeats(), roomBean.getDate(),roomBean.getStartTime(), roomBean.getEndTime());
+		
+		AccountDAOImpl dao = new AccountDAOImpl();
+		
+		this.owner = new Account(dao.getAccount(roomBean.getOwner()));
 		
 		this.id = roomBean.getId();
 		
@@ -146,12 +172,12 @@ public class Room {
 		
 	}
 	
-	public void setOwner(String owner) {
+	public void setOwner(Account owner) {
 		this.owner = owner;
 		
 	}
 	
-	public String getOwner() {
+	public Account getOwner() {
 		return this.owner;
 		
 	}

@@ -1,20 +1,17 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import org.junit.Test;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import logic.model.Account;
-import logic.model.Person;
-import logic.model.dao.*;
-import logic.bean.*;
+import org.junit.Test;
 
-public class test {
+import logic.bean.ReviewBean;
+import logic.model.dao.ReviewDAOImpl;
+
+public class TestReviewDAOImpl {
 	
-	private int id = 7;
+	private int id = 10;
 	
 	private String title = "bel";
 	
@@ -29,12 +26,18 @@ public class test {
 	private String tag = "guest";
 	
 	@Test
+	public void testCreateReview() throws SQLException {
+		ReviewDAOImpl r = new ReviewDAOImpl();
+		ReviewBean a = new ReviewBean(title, reviewer, reviewed, rating, description, tag);
+		int res = r.createReview(a);
+		assertEquals(res, 1);
+	}
+	
+	@Test
 	public void testRemoveReview() throws SQLException {
 		ReviewDAOImpl r = new ReviewDAOImpl();
 		ReviewBean a = new ReviewBean(id, title, reviewer, reviewed, rating, description, tag);
 		int res = r.removeReview(a);
 		assertEquals(res, 1);
 	}
-	
-	
 }

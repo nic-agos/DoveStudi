@@ -26,7 +26,6 @@ public class RoomDAOImpl implements RoomDAO {
 		
 		Connection connection = null;
 		PreparedStatement stmt = null;
-		int id;
 		
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
@@ -44,9 +43,7 @@ public class RoomDAOImpl implements RoomDAO {
 			
 			stmt.executeUpdate();
 			
-			id = getRoomId(roomBean);
-			
-			return id;
+			return getRoomId(roomBean);
 			
 		}finally {
 			if (stmt != null) {

@@ -1,6 +1,9 @@
 package logic.model;
 
+import java.sql.SQLException;
+
 import logic.bean.*;
+import logic.model.dao.AccountDAOImpl;
 
 public class Person {
 
@@ -18,6 +21,22 @@ public class Person {
 	
 	private float guestRating;
 	
+	public Person(String username, String studyGrade, String school, Account account, float hostRating, float guestRating) {
+		
+		this.username = username;
+		
+		this.studyGrade = studyGrade;
+		
+		this.school = school;
+		
+		this.account = account;
+		
+		this.hostRating = hostRating;
+		
+		this.guestRating = guestRating;
+		
+	}
+	
 	public Person(String username, String studyGrade, String school, float hostRating, float guestRating) {
 		
 		this.username = username;
@@ -32,8 +51,13 @@ public class Person {
 		
 	}
 	
-	public Person (PersonBean personBean) {
+	public Person (PersonBean personBean) throws SQLException {
+		this(personBean.getUsername(), personBean.getStudyGrade(), personBean.getSchool(), personBean.getHostRating(), personBean.getGuestRating());
 		
+		AccountDAOImpl dao = new AccountDAOImpl();
+		this.account = new Account(dao.getAccount(personBean.getAccount()));
+		
+		this.id = personBean.getId();
 	}
 	
 	public void setId(int id) {
@@ -105,6 +129,4 @@ public class Person {
 		return this.guestRating;
 		
 	}
-	
-	
 }

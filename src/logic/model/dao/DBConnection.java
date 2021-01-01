@@ -10,10 +10,10 @@ import java.sql.SQLException;
 
 public class DBConnection {
 	
-	private static String USER = "root";
-	private static String PASS = "Pomello99";
-	private static String DB_URL = "jdbc:mysql://localhost:3306/dovestudi?useSSL=false";
-	private static String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
+	private static final String USER = "root";
+	private static final String PASS = "Pomello99";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/dovestudi?useSSL=false";
+	private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 	private static DBConnection instance = null;
 	
 	private static Connection conn = null;
@@ -49,7 +49,6 @@ public class DBConnection {
 
 		return conn;
 	}
-	
 }
 	
 	
