@@ -2,7 +2,6 @@ package logic.model.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,7 @@ public class RoomDAOImpl implements RoomDAO {
 	private static final String GET_ACCOUNT_ROOMS_QUERY  = "SELECT * FROM room WHERE Owner = ?";
 	
 	@Override
-	public int createRoom(RoomBean roomBean) throws Exception, SQLException {
+	public int createRoom(RoomBean roomBean) throws Exception {
 		
 		Connection connection = null;
 		PreparedStatement stmt = null;
@@ -61,7 +60,7 @@ public class RoomDAOImpl implements RoomDAO {
 	}
 	
 	@Override
-	public void printRooms() throws Exception, SQLException {
+	public void printRooms() throws Exception {
 		
 		Connection connection = null;
 		Statement stmt = null;
@@ -72,11 +71,11 @@ public class RoomDAOImpl implements RoomDAO {
 			stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);	
 			ResultSet res = stmt.executeQuery(GETALL_QUERY);
 			
-			System.out.println("Room DB");
-			System.out.println("ID  Name  Descrption  Address  Num_Partecipants  Num_Available_Seats  Date  Start_Time  End_Time  Owner\n");
+			System.err.println("Room DB");
+			System.err.println("ID  Name  Descrption  Address  Num_Partecipants  Num_Available_Seats  Date  Start_Time  End_Time  Owner\n");
 			
 			while (res.next()) {
-				System.out.printf("%s, %s, %s, %s, %s, %s, %s, %s, %s\n", res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getInt(6), res.getString(7), res.getString(8), res.getString(9));
+				System.err.printf("%s, %s, %s, %s, %s, %s, %s, %s, %s\n", res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getInt(6), res.getString(7), res.getString(8), res.getString(9));
 			}
 			
 			res.close();
@@ -93,7 +92,7 @@ public class RoomDAOImpl implements RoomDAO {
 	}
 	
 	@Override
-	public List<RoomBean> getAllRooms() throws Exception, SQLException {
+	public List<RoomBean> getAllRooms() throws Exception {
 
 		List<RoomBean> roomsList = new ArrayList<>();
 		RoomBean room = null;
@@ -129,7 +128,7 @@ public class RoomDAOImpl implements RoomDAO {
 	}
 	
 	@Override
-	public int updateRoom(RoomBean roomBean) throws Exception, SQLException {
+	public int updateRoom(RoomBean roomBean) throws Exception {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -157,7 +156,7 @@ public class RoomDAOImpl implements RoomDAO {
 	}
 	
 	@Override
-	public int removeRoom(RoomBean roomBean) throws Exception, SQLException {
+	public int removeRoom(RoomBean roomBean) throws Exception {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -184,7 +183,7 @@ public class RoomDAOImpl implements RoomDAO {
 	}
 	
 	@Override
-	public RoomBean getRoom(int id) throws Exception, SQLException{
+	public RoomBean getRoom(int id) throws Exception {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -216,7 +215,7 @@ public class RoomDAOImpl implements RoomDAO {
 	}
 	
 	@Override
-	public int getRoomId(RoomBean roomBean) throws Exception, SQLException {
+	public int getRoomId(RoomBean roomBean) throws Exception {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -246,7 +245,7 @@ public class RoomDAOImpl implements RoomDAO {
 	}
 	
 	@Override
-	public List<RoomBean> getAllAccountRooms(AccountBean accountBean) throws Exception, SQLException {
+	public List<RoomBean> getAllAccountRooms(AccountBean accountBean) throws Exception {
 		
 		List<RoomBean> accountRooms = new ArrayList<>();
 		RoomBean room = null;

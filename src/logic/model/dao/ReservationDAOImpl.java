@@ -3,7 +3,6 @@ package logic.model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ public class ReservationDAOImpl {
 	private static final String DELETE_QUERY = "DELETE FROM reservation WHERE ID = ?";
 	private static final String GET_RESERVATION_QUERY = "SELECT * FROM reservation WHERE ID = ?";
 	
-	public int createReservation(ReservationBean reservationBean) throws Exception, SQLException {
+	public int createReservation(ReservationBean reservationBean) throws Exception {
 		
 		Connection connection = null;
 		PreparedStatement stmt = null;
@@ -55,7 +54,7 @@ public class ReservationDAOImpl {
 		}
 	}
 	
-	public int removeReservation(ReservationBean reservationBean) throws Exception, SQLException {
+	public int removeReservation(ReservationBean reservationBean) throws Exception {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -81,7 +80,7 @@ public class ReservationDAOImpl {
 		
 	}
 	
-	public int getReservationId(ReservationBean reservationBean) throws Exception, SQLException {
+	public int getReservationId(ReservationBean reservationBean) throws Exception {
 		PreparedStatement stmt = null;
 		Connection connection = null;
 		int id = 0;	
@@ -112,7 +111,7 @@ public class ReservationDAOImpl {
 		}
 	}
 	
-	public List<ReservationBean> getAllAccountReservations(AccountBean accountBean) throws Exception, SQLException {
+	public List<ReservationBean> getAllAccountReservations(AccountBean accountBean) throws Exception {
 		
 		List<ReservationBean> accountReservations = new ArrayList<>();
 		ReservationBean reservation = null;
@@ -146,7 +145,7 @@ public class ReservationDAOImpl {
 		}
 	}
 	
-	public List<ReservationBean> getAllReservations() throws Exception, SQLException {
+	public List<ReservationBean> getAllReservations() throws Exception {
 		
 		List<ReservationBean> reservationsList = new ArrayList<>();
 		ReservationBean reservation = null;
@@ -180,7 +179,7 @@ public class ReservationDAOImpl {
 		}
 	}
 	
-	public ReservationBean getReservation(int id) throws Exception, SQLException {
+	public ReservationBean getReservation(int id) throws Exception {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -211,7 +210,7 @@ public class ReservationDAOImpl {
 		
 	}
 	
-	public void printReservations() throws Exception, SQLException {
+	public void printReservations() throws Exception {
 		
 		Connection connection = null;
 		Statement stmt = null;

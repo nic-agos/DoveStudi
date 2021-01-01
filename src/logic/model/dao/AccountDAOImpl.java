@@ -4,7 +4,6 @@ import java.sql.Connection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ public class AccountDAOImpl {
 	private static final String GETALL_ACCOUNTS_QUERY = "SELECT * FROM account";
 	private static final String GET_ACCOUNT_QUERY = "SELECT * FROM account WHERE CF = ?";
 
-	public int createAccount(AccountBean accountBean) throws Exception, SQLException {
+	public int createAccount(AccountBean accountBean) throws Exception {
 		
 		Connection connection = null;
 		PreparedStatement stmt = null;
@@ -52,7 +51,7 @@ public class AccountDAOImpl {
 		}
 	}
 	
-	public int removeAccount(AccountBean accountBean) throws Exception, SQLException {
+	public int removeAccount(AccountBean accountBean) throws Exception {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -78,7 +77,7 @@ public class AccountDAOImpl {
 		
 	}
 	
-	public int getNumberToken(AccountBean accountBean) throws Exception, SQLException {
+	public int getNumberToken(AccountBean accountBean) throws Exception {
 	
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -107,7 +106,7 @@ public class AccountDAOImpl {
 		
 	}
 	
-	public int updateNumberToken(AccountBean accountBean) throws Exception, SQLException {
+	public int updateNumberToken(AccountBean accountBean) throws Exception {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -132,7 +131,7 @@ public class AccountDAOImpl {
 	}
 
 	
-	public List<AccountBean> getAllAccounts() throws Exception, SQLException {
+	public List<AccountBean> getAllAccounts() throws Exception {
 		
 		List<AccountBean> accountsList = new ArrayList<>();
 		AccountBean account = null;
@@ -166,7 +165,7 @@ public class AccountDAOImpl {
 		}
 	}
 	
-	public AccountBean getAccount(String cf) throws Exception, SQLException {
+	public AccountBean getAccount(String cf) throws Exception {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -197,7 +196,7 @@ public class AccountDAOImpl {
 		
 	}
 	
-	public void printAccounts() throws Exception, SQLException {
+	public void printAccounts() throws Exception {
 		
 		Connection connection = null;
 		Statement stmt = null;
