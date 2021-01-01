@@ -43,11 +43,11 @@ public class AccountDAOImpl {
 			return res;
 				
 		}finally {
-			if (connection != null) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null) {
+				connection.close();
 			}
 		}
 	}
