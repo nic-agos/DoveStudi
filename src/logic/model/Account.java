@@ -9,7 +9,7 @@ import logic.model.dao.*;
 
 public class Account {
 
-	private String CF;
+	private String cf;
 	
 	private String name;
 	
@@ -31,7 +31,7 @@ public class Account {
 	
 	public Account(String cf, String name, String surname, String email, String password, String dateBirth, String cityBirth, int numberToken) {
 		
-		this.CF = cf;
+		this.cf = cf;
 		
 		this.name = name;
 		
@@ -53,7 +53,7 @@ public class Account {
 		
 	}
 	
-	public Account(AccountBean accountBean) throws SQLException, Exception {
+	public Account(AccountBean accountBean) throws SQLException {
 		
 		this(accountBean.getCF(), accountBean.getName(), accountBean.getSurname(), accountBean.getEmail(), accountBean.getPassword(), accountBean.getDateBirth(), 
 				accountBean.getCityBirth(), accountBean.getNumberToken());
@@ -73,12 +73,12 @@ public class Account {
 	}
 	
 	public void setCF(String cf) {
-		this.CF = cf;
+		this.cf = cf;
 		
 	}
 	
 	public String getCF() {
-		return this.CF;
+		return this.cf;
 		
 	}
 	

@@ -51,7 +51,7 @@ public class Reservation {
 		this.endTime = endTime;
 	}
 	
-	public Reservation(ReservationBean reservationBean) throws SQLException, Exception {
+	public Reservation(ReservationBean reservationBean) throws SQLException {
 		
 		this(reservationBean.getIsGroup(), reservationBean.getDate(), reservationBean.getStartTime(), reservationBean.getEndTime());
 		
@@ -63,7 +63,7 @@ public class Reservation {
 		
 		this.linkedRoom = new Room(dao2.getRoom(reservationBean.getRoomOwner()));
 		
-		PersonDAOImpl dao3 = new PersonDAOImpl();
+//		PersonDAOImpl dao3 = new PersonDAOImpl();
 		
 //		missed the dao function for person
 		

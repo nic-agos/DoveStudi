@@ -21,7 +21,7 @@ public class TestAccountDAOImpl {
 	private int numToken = 10;
 	
 	@Test
-	public void testCreateAccount() throws SQLException, Exception {
+	public void testCreateAccount() throws SQLException {
 		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, cityBirth, numToken);
 		AccountDAOImpl i = new AccountDAOImpl();
 		int res = i.createAccount(a);
@@ -30,7 +30,7 @@ public class TestAccountDAOImpl {
 	}
 	
 	@Test
-	public void testGetNumberToken() throws SQLException, Exception {
+	public void testGetNumberToken() throws SQLException {
 		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, cityBirth, numToken);
 		AccountDAOImpl i = new AccountDAOImpl();
 		int res = i.getNumberToken(a);
@@ -38,7 +38,7 @@ public class TestAccountDAOImpl {
 	}
 	
 	@Test
-	public void testUpdateNumberToken() throws SQLException, Exception {
+	public void testUpdateNumberToken() throws SQLException{
 		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, cityBirth, numToken);
 		AccountDAOImpl i = new AccountDAOImpl();
 		int res = i.updateNumberToken(a);
@@ -46,7 +46,7 @@ public class TestAccountDAOImpl {
 	}
 	
 	@Test
-	public void testRemoveAccount() throws SQLException, Exception{
+	public void testRemoveAccount() throws SQLException{
 		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, cityBirth, numToken);
 		AccountDAOImpl i = new AccountDAOImpl();
 		int res = i.removeAccount(a);
@@ -54,7 +54,7 @@ public class TestAccountDAOImpl {
 	}
 	
 	@Test
-	public void testGetAllAccounts() throws SQLException, Exception {
+	public void testGetAllAccounts() throws SQLException {
 		AccountDAOImpl dao = new AccountDAOImpl();
 		List<AccountBean> res = dao.getAllAccounts();
 		System.out.println(res.get(1).getDateBirth());
@@ -62,7 +62,7 @@ public class TestAccountDAOImpl {
 	}
 	
 	@Test
-	public void testGetAccount() throws SQLException, Exception {
+	public void testGetAccount() throws SQLException {
 		AccountDAOImpl a = new AccountDAOImpl();
 		
 		AccountBean res = a.getAccount("marco");
@@ -71,7 +71,7 @@ public class TestAccountDAOImpl {
 	}
 	
 	@Test
-	public void testPrintAccounts() throws Exception {
+	public void testPrintAccounts() throws SQLException {
 		Printers r = new Printers();
 		r.printAccounts();
 	}

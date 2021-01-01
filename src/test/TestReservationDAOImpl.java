@@ -13,8 +13,16 @@ import logic.model.dao.*;
 
 public class TestReservationDAOImpl {
 	
+	private String reservingUser = "marco";
+	private int linkedRoom = 24;
+	private int roomOwner = 12;
+	private boolean isGroup = true;
+	private String date = "2020-12-27";
+	private String startTime = "09:00";
+	private String endTime = "10:00";
+	
 	@Test
-	public void testGetAllAccountReservation() throws SQLException, Exception {
+	public void testGetAllAccountReservation() throws SQLException {
 		AccountBean a = new AccountBean("marco", "m", "a", "m", "m", "2020-12-27", "m", 10);
 		ReservationDAOImpl dao = new ReservationDAOImpl();
 		List<ReservationBean> res = dao.getAllAccountReservations(a);
@@ -23,23 +31,23 @@ public class TestReservationDAOImpl {
 	}
 	
 	@Test
-	public void testGetReservationId() throws SQLException, Exception {
+	public void testGetReservationId() throws SQLException {
 		ReservationDAOImpl r = new ReservationDAOImpl();
-		ReservationBean b = new ReservationBean ("marco", 24, 12, true,"2020-12-31", "09:00", "10:00");
+		ReservationBean b = new ReservationBean (reservingUser, linkedRoom, roomOwner, isGroup, date, startTime, endTime);
 		int res = r.getReservationId(b);
 		assertEquals(res, 5);
 	}
 	
 	@Test
-	public void testCreateReservationId() throws SQLException, Exception {
+	public void testCreateReservationId() throws SQLException {
 		ReservationDAOImpl r = new ReservationDAOImpl();
-		ReservationBean b = new ReservationBean ("mrro", 24, 13, true ,"2020-12-31", "09:00", "10:00");
+		ReservationBean b = new ReservationBean (reservingUser, linkedRoom, roomOwner, isGroup, date, startTime, endTime);
 		int res = r.createReservation(b);
 		assertEquals(res, 5);
 	}
 	
 	@Test
-	public void testGetAllReservations() throws SQLException, Exception {
+	public void testGetAllReservations() throws SQLException {
 		ReservationDAOImpl r = new ReservationDAOImpl();
 		List<ReservationBean> res = r.getAllReservations();
 		System.out.println(res.get(0).getId());
@@ -48,15 +56,15 @@ public class TestReservationDAOImpl {
 	}
 	
 	@Test
-	public void testRemoveReservation() throws SQLException, Exception {
+	public void testRemoveReservation() throws SQLException {
 		ReservationDAOImpl r = new ReservationDAOImpl();
-		ReservationBean b = new ReservationBean (5, "marco", 24, 12, true,"2020-12-31", "09:00", "10:00");
+		ReservationBean b = new ReservationBean (reservingUser, linkedRoom, roomOwner, isGroup, date, startTime, endTime);
 		int res = r.removeReservation(b);
 		assertEquals(res, 1);
 	}
 	
 	@Test
-	public void testGetReservation() throws SQLException, Exception {
+	public void testGetReservation() throws SQLException {
 		ReservationDAOImpl r = new ReservationDAOImpl();
 		ReservationBean res = r.getReservation(8);
 		System.out.println(res.getLinkedRoom());
@@ -64,7 +72,7 @@ public class TestReservationDAOImpl {
 	}
 	
 	@Test
-	public void testPrintReservations() throws Exception {
+	public void testPrintReservations() throws SQLException {
 		Printers r = new Printers();
 		r.printReservations();
 	}

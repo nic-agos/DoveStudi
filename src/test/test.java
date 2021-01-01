@@ -12,9 +12,5 @@ import logic.bean.*;
 
 public class test {
 	
-	@Test
-	public void testPrintRooms() throws Exception {
-		Printers r = new Printers();
-		r.printRooms();
-	}
+	//used to test a particular case at time
 }
