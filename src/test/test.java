@@ -14,7 +14,7 @@ public class test {
 	
 	@Test
 	public void testPrintRooms() throws Exception {
-		RoomDAOImpl r = new RoomDAOImpl();
+		Printers r = new Printers();
 		r.printRooms();
 	}
 }

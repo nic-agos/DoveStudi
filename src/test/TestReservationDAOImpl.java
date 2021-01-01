@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import logic.bean.AccountBean;
 import logic.bean.ReservationBean;
-import logic.model.dao.ReservationDAOImpl;
+import logic.model.dao.*;
 
 public class TestReservationDAOImpl {
 	
@@ -65,7 +65,7 @@ public class TestReservationDAOImpl {
 	
 	@Test
 	public void testPrintReservations() throws Exception {
-		ReservationDAOImpl r = new ReservationDAOImpl();
+		Printers r = new Printers();
 		r.printReservations();
 	}
 }

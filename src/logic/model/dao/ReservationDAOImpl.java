@@ -3,14 +3,14 @@ package logic.model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import logic.bean.AccountBean;
 import logic.bean.ReservationBean;
 
-public class ReservationDAOImpl {
+public class ReservationDAOImpl implements ReservationDAO {
 	
 	private static final String GET_ACCOUNT_RESERVATIONS_QUERY = "SELECT * FROM reservation WHERE Reserving_User = ?";
 	private static final String CREATE_QUERY = "INSERT INTO reservation (Reserving_User, Room, Room_Owner, isGroup, Date, Start_Time, End_Time) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -19,7 +19,7 @@ public class ReservationDAOImpl {
 	private static final String DELETE_QUERY = "DELETE FROM reservation WHERE ID = ?";
 	private static final String GET_RESERVATION_QUERY = "SELECT * FROM reservation WHERE ID = ?";
 	
-	public int createReservation(ReservationBean reservationBean) throws Exception {
+	public int createReservation(ReservationBean reservationBean) throws SQLException {
 		
 		Connection connection = null;
 		PreparedStatement stmt = null;
@@ -54,7 +54,7 @@ public class ReservationDAOImpl {
 		}
 	}
 	
-	public int removeReservation(ReservationBean reservationBean) throws Exception {
+	public int removeReservation(ReservationBean reservationBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -65,9 +65,7 @@ public class ReservationDAOImpl {
 			stmt = connection.prepareStatement(DELETE_QUERY);
 			stmt.setInt(1, reservationBean.getId());
 			
-			int res = stmt.executeUpdate();
-			
-			return res;
+			return stmt.executeUpdate();
 			
 		}finally {
 			if (stmt != null) {
@@ -80,7 +78,7 @@ public class ReservationDAOImpl {
 		
 	}
 	
-	public int getReservationId(ReservationBean reservationBean) throws Exception {
+	public int getReservationId(ReservationBean reservationBean) throws SQLException {
 		PreparedStatement stmt = null;
 		Connection connection = null;
 		int id = 0;	
@@ -93,11 +91,13 @@ public class ReservationDAOImpl {
 			stmt.setInt(2, reservationBean.getLinkedRoom());
 			stmt.setInt(3, reservationBean.getRoomOwner());
 
-			ResultSet r = stmt.executeQuery();
+			ResultSet res = stmt.executeQuery();
 			
-			while (r.next()) {
-				id = r.getInt(1);
+			while (res.next()) {
+				id = res.getInt(1);
 			}
+			
+			res.close();
 			
 			return id;
 			
@@ -111,7 +111,7 @@ public class ReservationDAOImpl {
 		}
 	}
 	
-	public List<ReservationBean> getAllAccountReservations(AccountBean accountBean) throws Exception {
+	public List<ReservationBean> getAllAccountReservations(AccountBean accountBean) throws SQLException {
 		
 		List<ReservationBean> accountReservations = new ArrayList<>();
 		ReservationBean reservation = null;
@@ -145,7 +145,7 @@ public class ReservationDAOImpl {
 		}
 	}
 	
-	public List<ReservationBean> getAllReservations() throws Exception {
+	public List<ReservationBean> getAllReservations() throws SQLException {
 		
 		List<ReservationBean> reservationsList = new ArrayList<>();
 		ReservationBean reservation = null;
@@ -179,7 +179,7 @@ public class ReservationDAOImpl {
 		}
 	}
 	
-	public ReservationBean getReservation(int id) throws Exception {
+	public ReservationBean getReservation(int id) throws SQLException {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -207,40 +207,5 @@ public class ReservationDAOImpl {
 				connection.close();
 			}
 		}
-		
 	}
-	
-	public void printReservations() throws Exception {
-		
-		Connection connection = null;
-		Statement stmt = null;
-		
-		try {
-			connection = DBConnection.getInstanceConnection().getConnection();
-			
-			stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);	
-			ResultSet res = stmt.executeQuery(GETALL_RESERVATIONS_QUERY);
-			
-			System.out.println("Reservation DB");
-			System.out.println("ID  Reserving_User  Room  Room_Owner  isGroup  Date  Start_Time  End_Time\n");
-			
-			while (res.next()) {
-				System.out.printf("%s, %s, %s, %s, %s, %s, %s, %s\n", res.getInt(1), res.getString(2), res.getInt(3), res.getInt(4), res.getBoolean(5), res.getString(6), res.getString(7), res.getString(8));
-			}
-			
-			res.close();
-
-		}finally {
-			if (stmt != null) {
-				stmt.close();
-			}
-			if (connection != null) {
-				connection.close();
-			}
-		}
-		
-	}
-	
-	
-	
 }

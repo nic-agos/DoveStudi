@@ -72,7 +72,7 @@ public class TestAccountDAOImpl {
 	
 	@Test
 	public void testPrintAccounts() throws Exception {
-		AccountDAOImpl r = new AccountDAOImpl();
+		Printers r = new Printers();
 		r.printAccounts();
 	}
 

@@ -8,20 +8,18 @@ import logic.bean.RoomBean;
 
 public interface RoomDAO {
 	
-	public int createRoom(RoomBean roomBean) throws Exception, SQLException;
+	public int createRoom(RoomBean roomBean) throws SQLException;
 	
-	public void printRooms() throws Exception;
+	public List<RoomBean> getAllRooms() throws SQLException;
 	
-	public List<RoomBean> getAllRooms() throws Exception, SQLException;
+	public int updateRoom(RoomBean roomBean) throws SQLException;
 	
-	public int updateRoom(RoomBean roomBean) throws Exception, SQLException;
-	
-	public int removeRoom(RoomBean roomBean) throws Exception, SQLException;
+	public int removeRoom(RoomBean roomBean) throws SQLException;
 
-	public RoomBean getRoom(int id) throws Exception, SQLException;
+	public RoomBean getRoom(int id) throws SQLException;
 	
-	public int getRoomId(RoomBean roomBean) throws Exception, SQLException;
+	public int getRoomId(RoomBean roomBean) throws SQLException;
 	
-	public List<RoomBean> getAllAccountRooms(AccountBean accountBean) throws Exception, SQLException;
+	public List<RoomBean> getAllAccountRooms(AccountBean accountBean) throws SQLException;
 
 }
