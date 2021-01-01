@@ -51,13 +51,12 @@ public class RoomDAOImpl implements RoomDAO {
 			
 		
 		}finally {
-			if (connection != null) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
 			}
-			
+			if (connection != null) {
+				connection.close();
+			}
 		}
 	}
 	
@@ -83,11 +82,11 @@ public class RoomDAOImpl implements RoomDAO {
 			res.close();
 
 		}finally {
-			if (connection != null) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null) {
+				connection.close();
 			}
 		}
 		
@@ -119,11 +118,11 @@ public class RoomDAOImpl implements RoomDAO {
 			return roomsList;
 		
 		}finally {
-			if (connection != null) {
-				connection.close();
-			}
 			if(stmt != null) {
 				stmt.close();
+			}
+			if (connection != null) {
+				connection.close();
 			}
 		
 		}
@@ -148,13 +147,12 @@ public class RoomDAOImpl implements RoomDAO {
 			return res;
 			
 		}finally {
-			if (connection != null ) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
 			}
-			
+			if (connection != null ) {
+				connection.close();
+			}
 		}
 	}
 	
@@ -175,11 +173,11 @@ public class RoomDAOImpl implements RoomDAO {
 			return res;
 			
 		}finally {
-			if (connection != null ) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
 			}
 		}
 		
@@ -207,11 +205,11 @@ public class RoomDAOImpl implements RoomDAO {
 			return room;
 			
 		}finally {
-			if (connection != null ) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
 			}
 		}
 		
@@ -238,11 +236,11 @@ public class RoomDAOImpl implements RoomDAO {
 			return id;
 			
 		}finally {
-			if (connection != null ) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
 			}
 		}
 	}
@@ -273,11 +271,11 @@ public class RoomDAOImpl implements RoomDAO {
 			return accountRooms;
 			
 		}finally {
-			if (connection != null ) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
 			}
 		}
 	}

@@ -68,11 +68,11 @@ public class AccountDAOImpl {
 			return res;
 			
 		}finally {
-			if (connection != null ) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
 			}
 		}
 		
@@ -97,11 +97,11 @@ public class AccountDAOImpl {
 			return tokens;
 			
 		}finally {
-			if (connection != null ) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
 			}
 		}
 		
@@ -122,11 +122,11 @@ public class AccountDAOImpl {
 			return res;
 			
 		}finally {
-			if (connection != null ) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
 			}
 		}
 	}
@@ -157,11 +157,11 @@ public class AccountDAOImpl {
 			return accountsList;
 			
 		}finally {
-			if (connection != null ) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
 			}
 		}
 	}
@@ -187,11 +187,11 @@ public class AccountDAOImpl {
 			return account;
 			
 		}finally {
-			if (connection != null ) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
 			}
 		}
 		
@@ -218,11 +218,11 @@ public class AccountDAOImpl {
 			res.close();
 
 		}finally {
-			if (connection != null) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null) {
+				connection.close();
 			}
 		}
 		

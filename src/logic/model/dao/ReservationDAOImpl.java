@@ -45,11 +45,11 @@ public class ReservationDAOImpl {
 			return id;
 			
 		}finally {
-			if (connection != null) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null) {
+				connection.close();
 			}
 			
 		}
@@ -71,11 +71,11 @@ public class ReservationDAOImpl {
 			return res;
 			
 		}finally {
-			if (connection != null ) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
 			}
 		}
 		
@@ -103,11 +103,11 @@ public class ReservationDAOImpl {
 			return id;
 			
 		}finally {
-			if (connection != null ) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
 			}
 		}
 	}
@@ -137,11 +137,11 @@ public class ReservationDAOImpl {
 			return accountReservations;
 			
 		}finally {
-			if (connection != null ) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
 			}
 		}
 	}
@@ -171,11 +171,11 @@ public class ReservationDAOImpl {
 			return reservationsList;
 			
 		}finally {
-			if (connection != null ) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
 			}
 		}
 	}
@@ -201,11 +201,11 @@ public class ReservationDAOImpl {
 			return reservation;
 			
 		}finally {
-			if (connection != null ) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
 			}
 		}
 		
@@ -232,11 +232,11 @@ public class ReservationDAOImpl {
 			res.close();
 
 		}finally {
-			if (connection != null) {
-				connection.close();
-			}
 			if (stmt != null) {
 				stmt.close();
+			}
+			if (connection != null) {
+				connection.close();
 			}
 		}
 		
