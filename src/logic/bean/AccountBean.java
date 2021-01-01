@@ -8,7 +8,7 @@ import logic.model.Room;
 
 public class AccountBean {
 
-	private String CF;
+	private String cf;
 	
 	private String name;
 	
@@ -34,7 +34,7 @@ public class AccountBean {
 	
 	public AccountBean(String cf, String name, String surname, String email, String password, String dateBirth, String cityBirth, int numberToken) {
 		
-		this.CF = cf;
+		this.cf = cf;
 		
 		this.name = name;
 		
@@ -57,12 +57,12 @@ public class AccountBean {
 	}
 	
 	public void setCF(String cf) {
-		this.CF = cf;
+		this.cf = cf;
 		
 	}
 	
 	public String getCF() {
-		return this.CF;
+		return this.cf;
 		
 	}
 	

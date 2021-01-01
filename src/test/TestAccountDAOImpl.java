@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import logic.model.dao.*;
@@ -12,9 +11,18 @@ import logic.bean.*;
 
 public class TestAccountDAOImpl {
 	
+	private String cf = "mrro";
+	private String name = "marco";
+	private String surname = "rossi";
+	private String email = "m@";
+	private String password = "m";
+	private String dateBirth = "2020:02:07";
+	private String cityBirth = "m";
+	private int numToken = 10;
+	
 	@Test
 	public void testCreateAccount() throws SQLException, Exception {
-		AccountBean a = new AccountBean("mrro","mario","rossi", "m@", "m", "2020:2:7", "m", 10);
+		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, cityBirth, numToken);
 		AccountDAOImpl i = new AccountDAOImpl();
 		int res = i.createAccount(a);
 		assertEquals(res,1);
@@ -23,7 +31,7 @@ public class TestAccountDAOImpl {
 	
 	@Test
 	public void testGetNumberToken() throws SQLException, Exception {
-		AccountBean a = new AccountBean("mrro","mario","rossi", "m@", "m", "2020:2:7", "m", 10);
+		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, cityBirth, numToken);
 		AccountDAOImpl i = new AccountDAOImpl();
 		int res = i.getNumberToken(a);
 		assertEquals(res, 10);
@@ -31,7 +39,7 @@ public class TestAccountDAOImpl {
 	
 	@Test
 	public void testUpdateNumberToken() throws SQLException, Exception {
-		AccountBean a = new AccountBean("mrro","mario","rossi", "m@", "m", "2020:2:7", "m", 4);
+		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, cityBirth, numToken);
 		AccountDAOImpl i = new AccountDAOImpl();
 		int res = i.updateNumberToken(a);
 		assertEquals(res, 1);
@@ -39,7 +47,7 @@ public class TestAccountDAOImpl {
 	
 	@Test
 	public void testRemoveAccount() throws SQLException, Exception{
-		AccountBean a = new AccountBean("mrro","mario","rossi", "m@", "m", "2020:2:7", "m", 10);
+		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, cityBirth, numToken);
 		AccountDAOImpl i = new AccountDAOImpl();
 		int res = i.removeAccount(a);
 		assertEquals(res, 1);
