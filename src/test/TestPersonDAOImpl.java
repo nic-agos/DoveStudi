@@ -60,7 +60,7 @@ public class TestPersonDAOImpl {
 	@Test
 	public void testGetPersonFromAccount() throws SQLException {
 		PersonDAOImpl d = new PersonDAOImpl();
-		AccountBean a = new AccountBean("marco", "m", "a", "m", "m", "2020-12-27", "m", 10);
+		AccountBean a = new AccountBean("marco", "m", "a", "m", "2020-12-27", "m", 10);
 		PersonBean res = d.getPersonFromAccount(a);
 		assertEquals(res, 1);
 	}

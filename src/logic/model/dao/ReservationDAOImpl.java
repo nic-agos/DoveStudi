@@ -13,10 +13,10 @@ import logic.bean.ReservationBean;
 public class ReservationDAOImpl implements ReservationDAO {
 	
 	private static final String GET_ACCOUNT_RESERVATIONS_QUERY = "SELECT * FROM reservation WHERE Reserving_User = ?";
-	private static final String CREATE_QUERY = "INSERT INTO reservation (Reserving_User, Room, Room_Owner, isGroup, Date, Start_Time, End_Time) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	private static final String GET_ID_QUERY = "SELECT ID FROM reservation WHERE Reserving_User = ? AND Room = ? AND Room_Owner = ?";
+	private static final String CREATE_RESERVATION_QUERY = "INSERT INTO reservation (Reserving_User, Room, Room_Owner, isGroup, Date, Start_Time, End_Time) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	private static final String GET_RESERVATION_ID_QUERY = "SELECT ID FROM reservation WHERE Reserving_User = ? AND Room = ? AND Room_Owner = ?";
 	private static final String GETALL_RESERVATIONS_QUERY = "SELECT * FROM reservation";
-	private static final String DELETE_QUERY = "DELETE FROM reservation WHERE ID = ?";
+	private static final String DELETE_RESERVATION_QUERY = "DELETE FROM reservation WHERE ID = ?";
 	private static final String GET_RESERVATION_QUERY = "SELECT * FROM reservation WHERE ID = ?";
 	
 	public int createReservation(ReservationBean reservationBean) throws SQLException {
@@ -28,14 +28,13 @@ public class ReservationDAOImpl implements ReservationDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(CREATE_QUERY);
+			stmt = connection.prepareStatement(CREATE_RESERVATION_QUERY);
 			stmt.setString(1, reservationBean.getReservingUser());
 			stmt.setInt(2, reservationBean.getLinkedRoom());
 			stmt.setInt(3, reservationBean.getRoomOwner());
-			stmt.setBoolean(4, reservationBean.getIsGroup());
-			stmt.setString(5, reservationBean.getDate());
-			stmt.setString(6, reservationBean.getStartTime());
-			stmt.setString(7, reservationBean.getEndTime());
+			stmt.setString(4, reservationBean.getDate());
+			stmt.setString(5, reservationBean.getStartTime());
+			stmt.setString(6, reservationBean.getEndTime());
 			
 			stmt.executeUpdate();
 			
@@ -62,7 +61,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(DELETE_QUERY);
+			stmt = connection.prepareStatement(DELETE_RESERVATION_QUERY);
 			stmt.setInt(1, reservationBean.getId());
 			
 			return stmt.executeUpdate();
@@ -86,7 +85,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(GET_ID_QUERY);
+			stmt = connection.prepareStatement(GET_RESERVATION_ID_QUERY);
 			stmt.setString(1, reservationBean.getReservingUser());
 			stmt.setInt(2, reservationBean.getLinkedRoom());
 			stmt.setInt(3, reservationBean.getRoomOwner());
@@ -127,7 +126,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 			
 			ResultSet res = stmt.executeQuery();
 				while (res.next()) {
-					reservation = new ReservationBean(res.getInt(1), res.getString(2), res.getInt(3), res.getInt(4), res.getBoolean(5), res.getString(6), res.getString(7), res.getString(8));
+					reservation = new ReservationBean(res.getInt(1), res.getString(2), res.getInt(3), res.getInt(4), res.getString(5), res.getString(6), res.getString(7));
 					accountReservations.add(reservation);
 				}
 				
@@ -161,7 +160,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 			ResultSet res = stmt.executeQuery();
 			
 			while(res.next()) {
-				reservation = new ReservationBean(res.getInt(1), res.getString(2), res.getInt(3), res.getInt(4), res.getBoolean(5), res.getString(6), res.getString(7), res.getString(8));
+				reservation = new ReservationBean(res.getInt(1), res.getString(2), res.getInt(3), res.getInt(4), res.getString(5), res.getString(6), res.getString(7));
 				reservationsList.add(reservation);
 			}
 			
@@ -194,7 +193,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 			ResultSet res = stmt.executeQuery();
 			
 			while(res.next()) {
-				reservation = new ReservationBean(res.getInt(1), res.getString(2), res.getInt(3), res.getInt(4), res.getBoolean(5), res.getString(6), res.getString(7), res.getString(8));
+				reservation = new ReservationBean(res.getInt(1), res.getString(2), res.getInt(3), res.getInt(4), res.getString(5), res.getString(6), res.getString(7));
 			}
 			
 			return reservation;

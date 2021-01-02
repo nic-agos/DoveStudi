@@ -11,11 +11,11 @@ import logic.bean.*;
 
 public class PersonDAOImpl implements PersonDAO {
 	
-	private static final String CREATE_QUERY = "INSERT INTO person (Username, Study_Grade, School, Account, Host_Rating, Guest_Rating) VALUES (?, ?, ?, ?, ?, ?)";
-	private static final String DELETE_QUERY = "DELETE FROM person where ID = ?";
-	private static final String GET_ID_QUERY = "SELECT ID FROM person WHERE Account = ?";
+	private static final String CREATE_PERSON_QUERY = "INSERT INTO person (Username, Study_Grade, School, Account, Host_Rating, Guest_Rating) VALUES (?, ?, ?, ?, ?, ?)";
+	private static final String DELETE_PERSON_QUERY = "DELETE FROM person where ID = ?";
+	private static final String GET_PERSON_ID_QUERY = "SELECT ID FROM person WHERE Account = ?";
 	private static final String GETALL_PERSONS_QUERY = "SELECT * FROM person";
-	private static final String UPDATE_RATINGS_QUERY = "UPDATE person SET Host_Rating = ?, Guest_Rating = ? WHERE ID = ?";
+	private static final String UPDATE_PERSON_RATINGS_QUERY = "UPDATE person SET Host_Rating = ?, Guest_Rating = ? WHERE ID = ?";
 	private static final String GET_PERSON_QUERY = "SELECT * FROM person WHERE ID = ?";
 	private static final String GET_PERSON_ACCOUNT_QUERY = "SELECT * FROM person WHERE Account = ?";
 	
@@ -27,7 +27,7 @@ public class PersonDAOImpl implements PersonDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(CREATE_QUERY);
+			stmt = connection.prepareStatement(CREATE_PERSON_QUERY);
 			stmt.setString(1, personBean.getUsername());
 			stmt.setString(2, personBean.getStudyGrade());
 			stmt.setString(3, personBean.getSchool());
@@ -57,7 +57,7 @@ public class PersonDAOImpl implements PersonDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(DELETE_QUERY);
+			stmt = connection.prepareStatement(DELETE_PERSON_QUERY);
 			stmt.setInt(1, personBean.getId());
 			
 			return stmt.executeUpdate();
@@ -82,7 +82,7 @@ public class PersonDAOImpl implements PersonDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(GET_ID_QUERY);
+			stmt = connection.prepareStatement(GET_PERSON_ID_QUERY);
 			stmt.setString(1, personBean.getAccount());
 
 			ResultSet r = stmt.executeQuery();
@@ -145,7 +145,7 @@ public class PersonDAOImpl implements PersonDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(UPDATE_RATINGS_QUERY);
+			stmt = connection.prepareStatement(UPDATE_PERSON_RATINGS_QUERY);
 			stmt.setFloat(1, personBean.getHostRating());
 			stmt.setFloat(2, personBean.getGuestRating());
 			stmt.setInt(3, personBean.getId());

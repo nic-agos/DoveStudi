@@ -16,14 +16,13 @@ public class TestReservationDAOImpl {
 	private String reservingUser = "marco";
 	private int linkedRoom = 24;
 	private int roomOwner = 12;
-	private boolean isGroup = true;
 	private String date = "2020-12-27";
 	private String startTime = "09:00";
 	private String endTime = "10:00";
 	
 	@Test
 	public void testGetAllAccountReservation() throws SQLException {
-		AccountBean a = new AccountBean("marco", "m", "a", "m", "m", "2020-12-27", "m", 10);
+		AccountBean a = new AccountBean("marco", "m", "a", "m", "2020-12-27", "m", 10);
 		ReservationDAOImpl dao = new ReservationDAOImpl();
 		List<ReservationBean> res = dao.getAllAccountReservations(a);
 		System.out.println(res.get(0).getId());
@@ -33,7 +32,7 @@ public class TestReservationDAOImpl {
 	@Test
 	public void testGetReservationId() throws SQLException {
 		ReservationDAOImpl r = new ReservationDAOImpl();
-		ReservationBean b = new ReservationBean (reservingUser, linkedRoom, roomOwner, isGroup, date, startTime, endTime);
+		ReservationBean b = new ReservationBean (reservingUser, linkedRoom, roomOwner, date, startTime, endTime);
 		int res = r.getReservationId(b);
 		assertEquals(res, 5);
 	}
@@ -41,7 +40,7 @@ public class TestReservationDAOImpl {
 	@Test
 	public void testCreateReservationId() throws SQLException {
 		ReservationDAOImpl r = new ReservationDAOImpl();
-		ReservationBean b = new ReservationBean (reservingUser, linkedRoom, roomOwner, isGroup, date, startTime, endTime);
+		ReservationBean b = new ReservationBean (reservingUser, linkedRoom, roomOwner, date, startTime, endTime);
 		int res = r.createReservation(b);
 		assertEquals(res, 5);
 	}
@@ -58,7 +57,7 @@ public class TestReservationDAOImpl {
 	@Test
 	public void testRemoveReservation() throws SQLException {
 		ReservationDAOImpl r = new ReservationDAOImpl();
-		ReservationBean b = new ReservationBean (reservingUser, linkedRoom, roomOwner, isGroup, date, startTime, endTime);
+		ReservationBean b = new ReservationBean (reservingUser, linkedRoom, roomOwner, date, startTime, endTime);
 		int res = r.removeReservation(b);
 		assertEquals(res, 1);
 	}

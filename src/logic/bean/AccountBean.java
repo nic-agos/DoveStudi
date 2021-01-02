@@ -20,7 +20,6 @@ public class AccountBean {
 	
 	private String dateBirth;
 	
-	private String cityBirth;
 	
 	private int numberToken;
 	
@@ -32,7 +31,7 @@ public class AccountBean {
 		
 	}
 	
-	public AccountBean(String cf, String name, String surname, String email, String password, String dateBirth, String cityBirth, int numberToken) {
+	public AccountBean(String cf, String name, String surname, String email, String password, String dateBirth, int numberToken) {
 		
 		this.cf = cf;
 		
@@ -45,8 +44,6 @@ public class AccountBean {
 		this.password = password;
 		
 		this.dateBirth = dateBirth;
-		
-		this.cityBirth = cityBirth;
 		
 		this.numberToken = numberToken;
 		
@@ -113,16 +110,6 @@ public class AccountBean {
 	
 	public String getDateBirth() {
 		return this.dateBirth;
-		
-	}
-	
-	public void setCityBirth(String cityBirth) {
-		this.cityBirth = cityBirth;
-		
-	}
-	
-	public String getCityBirth() {
-		return this.cityBirth;
 		
 	}
 	

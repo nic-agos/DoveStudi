@@ -15,23 +15,19 @@ public class Reservation {
 	
 	private Person roomOwner;
 	
-	private boolean isGroup;
-	
 	private String date;
 	
 	private String startTime;
 	
 	private String endTime;
 	
-	public Reservation(Account reservingUser, Room linkedRoom, Person roomOwner, boolean isGroup, String date, String startTime, String endTime ) {
+	public Reservation(Account reservingUser, Room linkedRoom, Person roomOwner, String date, String startTime, String endTime ) {
 		
 		this.reservingUser = reservingUser;
 		
 		this.linkedRoom = linkedRoom;
 		
 		this.roomOwner = roomOwner;
-		
-		this.isGroup = isGroup;
 		
 		this.date = date;
 		
@@ -40,9 +36,7 @@ public class Reservation {
 		this.endTime = endTime;
 	}
 	
-	public Reservation(boolean isGroup, String date, String startTime, String endTime) {
-		
-		this.isGroup = isGroup;
+	public Reservation(String date, String startTime, String endTime) {
 		
 		this.date = date;
 		
@@ -53,7 +47,7 @@ public class Reservation {
 	
 	public Reservation(ReservationBean reservationBean) throws SQLException {
 		
-		this(reservationBean.getIsGroup(), reservationBean.getDate(), reservationBean.getStartTime(), reservationBean.getEndTime());
+		this(reservationBean.getDate(), reservationBean.getStartTime(), reservationBean.getEndTime());
 		
 		AccountDAOImpl dao1 = new AccountDAOImpl();
 		
@@ -106,16 +100,6 @@ public class Reservation {
 	
 	public void setRoomOwner(Person roomOwner) {
 		this.roomOwner = roomOwner;
-		
-	}
-	
-	public boolean getIsGroup() {
-		return this.isGroup;
-		
-	}
-	
-	public void setIsGroup (boolean isGroup) {
-		this.isGroup = isGroup;
 		
 	}
 	

@@ -7,11 +7,9 @@ import logic.model.dao.*;
 
 public class Room {
 	
-	private int id;
+private int id;
 	
 	private String name;
-	
-	private String description;
 	
 	private String address;
 	
@@ -19,64 +17,44 @@ public class Room {
 
 	private int numAvailableSeats;
 	
-	private String date;
-	
-	private String startTime;
-	
-	private String endTime;
-	
 	private Account owner;
 	
-	public Room(String name, String description, String address, int numPartecipants, int numAvailableSeats, String date, String startTime, String endTime, Account owner) {
+	private RoomSpec specification;
+	
+	public Room(String name, String address, int numPartecipants, int numAvailableSeats) {
 		
 		this.name = name;
-		
-		this.description = description;
 		
 		this.address = address;
 		
 		this.numPartecipants = numPartecipants;
 		
 		this.numAvailableSeats = numAvailableSeats;
-		
-		this.date = date;
-		
-		this.startTime = startTime;
-		
-		this.endTime = endTime;
-		
-		this.owner = owner;
 		
 	}
 	
-	public Room(String name, String description, String address, int numPartecipants, int numAvailableSeats, String date, String startTime, String endTime) {
+	public Room(String name, String address, int numPartecipants, int numAvailableSeats, Account owner, RoomSpec specification) {
 		
-		this.name = name;
+		this(name, address, numPartecipants, numAvailableSeats);
 		
-		this.description = description;
+		this.owner = owner;
 		
-		this.address = address;
-		
-		this.numPartecipants = numPartecipants;
-		
-		this.numAvailableSeats = numAvailableSeats;
-		
-		this.date = date;
-		
-		this.startTime = startTime;
-		
-		this.endTime = endTime;
+		this.specification = specification;
 		
 	}
 	
 	public Room(RoomBean roomBean) throws SQLException {
 		
-		this(roomBean.getName(), roomBean.getDescription(), roomBean.getAddress(), roomBean.getNumPartecipants(), 
-				roomBean.getNumAvailableSeats(), roomBean.getDate(),roomBean.getStartTime(), roomBean.getEndTime());
+		this(roomBean.getName(), roomBean.getAddress(), roomBean.getNumPartecipants(), 
+				roomBean.getNumAvailableSeats());
 		
-		AccountDAOImpl dao = new AccountDAOImpl();
+		AccountDAOImpl dao1 = new AccountDAOImpl();
 		
-		this.owner = new Account(dao.getAccount(roomBean.getOwner()));
+		this.owner = new Account(dao1.getAccount(roomBean.getOwner()));
+		
+		RoomSpecDAOImpl dao2 = new RoomSpecDAOImpl();
+		
+		this.specification = new RoomSpec(dao2.getRoomSpec(roomBean.getSpecification()));
 		
 		this.id = roomBean.getId();
 		
@@ -99,16 +77,6 @@ public class Room {
 	
 	public String getName() {
 		return this.name;
-		
-	}
-	
-	public void setDescription (String description) {
-		this.description = description;
-		
-	}
-	
-	public String getDescription () {
-		return this.description;
 		
 	}
 	
@@ -142,36 +110,6 @@ public class Room {
 		
 	}
 	
-	public void setDate(String date) {
-		this.date = date;
-		
-	}
-	
-	public String getDate() {
-		return this.date;
-		
-	}
-	
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-		
-	}
-	
-	public String getStartTime() {
-		return this.startTime;
-		
-	}
-	
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
-		
-	}
-	
-	public String getEndTime() {
-		return this.endTime;
-		
-	}
-	
 	public void setOwner(Account owner) {
 		this.owner = owner;
 		
@@ -182,5 +120,13 @@ public class Room {
 		
 	}
 	
+	public void setSpecification(RoomSpec specification) {
+		this.specification = specification;
+		
+	}
 	
+	public RoomSpec getSpecification() {
+		return this.specification;
+		
+	}
 }

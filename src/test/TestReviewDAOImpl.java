@@ -47,7 +47,7 @@ public class TestReviewDAOImpl {
 	@Test
 	public void testgetAllWrittenReviews() throws SQLException {
 		ReviewDAOImpl r = new ReviewDAOImpl();
-		AccountBean a = new AccountBean("marco", "m", "a", "m", "m", "2020-12-27", "m", 10);
+		AccountBean a = new AccountBean("marco", "m", "a", "m", "2020-12-27", "m", 10);
 		List<ReviewBean> res = r.getAllWrittenReviews(a);
 		assertEquals(res, 1);
 	}

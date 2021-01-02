@@ -10,8 +10,6 @@ public class ReservationBean {
 	
 	private int roomOwner;
 	
-	private boolean isGroup;
-	
 	private String date;
 	
 	private String startTime;
@@ -22,15 +20,13 @@ public class ReservationBean {
 		
 	}
 	
-	public ReservationBean(String reservingUser, int linkedRoom, int roomOwner, boolean isGroup, String date, String startTime, String endTime ) {
+	public ReservationBean(String reservingUser, int linkedRoom, int roomOwner, String date, String startTime, String endTime ) {
 		
 		this.reservingUser = reservingUser;
 		
 		this.linkedRoom = linkedRoom;
 		
 		this.roomOwner = roomOwner;
-		
-		this.isGroup = isGroup;
 		
 		this.date = date;
 		
@@ -39,7 +35,7 @@ public class ReservationBean {
 		this.endTime = endTime;
 	}
 	
-	public ReservationBean(int id, String reservingUser, int linkedRoom, int roomOwner, boolean isGroup, String date, String startTime, String endTime ) {
+	public ReservationBean(int id, String reservingUser, int linkedRoom, int roomOwner, String date, String startTime, String endTime ) {
 		
 		this.id = id;
 		
@@ -48,8 +44,6 @@ public class ReservationBean {
 		this.linkedRoom = linkedRoom;
 		
 		this.roomOwner = roomOwner;
-		
-		this.isGroup = isGroup;
 		
 		this.date = date;
 		
@@ -94,16 +88,6 @@ public class ReservationBean {
 	
 	public void setRoomOwner(int roomOwner) {
 		this.roomOwner = roomOwner;
-		
-	}
-	
-	public boolean getIsGroup() {
-		return this.isGroup;
-		
-	}
-	
-	public void setIsGroup (boolean isGroup) {
-		this.isGroup = isGroup;
 		
 	}
 	

@@ -21,15 +21,13 @@ public class Account {
 	
 	private String dateBirth;
 	
-	private String cityBirth;
-	
 	private int numberToken;
 	
 	private List<Reservation> reservations;
 	
 	private List<Room> rooms;
 	
-	public Account(String cf, String name, String surname, String email, String password, String dateBirth, String cityBirth, int numberToken) {
+	public Account(String cf, String name, String surname, String email, String password, String dateBirth, int numberToken) {
 		
 		this.cf = cf;
 		
@@ -43,7 +41,6 @@ public class Account {
 		
 		this.dateBirth = dateBirth;
 		
-		this.cityBirth = cityBirth;
 		
 		this.numberToken = numberToken;
 		
@@ -55,8 +52,8 @@ public class Account {
 	
 	public Account(AccountBean accountBean) throws SQLException {
 		
-		this(accountBean.getCF(), accountBean.getName(), accountBean.getSurname(), accountBean.getEmail(), accountBean.getPassword(), accountBean.getDateBirth(), 
-				accountBean.getCityBirth(), accountBean.getNumberToken());
+		this(accountBean.getCF(), accountBean.getName(), accountBean.getSurname(), accountBean.getEmail(), 
+				accountBean.getPassword(), accountBean.getDateBirth(), accountBean.getNumberToken());
 		
 		RoomDAOImpl dao1 = new RoomDAOImpl();
 		ReservationDAOImpl dao2 = new ReservationDAOImpl(); 
@@ -129,16 +126,6 @@ public class Account {
 	
 	public String getDateBirth() {
 		return this.dateBirth;
-		
-	}
-	
-	public void setCityBirth(String cityBirth) {
-		this.cityBirth = cityBirth;
-		
-	}
-	
-	public String getCityBirth() {
-		return this.cityBirth;
 		
 	}
 	

@@ -13,12 +13,12 @@ import logic.bean.RoomBean;
 
 public class RoomDAOImpl implements RoomDAO {
 	
-	private static final String CREATE_QUERY = "INSERT INTO room (Name, Description, Address, Num_Partecipants, Num_Available_Seats, Date, Start_Time, End_Time, Owner)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private static final String UPDATE_PARTECIPANTS_QUERY = "UPDATE room SET Num_Partecipants = ?, Num_Available_Seats = ? WHERE ID = ?";
+	private static final String CREATE_ROOM_QUERY = "INSERT INTO room (Name, Address, Num_Partecipants, Num_Available_Seats, Owner, Specification)" + "VALUES (?, ?, ?, ?, ?, ?)";
+	private static final String UPDATE_ROOM_PARTECIPANTS_QUERY = "UPDATE room SET Num_Partecipants = ?, Num_Available_Seats = ? WHERE ID = ?";
 	private static final String GETALL_ROOMS_QUERY = "SELECT * FROM room" ;
-	private static final String DELETE_QUERY = "DELETE FROM room WHERE ID = ?";
+	private static final String DELETE_ROOM_QUERY = "DELETE FROM room WHERE ID = ?";
 	private static final String GET_ROOM_QUERY = "SELECT * FROM room WHERE ID = ?";
-	private static final String GET_ID_QUERY = "SELECT ID FROM room WHERE Name = ?";
+	private static final String GET_ROOM_ID_QUERY = "SELECT ID FROM room WHERE Name = ?";
 	private static final String GET_ACCOUNT_ROOMS_QUERY  = "SELECT * FROM room WHERE Owner = ?";
 	
 	@Override
@@ -30,16 +30,13 @@ public class RoomDAOImpl implements RoomDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(CREATE_QUERY);
+			stmt = connection.prepareStatement(CREATE_ROOM_QUERY);
 			stmt.setString(1, roomBean.getName());
-			stmt.setString(2, roomBean.getDescription());
-			stmt.setString(3, roomBean.getAddress());
-			stmt.setInt(4, roomBean.getNumPartecipants());
-			stmt.setInt(5, roomBean.getNumAvailableSeats());
-			stmt.setString(6, roomBean.getDate());
-			stmt.setString(7, roomBean.getStartTime());
-			stmt.setString(8, roomBean.getEndTime());
-			stmt.setString(9, roomBean.getOwner());
+			stmt.setString(2, roomBean.getAddress());
+			stmt.setInt(3, roomBean.getNumPartecipants());
+			stmt.setInt(4, roomBean.getNumAvailableSeats());
+			stmt.setString(5, roomBean.getOwner());
+			stmt.setInt(6, roomBean.getSpecification());
 			
 			stmt.executeUpdate();
 			
@@ -72,7 +69,7 @@ public class RoomDAOImpl implements RoomDAO {
 			ResultSet res = stmt.executeQuery();
 			
 			while (res.next()) {
-				room = new RoomBean(res.getInt(1), res.getString(2),res.getString(3), res.getString(4), res.getInt(5), res.getInt(6), res.getString(7), res.getString(8), res.getString(9), res.getString(10));
+				room = new RoomBean(res.getInt(1), res.getString(2),res.getString(3), res.getInt(4), res.getInt(5), res.getString(6), res.getInt(7));
 				roomsList.add(room);
 			}
 			
@@ -100,7 +97,7 @@ public class RoomDAOImpl implements RoomDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(UPDATE_PARTECIPANTS_QUERY);
+			stmt = connection.prepareStatement(UPDATE_ROOM_PARTECIPANTS_QUERY);
 			stmt.setInt(1, roomBean.getNumPartecipants());
 			stmt.setInt(2, roomBean.getNumAvailableSeats());
 			stmt.setInt(3, roomBean.getId());
@@ -126,7 +123,7 @@ public class RoomDAOImpl implements RoomDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(DELETE_QUERY);
+			stmt = connection.prepareStatement(DELETE_ROOM_QUERY);
 			stmt.setInt(1, roomBean.getId());
 			
 			return stmt.executeUpdate();
@@ -158,7 +155,7 @@ public class RoomDAOImpl implements RoomDAO {
 			ResultSet res = stmt.executeQuery();
 			
 			while(res.next()) {
-				room = new RoomBean(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getInt(6), res.getString(7), res.getString(8), res.getString(9), res.getString(10));
+				room = new RoomBean(res.getInt(1), res.getString(2),res.getString(3), res.getInt(4), res.getInt(5), res.getString(6), res.getInt(7));
 			}
 			
 			return room;
@@ -171,7 +168,6 @@ public class RoomDAOImpl implements RoomDAO {
 				connection.close();
 			}
 		}
-		
 	}
 	
 	@Override
@@ -184,7 +180,7 @@ public class RoomDAOImpl implements RoomDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(GET_ID_QUERY);
+			stmt = connection.prepareStatement(GET_ROOM_ID_QUERY);
 			stmt.setString(1, roomBean.getName());
 
 			ResultSet r = stmt.executeQuery();
@@ -221,7 +217,7 @@ public class RoomDAOImpl implements RoomDAO {
 			
 			ResultSet res = stmt.executeQuery();
 				while (res.next()) {
-					room = new RoomBean(res.getString(2),res.getString(3), res.getString(4), res.getInt(5), res.getInt(6), res.getString(7), res.getString(8), res.getString(9), res.getString(10));
+					room = new RoomBean(res.getInt(1), res.getString(2),res.getString(3), res.getInt(4), res.getInt(5), res.getString(6), res.getInt(7));
 					accountRooms.add(room);
 				}
 				

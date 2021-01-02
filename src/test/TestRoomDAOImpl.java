@@ -13,20 +13,17 @@ import logic.bean.*;
 public class TestRoomDAOImpl {
 
 	private String name = "b";
-	private String description = "b";
 	private String address = "b";
 	private int numPartecipants = 5;
 	private int numAvailableSeats = 5;
-	private String date = "2020-12-1";
-	private String startTime = "12:00";
-	private String endTime = "13:00";
 	private String owner = "marco";
+	private int specification = 1;
 	
 	
 	@Test
 	public void testCreateRoom() throws SQLException {
 		RoomDAOImpl d = new RoomDAOImpl();
-		RoomBean r = new RoomBean(name, description, address, numPartecipants, numAvailableSeats, date, startTime, endTime, owner);
+		RoomBean r = new RoomBean(name, address, numPartecipants, numAvailableSeats, owner, specification);
 		int res = d.createRoom(r);
 		assertEquals(res, 1);
 	}
@@ -34,7 +31,7 @@ public class TestRoomDAOImpl {
 	@Test
 	public void testGetAllRooms() throws SQLException {
 		List<RoomBean> ex = new ArrayList<>();
-		RoomBean r = new RoomBean(name, description, address, numPartecipants, numAvailableSeats, date, startTime, endTime, owner);
+		RoomBean r = new RoomBean(name, address, numPartecipants, numAvailableSeats, owner, specification);
 		ex.add(r);
 		RoomDAOImpl as = new RoomDAOImpl();
 		List<RoomBean> fdb = as.getAllRooms();
@@ -44,7 +41,7 @@ public class TestRoomDAOImpl {
 	
 	@Test
 	public void testUpdateRoom() throws SQLException {
-		RoomBean r = new RoomBean(name, description, address, numPartecipants, numAvailableSeats, date, startTime, endTime, owner);
+		RoomBean r = new RoomBean(name, address, numPartecipants, numAvailableSeats, owner, specification);
 		r.setId(23);
 		RoomDAOImpl d = new RoomDAOImpl();
 		int res = d.updateRoom(r);
@@ -71,14 +68,14 @@ public class TestRoomDAOImpl {
 	@Test
 	public void testGetRoomId() throws SQLException {
 		RoomDAOImpl dao = new RoomDAOImpl();
-		RoomBean r = new RoomBean(name, description, address, numPartecipants, numAvailableSeats, date, startTime, endTime, owner);
+		RoomBean r = new RoomBean(name, address, numPartecipants, numAvailableSeats, owner, specification);
 		int res = dao.getRoomId(r);
 		assertEquals(res, 24);
 	}
 	
 	@Test
 	public void testGetAllAccountRooms() throws SQLException {
-		AccountBean a = new AccountBean("marco", "m", "a", "m", "m", "2020-12-27", "m", 10);
+		AccountBean a = new AccountBean("marco", "m", "a", "m", "2020-12-27", "m", 10);
 		RoomDAOImpl d = new RoomDAOImpl();
 		List<RoomBean> l = new ArrayList<RoomBean>();
 		List<RoomBean> n = d.getAllAccountRooms(a);

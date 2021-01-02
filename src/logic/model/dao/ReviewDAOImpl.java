@@ -11,12 +11,12 @@ import logic.bean.*;
 
 public class ReviewDAOImpl implements ReviewDAO {
 	
-	private static final String CREATE_QUERY = "INSERT INTO review (Title, Reviewer, Reviewed, Rating, Description, Tag) VALUES (?, ?, ?, ?, ?, ?)";
-	private static final String DELETE_QUERY = "DELETE FROM review where ID = ?";
-	private static final String GET_ID_QUERY = "SELECT ID FROM review WHERE Title = ? AND Reviewer = ? AND Reviewed = ?";
+	private static final String CREATE_REVIEW_QUERY = "INSERT INTO review (Title, Reviewer, Reviewed, Rating, Description, Tag) VALUES (?, ?, ?, ?, ?, ?)";
+	private static final String DELETE_REVIEW_QUERY = "DELETE FROM review where ID = ?";
+	private static final String GET_REVIEW_ID_QUERY = "SELECT ID FROM review WHERE Title = ? AND Reviewer = ? AND Reviewed = ?";
 	private static final String GET_RECEIVED_REVIEWS_QUERY = "SELECT * FROM review WHERE Reviewed = ?";
 	private static final String GET_WRITTEN_REVIEWS_QUERY = "SELECT * FROM review WHERE Reviewer = ?";
-	private static final String GET_ALL_REVIEW_QUERY = "SELECT * FROM review";
+	private static final String GET_ALL_REVIEWS_QUERY = "SELECT * FROM review";
 	
 		public int createReview(ReviewBean reviewBean) throws SQLException {
 		
@@ -26,7 +26,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(CREATE_QUERY);
+			stmt = connection.prepareStatement(CREATE_REVIEW_QUERY);
 			stmt.setString(1, reviewBean.getTitle());
 			stmt.setString(2, reviewBean.getReviewer());
 			stmt.setInt(3, reviewBean.getReviewed());
@@ -56,7 +56,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(DELETE_QUERY);
+			stmt = connection.prepareStatement(DELETE_REVIEW_QUERY);
 			stmt.setInt(1, reviewBean.getId());
 			
 			return stmt.executeUpdate();
@@ -80,7 +80,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(GET_ID_QUERY);
+			stmt = connection.prepareStatement(GET_REVIEW_ID_QUERY);
 			stmt.setString(1, reviewBean.getTitle());
 			stmt.setString(2, reviewBean.getReviewer());
 			stmt.setInt(3, reviewBean.getReviewed());
@@ -182,7 +182,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(GET_ALL_REVIEW_QUERY);
+			stmt = connection.prepareStatement(GET_ALL_REVIEWS_QUERY);
 			
 			ResultSet res = stmt.executeQuery();
 				while (res.next()) {

@@ -17,12 +17,11 @@ public class TestAccountDAOImpl {
 	private String email = "m@";
 	private String password = "m";
 	private String dateBirth = "2020:02:07";
-	private String cityBirth = "m";
 	private int numToken = 10;
 	
 	@Test
 	public void testCreateAccount() throws SQLException {
-		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, cityBirth, numToken);
+		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, numToken);
 		AccountDAOImpl i = new AccountDAOImpl();
 		int res = i.createAccount(a);
 		assertEquals(res,1);
@@ -31,7 +30,7 @@ public class TestAccountDAOImpl {
 	
 	@Test
 	public void testGetNumberToken() throws SQLException {
-		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, cityBirth, numToken);
+		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, numToken);
 		AccountDAOImpl i = new AccountDAOImpl();
 		int res = i.getNumberToken(a);
 		assertEquals(res, 10);
@@ -39,7 +38,7 @@ public class TestAccountDAOImpl {
 	
 	@Test
 	public void testUpdateNumberToken() throws SQLException{
-		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, cityBirth, numToken);
+		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, numToken);
 		AccountDAOImpl i = new AccountDAOImpl();
 		int res = i.updateNumberToken(a);
 		assertEquals(res, 1);
@@ -47,7 +46,7 @@ public class TestAccountDAOImpl {
 	
 	@Test
 	public void testRemoveAccount() throws SQLException{
-		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, cityBirth, numToken);
+		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, numToken);
 		AccountDAOImpl i = new AccountDAOImpl();
 		int res = i.removeAccount(a);
 		assertEquals(res, 1);
