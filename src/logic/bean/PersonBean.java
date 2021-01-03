@@ -38,19 +38,9 @@ public class PersonBean {
 	
 	public PersonBean(int id, String username, String studyGrade, String school, String account, float hostRating, float guestRating) {
 		
+		this(username, studyGrade, school, account, hostRating, guestRating);
+		
 		this.id = id;
-		
-		this.username = username;
-		
-		this.studyGrade = studyGrade;
-		
-		this.school = school;
-		
-		this.account = account;
-		
-		this.hostRating = hostRating;
-		
-		this.guestRating = guestRating;
 		
 	}
 	

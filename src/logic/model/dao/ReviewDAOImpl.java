@@ -18,7 +18,8 @@ public class ReviewDAOImpl implements ReviewDAO {
 	private static final String GET_WRITTEN_REVIEWS_QUERY = "SELECT * FROM review WHERE Reviewer = ?";
 	private static final String GET_ALL_REVIEWS_QUERY = "SELECT * FROM review";
 	
-		public int createReview(ReviewBean reviewBean) throws SQLException {
+	@Override
+	public int createReview(ReviewBean reviewBean) throws SQLException {
 		
 		Connection connection = null;
 		PreparedStatement stmt = null;
@@ -48,6 +49,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		}
 	}
 	
+	@Override
 	public int removeReview(ReviewBean reviewBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
@@ -71,6 +73,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		}
 	}
 	
+	@Override
 	public int getReviewId(ReviewBean reviewBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
@@ -103,6 +106,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		}
 	}
 	
+	@Override
 	public List<ReviewBean> getAllReceivedReviews(PersonBean personBean) throws SQLException {
 		
 		List<ReviewBean> receivedReview = new ArrayList<>();
@@ -137,6 +141,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		}
 	}
 	
+	@Override
 	public List<ReviewBean> getAllWrittenReviews(AccountBean accountBean) throws SQLException {
 		
 		List<ReviewBean> writtenReview = new ArrayList<>();
@@ -149,7 +154,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
 			stmt = connection.prepareStatement(GET_WRITTEN_REVIEWS_QUERY);
-			stmt.setString(1, accountBean.getCF());
+			stmt.setString(1, accountBean.getCf());
 			
 			ResultSet res = stmt.executeQuery();
 				while (res.next()) {
@@ -171,6 +176,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		}
 	}
 	
+	@Override
 	public List<ReviewBean> getAllReviews() throws SQLException {
 		
 		List<ReviewBean> writtenReview = new ArrayList<>();

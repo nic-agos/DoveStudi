@@ -27,6 +27,10 @@ public class Account {
 	
 	private List<Room> rooms;
 	
+	private Person person;
+	
+	private List<Group> administeredGroups;
+	
 	public Account(String cf, String name, String surname, String email, String password, String dateBirth, int numberToken) {
 		
 		this.cf = cf;
@@ -41,40 +45,53 @@ public class Account {
 		
 		this.dateBirth = dateBirth;
 		
-		
 		this.numberToken = numberToken;
 		
 		this.reservations = new ArrayList<>();
 		
 		this.rooms = new ArrayList<>();
 		
+		this.administeredGroups = new ArrayList<>();
+		
 	}
 	
 	public Account(AccountBean accountBean) throws SQLException {
 		
-		this(accountBean.getCF(), accountBean.getName(), accountBean.getSurname(), accountBean.getEmail(), 
+		this(accountBean.getCf(), accountBean.getName(), accountBean.getSurname(), accountBean.getEmail(), 
 				accountBean.getPassword(), accountBean.getDateBirth(), accountBean.getNumberToken());
 		
-		RoomDAOImpl dao1 = new RoomDAOImpl();
-		ReservationDAOImpl dao2 = new ReservationDAOImpl(); 
+		ReservationDAOImpl dao1 = new ReservationDAOImpl();
 		
-		List<ReservationBean> reservationBeans = dao2.getAllAccountReservations(accountBean);
+		List<ReservationBean> reservationBeans = dao1.getAllAccountReservations(accountBean);
 		for(ReservationBean reservationBean : reservationBeans) {
 			this.reservations.add(new Reservation(reservationBean));
 		}
-			
-		List<RoomBean> roomBeans = dao1.getAllAccountRooms(accountBean);
+		
+		RoomDAOImpl dao2 = new RoomDAOImpl(); 
+		
+		List<RoomBean> roomBeans = dao2.getAllAccountRooms(accountBean);
 		for(RoomBean roomBean : roomBeans) {
 			this.rooms.add(new Room(roomBean));
-		}	
+		}
+		
+		PersonDAOImpl dao3 = new PersonDAOImpl();
+		
+		this.person = new Person(dao3.getPersonFromAccount(accountBean));
+		
+		GroupDAOImpl dao4 = new GroupDAOImpl();
+		
+		List<GroupBean> groupBeans = dao4.getAllAdministeredGroups(accountBean);
+		for(GroupBean groupBean : groupBeans) {
+			this.administeredGroups.add(new Group(groupBean));
+		}
 	}
 	
-	public void setCF(String cf) {
+	public void setCf(String cf) {
 		this.cf = cf;
 		
 	}
 	
-	public String getCF() {
+	public String getCf() {
 		return this.cf;
 		
 	}
@@ -159,4 +176,13 @@ public class Account {
 		
 	}
 	
+	public void setPerson(Person person) {
+		this.person = person;
+		
+	}
+	
+	public Person getPerson() {
+		return this.person;
+		
+	}
 }

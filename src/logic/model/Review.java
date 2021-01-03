@@ -33,17 +33,12 @@ public class Review {
 	
 	public Review(String title, Account reviewer, Person reviewed, int rating, String description, String tag) {
 		
-		this.title = title;
+		this(title, rating, description, tag);
 		
 		this.reviewer = reviewer;
 		
 		this.reviewed = reviewed;
 		
-		this.rating = rating;
-		
-		this.description = description;
-		
-		this.tag = tag;
 	}
 	
 	public Review(ReviewBean reviewBean) throws SQLException {

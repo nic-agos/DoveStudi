@@ -21,13 +21,7 @@ public class Reservation {
 	
 	private String endTime;
 	
-	public Reservation(Account reservingUser, Room linkedRoom, Person roomOwner, String date, String startTime, String endTime ) {
-		
-		this.reservingUser = reservingUser;
-		
-		this.linkedRoom = linkedRoom;
-		
-		this.roomOwner = roomOwner;
+	public Reservation(String date, String startTime, String endTime) {
 		
 		this.date = date;
 		
@@ -36,13 +30,16 @@ public class Reservation {
 		this.endTime = endTime;
 	}
 	
-	public Reservation(String date, String startTime, String endTime) {
+public Reservation(Account reservingUser, Room linkedRoom, Person roomOwner, String date, String startTime, String endTime ) {
 		
-		this.date = date;
+		this(date, startTime, endTime);
+	
+		this.reservingUser = reservingUser;
 		
-		this.startTime = startTime;
+		this.linkedRoom = linkedRoom;
 		
-		this.endTime = endTime;
+		this.roomOwner = roomOwner;
+		
 	}
 	
 	public Reservation(ReservationBean reservationBean) throws SQLException {

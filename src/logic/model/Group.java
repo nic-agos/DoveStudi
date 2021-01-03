@@ -1,6 +1,7 @@
 package logic.model;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import logic.bean.*;
 import logic.model.dao.*;
@@ -15,7 +16,7 @@ public class Group {
 	
 	private int numPartecipants;
 	
-	private Person partecipant;
+	private List<Person> partecipants;
 	
 	
 	public Group(String name, int numPartecipants) {
@@ -26,19 +27,18 @@ public class Group {
 		
 	}
 	
-	public Group(String name, Account admin, int numPartecipants, Person partecipant) {
+	public Group(String name, Account admin, int numPartecipants, List<Person> partecipants) {
 		
-		this.name = name;
+		this(name, numPartecipants);
 		
 		this.admin = admin;
 		
-		this.numPartecipants = numPartecipants;
-		
-		this.partecipant = partecipant;
+		this.partecipants = partecipants;
 		
 	}
 	
 	public Group(GroupBean groupBean) throws SQLException {
+		
 		this(groupBean.getName(), groupBean.getNumPartecipants());
 		
 		AccountDAOImpl dao1 = new AccountDAOImpl();
@@ -47,7 +47,10 @@ public class Group {
 		
 		PersonDAOImpl dao2 = new PersonDAOImpl();
 		
-		this.partecipant = new Person(dao2.getPerson(groupBean.getPartecipant()));
+		List<PersonBean> personBeans = dao2.getGroupPartecipants(groupBean);
+		for(PersonBean personBean : personBeans) {
+			this.partecipants.add(new Person(personBean));
+		}
 		
 		this.id = groupBean.getId();
 	}
@@ -94,13 +97,13 @@ public class Group {
 		
 	}
 	
-	public void setPartecipant(Person partecipant) {
-		this.partecipant = partecipant;
+	public void setPartecipant(List<Person> partecipants) {
+		this.partecipants = partecipants;
 		
 	}
 	
-	public Person getPartecipant() {
-		return this.partecipant;
+	public List<Person> getPartecipant() {
+		return this.partecipants;
 		
 	}
 }

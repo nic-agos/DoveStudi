@@ -1,6 +1,7 @@
 package logic.model;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import logic.bean.*;
 import logic.model.dao.*;
@@ -20,6 +21,8 @@ private int id;
 	private Account owner;
 	
 	private RoomSpec specification;
+	
+	private List<Reservation> reservations;
 	
 	public Room(String name, String address, int numPartecipants, int numAvailableSeats) {
 		
@@ -56,8 +59,14 @@ private int id;
 		
 		this.specification = new RoomSpec(dao2.getRoomSpec(roomBean.getSpecification()));
 		
-		this.id = roomBean.getId();
+		ReservationDAOImpl dao3 = new ReservationDAOImpl();
 		
+		List<ReservationBean> reservationBeans = dao3.getRoomReservations(roomBean);
+		for(ReservationBean reservationBean : reservationBeans) {
+			this.reservations.add(new Reservation(reservationBean));
+		}
+		
+		this.id = roomBean.getId();
 	}
 	
 	public void setId (int id) {
@@ -127,6 +136,16 @@ private int id;
 	
 	public RoomSpec getSpecification() {
 		return this.specification;
+		
+	}
+	
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+		
+	}
+	
+	public List<Reservation> getReservations(){
+		return this.reservations;
 		
 	}
 }

@@ -19,6 +19,7 @@ public class AccountDAOImpl implements AccountDAO {
 	private static final String GETALL_ACCOUNTS_QUERY = "SELECT * FROM account";
 	private static final String GET_ACCOUNT_QUERY = "SELECT * FROM account WHERE CF = ?";
 	
+	@Override
 	public int createAccount(AccountBean accountBean) throws SQLException {
 		
 		Connection connection = null;
@@ -28,7 +29,7 @@ public class AccountDAOImpl implements AccountDAO {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
 			stmt = connection.prepareStatement(CREATE_ACCOUNT_QUERY);
-			stmt.setString(1, accountBean.getCF());
+			stmt.setString(1, accountBean.getCf());
 			stmt.setString(2, accountBean.getName());
 			stmt.setString(3, accountBean.getSurname());
 			stmt.setString(4, accountBean.getEmail());
@@ -49,6 +50,7 @@ public class AccountDAOImpl implements AccountDAO {
 		}
 	}
 	
+	@Override
 	public int removeAccount(AccountBean accountBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
@@ -58,7 +60,7 @@ public class AccountDAOImpl implements AccountDAO {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
 			stmt = connection.prepareStatement(DELETE_ACCOUNT_QUERY);
-			stmt.setString(1, accountBean.getCF());
+			stmt.setString(1, accountBean.getCf());
 			
 			return stmt.executeUpdate();
 			
@@ -73,6 +75,7 @@ public class AccountDAOImpl implements AccountDAO {
 		
 	}
 	
+	@Override
 	public int getNumberToken(AccountBean accountBean) throws SQLException {
 	
 		PreparedStatement stmt = null;
@@ -83,7 +86,7 @@ public class AccountDAOImpl implements AccountDAO {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
 			stmt = connection.prepareStatement(GET_ACCOUNT_TOKENS_QUERY);
-			stmt.setString(1, accountBean.getCF());
+			stmt.setString(1, accountBean.getCf());
 			
 			ResultSet res = stmt.executeQuery();
 			while (res.next()) {
@@ -105,6 +108,7 @@ public class AccountDAOImpl implements AccountDAO {
 		
 	}
 	
+	@Override
 	public int updateNumberToken(AccountBean accountBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
@@ -114,7 +118,7 @@ public class AccountDAOImpl implements AccountDAO {
 			
 			stmt = connection.prepareStatement(UPDATE_ACCOUNT_TOKENS_QUERY);
 			stmt.setInt(1, accountBean.getNumberToken());
-			stmt.setString(2, accountBean.getCF());
+			stmt.setString(2, accountBean.getCf());
 			
 			return stmt.executeUpdate();
 			
@@ -128,7 +132,7 @@ public class AccountDAOImpl implements AccountDAO {
 		}
 	}
 
-	
+	@Override
 	public List<AccountBean> getAllAccounts() throws SQLException {
 		
 		List<AccountBean> accountsList = new ArrayList<>();
@@ -163,6 +167,7 @@ public class AccountDAOImpl implements AccountDAO {
 		}
 	}
 	
+	@Override
 	public AccountBean getAccount(String cf) throws SQLException {
 		
 		PreparedStatement stmt = null;

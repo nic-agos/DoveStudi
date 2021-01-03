@@ -1,5 +1,17 @@
 package logic.model.dao;
 
-public interface RoomSpecDAO {
+import java.sql.SQLException;
 
+import logic.bean.*;
+
+public interface RoomSpecDAO {
+	
+	public int createRoomSpec(RoomSpecBean roomSpecBean) throws SQLException;
+	
+	public int getRoomSpecId(RoomSpecBean roomSpecBean) throws SQLException;
+	
+	public int removeRoomSpec(RoomSpecBean roomSpecBean) throws SQLException;
+	
+	public RoomSpecBean getRoomSpec(int id) throws SQLException;
+	
 }

@@ -18,7 +18,9 @@ public class PersonDAOImpl implements PersonDAO {
 	private static final String UPDATE_PERSON_RATINGS_QUERY = "UPDATE person SET Host_Rating = ?, Guest_Rating = ? WHERE ID = ?";
 	private static final String GET_PERSON_QUERY = "SELECT * FROM person WHERE ID = ?";
 	private static final String GET_PERSON_ACCOUNT_QUERY = "SELECT * FROM person WHERE Account = ?";
+	private static final String GET_GROUP_PARTECIPANTS_QUERY = "SELECT Partecipant FROM group WHERE Name = ? AND Admin = ?";
 	
+	@Override
 	public int createPerson(PersonBean personBean) throws SQLException {
 		
 		Connection connection = null;
@@ -49,6 +51,7 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 	}
 	
+	@Override
 	public int removePerson(PersonBean personBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
@@ -73,6 +76,7 @@ public class PersonDAOImpl implements PersonDAO {
 		
 	}
 	
+	@Override
 	public int getPersonId(PersonBean personBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
@@ -103,6 +107,7 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 	}
 	
+	@Override
 	public List<PersonBean> getAllPersons() throws SQLException {
 		
 		List<PersonBean> personsList = new ArrayList<>();
@@ -137,6 +142,7 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 	}
 	
+	@Override
 	public int updatePerson(PersonBean personBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
@@ -162,6 +168,7 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 	}
 	
+	@Override
 	public PersonBean getPerson(int id) throws SQLException {
 		
 		PreparedStatement stmt = null;
@@ -194,6 +201,7 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 	}
 	
+	@Override
 	public PersonBean getPersonFromAccount(AccountBean accountBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
@@ -204,7 +212,7 @@ public class PersonDAOImpl implements PersonDAO {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
 			stmt = connection.prepareStatement(GET_PERSON_ACCOUNT_QUERY);
-			stmt.setString(1, accountBean.getCF());
+			stmt.setString(1, accountBean.getCf());
 			
 			ResultSet res = stmt.executeQuery();
 				while(res.next()) {
@@ -220,6 +228,43 @@ public class PersonDAOImpl implements PersonDAO {
 				stmt.close();
 			}
 			if (connection != null ) {
+				connection.close();
+			}
+		}
+	}
+	
+	@Override
+	public List<PersonBean> getGroupPartecipants(GroupBean groupBean) throws SQLException{
+		
+		List<PersonBean> groupPartecipants = new ArrayList<>();
+		PersonBean person = null;
+		
+		Connection connection = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			connection = DBConnection.getInstanceConnection().getConnection();
+			
+			stmt = connection.prepareStatement(GET_GROUP_PARTECIPANTS_QUERY);
+			stmt.setString(1, groupBean.getName());
+			stmt.setString(2, groupBean.getAdmin());
+			
+			ResultSet res = stmt.executeQuery();
+				
+			while (res.next()) {
+				person = getPerson(res.getInt(1));
+				groupPartecipants.add(person);
+			}
+				
+			res.close();
+			
+			return groupPartecipants;
+				
+		}finally{
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (connection != null) {
 				connection.close();
 			}
 		}

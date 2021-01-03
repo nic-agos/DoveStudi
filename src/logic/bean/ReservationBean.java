@@ -37,19 +37,10 @@ public class ReservationBean {
 	
 	public ReservationBean(int id, String reservingUser, int linkedRoom, int roomOwner, String date, String startTime, String endTime ) {
 		
+		this(reservingUser, linkedRoom, roomOwner, date, startTime, endTime);
+		
 		this.id = id;
 		
-		this.reservingUser = reservingUser;
-		
-		this.linkedRoom = linkedRoom;
-		
-		this.roomOwner = roomOwner;
-		
-		this.date = date;
-		
-		this.startTime = startTime;
-		
-		this.endTime = endTime;
 	}
 	
 	public int getId() {

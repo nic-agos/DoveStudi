@@ -213,7 +213,7 @@ public class RoomDAOImpl implements RoomDAO {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
 			stmt = connection.prepareStatement(GET_ACCOUNT_ROOMS_QUERY);
-			stmt.setString(1, accountBean.getCF());
+			stmt.setString(1, accountBean.getCf());
 			
 			ResultSet res = stmt.executeQuery();
 				while (res.next()) {

@@ -37,19 +37,10 @@ public class ReviewBean {
 	
 	public ReviewBean(int id, String title, String reviewer, int reviewed, int rating, String description, String tag) {
 		
+		this(title, reviewer, reviewed, rating, description, tag);
+		
 		this.id = id;
 		
-		this.title = title;
-		
-		this.reviewer = reviewer;
-		
-		this.reviewed = reviewed;
-		
-		this.rating = rating;
-		
-		this.description = description;
-		
-		this.tag = tag;
 	}
 	
 	public void setId(int id) {

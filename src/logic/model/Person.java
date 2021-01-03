@@ -1,9 +1,10 @@
 package logic.model;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import logic.bean.*;
-import logic.model.dao.AccountDAOImpl;
+import logic.model.dao.*;
 
 public class Person {
 
@@ -21,21 +22,9 @@ public class Person {
 	
 	private float guestRating;
 	
-	public Person(String username, String studyGrade, String school, Account account, float hostRating, float guestRating) {
-		
-		this.username = username;
-		
-		this.studyGrade = studyGrade;
-		
-		this.school = school;
-		
-		this.account = account;
-		
-		this.hostRating = hostRating;
-		
-		this.guestRating = guestRating;
-		
-	}
+	private List<Review> reviews;
+	
+	private List<Group> groups;
 	
 	public Person(String username, String studyGrade, String school, float hostRating, float guestRating) {
 		
@@ -51,11 +40,34 @@ public class Person {
 		
 	}
 	
+	public Person(String username, String studyGrade, String school, Account account, float hostRating, float guestRating) {
+		
+		this(username, studyGrade, school, hostRating, guestRating);
+		
+		this.account = account;
+		
+	}
+	
 	public Person (PersonBean personBean) throws SQLException {
 		this(personBean.getUsername(), personBean.getStudyGrade(), personBean.getSchool(), personBean.getHostRating(), personBean.getGuestRating());
 		
-		AccountDAOImpl dao = new AccountDAOImpl();
-		this.account = new Account(dao.getAccount(personBean.getAccount()));
+		AccountDAOImpl dao1 = new AccountDAOImpl();
+		
+		this.account = new Account(dao1.getAccount(personBean.getAccount()));
+		
+		GroupDAOImpl dao2 = new GroupDAOImpl();
+		
+		List<GroupBean> groupBeans = dao2.getAllParticipatingGroups(personBean);
+		for(GroupBean groupBean : groupBeans) {
+			this.groups.add(new Group(groupBean));
+		}
+		
+		ReviewDAOImpl dao3 = new ReviewDAOImpl();
+		
+		List<ReviewBean> reviewBeans = dao3.getAllReceivedReviews(personBean);
+		for(ReviewBean reviewBean : reviewBeans) {
+			this.reviews.add(new Review(reviewBean));
+		}
 		
 		this.id = personBean.getId();
 	}
@@ -127,6 +139,26 @@ public class Person {
 	
 	public float getGuestRating() {
 		return this.guestRating;
+		
+	}
+	
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+		
+	}
+	
+	public List<Review> getReviews(){
+		return this.reviews;
+		
+	}
+	
+	public void setGroups(List<Group> groups) {
+		this.groups = groups;
+		
+	}
+	
+	public List<Group> getGroups(){
+		return this.groups;
 		
 	}
 }

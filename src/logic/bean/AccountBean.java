@@ -1,11 +1,5 @@
 package logic.bean;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import logic.model.Reservation;
-import logic.model.Room;
-
 public class AccountBean {
 
 	private String cf;
@@ -20,12 +14,7 @@ public class AccountBean {
 	
 	private String dateBirth;
 	
-	
 	private int numberToken;
-	
-	private List<Reservation> reservations;
-	
-	private List<Room> rooms;
 	
 	public AccountBean() {
 		
@@ -47,18 +36,14 @@ public class AccountBean {
 		
 		this.numberToken = numberToken;
 		
-		this.reservations = new ArrayList<>();
-		
-		this.rooms = new ArrayList<>();
-		
 	}
 	
-	public void setCF(String cf) {
+	public void setCf(String cf) {
 		this.cf = cf;
 		
 	}
 	
-	public String getCF() {
+	public String getCf() {
 		return this.cf;
 		
 	}
@@ -120,26 +105,6 @@ public class AccountBean {
 	
 	public int getNumberToken() {
 		return this.numberToken;
-		
-	}
-	
-	public void setReservations(List<Reservation> reservations) {
-		this.reservations = reservations;
-	
-	}
-	
-	public List<Reservation> getReservations(){
-		return this.reservations;
-		
-	}
-	
-	public void setRooms(List<Room> rooms) {
-		this.rooms = rooms;
-		
-	}
-	
-	public List<Room> getRooms(){
-		return this.rooms;
 		
 	}
 }

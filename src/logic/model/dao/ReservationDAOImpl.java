@@ -9,6 +9,7 @@ import java.util.List;
 
 import logic.bean.AccountBean;
 import logic.bean.ReservationBean;
+import logic.bean.RoomBean;
 
 public class ReservationDAOImpl implements ReservationDAO {
 	
@@ -18,11 +19,14 @@ public class ReservationDAOImpl implements ReservationDAO {
 	private static final String GETALL_RESERVATIONS_QUERY = "SELECT * FROM reservation";
 	private static final String DELETE_RESERVATION_QUERY = "DELETE FROM reservation WHERE ID = ?";
 	private static final String GET_RESERVATION_QUERY = "SELECT * FROM reservation WHERE ID = ?";
+	private static final String GET_ROOM_RESERVATIONS_QUERY = "SELECT * FROM reservation WHERE Room = ?";
 	
+	@Override
 	public int createReservation(ReservationBean reservationBean) throws SQLException {
 		
 		Connection connection = null;
 		PreparedStatement stmt = null;
+		
 		int id;
 		
 		try {
@@ -53,6 +57,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 		}
 	}
 	
+	@Override
 	public int removeReservation(ReservationBean reservationBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
@@ -77,9 +82,12 @@ public class ReservationDAOImpl implements ReservationDAO {
 		
 	}
 	
+	@Override
 	public int getReservationId(ReservationBean reservationBean) throws SQLException {
+		
 		PreparedStatement stmt = null;
 		Connection connection = null;
+		
 		int id = 0;	
 		
 		try {
@@ -110,6 +118,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 		}
 	}
 	
+	@Override
 	public List<ReservationBean> getAllAccountReservations(AccountBean accountBean) throws SQLException {
 		
 		List<ReservationBean> accountReservations = new ArrayList<>();
@@ -122,7 +131,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
 			stmt = connection.prepareStatement(GET_ACCOUNT_RESERVATIONS_QUERY);
-			stmt.setString(1, accountBean.getCF());
+			stmt.setString(1, accountBean.getCf());
 			
 			ResultSet res = stmt.executeQuery();
 				while (res.next()) {
@@ -144,6 +153,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 		}
 	}
 	
+	@Override
 	public List<ReservationBean> getAllReservations() throws SQLException {
 		
 		List<ReservationBean> reservationsList = new ArrayList<>();
@@ -178,10 +188,12 @@ public class ReservationDAOImpl implements ReservationDAO {
 		}
 	}
 	
+	@Override
 	public ReservationBean getReservation(int id) throws SQLException {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
+		
 		ReservationBean reservation = null;
 		
 		try {
@@ -206,5 +218,42 @@ public class ReservationDAOImpl implements ReservationDAO {
 				connection.close();
 			}
 		}
+	}
+	
+	@Override
+	public List<ReservationBean> getRoomReservations(RoomBean roomBean) throws SQLException {
+		
+		List<ReservationBean> roomReservations = new ArrayList<>();
+		ReservationBean reservation = null;
+		
+		PreparedStatement stmt = null;
+		Connection connection = null;
+		
+		try {
+			connection = DBConnection.getInstanceConnection().getConnection();
+			
+			stmt = connection.prepareStatement(GET_ROOM_RESERVATIONS_QUERY);
+			stmt.setInt(1, roomBean.getId());
+			
+			ResultSet res = stmt.executeQuery();
+			
+			while(res.next()) {
+				reservation = new ReservationBean(res.getInt(1), res.getString(2), res.getInt(3), res.getInt(4), res.getString(5), res.getString(6), res.getString(7));
+				roomReservations.add(reservation);
+			}
+			
+			res.close();
+			
+			return roomReservations;
+			
+		}finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
+			}
+		}
+		
 	}
 }

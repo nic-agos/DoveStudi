@@ -31,15 +31,9 @@ public class GroupBean {
 	
 	public GroupBean(int id, String name, String admin, int numPartecipants, int partecipant) {
 		
+		this(name, admin, numPartecipants, partecipant);
+		
 		this.id = id;
-		
-		this.name = name;
-		
-		this.admin = admin;
-		
-		this.numPartecipants = numPartecipants;
-		
-		this.partecipant = partecipant;
 	}
 	
 	public void setId(int id) {

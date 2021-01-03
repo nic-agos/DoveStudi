@@ -9,20 +9,21 @@ import java.util.List;
 
 import logic.bean.*;
 
-public class GroupDAOImpl {
+public class GroupDAOImpl implements GroupDAO{
 
 	private static final String CREATE_GROUP_QUERY = "INSERT INTO group (Name, Admin, Num_Partecipants, Partecipant) VALUES (?, ?, ?, ?)";
 	private static final String DELETE_GROUP_QUERY = "DELETE FROM group WHERE Name = AND Admin = ?";
 	private static final String GET_GROUP_ID_QUERY = "SELECT ID FROM group WHERE Name = ? AND Admin = ?";
 	private static final String GET_ALL_GROUPS_QUERY = "SELECT * FROM group";
-	private static final String GET_ADMIN_GROUPS_QUERY = "SELECT * FROM group where Admin = ?";
-	private static final String GET_PARTECPANT_GROUPS_QUERY = "SELECT * FROM group where Partecipant = ?";
+	private static final String GET_ADMINISTERED_GROUPS_QUERY = "SELECT * FROM group where Admin = ?";
+	private static final String GET_PARTICIPATING_GROUPS_QUERY = "SELECT * FROM group where Partecipant = ?";
 	private static final String ADD_GROUP_PARTECIPANT_QUERY = "INSERT INTO group (Name, Admin, Num_Partecipants, Partecipant) VALUES (?, ?, ?, ?)";
 	private static final String UPDATE_NUM_PARTECIPANTS_GROUP = "UPDATE group SET Num_Partecipant = ? WHERE Name = ? AND Admin = ?";
 
 // 	the idea is that Admin creates a group with only himself as partecipant and after he adds partecipants
 //	with the function addGroupPartecipant() that takes in input a PersonBean
 	
+	@Override
 	public int createGroup(GroupBean groupBean) throws SQLException {
 		
 		Connection connection = null;
@@ -49,6 +50,7 @@ public class GroupDAOImpl {
 		}
 	}
 	
+	@Override
 	public int removeGroup(GroupBean groupBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
@@ -72,6 +74,7 @@ public class GroupDAOImpl {
 		}
 	}
 	
+	@Override
 	public int getGroupId(GroupBean groupBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
@@ -103,6 +106,7 @@ public class GroupDAOImpl {
 		}
 	}
 	
+	@Override
 	public List<GroupBean> getAllGroups() throws SQLException {
 		
 		List<GroupBean> groupsList = new ArrayList<>();
@@ -136,7 +140,8 @@ public class GroupDAOImpl {
 		}
 	}
 	
-	public List<GroupBean> getAllAdminGroups(GroupBean groupBean) throws SQLException {
+	@Override
+	public List<GroupBean> getAllAdministeredGroups(AccountBean accountBean) throws SQLException {
 		
 		List<GroupBean> adminGroups = new ArrayList<>();
 		GroupBean group = null;
@@ -147,8 +152,8 @@ public class GroupDAOImpl {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(GET_ADMIN_GROUPS_QUERY);
-			stmt.setString(1, groupBean.getAdmin());
+			stmt = connection.prepareStatement(GET_ADMINISTERED_GROUPS_QUERY);
+			stmt.setString(1, accountBean.getCf());
 			
 			ResultSet res = stmt.executeQuery();
 				while (res.next()) {
@@ -170,7 +175,8 @@ public class GroupDAOImpl {
 		}
 	}
 	
-	public List<GroupBean> getAllPartecipantGroups(GroupBean groupBean) throws SQLException {
+	@Override
+	public List<GroupBean> getAllParticipatingGroups(PersonBean personBean) throws SQLException {
 		
 		List<GroupBean> partecipantGroups = new ArrayList<>();
 		GroupBean group = null;
@@ -181,8 +187,8 @@ public class GroupDAOImpl {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(GET_PARTECPANT_GROUPS_QUERY);
-			stmt.setInt(1, groupBean.getPartecipant());
+			stmt = connection.prepareStatement(GET_PARTICIPATING_GROUPS_QUERY);
+			stmt.setInt(1, personBean.getId());
 			
 			ResultSet res = stmt.executeQuery();
 				while (res.next()) {
@@ -204,6 +210,7 @@ public class GroupDAOImpl {
 		}
 	}
 	
+	@Override
 	public int addGroupPartecipant(GroupBean groupBean) throws SQLException {
 		
 		Connection connection = null;
@@ -233,6 +240,7 @@ public class GroupDAOImpl {
 		}
 	}
 	
+	@Override
 	public int updateNumPartecipantsGroup(GroupBean groupBean) throws SQLException {
 		
 		Connection connection = null;
@@ -257,5 +265,5 @@ public class GroupDAOImpl {
 				connection.close();
 			}
 		}
-	}
+	}	
 }
