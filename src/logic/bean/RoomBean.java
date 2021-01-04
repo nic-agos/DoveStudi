@@ -59,8 +59,13 @@ public class RoomBean {
 		
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public boolean setName(String name) {
+		if (name.length() <= 45) {
+			this.name = name;
+			return true;
+		}else {
+			return false;
+		}
 		
 	}
 
@@ -69,8 +74,13 @@ public class RoomBean {
 		
 	}
 	
-	public void setAdress(String address) {
-		this.address = address;
+	public boolean setAdress(String address) {
+		if (address.length() <= 100) {
+			this.address = address;
+			return true;
+		}else {
+			return false;
+		}
 		
 	}
 	
@@ -79,8 +89,8 @@ public class RoomBean {
 		
 	}
 	
-	public void setNumPartecipants(int numPartecipants) {
-		this.numPartecipants = numPartecipants;
+	public void setNumPartecipants(String numPartecipants) {
+		this.numPartecipants = Integer.parseInt(numPartecipants);
 		
 	}
 	

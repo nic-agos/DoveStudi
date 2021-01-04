@@ -46,8 +46,13 @@ public class GroupBean {
 		
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public boolean setName(String name) {
+		if (name.length() <= 45) {
+			this.name = name;
+			return true;
+		}else {
+			return false;
+		}
 		
 	}
 	
@@ -57,7 +62,7 @@ public class GroupBean {
 	}
 	
 	public void setAdmin(String admin) {
-		this.admin = admin;
+		this.admin = admin;	
 		
 	}
 	
@@ -66,8 +71,8 @@ public class GroupBean {
 		
 	}
 	
-	public void setNumPartecipants(int numPartecipants) {
-		this.numPartecipants = numPartecipants;
+	public void setNumPartecipants(String numPartecipants) {
+		this.numPartecipants = Integer.parseInt(numPartecipants);
 		
 	}
 	

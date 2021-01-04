@@ -46,8 +46,13 @@ public class RoomSpecBean {
 		
 	}
 	
-	public void setDescription (String description) {
-		this.description = description;
+	public boolean setDescription (String description) {
+		if (description.length() <= 300) {
+			this.description = description;
+			return true;
+		}else {
+			return false;
+		}
 		
 	}
 	

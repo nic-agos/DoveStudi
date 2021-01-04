@@ -1,5 +1,7 @@
 package logic.bean;
 
+import java.lang.Character.*;
+
 public class AccountBean {
 
 	private String cf;
@@ -38,8 +40,14 @@ public class AccountBean {
 		
 	}
 	
-	public void setCf(String cf) {
-		this.cf = cf;
+	public boolean setCf(String cf) {
+		
+		if (cf.length() == 16) {
+			this.cf = cf;
+			return true;
+		}else {
+			return false;
+		}
 		
 	}
 	
@@ -48,8 +56,14 @@ public class AccountBean {
 		
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public boolean setName(String name) {
+		
+		if (name.length() <= 20) {
+			this.name = name;
+			return true;
+		}else {
+			return false;
+		}
 		
 	}
 	
@@ -58,8 +72,14 @@ public class AccountBean {
 		
 	}
 	
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public boolean setSurname(String surname) {
+		
+		if (surname.length() <= 30) {
+			this.surname = surname;
+			return true;
+		}else {
+			return false;
+		}
 		
 	}
 	
@@ -68,8 +88,14 @@ public class AccountBean {
 		
 	}
 	
-	public void setEmail(String email) {
-		this.email = email;
+	public boolean setEmail(String email) {
+		
+		if (email.length() <= 100) {
+			this.email = email;
+			return true;
+		}else {
+			return false;
+		}
 		
 	}
 	
@@ -78,8 +104,13 @@ public class AccountBean {
 		
 	}
 	
-	public void setPassword(String password) {
-		this.password = password;
+	public boolean setPassword(String password) {
+		if (password.length() <= 20) {
+			this.password = password;
+			return true;
+		}else {
+			return false;
+		}
 		
 	}
 	
@@ -107,4 +138,39 @@ public class AccountBean {
 		return this.numberToken;
 		
 	}
+	
+/*	private boolean checkDate(String date) {
+		int i;
+		char c;
+		if (date.length() == 10) {
+			for(i = 0; i < 4; i++) {
+				c = date.charAt(i);
+				if(!Character.isDigit(c)) {
+					return false;
+				}
+			}
+			if (date.charAt(4) != ':' && date.charAt(4) != '-') {
+				return false;
+			}
+			for (i = 5; i < 7; i++) {
+				c = date.charAt(i);
+				if(!Character.isDigit(c)) {
+					return false;
+				}
+			}
+			if (date.charAt(7) != ':' && date.charAt(7) != '-') {
+				return false;
+			}
+			for(i = 8; i < 10; i++) {
+				c = date.charAt(i);
+				if(!Character.isDigit(c)) {
+					return false;
+				}
+			}
+			return true;
+		}else {
+			return false;
+		}
+	}
+*/
 }

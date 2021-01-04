@@ -13,7 +13,8 @@ public class ReviewBean {
 	private int rating;
 	
 	private String description;
-	
+
+//	tag is used to to distinguish if the review is for the host or the guest
 	private String tag;
 	
 	public ReviewBean() {
@@ -53,8 +54,13 @@ public class ReviewBean {
 		
 	}
 	
-	public void setTitle(String title) {
-		this.title = title;
+	public boolean setTitle(String title) {
+		if (title.length() <= 45) {
+			this.title = title;
+			return true;
+		}else {
+			return false;
+		}
 		
 	}
 	
@@ -83,8 +89,8 @@ public class ReviewBean {
 		
 	}
 	
-	public void setRating(int rating) {
-		this.rating = rating;
+	public void setRating(String rating) {
+		this.rating = Integer.parseInt(rating);
 		
 	}
 	
@@ -93,8 +99,13 @@ public class ReviewBean {
 		
 	}
 	
-	public void setDescription(String description) {
-		this.description = description;
+	public boolean setDescription(String description) {
+		if (description.length() <= 200) {
+			this.description = description;
+			return true;
+		}else {
+			return false;
+		}
 		
 	}
 	
