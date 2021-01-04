@@ -67,12 +67,6 @@ public class TestReservationDAOImpl {
 	}
 	
 	@Test
-	public void testPrintReservations() throws SQLException {
-		Printers r = new Printers();
-		r.printReservations();
-	}
-	
-	@Test
 	public void testGetRoomReservations() throws SQLException {
 		ReservationDAOImpl r = new ReservationDAOImpl();
 		RoomBean ro = new RoomBean();

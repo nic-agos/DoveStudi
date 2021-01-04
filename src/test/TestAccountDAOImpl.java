@@ -65,11 +65,4 @@ public class TestAccountDAOImpl {
 		AccountBean res = a.getAccount(cf);
 		assertEquals(res, 1);
 	}
-	
-	@Test
-	public void testPrintAccounts() throws SQLException {
-		Printers r = new Printers();
-		r.printAccounts();
-	}
-
 }
