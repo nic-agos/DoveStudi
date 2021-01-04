@@ -37,6 +37,8 @@ public class AccountDAOImpl implements AccountDAO {
 			stmt.setString(6, accountBean.getDateBirth());
 			stmt.setInt(7, accountBean.getNumberToken());
 			
+			System.out.println(stmt);
+			
 			return stmt.executeUpdate();
 			
 				

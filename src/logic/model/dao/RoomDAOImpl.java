@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import java.sql.PreparedStatement;
 
 import logic.bean.AccountBean;
@@ -13,7 +12,7 @@ import logic.bean.RoomBean;
 
 public class RoomDAOImpl implements RoomDAO {
 	
-	private static final String CREATE_ROOM_QUERY = "INSERT INTO room (Name, Address, Num_Partecipants, Num_Available_Seats, Owner, Specification)" + "VALUES (?, ?, ?, ?, ?, ?)";
+	private static final String CREATE_ROOM_QUERY = "INSERT INTO room (Name, Address, Num_Partecipants, Num_Available_Seats, Owner, Specification) VALUES (?, ?, ?, ?, ?, ?)";
 	private static final String UPDATE_ROOM_PARTECIPANTS_QUERY = "UPDATE room SET Num_Partecipants = ?, Num_Available_Seats = ? WHERE ID = ?";
 	private static final String GETALL_ROOMS_QUERY = "SELECT * FROM room" ;
 	private static final String DELETE_ROOM_QUERY = "DELETE FROM room WHERE ID = ?";

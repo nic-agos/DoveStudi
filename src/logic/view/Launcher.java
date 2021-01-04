@@ -21,6 +21,5 @@ public class Launcher extends Application {
 			stage.setScene(scene);		
 			stage.show();		
 		}
-
 	}
 

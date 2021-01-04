@@ -12,15 +12,15 @@ public class PersonBean {
 	
 	private String account;
 	
-	private float hostRating;
+	private double hostRating;
 	
-	private float guestRating;
+	private double guestRating;
 	
 	public PersonBean() {
 		
 	}
 	
-	public PersonBean(String username, String studyGrade, String school, String account, float hostRating, float guestRating) {
+	public PersonBean(String username, String studyGrade, String school, String account, double hostRating, double guestRating) {
 		
 		this.username = username;
 		
@@ -36,7 +36,7 @@ public class PersonBean {
 		
 	}
 	
-	public PersonBean(int id, String username, String studyGrade, String school, String account, float hostRating, float guestRating) {
+	public PersonBean(int id, String username, String studyGrade, String school, String account, double hostRating, double guestRating) {
 		
 		this(username, studyGrade, school, account, hostRating, guestRating);
 		
@@ -94,22 +94,22 @@ public class PersonBean {
 		
 	}
 	
-	public void setHostRating(float hostRating) {
+	public void setHostRating(double hostRating) {
 		this.hostRating = hostRating;
 		
 	}
 	
-	public float getHostRating() {
+	public double getHostRating() {
 		return this.hostRating;
 		
 	}
 	
-	public void setGuestRating(float guestRating) {
+	public void setGuestRating(double guestRating) {
 		this.guestRating = guestRating;
 		
 	}
 	
-	public float getGuestRating() {
+	public double getGuestRating() {
 		return this.guestRating;
 		
 	}

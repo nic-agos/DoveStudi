@@ -11,17 +11,14 @@ import logic.bean.*;
 
 public class GroupDAOImpl implements GroupDAO{
 
-	private static final String CREATE_GROUP_QUERY = "INSERT INTO group (Name, Admin, Num_Partecipants, Partecipant) VALUES (?, ?, ?, ?)";
-	private static final String DELETE_GROUP_QUERY = "DELETE FROM group WHERE Name = AND Admin = ?";
-	private static final String GET_GROUP_ID_QUERY = "SELECT ID FROM group WHERE Name = ? AND Admin = ?";
-	private static final String GET_ALL_GROUPS_QUERY = "SELECT * FROM group";
-	private static final String GET_ADMINISTERED_GROUPS_QUERY = "SELECT * FROM group where Admin = ?";
-	private static final String GET_PARTICIPATING_GROUPS_QUERY = "SELECT * FROM group where Partecipant = ?";
-	private static final String ADD_GROUP_PARTECIPANT_QUERY = "INSERT INTO group (Name, Admin, Num_Partecipants, Partecipant) VALUES (?, ?, ?, ?)";
-	private static final String UPDATE_NUM_PARTECIPANTS_GROUP = "UPDATE group SET Num_Partecipant = ? WHERE Name = ? AND Admin = ?";
-
-// 	the idea is that Admin creates a group with only himself as partecipant and after he adds partecipants
-//	with the function addGroupPartecipant() that takes in input a PersonBean
+	private static final String CREATE_GROUP_QUERY = "INSERT INTO group_a (Name, Admin, Num_Partecipants, Partecipant) VALUES (?, ?, ?, ?)";
+	private static final String DELETE_GROUP_QUERY = "DELETE FROM group_a WHERE Name = ? AND Admin = ?";
+	private static final String GET_GROUP_ID_QUERY = "SELECT ID FROM group_a WHERE Name = ? AND Admin = ?";
+	private static final String GET_ALL_GROUPS_QUERY = "SELECT * FROM group_a";
+	private static final String GET_ADMINISTERED_GROUPS_QUERY = "SELECT * FROM group_a WHERE Admin = ? AND Partecipant = ?";
+	private static final String GET_PARTICIPATING_GROUPS_QUERY = "SELECT * FROM group_a WHERE Partecipant = ?";
+	private static final String ADD_GROUP_PARTECIPANT_QUERY = "INSERT INTO group_a (Name, Admin, Num_Partecipants, Partecipant) VALUES (?, ?, ?, ?)";
+	private static final String UPDATE_NUM_PARTECIPANTS_GROUP = "UPDATE group_a SET Num_Partecipants = ? WHERE Name = ? AND Admin = ?";
 	
 	@Override
 	public int createGroup(GroupBean groupBean) throws SQLException {
@@ -38,7 +35,9 @@ public class GroupDAOImpl implements GroupDAO{
 			stmt.setInt(3, groupBean.getNumPartecipants());
 			stmt.setInt(4, groupBean.getPartecipant());
 			
-			return stmt.executeUpdate();
+			stmt.executeUpdate();
+			
+			return getGroupId(groupBean);
 				
 		}finally {
 			if (stmt != null) {
@@ -60,7 +59,8 @@ public class GroupDAOImpl implements GroupDAO{
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
 			stmt = connection.prepareStatement(DELETE_GROUP_QUERY);
-			stmt.setInt(1, groupBean.getId());
+			stmt.setString(1, groupBean.getName());
+			stmt.setString(2, groupBean.getAdmin());
 			
 			return stmt.executeUpdate();
 			
@@ -149,11 +149,17 @@ public class GroupDAOImpl implements GroupDAO{
 		PreparedStatement stmt = null;
 		Connection connection = null;
 		
+		PersonBean person = null;
+		PersonDAOImpl dao = new PersonDAOImpl();
+		
 		try {
+			person = dao.getPersonFromAccount(accountBean);
+			
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
 			stmt = connection.prepareStatement(GET_ADMINISTERED_GROUPS_QUERY);
 			stmt.setString(1, accountBean.getCf());
+			stmt.setInt(2, person.getId());
 			
 			ResultSet res = stmt.executeQuery();
 				while (res.next()) {
@@ -175,6 +181,10 @@ public class GroupDAOImpl implements GroupDAO{
 		}
 	}
 	
+	
+//  it return a list with all groups a PersonBean partecipates in
+//	in the returned list is included also the PersonBean linked to the admin of the group
+
 	@Override
 	public List<GroupBean> getAllParticipatingGroups(PersonBean personBean) throws SQLException {
 		
@@ -225,11 +235,10 @@ public class GroupDAOImpl implements GroupDAO{
 			stmt.setInt(3, groupBean.getNumPartecipants());
 			stmt.setInt(4, groupBean.getPartecipant());
 			
-			updateNumPartecipantsGroup(groupBean);
+			stmt.executeUpdate();
 			
-			return stmt.executeUpdate();
+			return updateNumPartecipantsGroup(groupBean);
 			
-				
 		}finally {
 			if (stmt != null) {
 				stmt.close();

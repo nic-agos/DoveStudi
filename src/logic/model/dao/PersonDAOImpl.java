@@ -12,13 +12,13 @@ import logic.bean.*;
 public class PersonDAOImpl implements PersonDAO {
 	
 	private static final String CREATE_PERSON_QUERY = "INSERT INTO person (Username, Study_Grade, School, Account, Host_Rating, Guest_Rating) VALUES (?, ?, ?, ?, ?, ?)";
-	private static final String DELETE_PERSON_QUERY = "DELETE FROM person where ID = ?";
+	private static final String DELETE_PERSON_QUERY = "DELETE FROM person WHERE ID = ?";
 	private static final String GET_PERSON_ID_QUERY = "SELECT ID FROM person WHERE Account = ?";
 	private static final String GETALL_PERSONS_QUERY = "SELECT * FROM person";
 	private static final String UPDATE_PERSON_RATINGS_QUERY = "UPDATE person SET Host_Rating = ?, Guest_Rating = ? WHERE ID = ?";
 	private static final String GET_PERSON_QUERY = "SELECT * FROM person WHERE ID = ?";
 	private static final String GET_PERSON_ACCOUNT_QUERY = "SELECT * FROM person WHERE Account = ?";
-	private static final String GET_GROUP_PARTECIPANTS_QUERY = "SELECT Partecipant FROM group WHERE Name = ? AND Admin = ?";
+	private static final String GET_GROUP_PARTECIPANTS_QUERY = "SELECT Partecipant FROM group_a WHERE Name = ? AND Admin = ?";
 	
 	@Override
 	public int createPerson(PersonBean personBean) throws SQLException {
@@ -34,8 +34,8 @@ public class PersonDAOImpl implements PersonDAO {
 			stmt.setString(2, personBean.getStudyGrade());
 			stmt.setString(3, personBean.getSchool());
 			stmt.setString(4, personBean.getAccount());
-			stmt.setFloat(5, personBean.getHostRating());
-			stmt.setFloat(6, personBean.getGuestRating());
+			stmt.setDouble(5, personBean.getHostRating());
+			stmt.setDouble(6, personBean.getGuestRating());
 			
 			stmt.executeUpdate();
 			
@@ -152,8 +152,8 @@ public class PersonDAOImpl implements PersonDAO {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
 			stmt = connection.prepareStatement(UPDATE_PERSON_RATINGS_QUERY);
-			stmt.setFloat(1, personBean.getHostRating());
-			stmt.setFloat(2, personBean.getGuestRating());
+			stmt.setDouble(1, personBean.getHostRating());
+			stmt.setDouble(2, personBean.getGuestRating());
 			stmt.setInt(3, personBean.getId());
 			
 			return stmt.executeUpdate();
@@ -238,6 +238,7 @@ public class PersonDAOImpl implements PersonDAO {
 		
 		List<PersonBean> groupPartecipants = new ArrayList<>();
 		PersonBean person = null;
+		List<Integer> personCodes = new ArrayList<>();
 		
 		Connection connection = null;
 		PreparedStatement stmt = null;
@@ -252,10 +253,14 @@ public class PersonDAOImpl implements PersonDAO {
 			ResultSet res = stmt.executeQuery();
 				
 			while (res.next()) {
-				person = getPerson(res.getInt(1));
+				personCodes.add(res.getInt(1));
+			}
+			
+			for (int i=0; i < personCodes.size(); i++) {
+				person = getPerson(personCodes.get(i));
 				groupPartecipants.add(person);
 			}
-				
+			
 			res.close();
 			
 			return groupPartecipants;

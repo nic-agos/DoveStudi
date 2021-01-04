@@ -14,7 +14,7 @@ import logic.bean.RoomBean;
 public class ReservationDAOImpl implements ReservationDAO {
 	
 	private static final String GET_ACCOUNT_RESERVATIONS_QUERY = "SELECT * FROM reservation WHERE Reserving_User = ?";
-	private static final String CREATE_RESERVATION_QUERY = "INSERT INTO reservation (Reserving_User, Room, Room_Owner, isGroup, Date, Start_Time, End_Time) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	private static final String CREATE_RESERVATION_QUERY = "INSERT INTO reservation (Reserving_User, Room, Room_Owner, Date, Start_Time, End_Time) VALUES (?, ?, ?, ?, ?, ?)";
 	private static final String GET_RESERVATION_ID_QUERY = "SELECT ID FROM reservation WHERE Reserving_User = ? AND Room = ? AND Room_Owner = ?";
 	private static final String GETALL_RESERVATIONS_QUERY = "SELECT * FROM reservation";
 	private static final String DELETE_RESERVATION_QUERY = "DELETE FROM reservation WHERE ID = ?";

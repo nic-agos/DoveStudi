@@ -14,18 +14,12 @@ import logic.model.dao.ReviewDAOImpl;
 
 public class TestReviewDAOImpl {
 	
-	private int id = 10;
-	
+	private int id = 29;
 	private String title = "bel";
-	
-	private String reviewer = "marco";
-	
-	private int reviewed = 13;
-	
+	private String reviewer = "a";
+	private int reviewed = 19;
 	private int rating = 4;
-	
 	private String description = "bella";
-	
 	private String tag = "guest";
 	
 	@Test
@@ -47,7 +41,7 @@ public class TestReviewDAOImpl {
 	@Test
 	public void testgetAllWrittenReviews() throws SQLException {
 		ReviewDAOImpl r = new ReviewDAOImpl();
-		AccountBean a = new AccountBean("marco", "m", "a", "m", "2020-12-27", "m", 10);
+		AccountBean a = new AccountBean("a", "m", "a", "m", "2020-12-27", "m", 10);
 		List<ReviewBean> res = r.getAllWrittenReviews(a);
 		assertEquals(res, 1);
 	}
@@ -55,7 +49,7 @@ public class TestReviewDAOImpl {
 	@Test
 	public void testgetAllReceivedReviews() throws SQLException {
 		ReviewDAOImpl r = new ReviewDAOImpl();
-		PersonBean a = new PersonBean(16, "f", "f", "f", "marco", 0, 0);
+		PersonBean a = new PersonBean(19, "f", "f", "f", "marco", 0, 0);
 		List<ReviewBean> res = r.getAllReceivedReviews(a);
 		assertEquals(res, 1);
 	}

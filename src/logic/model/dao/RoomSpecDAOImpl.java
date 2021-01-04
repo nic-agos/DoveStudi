@@ -11,9 +11,10 @@ public class RoomSpecDAOImpl implements RoomSpecDAO {
 	
 	private static final String CREATE_ROOMSPEC_QUERY = "INSERT INTO roomspec (Description, Date, Start_Time, End_Time) VALUES (?, ?, ?, ?)";
 	private static final String GET_ROOMSPEC_ID_QUERY = "SELECT ID FROM roomspec WHERE Description = ? AND Date = ? AND Start_Time = ? AND End_Time = ?";
-	private static final String DELETE_ROOMSPEC_QUERY = "DELETE FROOM roomspec WHERE ID = ?";
+	private static final String DELETE_ROOMSPEC_QUERY = "DELETE FROM roomspec WHERE ID = ?";
 	private static final String GET_ROOMSPEC_QUERY = "SELECT * FROM roomspec WHERE ID = ?";
 	
+	@Override
 	public int createRoomSpec(RoomSpecBean roomSpecBean) throws SQLException {
 		
 		Connection connection = null;
@@ -41,6 +42,7 @@ public class RoomSpecDAOImpl implements RoomSpecDAO {
 		}
 	}
 	
+	@Override
 	public int getRoomSpecId(RoomSpecBean roomSpecBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
@@ -72,7 +74,8 @@ public class RoomSpecDAOImpl implements RoomSpecDAO {
 			}
 		}
 	}
-		
+	
+	@Override
 	public int removeRoomSpec(RoomSpecBean roomSpecBean) throws SQLException {
 			
 		PreparedStatement stmt = null;
@@ -95,7 +98,8 @@ public class RoomSpecDAOImpl implements RoomSpecDAO {
 			}
 		}
 	}
-		
+	
+	@Override
 	public RoomSpecBean getRoomSpec(int id) throws SQLException {
 			
 		PreparedStatement stmt = null;

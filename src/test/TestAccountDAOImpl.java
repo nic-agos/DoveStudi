@@ -11,13 +11,13 @@ import logic.bean.*;
 
 public class TestAccountDAOImpl {
 	
-	private String cf = "mrro";
-	private String name = "marco";
-	private String surname = "rossi";
-	private String email = "m@";
-	private String password = "m";
-	private String dateBirth = "2020:02:07";
-	private int numToken = 10;
+	private String cf;
+	private String name;
+	private String surname;
+	private String email;
+	private String password;
+	private String dateBirth;
+	private int numToken;
 	
 	@Test
 	public void testCreateAccount() throws SQLException {
@@ -56,16 +56,13 @@ public class TestAccountDAOImpl {
 	public void testGetAllAccounts() throws SQLException {
 		AccountDAOImpl dao = new AccountDAOImpl();
 		List<AccountBean> res = dao.getAllAccounts();
-		System.out.println(res.get(1).getDateBirth());
 		assertEquals(res, 1);
 	}
 	
 	@Test
 	public void testGetAccount() throws SQLException {
 		AccountDAOImpl a = new AccountDAOImpl();
-		
-		AccountBean res = a.getAccount("marco");
-		System.out.println(res.getEmail());
+		AccountBean res = a.getAccount(cf);
 		assertEquals(res, 1);
 	}
 	

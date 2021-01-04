@@ -11,13 +11,14 @@ import logic.model.dao.RoomDAOImpl;
 import logic.bean.*;
 
 public class TestRoomDAOImpl {
-
+	
+	private int id = 31;
 	private String name = "b";
 	private String address = "b";
-	private int numPartecipants = 5;
-	private int numAvailableSeats = 5;
-	private String owner = "marco";
-	private int specification = 1;
+	private int numPartecipants = 4;
+	private int numAvailableSeats = 3;
+	private String owner = "a";
+	private int specification = 31;
 	
 	
 	@Test
@@ -41,8 +42,7 @@ public class TestRoomDAOImpl {
 	
 	@Test
 	public void testUpdateRoom() throws SQLException {
-		RoomBean r = new RoomBean(name, address, numPartecipants, numAvailableSeats, owner, specification);
-		r.setId(23);
+		RoomBean r = new RoomBean(id, name, address, numPartecipants, numAvailableSeats, owner, specification);
 		RoomDAOImpl d = new RoomDAOImpl();
 		int res = d.updateRoom(r);
 		assertEquals(res, 1);
@@ -51,7 +51,7 @@ public class TestRoomDAOImpl {
 	@Test
 	public void testRemoveRoom() throws SQLException {
 		RoomBean r = new RoomBean();
-		r.setId(23);
+		r.setId(33);
 		RoomDAOImpl d = new RoomDAOImpl();
 		int res = d.removeRoom(r);
 		assertEquals(res, 1);
@@ -60,7 +60,7 @@ public class TestRoomDAOImpl {
 	@Test
 	public void testGetRoom() throws SQLException {
 		RoomDAOImpl dao = new RoomDAOImpl();
-		RoomBean r = dao.getRoom(24);
+		RoomBean r = dao.getRoom(id);
 		assertEquals(r, 1);
 		
 	}
@@ -70,16 +70,15 @@ public class TestRoomDAOImpl {
 		RoomDAOImpl dao = new RoomDAOImpl();
 		RoomBean r = new RoomBean(name, address, numPartecipants, numAvailableSeats, owner, specification);
 		int res = dao.getRoomId(r);
-		assertEquals(res, 24);
+		assertEquals(res, 31);
 	}
 	
 	@Test
 	public void testGetAllAccountRooms() throws SQLException {
-		AccountBean a = new AccountBean("marco", "m", "a", "m", "2020-12-27", "m", 10);
+		AccountBean a = new AccountBean("a", "m", "a", "m", "2020-12-27", "m", 10);
 		RoomDAOImpl d = new RoomDAOImpl();
-		List<RoomBean> l = new ArrayList<RoomBean>();
 		List<RoomBean> n = d.getAllAccountRooms(a);
-		assertEquals(n, l);
+		assertEquals(n, 1);
 	}
 	
 	

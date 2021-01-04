@@ -18,15 +18,15 @@ public class Person {
 	
 	private Account account;
 	
-	private float hostRating;
+	private double hostRating;
 	
-	private float guestRating;
+	private double guestRating;
 	
 	private List<Review> reviews;
 	
 	private List<Group> groups;
 	
-	public Person(String username, String studyGrade, String school, float hostRating, float guestRating) {
+	public Person(String username, String studyGrade, String school, double hostRating, double guestRating) {
 		
 		this.username = username;
 		
@@ -40,7 +40,7 @@ public class Person {
 		
 	}
 	
-	public Person(String username, String studyGrade, String school, Account account, float hostRating, float guestRating) {
+	public Person(String username, String studyGrade, String school, Account account, double hostRating, double guestRating) {
 		
 		this(username, studyGrade, school, hostRating, guestRating);
 		
@@ -122,22 +122,22 @@ public class Person {
 		
 	}
 	
-	public void setHostRating(float hostRating) {
+	public void setHostRating(double hostRating) {
 		this.hostRating = hostRating;
 		
 	}
 	
-	public float getHostRating() {
+	public double getHostRating() {
 		return this.hostRating;
 		
 	}
 	
-	public void setGuestRating(float guestRating) {
+	public void setGuestRating(double guestRating) {
 		this.guestRating = guestRating;
 		
 	}
 	
-	public float getGuestRating() {
+	public double getGuestRating() {
 		return this.guestRating;
 		
 	}
