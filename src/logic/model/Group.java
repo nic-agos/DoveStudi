@@ -38,9 +38,10 @@ public class Group {
 	}
 	
 	public Group(GroupBean groupBean) throws SQLException {
-		
+
+
 		this(groupBean.getName(), groupBean.getNumPartecipants());
-		
+/*		
 		AccountDAOImpl dao1 = new AccountDAOImpl();
 		
 		this.admin = new Account(dao1.getAccount(groupBean.getAdmin()));
@@ -48,10 +49,12 @@ public class Group {
 		PersonDAOImpl dao2 = new PersonDAOImpl();
 		
 		List<PersonBean> personBeans = dao2.getGroupPartecipants(groupBean);
-		for(PersonBean personBean : personBeans) {
-			this.partecipants.add(new Person(personBean));
+		if(personBeans.isEmpty()) {
+			for(PersonBean personBean : personBeans) {
+				this.partecipants.add(new Person(personBean));
+			}
 		}
-		
+*/		
 		this.id = groupBean.getId();
 	}
 	

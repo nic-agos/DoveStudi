@@ -60,30 +60,41 @@ public class Account {
 		this(accountBean.getCf(), accountBean.getName(), accountBean.getSurname(), accountBean.getEmail(), 
 				accountBean.getPassword(), accountBean.getDateBirth(), accountBean.getNumberToken());
 		
-		ReservationDAOImpl dao1 = new ReservationDAOImpl();
+/*	ReservationDAOImpl dao1 = new ReservationDAOImpl();
 		
 		List<ReservationBean> reservationBeans = dao1.getAllAccountReservations(accountBean);
-		for(ReservationBean reservationBean : reservationBeans) {
-			this.reservations.add(new Reservation(reservationBean));
+		if(!reservationBeans.isEmpty()) {
+			for(ReservationBean reservationBean : reservationBeans) {
+				this.reservations.add(new Reservation(reservationBean));
+			}
 		}
 		
 		RoomDAOImpl dao2 = new RoomDAOImpl(); 
 		
 		List<RoomBean> roomBeans = dao2.getAllAccountRooms(accountBean);
-		for(RoomBean roomBean : roomBeans) {
-			this.rooms.add(new Room(roomBean));
+		if(!roomBeans.isEmpty()) {
+			for(RoomBean roomBean : roomBeans) {
+				this.rooms.add(new Room(roomBean));
+			}	
 		}
-		
-		PersonDAOImpl dao3 = new PersonDAOImpl();
-		
-		this.person = new Person(dao3.getPersonFromAccount(accountBean));
 		
 		GroupDAOImpl dao4 = new GroupDAOImpl();
 		
 		List<GroupBean> groupBeans = dao4.getAllAdministeredGroups(accountBean);
-		for(GroupBean groupBean : groupBeans) {
-			this.administeredGroups.add(new Group(groupBean));
+		if(!groupBeans.isEmpty()) {
+			for(GroupBean groupBean : groupBeans) {
+				this.administeredGroups.add(new Group(groupBean));
+			}
 		}
+		
+		PersonDAOImpl dao3 = new PersonDAOImpl();
+		
+		PersonBean personBean = dao3.getPersonFromAccount(accountBean);
+		if(personBean.getId() != 0) {
+			this.person = new Person(personBean);
+		}
+*/
+		
 	}
 	
 	public void setCf(String cf) {

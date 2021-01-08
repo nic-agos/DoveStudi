@@ -45,7 +45,7 @@ public Reservation(Account reservingUser, Room linkedRoom, Person roomOwner, Str
 	public Reservation(ReservationBean reservationBean) throws SQLException {
 		
 		this(reservationBean.getDate(), reservationBean.getStartTime(), reservationBean.getEndTime());
-		
+/*		
 		AccountDAOImpl dao1 = new AccountDAOImpl();
 		
 		this.reservingUser = new Account(dao1.getAccount(reservationBean.getReservingUser()));
@@ -57,7 +57,7 @@ public Reservation(Account reservingUser, Room linkedRoom, Person roomOwner, Str
 		PersonDAOImpl dao3 = new PersonDAOImpl();
 		
 		this.roomOwner = new Person(dao3.getPerson(reservationBean.getRoomOwner()));
-		
+*/		
 		this.id = reservationBean.getId();
 	}
 	

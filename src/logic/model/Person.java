@@ -55,20 +55,25 @@ public class Person {
 		
 		this.account = new Account(dao1.getAccount(personBean.getAccount()));
 		
-		GroupDAOImpl dao2 = new GroupDAOImpl();
+/*		GroupDAOImpl dao2 = new GroupDAOImpl();
 		
 		List<GroupBean> groupBeans = dao2.getAllParticipatingGroups(personBean);
-		for(GroupBean groupBean : groupBeans) {
-			this.groups.add(new Group(groupBean));
+		if (!groupBeans.isEmpty()) {
+			for(GroupBean groupBean : groupBeans) {
+				this.groups.add(new Group(groupBean));
+			}
 		}
+*	
 		
 		ReviewDAOImpl dao3 = new ReviewDAOImpl();
 		
 		List<ReviewBean> reviewBeans = dao3.getAllReceivedReviews(personBean);
-		for(ReviewBean reviewBean : reviewBeans) {
-			this.reviews.add(new Review(reviewBean));
+		if(!reviewBeans.isEmpty()) {
+			for(ReviewBean reviewBean : reviewBeans) {
+				this.reviews.add(new Review(reviewBean));
+			}
 		}
-		
+*/		
 		this.id = personBean.getId();
 	}
 	

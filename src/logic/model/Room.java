@@ -22,7 +22,7 @@ private int id;
 	
 	private RoomSpec specification;
 	
-	private List<Reservation> reservations;
+//	private List<Reservation> reservations;
 	
 	public Room(String name, String address, int numPartecipants, int numAvailableSeats) {
 		
@@ -50,7 +50,7 @@ private int id;
 		
 		this(roomBean.getName(), roomBean.getAddress(), roomBean.getNumPartecipants(), 
 				roomBean.getNumAvailableSeats());
-		
+/*		
 		AccountDAOImpl dao1 = new AccountDAOImpl();
 		
 		this.owner = new Account(dao1.getAccount(roomBean.getOwner()));
@@ -62,10 +62,12 @@ private int id;
 		ReservationDAOImpl dao3 = new ReservationDAOImpl();
 		
 		List<ReservationBean> reservationBeans = dao3.getRoomReservations(roomBean);
-		for(ReservationBean reservationBean : reservationBeans) {
-			this.reservations.add(new Reservation(reservationBean));
+		if(!reservationBeans.isEmpty()) {
+			for(ReservationBean reservationBean : reservationBeans) {
+				this.reservations.add(new Reservation(reservationBean));
+			}
 		}
-		
+*/	
 		this.id = roomBean.getId();
 	}
 	
@@ -139,7 +141,7 @@ private int id;
 		
 	}
 	
-	public void setReservations(List<Reservation> reservations) {
+/*	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 		
 	}
@@ -148,4 +150,5 @@ private int id;
 		return this.reservations;
 		
 	}
+*/
 }

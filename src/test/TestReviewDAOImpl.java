@@ -39,7 +39,7 @@ public class TestReviewDAOImpl {
 	}
 	
 	@Test
-	public void testgetAllWrittenReviews() throws SQLException {
+	public void testGetAllWrittenReviews() throws SQLException {
 		ReviewDAOImpl r = new ReviewDAOImpl();
 		AccountBean a = new AccountBean("a", "m", "a", "m", "2020-12-27", "m", 10);
 		List<ReviewBean> res = r.getAllWrittenReviews(a);
@@ -47,7 +47,7 @@ public class TestReviewDAOImpl {
 	}
 	
 	@Test
-	public void testgetAllReceivedReviews() throws SQLException {
+	public void testGetAllReceivedReviews() throws SQLException {
 		ReviewDAOImpl r = new ReviewDAOImpl();
 		PersonBean a = new PersonBean(19, "f", "f", "f", "marco", 0, 0);
 		List<ReviewBean> res = r.getAllReceivedReviews(a);
@@ -55,9 +55,27 @@ public class TestReviewDAOImpl {
 	}
 	
 	@Test
-	public void testgetAllReviews() throws SQLException {
+	public void testGetAllReviews() throws SQLException {
 		ReviewDAOImpl r = new ReviewDAOImpl();
 		List<ReviewBean> res = r.getAllReviews();
 		assertEquals(res, 1);
+	}
+	
+	@Test
+	public void testGetAllPersonReviewsAsHost() throws SQLException {
+		ReviewDAOImpl r = new ReviewDAOImpl();
+		PersonBean p = new PersonBean();
+		p.setId(29);
+		List<ReviewBean> res = r.getAllPersonReviewsAsHost(p);
+		assertEquals(res, 1);
+	}
+	
+	@Test
+	public void testGetAllPersonReviewsAsGuest() throws SQLException {
+		ReviewDAOImpl r = new ReviewDAOImpl();
+		PersonBean p = new PersonBean();
+		p.setId(30);
+		List<ReviewBean> res = r.getAllPersonReviewsAsGuest(p);
+		assertEquals(res,1);
 	}
 }

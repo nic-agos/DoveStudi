@@ -17,6 +17,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	private static final String GET_RECEIVED_REVIEWS_QUERY = "SELECT * FROM review WHERE Reviewed = ?";
 	private static final String GET_WRITTEN_REVIEWS_QUERY = "SELECT * FROM review WHERE Reviewer = ?";
 	private static final String GET_ALL_REVIEWS_QUERY = "SELECT * FROM review";
+	private static final String GET_ALL_REVIEWS_TAG_QUERY = "SELECT * FROM review WHERE Reviewed = ? AND Tag = ?";
 	
 	@Override
 	public int createReview(ReviewBean reviewBean) throws SQLException {
@@ -191,14 +192,87 @@ public class ReviewDAOImpl implements ReviewDAO {
 			stmt = connection.prepareStatement(GET_ALL_REVIEWS_QUERY);
 			
 			ResultSet res = stmt.executeQuery();
-				while (res.next()) {
-					review = new ReviewBean(res.getInt(1), res.getString(2), res.getString(3), res.getInt(4), res.getInt(5), res.getString(6), res.getString(7));
-					writtenReview.add(review);
-				}
+			
+			while (res.next()) {
+				review = new ReviewBean(res.getInt(1), res.getString(2), res.getString(3), res.getInt(4), res.getInt(5), res.getString(6), res.getString(7));
+				writtenReview.add(review);
+			}
 				
 			res.close();
 			
 			return writtenReview;
+			
+		}finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
+			}
+		}
+	}
+	
+	public List<ReviewBean> getAllPersonReviewsAsGuest(PersonBean personBean) throws SQLException {
+		
+		List<ReviewBean> reviewsGuest = new ArrayList<>();
+		ReviewBean review = null;
+		
+		PreparedStatement stmt = null;
+		Connection connection = null;
+		
+		try {
+			connection = DBConnection.getInstanceConnection().getConnection();
+			
+			stmt = connection.prepareStatement(GET_ALL_REVIEWS_TAG_QUERY);
+			stmt.setInt(1, personBean.getId());
+			stmt.setString(2, "GUEST");
+			
+			ResultSet res = stmt.executeQuery();
+			
+			while (res.next()) {
+				review = new ReviewBean(res.getInt(1), res.getString(2), res.getString(3), res.getInt(4), res.getInt(5), res.getString(6), res.getString(7));
+				reviewsGuest.add(review);
+			}
+				
+			res.close();
+			
+			return reviewsGuest;
+			
+		}finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
+			}
+		}
+	}
+	
+	public List<ReviewBean> getAllPersonReviewsAsHost(PersonBean personBean) throws SQLException {
+		
+		List<ReviewBean> reviewsHost = new ArrayList<>();
+		ReviewBean review = null;
+		
+		PreparedStatement stmt = null;
+		Connection connection = null;
+		
+		try {
+			connection = DBConnection.getInstanceConnection().getConnection();
+			
+			stmt = connection.prepareStatement(GET_ALL_REVIEWS_TAG_QUERY);
+			stmt.setInt(1, personBean.getId());
+			stmt.setString(2, "HOST");
+			
+			ResultSet res = stmt.executeQuery();
+			
+			while (res.next()) {
+				review = new ReviewBean(res.getInt(1), res.getString(2), res.getString(3), res.getInt(4), res.getInt(5), res.getString(6), res.getString(7));
+				reviewsHost.add(review);
+			}
+				
+			res.close();
+			
+			return reviewsHost;
 			
 		}finally {
 			if (stmt != null) {
