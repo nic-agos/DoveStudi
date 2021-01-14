@@ -1,0 +1,75 @@
+@charset "ISO-8859-1";
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+body{
+	margin: 0;
+	padding:0;
+	font-family: sans-serif;
+	background:#ffffff;
+}
+.curved.upper{
+	background:#0099ff;
+}
+.curved.upper h1{
+	margin-left:100px;
+}
+.login-box{
+	width: 280px;
+	position:absolute;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: black;
+}
+.login-box h1{
+	float:left;
+	font-size: 40px;
+	border-bottom: 6px solid #000000;
+	margin-bottom: 50px;
+	padding: 13px 0;
+}
+.textbox{
+	width: 100%;
+	overflow:hidden;
+	font-size: 20 px;
+	padding: 8px 0;
+	margin: 8px 0;
+	border-bottom: 1px solid #000000;	
+}
+.textbox i{
+	width:26px;
+	float:left;
+	text-align:center;
+}
+.textbox input{
+	border: none;
+	outline:none;
+	background: none;
+	color: black;
+	font-size: 18px;
+	width: 80%;
+	float: left;
+	margin: 0 10px;
+}
+.login-box h2{
+	color:#000000;
+	font-size: 20px;
+	font-weight: bold;
+	width: 900px;
+	text-decoration: none;
+}
+.btn_login{
+	height: 50px;
+	width: 100%;
+	font-size: 18px;
+	font-weight: bold;
+	color: black;
+	background:red;
+	border: 1px solid #cc0000;
+	outline: none;
+	cursor: pointer;
+	border-radius: 25px;
+	transition: .4s;
+}
+.btn_login:hover{
+	background:#cc0000;
+}
