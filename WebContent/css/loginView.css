@@ -69,9 +69,10 @@ body{
 	overflow:hidden;
 	font-size: 20 px;
 	padding: 8px 0;
-	margin: 8px 0;
-	margin-left:50px;
+	margin: 8px 0;/* 
+	margin-left:50px; */
 	border-bottom: 1px solid #000000;	
+	text-align:center;
 }
 .textbox i{
 	width:26px;

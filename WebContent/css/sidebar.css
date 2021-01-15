@@ -12,33 +12,33 @@ body{
 	position:fixed;
 	width:200px;
 	height:100%;
-	background:rgb(255, 128, 0);
+	background:#373d39;
 	left: -200px;
 	transition: .4s;
 }
 
 #sidebar.active {
 	left:0px;
-	background:#ffffff;
+	background:#373d39;
 }
 
 #sidebar ul li {
-	color:#000000;
+	color:#ffffff;
 	list-style:none;
 	padding:15px 10px;
 	/* border-bottom: 1px solid #FF5500; */
 	
 }
 #sidebar ul li a{
-	color:#000000;
+	color:#ffffff;
 	background:rgb(0,0,0,0);
 	text-decoration:none;
 }
 #sidebar ul li:hover{
-	background-color: #FF5500;
+	background-color: #121413;
 }
 #sidebar ul li a:hover{
-	background-color: #FF5500;
+	background-color: #121413;
 }
 
 #sidebar .toggle-btn {

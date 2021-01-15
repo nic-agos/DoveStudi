@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Welcome</title>
 <link href="css/welcome.css" rel="stylesheet"/>
 </head>
 
@@ -17,6 +17,7 @@
 		<h3>Start looking for Rooms where to study with your friends</h3>
 		
 		<div class="buttons">
+			<button><a href="Login.jsp">PostRoom</a></button>
 			<button><a href="SearchPage.jsp">Look for Rooms</a></button>
 			<button class="btn"><a href="Login.jsp">Log in</a></button>
 		</div>

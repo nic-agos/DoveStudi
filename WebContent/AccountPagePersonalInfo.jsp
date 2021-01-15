@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		 <ul>
-		 	<li style="background:#FF5500;""><a style="font-size:25px; font-weight:bold; background-color:#FF5500;">#WhereToStudy</a></li>
+		 	<li style="background:#FF5500; color:#ffffff"><a style="font-size:25px; font-weight:bold; background-color:#FF5500;">#WHERETOSTUDY</a></li>
 		 	<li><a href="HomePage.jsp">LoggedHomePage.jsp</a></li>
 		 	<li><a href="AccountPagePersonalInfo.jsp">My Account</a></li>
 		 	<li><a href="SearchRoom.jsp">Search for Rooms</a></li>
