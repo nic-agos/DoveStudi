@@ -24,8 +24,12 @@ public class RegistrationController {
 		
 		try {
 			AccountDAOImpl dao = new AccountDAOImpl();
-			dao.createAccount(accountBean);
-			return true;
+			int res = dao.createAccount(accountBean);
+			if(res != 0) {
+				return true;
+			}else {
+				return false;
+			}
 		
 		}catch (SQLException se) {
 			se.printStackTrace();
