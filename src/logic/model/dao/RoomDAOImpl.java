@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 
 import logic.bean.AccountBean;
 import logic.bean.RoomBean;
+import logic.bean.RoomSpecBean;
 
 public class RoomDAOImpl implements RoomDAO {
 	
@@ -19,6 +20,7 @@ public class RoomDAOImpl implements RoomDAO {
 	private static final String GET_ROOM_QUERY = "SELECT * FROM room WHERE ID = ?";
 	private static final String GET_ROOM_ID_QUERY = "SELECT ID FROM room WHERE Name = ?";
 	private static final String GET_ACCOUNT_ROOMS_QUERY  = "SELECT * FROM room WHERE Owner = ?";
+	private static final String GET_ROOM_FROM_SPEC_QUERY = "SELECT * FROM room WHERE Specification = ?";
 	
 	@Override
 	public int createRoom(RoomBean roomBean) throws SQLException {
@@ -139,7 +141,7 @@ public class RoomDAOImpl implements RoomDAO {
 	}
 	
 	@Override
-	public RoomBean getRoom(int id) throws SQLException {
+	public RoomBean getRoom(RoomBean roomBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -149,7 +151,7 @@ public class RoomDAOImpl implements RoomDAO {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
 			stmt = connection.prepareStatement(GET_ROOM_QUERY);
-			stmt.setInt(1, id);
+			stmt.setInt(1, roomBean.getId());
 			
 			ResultSet res = stmt.executeQuery();
 			
@@ -223,6 +225,37 @@ public class RoomDAOImpl implements RoomDAO {
 			res.close();
 			
 			return accountRooms;
+			
+		}finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
+			}
+		}
+	}
+	
+	public RoomBean getRoomFromSpec(RoomSpecBean roomSpecBean) throws SQLException {
+		
+		PreparedStatement stmt = null;
+		Connection connection = null;
+		
+		RoomBean room = null;
+		
+		try {
+			connection = DBConnection.getInstanceConnection().getConnection();
+			
+			stmt = connection.prepareStatement(GET_ROOM_FROM_SPEC_QUERY);
+			stmt.setInt(1, roomSpecBean.getId());
+			
+			ResultSet res = stmt.executeQuery();
+			
+			while(res.next()) {
+				room = new RoomBean(res.getInt(1), res.getString(2),res.getString(3), res.getInt(4), res.getInt(5), res.getString(6), res.getInt(7));
+			}
+			
+			return room;
 			
 		}finally {
 			if (stmt != null) {

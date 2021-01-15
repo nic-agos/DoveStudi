@@ -12,6 +12,6 @@ public interface RoomSpecDAO {
 	
 	public int removeRoomSpec(RoomSpecBean roomSpecBean) throws SQLException;
 	
-	public RoomSpecBean getRoomSpec(int id) throws SQLException;
+	public RoomSpecBean getRoomSpec(RoomBean roomBean) throws SQLException;
 	
 }

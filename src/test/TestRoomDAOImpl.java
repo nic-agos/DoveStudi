@@ -60,9 +60,10 @@ public class TestRoomDAOImpl {
 	@Test
 	public void testGetRoom() throws SQLException {
 		RoomDAOImpl dao = new RoomDAOImpl();
-		RoomBean r = dao.getRoom(id);
-		assertEquals(r, 1);
-		
+		RoomBean r = new RoomBean();
+		r.setId(2);
+		RoomBean res = dao.getRoom(r);
+		assertEquals(res, 1);
 	}
 	
 	@Test
@@ -81,5 +82,12 @@ public class TestRoomDAOImpl {
 		assertEquals(n, 1);
 	}
 	
-	
+	@Test
+	public void testGetRoomFromSpec() throws SQLException {
+		RoomDAOImpl dao = new RoomDAOImpl();
+		RoomSpecBean r = new RoomSpecBean();
+		r.setId(2);
+		RoomBean res = dao.getRoomFromSpec(r);
+		assertEquals(res, 1);
+	}
 }

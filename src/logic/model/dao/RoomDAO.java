@@ -16,7 +16,7 @@ public interface RoomDAO {
 	
 	public int removeRoom(RoomBean roomBean) throws SQLException;
 
-	public RoomBean getRoom(int id) throws SQLException;
+	public RoomBean getRoom(RoomBean roomBean) throws SQLException;
 	
 	public int getRoomId(RoomBean roomBean) throws SQLException;
 	

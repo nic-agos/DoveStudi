@@ -14,7 +14,9 @@ public class RoomSpec {
 	
 	private String endTime;
 	
-	public RoomSpec(String description, String date, String startTime, String endTime) {
+	private String cap;
+	
+	public RoomSpec(String description, String date, String startTime, String endTime, String cap) {
 		
 		this.description = description;
 		
@@ -24,11 +26,13 @@ public class RoomSpec {
 		
 		this.endTime = endTime;
 		
+		this.cap = cap;
+		
 	}
 	
-	public RoomSpec(int id, String description, String date, String startTime, String endTime) {
+	public RoomSpec(int id, String description, String date, String startTime, String endTime, String cap) {
 		
-		this(description, date, startTime, endTime);
+		this(description, date, startTime, endTime, cap);
 		
 		this.id = id;
 		
@@ -36,7 +40,7 @@ public class RoomSpec {
 	
 	public RoomSpec(RoomSpecBean roomSpecBean) {
 		
-		this(roomSpecBean.getId(), roomSpecBean.getDescription(), roomSpecBean.getDate(), roomSpecBean.getStartTime(), roomSpecBean.getEndTime());
+		this(roomSpecBean.getId(), roomSpecBean.getDescription(), roomSpecBean.getDate(), roomSpecBean.getStartTime(), roomSpecBean.getEndTime(), roomSpecBean.getCap());
 	
 	}
 	
@@ -90,5 +94,13 @@ public class RoomSpec {
 		
 	}
 	
+	public void setCap(String cap) {
+		this.cap = cap;
+		
+	}
 	
+	public String getCap() {
+		return this.cap;
+		
+	}
 }

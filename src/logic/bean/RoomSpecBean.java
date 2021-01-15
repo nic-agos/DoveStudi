@@ -12,11 +12,13 @@ public class RoomSpecBean {
 	
 	private String endTime;
 	
+	private String cap;
+	
 	public RoomSpecBean() {
 		
 	}
 	
-	public RoomSpecBean(String description, String date, String startTime, String endTime) {
+	public RoomSpecBean(String description, String date, String startTime, String endTime, String cap) {
 		
 		this.description = description;
 		
@@ -26,11 +28,13 @@ public class RoomSpecBean {
 		
 		this.endTime = endTime;
 		
+		this.cap = cap;
+		
 	}
 	
-	public RoomSpecBean(int id, String description, String date, String startTime, String endTime) {
+	public RoomSpecBean(int id, String description, String date, String startTime, String endTime, String cap) {
 		
-		this(description, date, startTime, endTime);
+		this(description, date, startTime, endTime, cap);
 		
 		this.id = id;
 		
@@ -88,6 +92,16 @@ public class RoomSpecBean {
 	
 	public String getEndTime() {
 		return this.endTime;
+		
+	}
+	
+	public void setCap(String cap) {
+		this.cap = cap;
+		
+	}
+	
+	public String getCap() {
+		return this.cap;
 		
 	}
 }
