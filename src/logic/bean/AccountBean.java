@@ -1,8 +1,6 @@
 package logic.bean;
 
-import java.lang.Character.*;
-
-import logic.exception.RegistrationException;
+import logic.exception.RegistrationAccountException;
 import logic.exception.TriggerExceptions;
 
 public class AccountBean {
@@ -115,7 +113,7 @@ public class AccountBean {
 		
 	}
 	
-	public boolean validate() throws RegistrationException {
+	public boolean validate() throws RegistrationAccountException {
 		String errors = "";
 		if(this.cf.length() != 16) {
 			errors = errors + "Invalid Fiscal Code   ";
@@ -137,44 +135,10 @@ public class AccountBean {
 		}
 		
 		if(!errors.isEmpty()) {
-			this.trigger.triggerRegistrationException(errors);
+			this.trigger.triggerRegistrationAccountException(errors);
 			return false;
 		}
 		return true;
 	}
-	
-/*	private boolean checkDate(String date) {
-		int i;
-		char c;
-		if (date.length() == 10) {
-			for(i = 0; i < 4; i++) {
-				c = date.charAt(i);
-				if(!Character.isDigit(c)) {
-					return false;
-				}
-			}
-			if (date.charAt(4) != ':' && date.charAt(4) != '-') {
-				return false;
-			}
-			for (i = 5; i < 7; i++) {
-				c = date.charAt(i);
-				if(!Character.isDigit(c)) {
-					return false;
-				}
-			}
-			if (date.charAt(7) != ':' && date.charAt(7) != '-') {
-				return false;
-			}
-			for(i = 8; i < 10; i++) {
-				c = date.charAt(i);
-				if(!Character.isDigit(c)) {
-					return false;
-				}
-			}
-			return true;
-		}else {
-			return false;
-		}
-	}
-*/
+
 }

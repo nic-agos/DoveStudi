@@ -20,7 +20,7 @@ public class RegistrationController {
 		return instance;
 	}
 	
-	public boolean register(AccountBean accountBean) throws SQLException {
+	public boolean registerAccount(AccountBean accountBean) throws SQLException {
 		
 		try {
 			AccountDAOImpl dao = new AccountDAOImpl();
@@ -33,9 +33,19 @@ public class RegistrationController {
 		
 		}catch (SQLException se) {
 			throw se;
-		}catch (Exception e) {
-			e.printStackTrace();
-			return false;
 		}
+	}
+	
+	public int registerPerson(PersonBean personBean) throws SQLException {
+		int res = 0;
+		try {
+			PersonDAOImpl dao = new PersonDAOImpl();
+			res = dao.createPerson(personBean);
+		
+		}catch (SQLException se) {
+			throw se;
+		}
+		
+		return res;
 	}
 }

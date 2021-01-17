@@ -3,7 +3,6 @@ package logic.model;
 import java.sql.SQLException;
 
 import logic.bean.*;
-import logic.model.dao.*;
 
 public class Review {
 	private int id;

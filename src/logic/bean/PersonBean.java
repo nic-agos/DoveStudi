@@ -1,6 +1,12 @@
 package logic.bean;
 
+import logic.exception.RegistrationAccountException;
+import logic.exception.RegistrationPersonException;
+import logic.exception.TriggerExceptions;
+
 public class PersonBean {
+	
+	private TriggerExceptions trigger = new TriggerExceptions();
 	
 	private int id;
 	
@@ -112,5 +118,24 @@ public class PersonBean {
 	public double getGuestRating() {
 		return this.guestRating;
 		
+	}
+	
+	public boolean validate() throws RegistrationPersonException {
+		String errors = "";
+		if(this.username.length() > 15) {
+			errors = errors + "Invalid Username   ";
+		}
+		if(this.studyGrade.length() > 30 || this.studyGrade.isBlank()) {
+			errors = errors + "Invalid Study Grade   ";
+		}
+		if(this.school.length() > 50 || this.school.isBlank()) {
+			errors = errors + "Invalid School   ";
+		}
+		
+		if(!errors.isEmpty()) {
+			this.trigger.triggerRegistrationPersonException(errors);
+			return false;
+		}
+		return true;
 	}
 }

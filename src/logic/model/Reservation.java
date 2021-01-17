@@ -3,7 +3,6 @@ package logic.model;
 import java.sql.SQLException;
 
 import logic.bean.ReservationBean;
-import logic.model.dao.*;
 
 public class Reservation {
 	

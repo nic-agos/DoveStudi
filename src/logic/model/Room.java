@@ -1,10 +1,9 @@
 package logic.model;
 
 import java.sql.SQLException;
-import java.util.List;
+
 
 import logic.bean.*;
-import logic.model.dao.*;
 
 public class Room {
 	

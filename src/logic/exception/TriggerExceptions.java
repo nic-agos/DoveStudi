@@ -1,11 +1,15 @@
 package logic.exception;
 
-import logic.exception.RegistrationException;
-
 public class TriggerExceptions {
 	
-	public void triggerRegistrationException(String message) throws RegistrationException {
-		throw new RegistrationException(message);
+	public void triggerRegistrationAccountException(String message) throws RegistrationAccountException {
+		throw new RegistrationAccountException(message);
 		
 	}
+	
+	public void triggerRegistrationPersonException(String message) throws RegistrationPersonException {
+		throw new RegistrationPersonException(message);
+		
+	}
+	
 }

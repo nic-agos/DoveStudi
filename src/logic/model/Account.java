@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import logic.bean.*;
-import logic.model.dao.*;
 
 public class Account {
 
@@ -194,6 +193,16 @@ public class Account {
 	
 	public Person getPerson() {
 		return this.person;
+		
+	}
+	
+	public void setAdministeredGroup(List<Group> administeredGroups) {
+		this.administeredGroups = administeredGroups;
+		
+	}
+	
+	public List<Group> getAdministeredGroups (){
+		return this.administeredGroups;
 		
 	}
 }
