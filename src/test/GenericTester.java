@@ -21,32 +21,18 @@ public class GenericTester {
 		
 		AccountBean accountInput = new AccountBean();
 	
-		bool = accountInput.setCf("GSTNCL99C23H501K");
-		if (!bool) {
-			System.out.println("Errore nell'inserimento del codice fiscale");
-		}
+		accountInput.setCf("GSTNCL99C23H501K");
+		
+		accountInput.setName("Niccolò");
+		
+		accountInput.setSurname("Agostinelli");
 	
-		bool = accountInput.setName("Niccolò");
-		if (!bool) {
-			System.out.println("Errore nell'inserimento del nome");
-		}
-	
-		bool = accountInput.setSurname("Agostinelli");
-		if (!bool) {
-			System.out.println("Errore nell'inserimento del cognome");
-		}
-	
-		bool = accountInput.setEmail("nik.agos@gmail.com");
-		if (!bool) {
-			System.out.println("Errore nell'inserimento della mail");
-			}		
-	
-		bool = accountInput.setPassword("password");
-		if(!bool) {
-			System.out.println("Errore nell'inserimento della password");
-		}
-	
+		accountInput.setEmail("nik.agos@gmail.com");
+		
+		accountInput.setPassword("password");
+		
 		accountInput.setDateBirth("1999-03-23");
+		
 		accountInput.setNumberToken(0);
 	
 		int resQuery = dao1.createAccount(accountInput);

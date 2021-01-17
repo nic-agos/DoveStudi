@@ -46,13 +46,8 @@ public class GroupBean {
 		
 	}
 	
-	public boolean setName(String name) {
-		if (name.length() <= 45) {
-			this.name = name;
-			return true;
-		}else {
-			return false;
-		}
+	public void setName(String name) {
+		this.name = name;
 		
 	}
 	

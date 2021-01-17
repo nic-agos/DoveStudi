@@ -12,7 +12,7 @@ public class DBConnection {
 	
 	private static final String USER = "root";
 	private static final String PASS = "password";
-	private static final String DB_URL = "jdbc:mysql://localhost:3306/dovestudi?useSSL=false";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/dovestudi?useSSL=false&allowPublicKeyRetrieval=true";
 	private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 	private static DBConnection instance = null;
 	

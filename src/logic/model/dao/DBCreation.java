@@ -9,7 +9,7 @@ public class DBCreation {
 	
 	private static final String USER = "root";
 	private static final String PASS = "password";
-	private static final String DB_URL = "jdbc:mysql://localhost:3306?useSSL=false";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306?useSSL=false&allowPublicKeyRetrieval=true";
 	private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 	
 	private static DBCreation instance = null;
@@ -67,8 +67,9 @@ public class DBCreation {
 			+ "  `Date` date NOT NULL,\r\n"
 			+ "  `Start_Time` time NOT NULL,\r\n"
 			+ "  `End_Time` time NOT NULL,\r\n"
+			+ "  `CAP` char(5) NOT NULL,\r\n"
 			+ "  PRIMARY KEY (`ID`)\r\n"
-			+ ") ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
+			+ ") ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
 	
 	private static final String CREATE_TABLE_RESERVATION = "CREATE TABLE IF NOT EXISTS `dovestudi`.`reservation` (\r\n"
 			+ "  `ID` int NOT NULL AUTO_INCREMENT,\r\n"
@@ -102,7 +103,7 @@ public class DBCreation {
 			+ ") ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci; ";
 	
 	private static final String CREATE_TABLE_REVIEW = "CREATE TABLE IF NOT EXISTS `dovestudi`.`review` (\r\n" 
-			+ " `ID` int NOT NULL AUTO_INCREMENT,\r\n"
+			+ "  `ID` int NOT NULL AUTO_INCREMENT,\r\n"
 			+ "  `Title` varchar(45) NOT NULL,\r\n"
 			+ "  `Reviewer` char(16) NOT NULL,\r\n"
 			+ "  `Reviewed` int NOT NULL,\r\n"

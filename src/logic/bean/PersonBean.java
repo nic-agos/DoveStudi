@@ -54,13 +54,8 @@ public class PersonBean {
 		
 	}
 	
-	public boolean setUsername(String username) {
-		if (username.length() <= 15) {
-			this.username = username;
-			return true;
-		}else {
-			return false;
-		}	
+	public void setUsername(String username) {
+		this.username = username;	
 		
 	}
 	
@@ -69,13 +64,8 @@ public class PersonBean {
 		
 	}
 	
-	public boolean setStudyGrade(String studyGrade) {
-		if (studyGrade.length() <= 30) {
-			this.studyGrade = studyGrade;
-			return true;
-		}else {
-			return false;
-		}
+	public void setStudyGrade(String studyGrade) {
+		this.studyGrade = studyGrade;
 		
 	}
 	
@@ -84,13 +74,8 @@ public class PersonBean {
 		
 	}
 	
-	public boolean setSchool (String school) {
-		if (school.length() <= 50) {
-			this.school = school;
-			return true;
-		}else {
-			return false;
-		}
+	public void setSchool (String school) {
+		this.school = school;
 		
 	}
 	

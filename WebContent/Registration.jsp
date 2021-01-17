@@ -5,28 +5,38 @@
 <%@ page import="logic.model.dao.AccountDAOImpl" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="logic.controller.RegistrationController" %>
+<%@ page import="logic.exception.RegistrationException" %>
 
 <jsp:useBean id="accountBean" scope="request" class="logic.bean.AccountBean"/>
 <jsp:setProperty name="accountBean" property="*"/>
 
 <%
+	boolean res = false;
 	if(request.getParameter("registerbtn")!=null){
-		/* if(AccountBean.validate()){ */
+	
+		try{
+			res = accountBean.validate();
+		
+		}catch (RegistrationException re){
+			re.printStackTrace();
+//			da aggiungere una pagina che visualizza gli errori ed un bottone per riprovare a compiere la registrazione
+		}
+		if (res){
 			RegistrationController rContr = RegistrationController.getInstance();
-			if(!rContr.register(accountBean)){
-				System.out.println("Error msg");
-			}else{
-				%>
-				<jsp:forward page="Login.jsp" />
-				<%
-			}
-			
-		//}else{
-						
-				//}%>
-		<%
+			try{
+				rContr.register(accountBean);
+	%>
+				<jsp:forward page="Login.jsp"/>
+	<%	
+			}catch (SQLException se){
+				se.printStackTrace();
+//			pagina che visualizza errori?
+			}	
+		}
 	}
+		
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +57,7 @@
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319"><path fill="#FF5500" fill-opacity="1" d="M0,64L48,96C96,128,192,192,288,224C384,256,480,256,576,245.3C672,235,768,213,864,181.3C960,149,1056,107,1152,106.7C1248,107,1344,149,1392,170.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
 	<div class="wrapper">
 		
-		<form class="regform" method="post" onsubmit="return validate();"><!-- action="AccountPage.jsp"* -->
+		<form class="regform" method="POST" onsubmit="return validate();"><!-- action="AccountPage.jsp"* -->
 			
 			<div class="container">
 				<div id ="line" class="name">

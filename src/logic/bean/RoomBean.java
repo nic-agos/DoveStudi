@@ -59,13 +59,8 @@ public class RoomBean {
 		
 	}
 	
-	public boolean setName(String name) {
-		if (name.length() <= 45) {
-			this.name = name;
-			return true;
-		}else {
-			return false;
-		}
+	public void setName(String name) {
+		this.name = name;
 		
 	}
 
@@ -74,13 +69,8 @@ public class RoomBean {
 		
 	}
 	
-	public boolean setAdress(String address) {
-		if (address.length() <= 100) {
-			this.address = address;
-			return true;
-		}else {
-			return false;
-		}
+	public void setAdress(String address) {
+		this.address = address;
 		
 	}
 	

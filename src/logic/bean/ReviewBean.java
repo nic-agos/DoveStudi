@@ -54,13 +54,8 @@ public class ReviewBean {
 		
 	}
 	
-	public boolean setTitle(String title) {
-		if (title.length() <= 45) {
-			this.title = title;
-			return true;
-		}else {
-			return false;
-		}
+	public void setTitle(String title) {
+		this.title = title;
 		
 	}
 	
@@ -99,13 +94,8 @@ public class ReviewBean {
 		
 	}
 	
-	public boolean setDescription(String description) {
-		if (description.length() <= 200) {
-			this.description = description;
-			return true;
-		}else {
-			return false;
-		}
+	public void setDescription(String description) {
+		this.description = description;
 		
 	}
 	
