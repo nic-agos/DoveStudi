@@ -37,7 +37,7 @@ p{
 	margin-right:30px;
 }
 form{
-	top:150px;
+	top:120px;
 	left:30%;
 	width:600px;
 	position:absolute;
@@ -50,8 +50,11 @@ form{
 #line input{
 	font-size:16px;
 }
-.wrapper .btn{
-	margin-top:25px;
+
+#btn{
+	position:absolute;
+	bottom:130px;
+	left:43.5%;
 	font-weight:bold;
 	height: 50px;
 	width: 160px;
@@ -64,12 +67,15 @@ form{
 	border-radius: 20px;
 	transition: .4s;
 }
-.wrapper .btn a{
+#div-btn{
+	
+}
+#btn a{
 	font-size: 18px;
 	text-decoration:none;
 	color:rgb(29, 35, 39);
 	background:rgba(76, 175, 80, 0.0);
 }
-.wrapper .btn:hover{
+#btn:hover{
 	background:#FF5500;
 }

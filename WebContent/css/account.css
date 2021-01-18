@@ -1,6 +1,6 @@
 @charset "ISO-8859-1";
-body{
-	background:#818182;
+/* body{
+	background:#ffffff;
 }
 *{
   margin:0px;
@@ -64,7 +64,156 @@ body{
 }
 #page.active{
 	left: 290px;
-} 
+}  */
+body{
+	background:#ffffff;
+}
+*{
+  margin:0px;
+  padding:0px;
+  font-family:sans-serif; 
+}
 
+#sidebar{
+	position:fixed;
+	width:200px;
+	height:100%;
+	background:#373d39;
+	left: -200px;
+	transition: .4s;
+}
+
+#sidebar.active {
+	left:0px;
+	background:#373d39;
+}
+
+#sidebar ul li {
+	color:#ffffff;
+	list-style:none;
+	padding:15px 10px;
+	/* border-bottom: 1px solid #FF5500; */
+	
+}
+#sidebar ul li a{
+	color:#ffffff;
+	background:rgb(0,0,0,0);
+	text-decoration:none;
+}
+#sidebar ul li:hover{
+	background-color: #121413;
+}
+#sidebar ul li a:hover{
+	background-color: #121413;
+}
+
+#sidebar .toggle-btn {
+	position:absolute; 
+	left:230px;
+	top:60px; 
+}
+
+#sidebar .toggle-btn span {
+	display:block;
+	width:30px;
+	height:5px;
+	background: #000000;
+	margin: 3px 0px;
+}
+.curved{
+	bottom:0px;
+	position:absolute;
+	height:40%;
+	width:100%;
+}
+
+.container.head-profile{
+	left:350px;
+	top:20px;
+	position:absolute;
+}
+
+#tab{
+	left:60px;
+	position:absolute;
+}
+#home{
+	left:60px;
+	position:absolute;
+	top:60px;
+}
+.profile-img{
+	text-align:center;
+}
+.profile-img img{
+	width:70%;
+	height:100%;
+}
+.profile-img .file {
+    position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #212529b8;
+    color:#ffffff;
+}
+.profile-img .file input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+.profile-head h5{
+    color: #333;
+    font-size: 25px;
+}
+
+.profile-rating{
+    font-size: 12px;
+    color: #818182;
+    margin-top: 5%;
+}
+.profile-rating span{
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+}
+.profile-edit-btn{
+    border: none;
+    border-radius: 1.5rem;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+    transition:.4s;
+}
+.profile-edit-btn:hover{
+	background:	#ff6b24;
+	color:#495057;
+}
+.nav-tabs{
+    margin-bottom:5%;
+}
+#tab .nav-tabs .nav-link{
+    font-weight:600;
+    border: none;
+    color:#FF5500;
+}
+#tab .nav-tabs .nav-link.active{
+	color:#495057;
+    border: none;
+    border-bottom:2px solid #c65102;
+}
+#myTabContent p{
+    font-weight: 600;
+    color: #c65102;
+}
+#myTabContent label{
+    font-weight: 600;
+}
 
 
