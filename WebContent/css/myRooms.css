@@ -1,5 +1,4 @@
 @charset "ISO-8859-1";
-
 body{
 	background:#ffffff;
 }
@@ -150,5 +149,34 @@ body{
 #myTabContent label{
     font-weight: 600;
 }
-
-
+#myCard{
+	margin-top: 20px;
+}
+#res-btn{
+	border: none;
+    border-radius: 1.5rem;
+    width:45%;
+    padding: 1%;
+    font-weight: 600;
+    color: #495057;
+    cursor: pointer;
+    transition:.4s;
+}
+#res-btn a{
+	text-decoration: none;
+	border: none;
+	color:#495057;
+}
+#res-btn:hover{
+	color:#ff6b24;
+}
+#res-btn a:hover{
+	color:#ff6b24;
+}
+.card-body label{
+	font-weight:600;
+}
+.card-header{
+	font-weight:600;
+	color:#000000;
+}
