@@ -1,106 +1,10 @@
 @charset "ISO-8859-1";
-
 body{
-	
-    width: 100vw;
+	width: 100vw;
 	height:100vh;
 	margin:0;
 	overflow: hidden;
 	font-family: sans-serif;
-}
-form {
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
-.wrapper{
-	position:absolute;
-	width: 500px;
-	top:40px;
-	left:30%;
-	color: black;
-	text-align:center;
-	border:none;
-}
-.wrapper h1{
-	text-align:left;
-	font-size: 40px;
-	margin-bottom: 20px;
-	padding: 13px 0;
-	margin-top:-50px;
-	border:none;
-}
-
-.wrapper p{
-	text-align:center;
-	font-size: 20px;
-	padding: 13px 0;
-}
-/* Add padding to containers */
-.container {
-  display:inline-block;
-  margin-left: auto;
-  margin-right:auto;
-  text-align:center;
-}
-
-/* Full-width input fields */
-input[type=text], input[type=password], input[type=email], input[type=tel], input[type=date] {
-  	/* width: 100%;
-	overflow:hidden;
-	font-size: 18 px;
-	padding: 8px 0;
-	margin: 8px 0;
-	border-bottom: 1px solid #000000; */
-	border: none;
-	outline:none;
-	background: none;
-	color: black;
-	font-size: 18px;
-	width: 80%;
-	float: left;
-	margin: 0 10px;
-	text-align:center;
-}
-
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-.option{
-	width:100%;
-	font-size:18px;
-	padding: 8px 0;
-	margin: 8px 0;
-	border-bottom: 1px solid #000000;
-	overflow:hidden;
-}
-
-/* Set a style for the submit/register button */
-.registerbtn {
-  	height: 50px;
-	width: 160px;
-	font-size: 18px;
-	font-weight: bold;
-	color: black;
-	background:red;
-	border: 1px solid #cc0000;
-	outline: none;
-	cursor: pointer;
-	border-radius: 25px;
-	transition: .4s;
-}
-
-.registerbtn:hover {
-  background:#cc0000;
-}
-
-/* Add a blue text color to links */
-a {
-  color: dodgerblue;
 }
 .curved{
 	background:#ffffff;
@@ -111,24 +15,70 @@ a {
 .curved svg{
 	display:block;
 }
-.curved.upper{
-	background:#FF5500;
-}
-.curved.upper h5{
-	margin-right:10px;
-	margin-top:0px;
-	text-align:right;
-	font-size:14px;
-}
-.curved h2{
-	color:#000000;
-}
-.curved h2 a{
-	color:#000000;
-	text-decoration:none;
-	font-size:18px;
-}
-.curved h2 a:hove{
-	color:#FF5500;
+
+p{
+	position:absolute;
+	font-size:20px;
+	top:150px;
+	left:37%;
 }
 
+.curved.upper{
+	background:rgb(0,0,0,0);
+	text-align:center;
+}
+form{
+	top:150px;
+	left:30%;
+	width:600px;
+	position:absolute;
+}
+#line{
+	margin-top: 20px;	
+}
+#line input{
+	font-size:16px;
+}
+.registerbtn{
+	margin-top:25px;
+	font-weight:bold;
+	height: 50px;
+	width: 160px;
+	font-size: 16px;
+	color: rgb(29, 35, 39);
+	background:rgb(0, 0, 0, 0);
+	border: none;
+	outline: none;
+	cursor: pointer;
+	border-radius: 20px;
+	transition: .4s;
+	font-size: 18px;
+}
+.registerbtn a{
+	font-size: 18px;
+	text-decoration:none;
+	color:rgb(29, 35, 39);
+	background:rgba(76, 175, 80, 0.0);
+}
+.registerbtn:hover{
+	background:#FF5500;
+}
+
+/* input{
+	outline:none;
+	background: none;
+	color: black;
+	font-size: 18px;
+	width: 50%;
+	margin: 8px 10px;
+	padding:3px;
+}
+select{
+	outline:none;
+	background: none;
+	color: black;
+	font-size: 18px;
+	width: 50%;
+	margin: 8px 10px;
+	padding:3px;
+} */

@@ -21,7 +21,7 @@ public class AccountBean {
 	
 	private int numberToken;
 	
-	public AccountBean() {
+	public AccountBean() { 
 		
 	}
 	

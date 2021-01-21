@@ -4,6 +4,7 @@
 <%@ page import="logic.model.dao.AccountDAOImpl" %>
 <%@ page import="logic.bean.AccountBean" %>
 
+<!-- File da eliminare -->
 
 <%-- <%
 try{

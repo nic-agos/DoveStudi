@@ -10,6 +10,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
 </head>
 
 
@@ -24,12 +25,14 @@
 		</div>
 		 <ul>
 		 	<li style="background:#FF5500; color:#ffffff"><a style="font-size:20px; font-weight:bold; background-color:#FF5500;">#DoveStudi</a></li>
-		 	<li><a href="HomePage.jsp">LoggedHomePage.jsp</a></li>
-		 	<li><a href="AccountPersonalInfo.jsp">My Account</a></li>
-		 	<li><a href="MyGroups.jsp">My Groups</a></li>
 		 	<li><a href="SearchRoom.jsp">Search for Rooms</a></li>
+		 	<li><a href="AccountPublicInfo.jsp">My Account</a></li>
+		 	<li><a href="MyGroups.jsp">My Groups</a></li>
+		 	<li><a href="AccountMyReservations.jsp">My Reservations</a></li>
+		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
+		 	<li><a href="AccountMyRooms.jsp">My Rooms</a></li>
 		 	<li><a href="PostRoom.jsp">Post a Room</a></li>
-		 	<li><a href="index2.jsp">Log out</a></li>
+		 	<li><a href="index.jsp">Log out</a></li>
 		 </ul>
 	</div>
 	
@@ -52,7 +55,6 @@
 						<h5>My name</h5>
 						<p class="profile-rating">HOST RATE : <span>8/10</span> </p>
 						<p class="profile-rating">GUEST RATE : <span>8/10</span> </p>
-						<p class="profile-rating">TOKENS : <span>8/10</span> </p>
 					</div>
 					<!-- <div class="profile-tokens">
 						<p class="profile-rating">EARNED TOKENS: <span>7</span></p>
@@ -68,16 +70,10 @@
 			<div class="row" id="tab">
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item">
-                    	<a class="nav-link active" id="home-tab" data-toggle="tab" href="AccountPersonalInfo.jsp" role="tab" aria-controls="home" aria-selected="true">About</a>
+                    	<a class="nav-link" id="home-tab" data-toggle="tab" href="AccountPublicInfo.jsp" role="tab" aria-controls="home" aria-selected="false">Public Info</a>
                     </li>
                     <li class="nav-item">
-                     	<a class="nav-link" id="profile-tab" data-toggle="tab" href="AccountMyReservations.jsp" role="tab" aria-controls="profile" aria-selected="false">My Reservations</a>
-                    </li>
-                    <li class="nav-item">
-                       	<a class="nav-link" id="reservation-tab" data-toggle="tab" href="AccountMyRooms.jsp" role="tab" aria-controls="res" aria-selected="false">My Rooms</a>
-                    </li>
-                    <li class="nav-item">
-                      	<a class="nav-link" id="reviews-tab" data-toggle="tab" href="AccountMyReviews.jsp" role="tab" aria-controls="groups" aria-selected="false">My Reviews</a>
+                     	<a class="nav-link active" id="profile-tab" data-toggle="tab" href="AccountPersonalInfo.jsp" role="tab" aria-controls="profile" aria-selected="true">Personal Info</a>
                     </li>
 				</ul>
 			</div>
@@ -86,10 +82,10 @@
 					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 						<div class="row">
                         	<div class="col-md-6">
-                              	<label>User Id</label>
+                              	<label>CF</label>
                             </div>
                             <div class="col-md-6">
-                        		<p>Kshiti123</p>
+                        		<p>KSJDHFKSNSKLDJEK</p>
                             </div>
                         </div>
                         <div class="row">
@@ -97,7 +93,15 @@
                               	<label>Name</label>
                             </div>
                             <div class="col-md-6">
-                        		<p>Kshiti Ghelani</p>
+                        		<p>Kshiti</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                        	<div class="col-md-6">
+                              	<label>Surname</label>
+                            </div>
+                            <div class="col-md-6">
+                        		<p>Ghelani</p>
                             </div>
                         </div>
                         <div class="row">
@@ -126,20 +130,13 @@
                         </div>
                         <div class="row">
                         	<div class="col-md-6">
-                              	<label>Study grade</label>
+                              	<label>Number of Tokens</label>
                             </div>
                             <div class="col-md-6">
-                        		<p>High school diploma</p>
+                        		<p>12</p>
                             </div>
                         </div>
-                        <div class="row">
-                        	<div class="col-md-6">
-                              	<label>School</label>
-                            </div>
-                            <div class="col-md-6">
-                        		<p>Methuen High School</p>
-                            </div>
-                        </div>
+                        
 					</div>
 				</div>
 			</div>

@@ -27,11 +27,11 @@
 		<div class="login-box" style="width:40%; margin-left:450px;">
 		<h1>Login</h1>
 		<form method="post" action="AccountPage.jsp">
-		<div class="textbox">
+		<div class="textbox" style="margin-left:150px;">
 			<i class="fas fa-user"></i>
-			<input type="text" placeholder="Username" name="txt_usr" value="" required>
+			<input type="text" placeholder="Fiscal Code" name="txt_usr" value="" required>
 		</div>
-		<div class="textbox">
+		<div class="textbox"style="margin-left:150px;">
 		    <i class="fas fa-lock"></i>
 			<input type="password" placeholder="Password" name="txt_psw" value="" required>
 		</div>

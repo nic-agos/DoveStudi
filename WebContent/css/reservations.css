@@ -68,67 +68,11 @@ body{
 }
 
 #tab{
-	left:60px;
+	top:100px;
+	left:400px;
 	position:absolute;
-}
-#home{
-	left:60px;
-	position:absolute;
-	top:60px;
-}
-.profile-img{
-	text-align:center;
-}
-.profile-img img{
-	width:70%;
-	height:100%;
-}
-.profile-img .file {
-    position: relative;
-    overflow: hidden;
-    margin-top: -20%;
-    width: 70%;
-    border: none;
-    border-radius: 0;
-    font-size: 15px;
-    background: #212529b8;
-    color:#ffffff;
-}
-.profile-img .file input {
-    position: absolute;
-    opacity: 0;
-    right: 0;
-    top: 0;
-}
-.profile-head h5{
-    color: #333;
-    font-size: 25px;
 }
 
-.profile-rating{
-    font-size: 12px;
-    color: #818182;
-    margin-top: 5%;
-}
-.profile-rating span{
-    color: #495057;
-    font-size: 15px;
-    font-weight: 600;
-}
-.profile-edit-btn{
-    border: none;
-    border-radius: 1.5rem;
-    width: 70%;
-    padding: 2%;
-    font-weight: 600;
-    color: #6c757d;
-    cursor: pointer;
-    transition:.4s;
-}
-.profile-edit-btn:hover{
-	background:	#ff6b24;
-	color:#495057;
-}
 .nav-tabs{
     margin-bottom:5%;
 }
@@ -142,37 +86,28 @@ body{
     border: none;
     border-bottom:2px solid #c65102;
 }
-#myTabContent p{
-    font-weight: 600;
-    color: #c65102;
-}
-#myTabContent label{
-    font-weight: 600;
-}
-#myCard{
-	margin-top: 20px;
-}
-#res-btn{
+
+#del-btn{
+	float:right;
 	border: none;
     border-radius: 1.5rem;
-    width:45%;
     padding: 1%;
     font-weight: 600;
     color: #495057;
     cursor: pointer;
     transition:.4s;
 }
-#res-btn a{
+#del-btn a{
 	text-decoration: none;
 	border: none;
 	color:#495057;
 }
-#res-btn:hover{
+#del-btn:hover{
 	color:#ff6b24;
 }
-#res-btn a:hover{
+#del-btn a:hover{
 	color:#ff6b24;
 }
-.card-body label{
+#line label{
 	font-weight:600;
 }
