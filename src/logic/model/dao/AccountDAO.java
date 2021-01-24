@@ -17,6 +17,6 @@ public interface AccountDAO {
 	
 	public List<AccountBean> getAllAccounts() throws SQLException;
 	
-	public AccountBean getAccount(String cf) throws SQLException;
+	public AccountBean getAccount(AccountBean accountBean) throws SQLException;
 	
 }

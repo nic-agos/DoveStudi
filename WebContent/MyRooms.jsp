@@ -2,6 +2,20 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
+<%@ page import="logic.model.dao.RoomDAOImpl"%>
+<%@ page import="logic.bean.RoomBean"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.util.ArrayList"%>
+
+<%
+	RoomDAOImpl dao = new RoomDAOImpl();
+	List<RoomBean> listRoom;
+	listRoom = dao.getAllRooms();
+	request.setAttribute("listRoom", listRoom);
+	
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,30 +24,25 @@
 
 </head>
 <body>
-	<sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
-         url = "jdbc:mysql://localhost:3306/dovestudi"
-         user = "root" password = "password"/>
- 
-      <sql:query dataSource = "${snapshot}" var = "result">
-         SELECT * from room;
-      </sql:query>
- 
-      <table border = "1" width = "100%">
-         <tr>
-            <th>CF</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-         </tr>
-         
-         <c:forEach var = "row" items = "${result.rows}">
-            <tr>
-               <td><c:out value = "${row.CF}"/></td>
-               <td><c:out value = "${row.Name}"/></td>
-               <td><c:out value = "${row.Surname}"/></td>
-               <td><c:out value = "${row.Email}"/></td>
-            </tr>
-         </c:forEach>
-      </table>
+    <c:forEach items="${listRoom}" var="listRoom">
+    	${listRoom.id}
+    	<br>
+   		${listRoom.name}
+    	<br>
+    	${listRoom.address}
+    	<br>
+    	${listRoom.numPartecipants}
+    	<br>
+    	${listRoom.numAvailableSeats}
+    	<br>
+    	${listRoom.owner}
+    	<br>
+    	${listRoom.specification}
+    	<br>
+    	<br>
+    <%-- <c:forEach items="${listRoom.name}" var="String">
+        ${String}
+    </c:forEach> --%>
+	</c:forEach>
 </body>
 </html>

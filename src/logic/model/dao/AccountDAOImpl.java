@@ -168,7 +168,7 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 	
 	@Override
-	public AccountBean getAccount(String cf) throws SQLException {
+	public AccountBean getAccount(AccountBean accountBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -178,7 +178,7 @@ public class AccountDAOImpl implements AccountDAO {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
 			stmt = connection.prepareStatement(GET_ACCOUNT_QUERY);
-			stmt.setString(1, cf);
+			stmt.setString(1, accountBean.getCf());
 			
 			ResultSet res = stmt.executeQuery();
 			
@@ -199,4 +199,6 @@ public class AccountDAOImpl implements AccountDAO {
 			}
 		}	
 	}
+	
+	
 }

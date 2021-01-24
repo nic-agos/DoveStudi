@@ -90,4 +90,13 @@ public class TestRoomDAOImpl {
 		RoomBean res = dao.getRoomFromSpec(r);
 		assertEquals(res, 1);
 	}
+	
+	@Test
+	public void testGetRoomFilteredByAvailableSeats() throws SQLException {
+		RoomDAOImpl dao = new RoomDAOImpl();
+		List<RoomBean> ex = new ArrayList<>();
+		RoomBean room = new RoomBean();
+		room.setNumAvailableSeats(6);
+		ex = dao.getRoomFilteredByAvailableSeats(room);
+	}
 }

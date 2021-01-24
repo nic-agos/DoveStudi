@@ -17,7 +17,7 @@ public interface PersonDAO {
 	
 	public int updatePerson(PersonBean personBean) throws SQLException;
 	
-	public PersonBean getPerson(int id) throws SQLException;
+	public PersonBean getPerson(PersonBean personBean) throws SQLException;
 	
 	public PersonBean getPersonFromAccount(AccountBean accountBean) throws SQLException;
 	

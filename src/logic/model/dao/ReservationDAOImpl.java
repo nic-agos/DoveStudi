@@ -189,7 +189,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 	}
 	
 	@Override
-	public ReservationBean getReservation(int id) throws SQLException {
+	public ReservationBean getReservation(ReservationBean reservationBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -200,7 +200,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
 			stmt = connection.prepareStatement(GET_RESERVATION_QUERY);
-			stmt.setInt(1, id);
+			stmt.setInt(1, reservationBean.getId());
 			
 			ResultSet res = stmt.executeQuery();
 			

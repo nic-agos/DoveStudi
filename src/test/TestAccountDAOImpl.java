@@ -61,8 +61,10 @@ public class TestAccountDAOImpl {
 	
 	@Test
 	public void testGetAccount() throws SQLException {
-		AccountDAOImpl a = new AccountDAOImpl();
-		AccountBean res = a.getAccount(cf);
+		AccountDAOImpl dao = new AccountDAOImpl();
+		AccountBean a = new AccountBean();
+		a.setCf(cf);
+		AccountBean res = dao.getAccount(a);
 		assertEquals(res, 1);
 	}
 }

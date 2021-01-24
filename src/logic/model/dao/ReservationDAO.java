@@ -17,7 +17,7 @@ public interface ReservationDAO {
 	
 	public List<ReservationBean> getAllReservations() throws SQLException;
 	
-	public ReservationBean getReservation(int id) throws SQLException;
+	public ReservationBean getReservation(ReservationBean reservationBean) throws SQLException;
 	
 	public List<ReservationBean> getRoomReservations(RoomBean roomBean) throws SQLException;
 	

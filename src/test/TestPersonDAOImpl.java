@@ -50,7 +50,9 @@ public class TestPersonDAOImpl {
 	@Test
 	public void testGetPerson() throws SQLException {
 		PersonDAOImpl d = new PersonDAOImpl();
-		PersonBean res = d.getPerson(13);
+		PersonBean p = new PersonBean();
+		p.setId(13);
+		PersonBean res = d.getPerson(p);
 		assertEquals(res, 1);
 	}
 	

@@ -169,7 +169,7 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 	
 	@Override
-	public PersonBean getPerson(int id) throws SQLException {
+	public PersonBean getPerson(PersonBean personBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -179,7 +179,7 @@ public class PersonDAOImpl implements PersonDAO {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
 			stmt = connection.prepareStatement(GET_PERSON_QUERY);
-			stmt.setInt(1, id);
+			stmt.setInt(1, personBean.getId());
 			
 			ResultSet res = stmt.executeQuery();
 			
@@ -239,6 +239,7 @@ public class PersonDAOImpl implements PersonDAO {
 		List<PersonBean> groupPartecipants = new ArrayList<>();
 		PersonBean person = null;
 		List<Integer> personCodes = new ArrayList<>();
+		PersonBean person2 = new PersonBean();
 		
 		Connection connection = null;
 		PreparedStatement stmt = null;
@@ -257,7 +258,8 @@ public class PersonDAOImpl implements PersonDAO {
 			}
 			
 			for (int i=0; i < personCodes.size(); i++) {
-				person = getPerson(personCodes.get(i));
+				person2.setId(personCodes.get(i));
+				person = getPerson(person2);
 				groupPartecipants.add(person);
 			}
 			

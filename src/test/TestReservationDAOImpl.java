@@ -22,9 +22,9 @@ public class TestReservationDAOImpl {
 	
 	@Test
 	public void testCreateReservation() throws SQLException {
-		ReservationDAOImpl r = new ReservationDAOImpl();
+		ReservationDAOImpl dao = new ReservationDAOImpl();
 		ReservationBean b = new ReservationBean (reservingUser, linkedRoom, roomOwner, date, startTime, endTime);
-		int res = r.createReservation(b);
+		int res = dao.createReservation(b);
 		assertEquals(res, 5);
 	}
 	
@@ -38,49 +38,51 @@ public class TestReservationDAOImpl {
 	
 	@Test
 	public void testGetReservationId() throws SQLException {
-		ReservationDAOImpl r = new ReservationDAOImpl();
+		ReservationDAOImpl dao = new ReservationDAOImpl();
 		ReservationBean b = new ReservationBean (reservingUser, linkedRoom, roomOwner, date, startTime, endTime);
-		int res = r.getReservationId(b);
+		int res = dao.getReservationId(b);
 		assertEquals(res, 5);
 	}
 	
 	@Test
 	public void testGetAllReservations() throws SQLException {
-		ReservationDAOImpl r = new ReservationDAOImpl();
-		List<ReservationBean> res = r.getAllReservations();
+		ReservationDAOImpl dao = new ReservationDAOImpl();
+		List<ReservationBean> res = dao.getAllReservations();
 		assertEquals(res, 1);
 	}
 	
 	@Test
 	public void testRemoveReservation() throws SQLException {
-		ReservationDAOImpl r = new ReservationDAOImpl();
+		ReservationDAOImpl dao = new ReservationDAOImpl();
 		ReservationBean b = new ReservationBean (id, reservingUser, linkedRoom, roomOwner, date, startTime, endTime);
-		int res = r.removeReservation(b);
+		int res = dao.removeReservation(b);
 		assertEquals(res, 1);
 	}
 	
 	@Test
 	public void testGetReservation() throws SQLException {
-		ReservationDAOImpl r = new ReservationDAOImpl();
-		ReservationBean res = r.getReservation(id);
+		ReservationDAOImpl dao = new ReservationDAOImpl();
+		ReservationBean r = new ReservationBean();
+		r.setId(id);
+		ReservationBean res = dao.getReservation(r);
 		assertEquals(res,24);
 	}
 	
 	@Test
 	public void testGetRoomReservations() throws SQLException {
-		ReservationDAOImpl r = new ReservationDAOImpl();
+		ReservationDAOImpl dao = new ReservationDAOImpl();
 		RoomBean ro = new RoomBean();
 		ro.setId(32);
-		List<ReservationBean> l = r.getRoomReservations(ro);
+		List<ReservationBean> l = dao.getRoomReservations(ro);
 		assertEquals(l, 1);
 	}
 	
 	@Test
 	public void testGetAllAccountReservations() throws SQLException {
-		ReservationDAOImpl r = new ReservationDAOImpl();
+		ReservationDAOImpl dao = new ReservationDAOImpl();
 		AccountBean a = new AccountBean();
 		a.setCf("b");
-		List<ReservationBean> re = r.getAllAccountReservations(a);
+		List<ReservationBean> re = dao.getAllAccountReservations(a);
 		assertEquals(re, 1);
 	}
 	

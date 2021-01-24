@@ -1,6 +1,5 @@
 package logic.bean;
 
-import logic.exception.RegistrationAccountException;
 import logic.exception.RegistrationPersonException;
 import logic.exception.TriggerExceptions;
 

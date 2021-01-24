@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import logic.bean.*;
-import logic.model.dao.*;
 
 public class Person {
 
@@ -50,12 +49,12 @@ public class Person {
 	
 	public Person (PersonBean personBean) throws SQLException {
 		this(personBean.getUsername(), personBean.getStudyGrade(), personBean.getSchool(), personBean.getHostRating(), personBean.getGuestRating());
-		
+/*		
 		AccountDAOImpl dao1 = new AccountDAOImpl();
 		
 		this.account = new Account(dao1.getAccount(personBean.getAccount()));
 		
-/*		GroupDAOImpl dao2 = new GroupDAOImpl();
+		GroupDAOImpl dao2 = new GroupDAOImpl();
 		
 		List<GroupBean> groupBeans = dao2.getAllParticipatingGroups(personBean);
 		if (!groupBeans.isEmpty()) {

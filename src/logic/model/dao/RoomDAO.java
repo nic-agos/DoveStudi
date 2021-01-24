@@ -21,5 +21,7 @@ public interface RoomDAO {
 	public int getRoomId(RoomBean roomBean) throws SQLException;
 	
 	public List<RoomBean> getAllAccountRooms(AccountBean accountBean) throws SQLException;
+	
+	public List<RoomBean> getRoomFilteredByAvailableSeats(RoomBean roomBean) throws SQLException;
 
 }
