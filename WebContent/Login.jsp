@@ -3,23 +3,39 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
+<%@ page import="logic.controller.LoginController" %>
 <%@ page import="logic.model.dao.AccountDAOImpl"%>
+<%@ page import="java.sql.SQLException"%>
 <%@ page import="logic.bean.AccountBean"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.util.ArrayList"%>
 
+<jsp:useBean id="accountBean" scope="request" class="logic.bean.AccountBean"/>
+<jsp:setProperty name="accountBean" property="*"/>
+
+
 <%
-	String fiscalCode = request.getParameter("fCode");
-	String psw= request.getParameter("psw");
-	AccountDAOImpl dao = new AccountDAOImpl();
-	//va fatto metodo per ottenere account tramite Cf e psw che ritorna l'account se le credenziali sono valide, altrimenti null
-	/* AccountBean accountBean = dao.getAccount(CF, psw);
-	if(dao.getAccount(accountBean)!=null){
-		session.setAttribute("CF", fiscalCode);
-		session.setAttribute("usertype", dbUsertype);
-		response.sendRedirect("SearchRoomsHost.jsp"); 
-	} */
-%>
+	boolean res;
+	if(request.getParameter("loginBtn")!=null){
+		
+		LoginController lContr = LoginController.getInstance();
+		try{
+			
+			res = lContr.login(accountBean);
+			if (res){
+	%>
+				<jsp:forward page="AccountPersInfo.jsp"/>
+	<%	
+			}
+			else{
+				System.out.println("errore");
+			}
+		}catch (SQLException se){
+			se.printStackTrace();
+		}
+	}
+%>	
+	
 
 <!DOCTYPE html>
 <html>
@@ -42,24 +58,26 @@
 			<div class="row">
 	  			<div class="col xs-2">
 	  				<div class="form-group">
-	    				<input type="text" class="form-control" name="fCode" id="fCode" placeHolder="Enter Fiscal Code" required>
+	    				<input type="text" class="form-control" name="email" id="email" placeHolder="Enter Email" required>
 	  				</div>
 	  			</div>
 	 		</div>
 	 		<div class="row">
 	  			<div class="col">
 	  				<div class="form-group">
-	    				<input type="password" class="form-control" id="psw" placeHolder="Enter Password" required>
+	    				<input type="password" class="form-control" name="password" id="password" placeHolder="Enter Password" required>
 	  				</div>
 	  			</div>
-	 		</div>
- 		</form>  		
-	</div>
+	 		</div>  		
+	
 	<div class="d-flex justify-content-xl-center">
 		<h5><a href="Registration.jsp">Don't have an account yet? Register now</a></h5>
 	</div>
+	
 	<div class="d-flex justify-content-xl-center">
-		<button type="submit" class="btn btn-outline-warning" id="btn"style="border:2px solid #ff5500;font-size:20px; margin-top:30px;font-weight:550;"><a href="SearchRoomsHost.jsp">Login</a></button>
-	</div>	
+		<button type="submit" class="btn btn-outline-warning" id="loginBtn" name="loginBtn" style="border:2px solid #ff5500; font-size:20px; margin-top:30px; font-weight:550;">Login </a></button>
+	</div>
+		</form>
+	</div>
 </body>
 </html>

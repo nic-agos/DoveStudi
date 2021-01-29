@@ -18,7 +18,9 @@ public class AccountDAOImpl implements AccountDAO {
 	private static final String UPDATE_ACCOUNT_TOKENS_QUERY = "UPDATE account SET Number_Token = ? WHERE CF = ?";
 	private static final String GETALL_ACCOUNTS_QUERY = "SELECT * FROM account";
 	private static final String GET_ACCOUNT_QUERY = "SELECT * FROM account WHERE CF = ?";
-		
+	
+	private static final String LOGIN_QUERY = "SELECT * FROM account WHERE Email = ? AND Password = ?";	
+	
 	@Override
 	public int createAccount(AccountBean accountBean) throws SQLException {
 		
@@ -200,5 +202,36 @@ public class AccountDAOImpl implements AccountDAO {
 		}	
 	}
 	
-	
+	public AccountBean login(AccountBean accountBean) throws SQLException {
+		
+		PreparedStatement stmt = null;
+		Connection connection = null;
+		AccountBean account = null;
+		
+		try {
+			connection = DBConnection.getInstanceConnection().getConnection();
+			
+			stmt = connection.prepareStatement(LOGIN_QUERY);
+			stmt.setString(1, accountBean.getEmail());
+			stmt.setString(2, accountBean.getPassword());
+			
+			ResultSet res = stmt.executeQuery();
+			
+			while(res.next()) {
+				account = new AccountBean(res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getInt(7));
+			}
+			
+			res.close();
+			
+			return account;
+			
+		}finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
+			}
+		}
+	}
 }

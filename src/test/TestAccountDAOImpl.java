@@ -67,4 +67,14 @@ public class TestAccountDAOImpl {
 		AccountBean res = dao.getAccount(a);
 		assertEquals(res, 1);
 	}
+	
+	@Test
+	public void testLogin() throws SQLException {
+		AccountDAOImpl dao = new AccountDAOImpl();
+		AccountBean a = new AccountBean();
+		a.setEmail(email);
+		a.setPassword(password);
+		AccountBean res = dao.login(a);
+		assertEquals(res, 1);
+	}
 }

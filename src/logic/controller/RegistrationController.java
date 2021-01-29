@@ -24,6 +24,7 @@ public class RegistrationController {
 		
 		try {
 			AccountDAOImpl dao = new AccountDAOImpl();
+			accountBean.setNumberToken(5);
 			int res = dao.createAccount(accountBean);
 			if(res != 0) {
 				return true;
@@ -40,6 +41,8 @@ public class RegistrationController {
 		int res = 0;
 		try {
 			PersonDAOImpl dao = new PersonDAOImpl();
+			personBean.setHostRating(0);
+			personBean.setGuestRating(0);
 			res = dao.createPerson(personBean);
 		
 		}catch (SQLException se) {
