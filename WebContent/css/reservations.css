@@ -71,9 +71,10 @@ body{
 	top:100px;
 	left:400px;
 	position:absolute;
+	width:500px;
 }
 
-.nav-tabs{
+/* .nav-tabs{
     margin-bottom:5%;
 }
 #tab .nav-tabs .nav-link{
@@ -85,8 +86,19 @@ body{
 	color:#495057;
     border: none;
     border-bottom:2px solid #c65102;
+} */
+.nav-tabs{
+    margin-bottom:5%;
 }
-
+#myTab .nav-link{
+    font-weight:600;
+    color:#FF5500;
+}
+#myTab .nav-link.active{
+	color:#495057;/* 
+    border: none;
+    border-bottom:2px solid #c65102; */
+}
 #del-btn{
 	float:right;
 	border: none;

@@ -12,20 +12,14 @@ body{
 	padding:0px;
 	font-family: sans-serif;
 }
-.curved{
-	/* background:#ffffff;
-	color:#000000;
-	text-align:center;
-	margin-bottom:30px; */
-	bottom:0px;
-	position:absolute;
-	height:40%;
-	width:100%;
-}
-.curved svg{
-	z-index:0;
-}
 
+svg{
+	display: block; 
+	position: absolute; 
+	width: 100%; 
+	bottom: 0; 
+	top: 70%
+}
 
 h1{
 	font-size:50px;
@@ -39,10 +33,9 @@ p{
 	top:100px;
 	left:37%;
 }
-
 form{
-	top:120px;
-	left:30%;
+	top:30px;
+	left:30px;
 	width:600px;
 	position:absolute;
 }
@@ -54,27 +47,9 @@ form{
 #line input{
 	font-size:16px;
 }
-
-#btn{
-	font-weight:bold;
-	/* height: 50px;
-	width: 160px; */
-	font-size: 16px;
-	color: rgb(29, 35, 39);
-	background:rgb(0, 0, 0, 0);
-	border: none;
-	outline: none;
-	cursor: pointer;
-	border-radius: 20px;
-	transition: .4s;
-	z-index:1;
-}
-#btn a{
-	font-size: 16px;
-	text-decoration:none;
-	color:rgb(29, 35, 39);
-	background:rgba(76, 175, 80, 0.0);
-}
-#btn:hover{
-	background:#FF5500;
+#card{
+	top:120px;
+	width:670px;
+	height:450px;
+	left:30%;
 }

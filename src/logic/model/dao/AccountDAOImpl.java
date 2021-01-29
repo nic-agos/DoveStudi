@@ -10,7 +10,7 @@ import java.util.List;
 
 import logic.bean.*;
 
-public class AccountDAOImpl implements AccountDAO {
+public class AccountDAOImpl implements AccountDAO { 
 	
 	private static final String CREATE_ACCOUNT_QUERY = "INSERT INTO account (CF, Name, Surname, Email, Password, Date_Birth, Number_Token) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	private static final String DELETE_ACCOUNT_QUERY = "DELETE FROM account WHERE CF = ?";
@@ -18,7 +18,7 @@ public class AccountDAOImpl implements AccountDAO {
 	private static final String UPDATE_ACCOUNT_TOKENS_QUERY = "UPDATE account SET Number_Token = ? WHERE CF = ?";
 	private static final String GETALL_ACCOUNTS_QUERY = "SELECT * FROM account";
 	private static final String GET_ACCOUNT_QUERY = "SELECT * FROM account WHERE CF = ?";
-	
+		
 	@Override
 	public int createAccount(AccountBean accountBean) throws SQLException {
 		

@@ -12,7 +12,6 @@
 	List<RoomBean> listRoom;
 	listRoom = dao.getAllRooms();
 	request.setAttribute("listRoom", listRoom);
-	
 %>
 
 

@@ -1,0 +1,42 @@
+@charset "ISO-8859-1";
+body{
+}
+#navbarSupportedContent .nav-item .nav-link.active{
+	font-weight: 550;
+	/* color:#c65102; */
+}
+/* #btn{
+	font-weight:bold;
+	height: 30px;
+	width: 120px; 
+	font-size: 16px;
+	color: rgb(29, 35, 39);
+	background:rgb(0, 0, 0, 0);
+	border: none;
+	outline: none;
+	cursor: pointer;
+	border-radius: 20px;
+	transition: .4s;
+	z-index:1;
+}*/
+#btn a{
+	color:#FF5500;
+} 
+#btn a:hover{
+	color:#ffffff;
+}
+#btn:hover{
+	background:#FF5500;
+}
+#line label{
+	font-weight:600;
+}
+#btn{
+	border:1px solid #FF5500;
+	color:#FF5500;
+	background:#ffffff;
+}
+#btn:hover{
+	background:#FE5500;
+	color:#ffffff;
+}

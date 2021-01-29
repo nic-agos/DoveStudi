@@ -1,0 +1,17 @@
+@charset "ISO-8859-1";
+#btn{
+	border:1px solid #FF5500;
+	color:#FF5500;
+	background:#ffffff;
+}
+#btn:hover{
+	background:#ff5500;
+	color:#ffffff;
+}
+#btn a{
+	color:#ff5500;
+	text-decoration: none;
+} 
+#btn a:hover{
+	color:#ffffff;
+}
