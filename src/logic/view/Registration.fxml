@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+   <children>
+      <VBox alignment="CENTER" prefHeight="720.0" prefWidth="1280.0" spacing="50.0">
+         <children>
+            <Label text="Registration">
+               <font>
+                  <Font name="Calisto MT Bold" size="55.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="69.0" prefWidth="1280.0" spacing="50.0">
+               <children>
+                  <TextField fx:id="nameLbl" promptText="Name" />
+                  <TextField fx:id="surnameLbl" promptText="Surname" />
+                  <TextField fx:id="cfLbl" promptText="Fiscal Code" />
+                  <DatePicker fx:id="birthLbl" promptText="Birth Date dd/mm/yyyy" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="69.0" prefWidth="1280.0" spacing="200.0">
+               <children>
+                  <ChoiceBox fx:id="gradeBox" prefWidth="150.0" />
+                  <TextField fx:id="schoolLbl" promptText="School" />
+               </children>
+            </HBox>
+            <HBox fx:id="pseLbl" alignment="CENTER" prefHeight="69.0" prefWidth="1280.0" spacing="150.0">
+               <children>
+                  <TextField fx:id="emailLbl" promptText="Email" />
+                  <TextField fx:id="unameLbl" promptText="Username" />
+                  <PasswordField promptText="Password" />
+               </children>
+            </HBox>
+            <Button fx:id="regBtn" defaultButton="true" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Register Now!" />
+            <Button fx:id="backBtn" mnemonicParsing="false" text="Back" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
