@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.MyAccountGController">
+<AnchorPane maxHeight="720.0" maxWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.MyAccountGController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="184.0" prefHeight="720.0" prefWidth="1102.0" spacing="50.0">
+      <VBox alignment="TOP_CENTER" layoutX="184.0" prefHeight="720.0" prefWidth="1100.0" spacing="50.0">
          <children>
             <Label text="My Account">
                <VBox.margin>
@@ -211,7 +211,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="6.0" prefHeight="621.0" prefWidth="178.0" spacing="15.0">
+      <VBox alignment="TOP_CENTER" layoutX="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="180.0" spacing="15.0">
          <children>
             <Button fx:id="myRoomsBtn" mnemonicParsing="false" prefWidth="150.0" text="My Rooms" />
             <Button fx:id="myResBtn" mnemonicParsing="false" prefWidth="150.0" text="My Reservations" />
@@ -224,7 +224,7 @@
             <Insets top="10.0" />
          </padding>
       </VBox>
-      <VBox alignment="BOTTOM_CENTER" layoutX="29.0" layoutY="638.0" prefHeight="137.0" prefWidth="132.0">
+      <VBox alignment="BOTTOM_CENTER" layoutX="14.0" layoutY="580.0" prefHeight="140.0" prefWidth="180.0">
          <children>
             <Button fx:id="logOutBtn" mnemonicParsing="false" text="Log Out" />
          </children>
