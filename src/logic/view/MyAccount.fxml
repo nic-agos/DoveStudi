@@ -211,7 +211,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="180.0" spacing="15.0">
+      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="180.0" spacing="15.0">
          <children>
             <Button fx:id="myRoomsBtn" mnemonicParsing="false" prefWidth="150.0" text="My Rooms" />
             <Button fx:id="myResBtn" mnemonicParsing="false" prefWidth="150.0" text="My Reservations" />
@@ -224,7 +224,7 @@
             <Insets top="10.0" />
          </padding>
       </VBox>
-      <VBox alignment="BOTTOM_CENTER" layoutX="14.0" layoutY="580.0" prefHeight="140.0" prefWidth="180.0">
+      <VBox alignment="BOTTOM_CENTER" layoutY="580.0" prefHeight="140.0" prefWidth="180.0">
          <children>
             <Button fx:id="logOutBtn" mnemonicParsing="false" text="Log Out" />
          </children>
