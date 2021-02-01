@@ -11,37 +11,6 @@ import javafx.scene.Node;
 
 public class HomeGController {
 	
-	//This method is an Event Listner for the buttons in the Home and the Logged Home
-	public void mouseClick(MouseEvent mouseEvent) throws Exception {
 		
-		Button button = (Button) mouseEvent.getSource();
-		String buttonText = button.getText();
-		
-		Node source = (Node) mouseEvent.getSource();
-		Window currentWindow = source.getScene().getWindow();
-		
-		Parent root;
-		Scene scene;
-		Stage stage;
-		
-		switch (buttonText){
-			case("Log In"):
-				
-				//set a new scene and close the current one
-				root= FXMLLoader.load(getClass().getResource("LogIn.fxml"));
-				stage=new Stage();
-				scene= new Scene(root);
-				stage.setScene(scene);
-				currentWindow.hide();
-				stage.setTitle("Log In");
-				stage.show();
-				break;
-			case("Groups"):
-				System.out.println("Groups View");
-				break;
-			case("Account"):
-				System.out.println("Account View");
-				break;
-		}
 	}
-}
+
