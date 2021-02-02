@@ -24,12 +24,15 @@ public class GroupController {
 		}
 		return instance;
 	}
-	
+
+//	takes in input a complete group bean
 	/*
 	 * public boolean createGroup(GroupBean groupBean) {
 	 * 
 	 * }
 	 */
+
+//  takes in input the name and the admin of the group
 	public boolean deleteGroup(GroupBean groupBean) throws DatabaseException {
 		
 		GroupDAOImpl groupDao = GroupDAOImpl.getInstance();
@@ -42,7 +45,8 @@ public class GroupController {
 				
 		}
 	}
-		
+	
+//	takes in input the name and the admin of the group and the id of the person that want to leave the group	
 	public boolean leaveGroup(GroupBean groupBean) throws DatabaseException, AccountException {
 			
 		GroupDAOImpl groupDao = GroupDAOImpl.getInstance();
@@ -65,7 +69,8 @@ public class GroupController {
 					
 		}
 	}
-		
+
+// 	takes in input name and admin of the group and the room id
 	public void bookRoomGroup(GroupBean groupBean, RoomBean roomBean) throws DatabaseException, RoomException, AccountException, ReservationException {
 			 
 		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
@@ -87,9 +92,12 @@ public class GroupController {
 		try {
 //			get all group partecipants
 			partecipantsList = personDao.getGroupPartecipants(groupBean);
+
+//			get the room and room spec info
 			rBean = roomDao.getRoom(roomBean);
 			rsBean = roomSpecDao.getRoomSpec(rBean);
-				
+			
+//			get the room owner Person to fill the reservation				
 			a2Bean.setCf(rBean.getOwner());
 			roomOwner = personDao.getPersonFromAccount(a2Bean);
 				

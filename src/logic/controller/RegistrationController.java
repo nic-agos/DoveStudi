@@ -21,7 +21,8 @@ public class RegistrationController {
 		}
 		return instance;
 	}
-	
+
+//	takes in input a complete AccountBean and complete PersonBean
 	public boolean register(AccountBean accountBean, PersonBean personBean) throws DatabaseException {
 		
 		try {

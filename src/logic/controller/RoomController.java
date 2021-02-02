@@ -24,7 +24,8 @@ public class RoomController {
 		}
 		return instance;
 	}
-	
+
+//  takes in input a complete RoomBean and a complete RoomSpecBean (excepts the IDs)
 	public boolean postRoom(RoomBean roomBean, RoomSpecBean roomSpecBean) throws DatabaseException {
 		
 		try{
@@ -47,7 +48,8 @@ public class RoomController {
 			throw new DatabaseException(se.getMessage());
 		}
 	}
-	
+
+//  takes in input the username of the host and return a list of user's rooms
 	public List<Room> searchByHost(PersonBean personBean) throws DatabaseException, NotFoundException {
 		
 		List<RoomBean> roomBeans;
@@ -91,7 +93,8 @@ public class RoomController {
 			throw new DatabaseException(se.getMessage());
 		}
 	}
-	
+
+//	takes in input the cap and returns a list of rooms with that specificated cap
 	public List<Room> searchByCap(RoomSpecBean roomSpecBean) throws DatabaseException, NotFoundException {
 	
 		List<RoomSpecBean> roomSpecBeans;
@@ -131,7 +134,8 @@ public class RoomController {
 		}
 		
 	}
-	
+
+//	takes in input a date and returns a list of rooms available in that date
 	public List<Room> searchByDate(RoomSpecBean roomSpecBean) throws DatabaseException, NotFoundException {
 		
 		List<RoomSpecBean> roomSpecBeans;
@@ -170,7 +174,8 @@ public class RoomController {
 			throw new DatabaseException(se.getMessage());
 		}
 	}
-	
+
+// 	takes in input the number of seats and returns a list of rooms with at least that number of available seats
 	public List<Room> searchByAvailableSeats(RoomBean roomBean) throws DatabaseException, NotFoundException {
 		
 		List<RoomBean> roomBeans;
@@ -212,7 +217,8 @@ public class RoomController {
 			throw new DatabaseException(se.getMessage());
 		}
 	}
-	
+
+//	takes in input the cf of the user and return a list of all his rooms
 	public List<Room> getMyRooms(AccountBean accountBean) throws DatabaseException, NotFoundException {
 		
 		List<RoomBean> roomBeans;
@@ -247,6 +253,8 @@ public class RoomController {
 			throw new DatabaseException(se.getMessage());
 		}
 	}
+	
+//	return a list of all available rooms on the db
 	public List<Room> searchRooms() throws DatabaseException, NotFoundException {
 		
 		List<RoomSpecBean> roomSpecBeans;
@@ -289,7 +297,8 @@ public class RoomController {
 		}
 		
 	}
-	
+
+//	takes in input the id of the room and and the cf of the user
 	public boolean bookRoom(RoomBean roomBean, AccountBean accountBean) throws DatabaseException, RoomException, AccountException, ReservationException  {
 		
 		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
@@ -355,7 +364,8 @@ public class RoomController {
 			throw new DatabaseException(se.getMessage());
 		}	
 	}
-	
+
+//	takes in input the id of the room that wants to delete
 	public boolean deleteRoom(RoomBean roomBean) throws DatabaseException {
 		
 		RoomDAOImpl roomDao = RoomDAOImpl.getInstance();

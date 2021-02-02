@@ -32,7 +32,8 @@ public class ReservationController {
 		* 
 		* }
 	 */
-	
+
+//	get in input the cf of the user and return a list of reservation
 	public List<Reservation> getMyPastReservations(AccountBean accountBean) throws DatabaseException {
 		
 		ReservationDAOImpl reservationDao = ReservationDAOImpl.getInstance();
@@ -120,7 +121,8 @@ public class ReservationController {
 				
 		}	
 	}
-	
+
+//	get in input the cf of the user and return a list of reservation
 	public List<Reservation> getMyFutureReservations(AccountBean accountBean) throws DatabaseException {
 		
 		ReservationDAOImpl reservationDao = ReservationDAOImpl.getInstance();

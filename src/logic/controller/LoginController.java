@@ -25,6 +25,8 @@ public class LoginController {
 		return instance;
 	}
 	
+//  takes in input email and password and return the Person entity (with Account entity linked)
+//	if the login is successful	
 	public Person login(AccountBean accountBean) throws DatabaseException, NotFoundException {
 		
 		try {

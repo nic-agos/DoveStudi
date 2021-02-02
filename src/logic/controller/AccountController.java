@@ -18,6 +18,8 @@ public class AccountController {
 		}
 		return instance;
 	}
+
+//	takes in input the username of the user and returns the Person entity (with Account entity linked)
 	/*
 	 * public Person getAccountInfo(AccountBean accountBean){
 	 * 
