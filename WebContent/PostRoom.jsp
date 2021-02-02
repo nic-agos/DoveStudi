@@ -1,5 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ page import="logic.bean.*" %>
+<%@ page import="logic.model.dao.*" %>
+<%@ page import="java.sql.SQLException"%>
+<%@ page import="logic.exception.DatabaseException"%>
+<%@ page import="logic.controller.RoomController" %>
+<%@ page import="logic.exception.AccountException" %>
+<%@ page import="logic.exception.PersonException" %>
+
+<jsp:useBean id="roomBean" scope="request" class="logic.bean.RoomBean"/>
+<jsp:useBean id="roomSpecBean" scope="request" class="logic.bean.RoomSpecBean"/>
+<jsp:setProperty name="roomBean" property="*"/>
+<jsp:setProperty name="roomSpecBean" property="*"/>
+
+<%
+	boolean res;
+	if (request.getParameter("confirmBtn")!= null) {
+		
+		System.out.println("entrato");
+		System.out.println(roomBean.getName());
+		System.out.println(roomBean.getNumPartecipants());
+		System.out.println(roomBean.getSpecification());
+		System.out.println(roomBean.getAddress());
+		RoomController rContr = RoomController.getInstance();
+		
+		try {
+			res = rContr.postRoom(roomBean, roomSpecBean);
+			if(res) {
+				
+				String redirectURL = "http://localhost:8080/DoveStudi.git/AccountMyRooms.jsp";
+				response.sendRedirect(redirectURL);	
+				
+			}else{
+				System.out.println("errore");
+			}
+		
+		}catch(DatabaseException de){
+			de.printStackTrace();
+		}
+		
+	}
+	
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,13 +89,13 @@
 					<div class="col -md-8">
 		  				<div class="form-group">
 		    				<label for="adName">Name</label>
-		    				<input type="text" class="form-control" id="adName">
+		    				<input type="text" class="form-control" id="name" name="name">
 		  				</div>
 		  			</div>
 		  			<div class="col -md-8">
 		  				<div class="form-group">
 		    				<label for="roomAddress">Address</label>
-		    				<input type="text" class="form-control" id="roomAddress">
+		    				<input type="text" class="form-control" id="address" name="address">
 		  				</div>
 	  				</div>
 	  			</div>
@@ -59,44 +103,44 @@
 	  				<div class="col -md-8">
 		  				<div class="form-group">
 		    				<label for="maxSeats">Date</label>
-		    				<input type="date" id="dateBirth" name="dateBirth" placeholder="Birth date" value="" required><!-- style="width:100%; font-size:16px; padding: 8px 0; margin: 8px 0; border-bottom: 1px solid #000000;" -->
+		    				<input type="date" id="date" name="date" placeholder="Birth date" value="" required><!-- style="width:100%; font-size:16px; padding: 8px 0; margin: 8px 0; border-bottom: 1px solid #000000;" -->
 						</div>
 					</div>
 					<div class="col -md-12">	
 		  				<div class="form-group">
 		    				<label for="maxSeats">CAP</label>
-		    				<input type="text" class="form-control" id="adName">
+		    				<input type="text" class="form-control" id="cap" name="cap">
 		  				</div>
 		  			</div>	
 		  			<div class="col -md-4">	
 		  				<div class="form-group">
 		    				<label for="maxSeats">Max seats</label>
-		    				<input type="text" class="form-control" id="adName">
+		    				<input type="text" class="form-control" id="numPartecipants" name="numPartecipants">
 		  				</div>
 		  			</div>
 	  			</div>
 		  				<div class="form-group">
 		    				<label for="roomDescription">Description</label>
-		    				<textarea class="form-control" id="roomDescription" rows="3" style="max-height:100px;"></textarea>
+		    				<textarea class="form-control" id="description" name="description" rows="3" style="max-height:100px;"></textarea>
 		  				</div>
 		  		<div class="row">
 		  			<div class="col -md-8">	
 		  				<div class="form-group">
 		    				<label for="maxSeats">Start time</label>
-		    				<input type="text" class="form-control" id="adName">
+		    				<input type="text" class="form-control" id="startTime" name="startTime">
 		  				</div>
 		  			</div>
 		  			<div class="col -md-8">	
 		  				<div class="form-group">
 		    				<label for="maxSeats">End time</label>
-		    				<input type="text" class="form-control" id="adName">
+		    				<input type="text" class="form-control" id="endTime" name="endTime">
 		  				</div>
 		  			</div>
 		  		</div>
-			</form>
+			
 			<div class="container" style="text-align:center; margin-top:480px; margin-bottom:60px;">
   				<div class="vertical-center">
-    				<button type="button"id="btn" class="btn btn-outline-warning"data-toggle="modal" data-target="#postRoomModal"><a>Post Room</a></button>
+    				<button type="button" id="postBtn" name = "postBtn" class="btn btn-outline-warning"data-toggle="modal" data-target="#postRoomModal"><a>Post Room</a></button>
   				</div>
 			</div>
 		</div>
@@ -116,11 +160,13 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-	        <button type="button" id="btn"class="btn btn-outline-warning"><a href="AccountMyRooms.jsp">Yes</a></button>
+	        <button type="submit" id="confirmBtn" name="confirmBtn" class="btn btn-outline-warning">Yes</a></button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
+	</form>
+
 		
 	
 	

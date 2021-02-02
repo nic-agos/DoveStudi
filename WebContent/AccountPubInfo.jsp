@@ -32,7 +32,7 @@
 		 	<li><a href="SearchRoomsHost.jsp">Search for Rooms</a></li>
 		 	<li><a href="AccPubInfo.jsp">My Account</a></li>
 		 	<li><a href="MyGroups.jsp">My Groups</a></li>
-		 	<li><a href="AccountMyReservations.jsp">My Reservations</a></li>
+		 	<li><a href="AccountMyFutReservations.jsp">My Reservations</a></li>
 		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
 		 	<li><a href="AccountMyRooms.jsp">My Rooms</a></li>
 		 	<li><a href="PostRoom.jsp">Post a Room</a></li>

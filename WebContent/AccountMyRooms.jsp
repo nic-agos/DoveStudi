@@ -8,7 +8,7 @@
 <%@ page import="java.util.ArrayList"%>
 
 <%
-	RoomDAOImpl dao = new RoomDAOImpl();
+	RoomDAOImpl dao = RoomDAOImpl.getInstance();
 	List<RoomBean> listRoom;
 	listRoom = dao.getAllRooms();
 	request.setAttribute("listRoom", listRoom);

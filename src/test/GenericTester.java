@@ -16,8 +16,8 @@ public class GenericTester {
 	public void testCreateAccount() throws SQLException {
 		
 		boolean bool;
-		AccountDAOImpl dao1 = new AccountDAOImpl();
-		PersonDAOImpl dao2 = new PersonDAOImpl();
+		AccountDAOImpl dao1 = AccountDAOImpl.getInstance();
+		PersonDAOImpl dao2 = PersonDAOImpl.getInstance();
 		
 		AccountBean accountInput = new AccountBean();
 	

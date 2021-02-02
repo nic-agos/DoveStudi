@@ -19,6 +19,21 @@ public class PersonDAOImpl implements PersonDAO {
 	private static final String GET_PERSON_QUERY = "SELECT * FROM person WHERE ID = ?";
 	private static final String GET_PERSON_ACCOUNT_QUERY = "SELECT * FROM person WHERE Account = ?";
 	private static final String GET_GROUP_PARTECIPANTS_QUERY = "SELECT Partecipant FROM group_a WHERE Name = ? AND Admin = ?";
+	private static final String GET_PERSON_BY_USERNAME_QUERY = "SELECT * FROM person WHERE Username = ?";
+	
+	
+	private static PersonDAOImpl instance = null;
+	
+	private PersonDAOImpl() {
+		
+	}
+	
+	public static synchronized PersonDAOImpl getInstance() {
+		if(PersonDAOImpl.instance == null) {
+			PersonDAOImpl.instance = new PersonDAOImpl();
+		}
+		return instance;
+	}
 	
 	@Override
 	public int createPerson(PersonBean personBean) throws SQLException {
@@ -180,6 +195,38 @@ public class PersonDAOImpl implements PersonDAO {
 			
 			stmt = connection.prepareStatement(GET_PERSON_QUERY);
 			stmt.setInt(1, personBean.getId());
+			
+			ResultSet res = stmt.executeQuery();
+			
+			while(res.next()) {
+				person = new PersonBean(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getFloat(6), res.getFloat(7));
+			}
+			
+			res.close();
+			
+			return person;
+			
+		}finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
+			}
+		}
+	}
+	
+	public PersonBean getPersonByUsername(PersonBean personBean) throws SQLException {
+		
+		PreparedStatement stmt = null;
+		Connection connection = null;
+		PersonBean person = null;
+		
+		try {
+			connection = DBConnection.getInstanceConnection().getConnection();
+			
+			stmt = connection.prepareStatement(GET_PERSON_BY_USERNAME_QUERY);
+			stmt.setString(1, personBean.getUsername());
 			
 			ResultSet res = stmt.executeQuery();
 			

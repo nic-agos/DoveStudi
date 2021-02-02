@@ -3,10 +3,12 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
-<%@ page import="logic.controller.LoginController" %>
+<%@ page import="logic.exception.DatabaseException"%>
+<%@ page import="logic.exception.NotFoundException"%>
+<%@ page import="logic.controller.LoginController"%>
 <%@ page import="logic.model.dao.AccountDAOImpl"%>
 <%@ page import="java.sql.SQLException"%>
-<%@ page import="logic.bean.AccountBean"%>
+<%@ page import="logic.model.Person"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.util.ArrayList"%>
 
@@ -15,23 +17,25 @@
 
 
 <%
-	boolean res;
+	Person res;
 	if(request.getParameter("loginBtn")!=null){
 		
 		LoginController lContr = LoginController.getInstance();
 		try{
 			
 			res = lContr.login(accountBean);
-			if (res){
-	%>
-				<jsp:forward page="AccountPersInfo.jsp"/>
-	<%	
+			if (res != null){
+				
+				String redirectURL = "http://localhost:8080/DoveStudi.git/AccountPersInfo.jsp";
+				response.sendRedirect(redirectURL);		
 			}
 			else{
 				System.out.println("errore");
 			}
-		}catch (SQLException se){
-			se.printStackTrace();
+		}catch (DatabaseException de) {
+			de.printStackTrace();
+		}catch (NotFoundException ne) {
+			ne.printStackTrace();
 		}
 	}
 %>	

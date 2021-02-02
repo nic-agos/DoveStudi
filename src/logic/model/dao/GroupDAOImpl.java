@@ -19,6 +19,20 @@ public class GroupDAOImpl implements GroupDAO{
 	private static final String GET_PARTICIPATING_GROUPS_QUERY = "SELECT * FROM group_a WHERE Partecipant = ?";
 	private static final String ADD_GROUP_PARTECIPANT_QUERY = "INSERT INTO group_a (Name, Admin, Num_Partecipants, Partecipant) VALUES (?, ?, ?, ?)";
 	private static final String UPDATE_NUM_PARTECIPANTS_GROUP = "UPDATE group_a SET Num_Partecipants = ? WHERE Name = ? AND Admin = ?";
+	private static final String LEAVE_GROUP_QUERY = "DELETE FROM group_a WHERE Name = ? AND Admin = ? AND Partecipant = ?";
+	
+	private static GroupDAOImpl instance = null;
+	
+	private GroupDAOImpl() {
+		
+	}
+	
+	public static synchronized GroupDAOImpl getInstance() {
+		if(GroupDAOImpl.instance == null) {
+			GroupDAOImpl.instance = new GroupDAOImpl();
+		}
+		return instance;
+	}
 	
 	@Override
 	public int createGroup(GroupBean groupBean) throws SQLException {
@@ -150,10 +164,10 @@ public class GroupDAOImpl implements GroupDAO{
 		Connection connection = null;
 		
 		PersonBean person = null;
-		PersonDAOImpl dao = new PersonDAOImpl();
+		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
 		
 		try {
-			person = dao.getPersonFromAccount(accountBean);
+			person = personDao.getPersonFromAccount(accountBean);
 			
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
@@ -274,5 +288,31 @@ public class GroupDAOImpl implements GroupDAO{
 				connection.close();
 			}
 		}
-	}	
+	}
+	
+	public int leaveGroup(GroupBean groupBean) throws SQLException {
+		
+		Connection connection = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			connection = DBConnection.getInstanceConnection().getConnection();
+			
+			stmt = connection.prepareStatement(LEAVE_GROUP_QUERY);
+			stmt.setString(1, groupBean.getName());
+			stmt.setString(2, groupBean.getAdmin());
+			stmt.setInt(3, groupBean.getPartecipant());
+			
+			return stmt.executeUpdate();
+			
+				
+		}finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (connection != null) {
+				connection.close();
+			}
+		}
+	}
 }

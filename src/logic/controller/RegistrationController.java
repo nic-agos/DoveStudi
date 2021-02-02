@@ -4,9 +4,11 @@ import java.sql.SQLException;
 
 import logic.bean.*;
 import logic.model.dao.*;
+import logic.exception.*;
 
 public class RegistrationController {
 
+//	implemented with singleton pattern
 	private static RegistrationController instance = null;
 	
 	private RegistrationController() {
@@ -20,35 +22,21 @@ public class RegistrationController {
 		return instance;
 	}
 	
-	public boolean registerAccount(AccountBean accountBean) throws SQLException {
+	public boolean register(AccountBean accountBean, PersonBean personBean) throws DatabaseException {
 		
 		try {
-			AccountDAOImpl dao = new AccountDAOImpl();
+			AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
 			accountBean.setNumberToken(5);
-			int res = dao.createAccount(accountBean);
-			if(res != 0) {
-				return true;
-			}else {
-				return false;
-			}
+			accountDao.createAccount(accountBean);
+			
+			personBean.setAccount(accountBean.getCf());
+			PersonDAOImpl personDao = PersonDAOImpl.getInstance();
+			int res = personDao.createPerson(personBean);
+			
+			return (res != 0);
 		
 		}catch (SQLException se) {
-			throw se;
+			throw new DatabaseException(se.getMessage());
 		}
-	}
-	
-	public int registerPerson(PersonBean personBean) throws SQLException {
-		int res = 0;
-		try {
-			PersonDAOImpl dao = new PersonDAOImpl();
-			personBean.setHostRating(0);
-			personBean.setGuestRating(0);
-			res = dao.createPerson(personBean);
-		
-		}catch (SQLException se) {
-			throw se;
-		}
-		
-		return res;
 	}
 }

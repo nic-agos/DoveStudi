@@ -1,6 +1,6 @@
 package logic.bean;
 
-import logic.exception.RegistrationAccountException;
+import logic.exception.AccountException;
 import logic.exception.TriggerExceptions;
 
 public class AccountBean {
@@ -113,7 +113,7 @@ public class AccountBean {
 		
 	}
 	
-	public boolean validate() throws RegistrationAccountException {
+	public boolean validate() throws AccountException {
 		String errors = "";
 		if(this.cf.length() != 16) {
 			errors = errors + "Invalid Fiscal Code   ";

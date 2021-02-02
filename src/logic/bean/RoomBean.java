@@ -79,8 +79,8 @@ public class RoomBean {
 		
 	}
 	
-	public void setNumPartecipants(String numPartecipants) {
-		this.numPartecipants = Integer.parseInt(numPartecipants);
+	public void setNumPartecipants(int numPartecipants) {
+		this.numPartecipants = numPartecipants;
 		
 	}
 	

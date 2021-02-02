@@ -22,6 +22,21 @@ public class RoomDAOImpl implements RoomDAO {
 	private static final String GET_ACCOUNT_ROOMS_QUERY  = "SELECT * FROM room WHERE Owner = ?";
 	private static final String GET_ROOM_FROM_SPEC_QUERY = "SELECT * FROM room WHERE Specification = ?";
 	private static final String GET_ROOM_FILTERED_AVAILABLE_SEATS_QUERY = "SELECT * FROM room WHERE Num_Available_Seats >= ?";
+	
+	
+	private static RoomDAOImpl instance = null;
+	
+	private RoomDAOImpl() {
+		
+	}
+	
+	public static synchronized RoomDAOImpl getInstance() {
+		if(RoomDAOImpl.instance == null) {
+			RoomDAOImpl.instance = new RoomDAOImpl();
+		}
+		return instance;
+	}
+	
 	@Override
 	public int createRoom(RoomBean roomBean) throws SQLException {
 		

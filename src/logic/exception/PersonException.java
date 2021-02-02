@@ -1,14 +1,13 @@
 package logic.exception;
 
-public class RegistrationAccountException extends Exception{
+public class PersonException extends Exception{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public RegistrationAccountException(String message) {
+	public PersonException(String message) {
 		super(message);
 	}
 }
-

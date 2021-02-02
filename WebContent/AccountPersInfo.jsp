@@ -115,7 +115,7 @@
 	
 	 <div style="position:absolute;top:0px;right:0px;width:25%;height:100%;">
 		 <div class="row">
-	     	<button class="btn btn-outline-warning" id="btn" style="margin-top:50px;"><a href="EditProfile.jsp">Edit profile</a></button>
+	     	<button class="btn btn-outline-warning" id="btn" style="margin-top:50px;"><a href="https://www.paypal.com/it/signins">Buy tokens</a></button>
 	     </div>
 	     <div class="row">
 	     	<button class="btn btn-outline-warning" id="btn" style="margin-top:30px;"><a href="AccountMyPastReservations.jsp">Make a Review</button>

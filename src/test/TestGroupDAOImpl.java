@@ -20,7 +20,7 @@ public class TestGroupDAOImpl {
 	
 	@Test
 	public void testCreateGroup() throws SQLException {
-		GroupDAOImpl g = new GroupDAOImpl();
+		GroupDAOImpl g = GroupDAOImpl.getInstance();
 		GroupBean b = new GroupBean(name, admin, numPartecipants, partecipant);
 		int res = g.createGroup(b);
 		assertEquals(res, 1);
@@ -28,7 +28,7 @@ public class TestGroupDAOImpl {
 	
 	@Test
 	public void testRemoveGroup() throws SQLException {
-		GroupDAOImpl g = new GroupDAOImpl();
+		GroupDAOImpl g = GroupDAOImpl.getInstance();
 		GroupBean b = new GroupBean(name, admin, numPartecipants, partecipant);
 		int res = g.removeGroup(b);
 		assertEquals(res, 1);
@@ -36,7 +36,7 @@ public class TestGroupDAOImpl {
 	
 	@Test
 	public void testGetGroupId() throws SQLException {
-		GroupDAOImpl g = new GroupDAOImpl();
+		GroupDAOImpl g = GroupDAOImpl.getInstance();
 		GroupBean b = new GroupBean(id, name, admin, numPartecipants, partecipant);
 		int res = g.getGroupId(b);
 		assertEquals(res, 1);
@@ -44,14 +44,14 @@ public class TestGroupDAOImpl {
 	
 	@Test
 	public void testGetAllGroups() throws SQLException {
-		GroupDAOImpl g = new GroupDAOImpl();
+		GroupDAOImpl g = GroupDAOImpl.getInstance();
 		List<GroupBean> l = g.getAllGroups();
 		assertEquals(l, 1);
 	}
 	
 	@Test
 	public void testGetAllAdministeredGroups() throws SQLException {
-		GroupDAOImpl g = new GroupDAOImpl();
+		GroupDAOImpl g = GroupDAOImpl.getInstance();
 		AccountBean a = new AccountBean();
 		a.setCf("bbbb");
 		List<GroupBean> l = g.getAllAdministeredGroups(a);
@@ -60,7 +60,7 @@ public class TestGroupDAOImpl {
 	
 	@Test
 	public void testGetAllParticipatingGroups() throws SQLException {
-		GroupDAOImpl g = new GroupDAOImpl();
+		GroupDAOImpl g = GroupDAOImpl.getInstance();
 		PersonBean p = new PersonBean();
 		p.setId(21);
 		List<GroupBean> l = g.getAllParticipatingGroups(p);
@@ -69,9 +69,19 @@ public class TestGroupDAOImpl {
 	
 	@Test
 	public void testAddGroupPartecipant() throws SQLException {
-		GroupDAOImpl g = new GroupDAOImpl();
+		GroupDAOImpl g = GroupDAOImpl.getInstance();
 		GroupBean gr = new GroupBean("bello", "bbbb", 6, 23);
 		g.addGroupPartecipant(gr);
+	}
+	
+	@Test
+	public void testLeaveGroup() throws SQLException {
+		GroupDAOImpl g = GroupDAOImpl.getInstance();
+		GroupBean gr = new GroupBean();
+		gr.setAdmin("qqqqqqqqqqqqqqqq");
+		gr.setName("bel gruppo");
+		gr.setPartecipant(12);
+		g.leaveGroup(gr);
 	}
 	
 	

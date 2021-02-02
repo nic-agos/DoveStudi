@@ -4,9 +4,10 @@
 <%@ page import="logic.bean.AccountBean" %>
 <%@ page import="logic.model.dao.AccountDAOImpl" %>
 <%@ page import="java.sql.SQLException"%>
+<%@ page import="logic.exception.DatabaseException"%>
 <%@ page import="logic.controller.RegistrationController" %>
-<%@ page import="logic.exception.RegistrationAccountException" %>
-<%@ page import="logic.exception.RegistrationPersonException" %>
+<%@ page import="logic.exception.AccountException" %>
+<%@ page import="logic.exception.PersonException" %>
 
 <jsp:useBean id="accountBean" scope="request" class="logic.bean.AccountBean"/>
 <jsp:useBean id="personBean" scope="request" class="logic.bean.PersonBean"/>
@@ -14,34 +15,33 @@
 <jsp:setProperty name="personBean" property="*"/>
 
 <%
-	boolean res1 = false;
+boolean res1 = false;
 	boolean res2 = false;
 	if(request.getParameter("registerBtn")!=null){
 	
 		try{
-			res1 = accountBean.validate();
+	res1 = accountBean.validate();
 		
-		}catch (RegistrationAccountException ae){
-			ae.printStackTrace();
+		}catch (AccountException ae){
+	ae.printStackTrace();
 		}
 		try{
-			res2 = personBean.validate();
+	res2 = personBean.validate();
 		
-		}catch (RegistrationPersonException pe){
-			pe.printStackTrace();
+		}catch (PersonException pe){
+	pe.printStackTrace();
 		}
 		
 		if (res1 && res2){
-			RegistrationController rContr = RegistrationController.getInstance();
-			try{
-				rContr.registerAccount(accountBean);
-				personBean.setAccount(accountBean.getCf());
-				rContr.registerPerson(personBean);
-%>
-				<jsp:forward page="Login.jsp"/>
-<%	
-			}catch (SQLException se){
-				se.printStackTrace();
+	RegistrationController rContr = RegistrationController.getInstance();
+	try{
+		rContr.register(accountBean, personBean);
+		
+		String redirectURL = "http://localhost:8080/DoveStudi.git/Login.jsp";
+		response.sendRedirect(redirectURL);	
+	
+	}catch (DatabaseException de){
+				de.printStackTrace();
 			}	
 		}
 	}

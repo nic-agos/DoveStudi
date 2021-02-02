@@ -19,6 +19,20 @@ public class ReviewDAOImpl implements ReviewDAO {
 	private static final String GET_ALL_REVIEWS_QUERY = "SELECT * FROM review";
 	private static final String GET_ALL_REVIEWS_TAG_QUERY = "SELECT * FROM review WHERE Reviewed = ? AND Tag = ?";
 	
+	
+	private static ReviewDAOImpl instance = null;
+	
+	private ReviewDAOImpl() {
+		
+	}
+	
+	public static synchronized ReviewDAOImpl getInstance() {
+		if(ReviewDAOImpl.instance == null) {
+			ReviewDAOImpl.instance = new ReviewDAOImpl();
+		}
+		return instance;
+	}
+	
 	@Override
 	public int createReview(ReviewBean reviewBean) throws SQLException {
 		

@@ -21,6 +21,20 @@ public class ReservationDAOImpl implements ReservationDAO {
 	private static final String GET_RESERVATION_QUERY = "SELECT * FROM reservation WHERE ID = ?";
 	private static final String GET_ROOM_RESERVATIONS_QUERY = "SELECT * FROM reservation WHERE Room = ?";
 	
+	
+	private static ReservationDAOImpl instance = null;
+	
+	private ReservationDAOImpl() {
+		
+	}
+	
+	public static synchronized ReservationDAOImpl getInstance() {
+		if(ReservationDAOImpl.instance == null) {
+			ReservationDAOImpl.instance = new ReservationDAOImpl();
+		}
+		return instance;
+	}
+	
 	@Override
 	public int createReservation(ReservationBean reservationBean) throws SQLException {
 		

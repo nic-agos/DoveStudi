@@ -2,11 +2,16 @@ package logic.controller;
 
 import java.sql.SQLException;
 
-import logic.bean.AccountBean;
+import logic.bean.*;
 import logic.model.dao.AccountDAOImpl;
+import logic.model.dao.PersonDAOImpl;
+import logic.exception.*;
+import logic.model.*;
+
 
 public class LoginController {
-	
+
+//	implemented with singleton pattern
 	private static LoginController instance = null;
 	
 	private LoginController() {
@@ -20,19 +25,28 @@ public class LoginController {
 		return instance;
 	}
 	
-	public boolean login(AccountBean accountBean) throws SQLException {
+	public Person login(AccountBean accountBean) throws DatabaseException, NotFoundException {
 		
 		try {
-			AccountDAOImpl dao = new AccountDAOImpl();
-			AccountBean res = dao.login(accountBean);
-			if (res == null) {
-				return false;
+			AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
+			AccountBean res = accountDao.login(accountBean);
+			
+			if(res != null) {
+				Account account = new Account(res);
+				PersonDAOImpl personDao = PersonDAOImpl.getInstance();
+				AccountBean temp1 = new AccountBean();
+				temp1.setCf(account.getCf());
+				PersonBean temp2 = personDao.getPersonFromAccount(temp1);
+				Person person = new Person(temp2);
+				person.setAccount(account);
+				return person;
+				
 			}else {
-				return true;
+				throw new NotFoundException("Account " + accountBean.getEmail());
 			}
 			
 		}catch (SQLException se) {
-			throw se;
+			throw new DatabaseException(se.getMessage());
 		}	
 	}
 }

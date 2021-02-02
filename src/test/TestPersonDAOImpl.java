@@ -26,7 +26,7 @@ public class TestPersonDAOImpl {
 	@Test
 	public void testCreatePerson() throws SQLException {
 		PersonBean p = new PersonBean(username, studyGrade, school, account, hostRating, guestRating);
-		PersonDAOImpl d = new PersonDAOImpl();
+		PersonDAOImpl d = PersonDAOImpl.getInstance();
 		int res = d.createPerson(p);
 		assertEquals(res, 0);
 	}
@@ -34,7 +34,7 @@ public class TestPersonDAOImpl {
 	@Test
 	public void testUpdatePerson() throws SQLException {
 		PersonBean p = new PersonBean(id, username, studyGrade, school, account, hostRating, guestRating);
-		PersonDAOImpl d = new PersonDAOImpl();
+		PersonDAOImpl d = PersonDAOImpl.getInstance();
 		int res = d.updatePerson(p);
 		assertEquals(res, 1);
 	}
@@ -42,14 +42,14 @@ public class TestPersonDAOImpl {
 	@Test
 	public void testRemovePerson() throws SQLException {
 		PersonBean p = new PersonBean(id, username, studyGrade, school, account, hostRating, guestRating);
-		PersonDAOImpl d = new PersonDAOImpl();
+		PersonDAOImpl d = PersonDAOImpl.getInstance();
 		int res = d.removePerson(p);
 		assertEquals(res, 1);
 	}
 	
 	@Test
 	public void testGetPerson() throws SQLException {
-		PersonDAOImpl d = new PersonDAOImpl();
+		PersonDAOImpl d = PersonDAOImpl.getInstance();
 		PersonBean p = new PersonBean();
 		p.setId(13);
 		PersonBean res = d.getPerson(p);
@@ -58,7 +58,7 @@ public class TestPersonDAOImpl {
 	
 	@Test
 	public void testGetPersonFromAccount() throws SQLException {
-		PersonDAOImpl d = new PersonDAOImpl();
+		PersonDAOImpl d = PersonDAOImpl.getInstance();
 		AccountBean a = new AccountBean("marco", "m", "a", "m", "2020-12-27", "m", 10);
 		PersonBean res = d.getPersonFromAccount(a);
 		assertEquals(res, 1);
@@ -66,17 +66,19 @@ public class TestPersonDAOImpl {
 	
 	@Test
 	public void testGetGroupPartecipants() throws SQLException {
-		PersonDAOImpl d = new PersonDAOImpl();
+		PersonDAOImpl d = PersonDAOImpl.getInstance();
 		GroupBean g = new GroupBean();
-		g.setAdmin("bbbb");
-		g.setName("bello");
+		g.setAdmin("qqqqqqqqqqqqqqqq");
+		g.setName("bel gruppo");
 		List<PersonBean> l = d.getGroupPartecipants(g);
+		System.out.println(l.size());
+		
 		assertEquals(l, 1);
 	}
 	
 	@Test
 	public void testGetAllPersons() throws SQLException {
-		PersonDAOImpl d = new PersonDAOImpl();
+		PersonDAOImpl d = PersonDAOImpl.getInstance();
 		List<PersonBean> p = d.getAllPersons();
 		assertEquals(p, 1);
 	}

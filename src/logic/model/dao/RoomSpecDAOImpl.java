@@ -11,7 +11,7 @@ import logic.bean.*;
 
 public class RoomSpecDAOImpl implements RoomSpecDAO {
 	
-	private static final String CREATE_ROOMSPEC_QUERY = "INSERT INTO roomspec (Description, Date, Start_Time, End_Time) VALUES (?, ?, ?, ?)";
+	private static final String CREATE_ROOMSPEC_QUERY = "INSERT INTO roomspec (Description, Date, Start_Time, End_Time, CAP) VALUES (?, ?, ?, ?, ?)";
 	private static final String GET_ROOMSPEC_ID_QUERY = "SELECT ID FROM roomspec WHERE Description = ? AND Date = ? AND Start_Time = ? AND End_Time = ?";
 	private static final String DELETE_ROOMSPEC_QUERY = "DELETE FROM roomspec WHERE ID = ?";
 	private static final String GET_ROOMSPEC_QUERY = "SELECT * FROM roomspec WHERE ID = ?";
@@ -19,6 +19,20 @@ public class RoomSpecDAOImpl implements RoomSpecDAO {
 	private static final String GET_ORDERED_ROOMSPEC = "SELECT * FROM roomspec ORDER BY Date, Start_Time";
 	private static final String GET_ROOMSPEC_BY_DATE = "SELECT * FROM roomspec WHERE Date = ? ORDER BY Start_Time";
 	private static final String GET_ALL_ROOMSPEC = "SELECT * FROM roomspec";
+	
+	
+	private static RoomSpecDAOImpl instance = null;
+	
+	private RoomSpecDAOImpl() {
+		
+	}
+	
+	public static synchronized RoomSpecDAOImpl getInstance() {
+		if(RoomSpecDAOImpl.instance == null) {
+			RoomSpecDAOImpl.instance = new RoomSpecDAOImpl();
+		}
+		return instance;
+	}
 	
 	@Override
 	public int createRoomSpec(RoomSpecBean roomSpecBean) throws SQLException {
@@ -34,6 +48,7 @@ public class RoomSpecDAOImpl implements RoomSpecDAO {
 			stmt.setString(2, roomSpecBean.getDate());
 			stmt.setString(3, roomSpecBean.getStartTime());
 			stmt.setString(4, roomSpecBean.getEndTime());
+			stmt.setString(5, roomSpecBean.getCap());
 			stmt.executeUpdate();
 			
 			return getRoomSpecId(roomSpecBean);

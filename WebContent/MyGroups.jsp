@@ -118,7 +118,7 @@
 		                    	<button class="btn btn-outline-warning"id="btn" style="margin-bottom:10px;margin-left:30px;"><a href="SearchRoomsHost.jsp">Book Room</a></button>
 		                    	<button class="btn btn-outline-warning"data-toggle="modal" data-target="#deleteGroupModal"id="btn" style="margin-bottom:10px;margin-left:30px;">Delete Group</button>
 		                    	<!-- da vedere se mettere l'opzione di modificare il gruppo -->
-								<button class="btn btn-outline-warning"data-toggle="modal" data-target="#modifyGroupModal"id="btn" style="margin-bottom:10px;margin-left:30px;">Modify Group</button>		                	
+								<!-- <button class="btn btn-outline-warning"data-toggle="modal" data-target="#modifyGroupModal"id="btn" style="margin-bottom:10px;margin-left:30px;">Modify Group</button> -->		                	
 		                	</div>
 		             	</div>
 	        	</div>

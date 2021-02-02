@@ -22,7 +22,7 @@ public class TestAccountDAOImpl {
 	@Test
 	public void testCreateAccount() throws SQLException {
 		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, numToken);
-		AccountDAOImpl i = new AccountDAOImpl();
+		AccountDAOImpl i = AccountDAOImpl.getInstance();
 		int res = i.createAccount(a);
 		assertEquals(res,1);
 		
@@ -31,7 +31,7 @@ public class TestAccountDAOImpl {
 	@Test
 	public void testGetNumberToken() throws SQLException {
 		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, numToken);
-		AccountDAOImpl i = new AccountDAOImpl();
+		AccountDAOImpl i = AccountDAOImpl.getInstance();
 		int res = i.getNumberToken(a);
 		assertEquals(res, 10);
 	}
@@ -39,7 +39,7 @@ public class TestAccountDAOImpl {
 	@Test
 	public void testUpdateNumberToken() throws SQLException{
 		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, numToken);
-		AccountDAOImpl i = new AccountDAOImpl();
+		AccountDAOImpl i = AccountDAOImpl.getInstance();
 		int res = i.updateNumberToken(a);
 		assertEquals(res, 1);
 	}
@@ -47,34 +47,34 @@ public class TestAccountDAOImpl {
 	@Test
 	public void testRemoveAccount() throws SQLException{
 		AccountBean a = new AccountBean(cf, name, surname, email, password, dateBirth, numToken);
-		AccountDAOImpl i = new AccountDAOImpl();
+		AccountDAOImpl i = AccountDAOImpl.getInstance();
 		int res = i.removeAccount(a);
 		assertEquals(res, 1);
 	}
 	
 	@Test
 	public void testGetAllAccounts() throws SQLException {
-		AccountDAOImpl dao = new AccountDAOImpl();
-		List<AccountBean> res = dao.getAllAccounts();
+		AccountDAOImpl i = AccountDAOImpl.getInstance();
+		List<AccountBean> res = i.getAllAccounts();
 		assertEquals(res, 1);
 	}
 	
 	@Test
 	public void testGetAccount() throws SQLException {
-		AccountDAOImpl dao = new AccountDAOImpl();
+		AccountDAOImpl i = AccountDAOImpl.getInstance();
 		AccountBean a = new AccountBean();
 		a.setCf(cf);
-		AccountBean res = dao.getAccount(a);
+		AccountBean res = i.getAccount(a);
 		assertEquals(res, 1);
 	}
 	
 	@Test
 	public void testLogin() throws SQLException {
-		AccountDAOImpl dao = new AccountDAOImpl();
+		AccountDAOImpl i = AccountDAOImpl.getInstance();
 		AccountBean a = new AccountBean();
 		a.setEmail(email);
 		a.setPassword(password);
-		AccountBean res = dao.login(a);
+		AccountBean res = i.login(a);
 		assertEquals(res, 1);
 	}
 }

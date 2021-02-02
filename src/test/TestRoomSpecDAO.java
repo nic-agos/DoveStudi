@@ -22,7 +22,7 @@ public class TestRoomSpecDAO {
 
 	@Test
 	public void testCreateRoomSpec() throws SQLException {
-		RoomSpecDAOImpl r = new RoomSpecDAOImpl();
+		RoomSpecDAOImpl r = RoomSpecDAOImpl.getInstance();
 		RoomSpecBean b = new RoomSpecBean(description, date, startTime, endTime, cap);
 		int res = r.createRoomSpec(b);
 		assertEquals(res, 1);
@@ -30,7 +30,7 @@ public class TestRoomSpecDAO {
 	
 	@Test
 	public void testGetRoomSpecId() throws SQLException {
-		RoomSpecDAOImpl r = new RoomSpecDAOImpl();
+		RoomSpecDAOImpl r = RoomSpecDAOImpl.getInstance();
 		RoomSpecBean b = new RoomSpecBean(description, date, startTime, endTime, cap);
 		int res = r.getRoomSpecId(b);
 		assertEquals(res, 28);
@@ -38,7 +38,7 @@ public class TestRoomSpecDAO {
 	
 	@Test
 	public void testGetRoomSpec() throws SQLException {
-		RoomSpecDAOImpl r = new RoomSpecDAOImpl();
+		RoomSpecDAOImpl r = RoomSpecDAOImpl.getInstance();
 		RoomBean room = new RoomBean();
 		room.setSpecification(36);
 		RoomSpecBean res = r.getRoomSpec(room);
@@ -47,7 +47,7 @@ public class TestRoomSpecDAO {
 	
 	@Test
 	public void testRemoveRoomSpec() throws SQLException {
-		RoomSpecDAOImpl r = new RoomSpecDAOImpl();
+		RoomSpecDAOImpl r = RoomSpecDAOImpl.getInstance();
 		RoomSpecBean b = new RoomSpecBean(id, description, date, startTime, endTime, cap);
 		int res = r.removeRoomSpec(b);
 		assertEquals(res, 1);
@@ -55,7 +55,7 @@ public class TestRoomSpecDAO {
 	
 	@Test
 	public void testGetRoomsSpecByCap() throws SQLException {
-		RoomSpecDAOImpl r = new RoomSpecDAOImpl();
+		RoomSpecDAOImpl r = RoomSpecDAOImpl.getInstance();
 		List <RoomSpecBean> rooms = new ArrayList();
 		RoomSpecBean bean = new RoomSpecBean();
 		bean.setCap("00133");
@@ -65,7 +65,7 @@ public class TestRoomSpecDAO {
 	
 	@Test
 	public void testGetOrderedRoomsSpec() throws SQLException {
-		RoomSpecDAOImpl r = new RoomSpecDAOImpl();
+		RoomSpecDAOImpl r = RoomSpecDAOImpl.getInstance();
 		List <RoomSpecBean> rooms = new ArrayList();
 		rooms = r.getOrderedRoomsSpec();
 		assertEquals(1, rooms);
@@ -73,7 +73,7 @@ public class TestRoomSpecDAO {
 	
 	@Test
 	public void testGetRoomsSpecByDate() throws SQLException {
-		RoomSpecDAOImpl r = new RoomSpecDAOImpl();
+		RoomSpecDAOImpl r = RoomSpecDAOImpl.getInstance();
 		List <RoomSpecBean> rooms = new ArrayList();
 		RoomSpecBean bean = new RoomSpecBean();
 		bean.setDate("2020-12-10");
@@ -83,13 +83,10 @@ public class TestRoomSpecDAO {
 	
 	@Test
 	public void testGetAllRoomsSpec() throws SQLException {
-		RoomSpecDAOImpl r = new RoomSpecDAOImpl();
+		RoomSpecDAOImpl r = RoomSpecDAOImpl.getInstance();
 		List <RoomSpecBean> rooms = new ArrayList();
 		rooms = r.getAllRoomsSpec();
 		assertEquals(1, rooms);
 	}
-	
-	
-	
 	
 }
