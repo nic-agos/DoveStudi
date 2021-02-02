@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="1280.0" spacing="50.0">
+         <children>
+            <Label text="Available Rooms for Your Group">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Calisto MT" size="41.0" />
+               </font>
+            </Label>
+            <ListView fx:id="roomForGroupsList" prefHeight="490.0" prefWidth="1230.0">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </ListView>
+            <Button fx:id="backBtn" mnemonicParsing="false" text="Back" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
