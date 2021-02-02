@@ -23,7 +23,7 @@ public class GenericTester {
 	
 		accountInput.setCf("GSTNCL99C23H501K");
 		
-		accountInput.setName("Niccolò");
+		accountInput.setName("Niccolo");
 		
 		accountInput.setSurname("Agostinelli");
 	
