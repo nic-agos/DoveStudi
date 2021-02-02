@@ -54,10 +54,10 @@
 		<div class="row" id="tab">
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item">
-                    	<a class="nav-link" id="home-tab" data-toggle="tab" href="AccountMyFutReservations.jsp" role="tab" aria-controls="home" aria-selected="false">Future Reservations</a>
+                    	<a class="nav-link"href="AccountMyFutReservations.jsp" role="tab" aria-controls="home" aria-selected="false">Future Reservations</a>
                     </li>
                     <li class="nav-item">
-                     	<a class="nav-link active" id="profile-tab" data-toggle="tab" href="AccountMyPastReservations.jsp" role="tab" aria-controls="profile" aria-selected="true">Past Reservations</a>
+                     	<a class="nav-link active" href="AccountMyPastReservations.jsp" role="tab" aria-controls="profile" aria-selected="true">Past Reservations</a>
                     </li>       
 			</ul>
 		</div>

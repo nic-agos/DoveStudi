@@ -121,21 +121,31 @@
 	  			</div>
 		  				<div class="form-group">
 		    				<label for="roomDescription">Description</label>
-		    				<textarea class="form-control" id="description" name="description" rows="3" style="max-height:100px;"></textarea>
+		    				<input type="text" class="form-control" id="description" name="description"  style="height:100px;"></textarea>
 		  				</div>
 		  		<div class="row">
-		  			<div class="col -md-8">	
-		  				<div class="form-group">
-		    				<label for="maxSeats">Start time</label>
-		    				<input type="text" class="form-control" id="startTime" name="startTime">
-		  				</div>
-		  			</div>
-		  			<div class="col -md-8">	
-		  				<div class="form-group">
-		    				<label for="maxSeats">End time</label>
-		    				<input type="text" class="form-control" id="endTime" name="endTime">
-		  				</div>
-		  			</div>
+		  		<!-- Start time -->
+	  				<div class="col-md-8">
+           				<select class="custom-select" id="inputGroupSelect01">
+						   <!-- <option selected>Study grade</option> -->
+						    <option value="1">Elementary school</option>
+						    <option value="2">Middle school</option>
+						    <option value="3">High School</option>
+						    <option value="4">University</option>
+						    <option value="5">PhD</option>
+						</select>
+           			</div>
+           			<!-- End time -->
+		  			<div class="col-md-8">
+           				<select class="custom-select" id="inputGroupSelect01">
+						   <!-- <option selected>Study grade</option> -->
+						    <option value="1">Elementary school</option>
+						    <option value="2">Middle school</option>
+						    <option value="3">High School</option>
+						    <option value="4">University</option>
+						    <option value="5">PhD</option>
+						</select>
+           			</div>
 		  		</div>
 			
 			<div class="container" style="text-align:center; margin-top:480px; margin-bottom:60px;">
@@ -143,8 +153,8 @@
     				<button type="button" id="postBtn" name = "postBtn" class="btn btn-outline-warning"data-toggle="modal" data-target="#postRoomModal"><a>Post Room</a></button>
   				</div>
 			</div>
+			</form>
 		</div>
-		
 		<!-- Modal -->
 	<div class="modal fade" id="postRoomModal" tabindex="-1" role="dialog" aria-labelledby="postRoomModal" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered" role="document">
@@ -160,12 +170,11 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-	        <button type="submit" id="confirmBtn" name="confirmBtn" class="btn btn-outline-warning">Yes</a></button>
+	        <button type="submit" id="confirmBtn" name="confirmBtn" class="btn btn-outline-warning">Yes</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
-	</form>
 
 		
 	

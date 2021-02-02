@@ -55,10 +55,10 @@
 	<div class="row">
 		<ul class="nav nav-tabs" id="myTab" role="tabList" style="margin-left:300px; margin-top:30px;">
 			<li class="nav-item">
-				<a class="nav-link" id="home-tab" data-toggle="tab" href="OtherAccount.jsp" >Info</a>
+				<a class="nav-link" id="home-tab"href="OtherAccount.jsp" >Info</a>
 			</li>
 			<li class="nav-item">
-              	<a class="nav-link active" id="profile-tab" data-toggle="tab" href="OtherAccountReviews.jsp">Reviews</a>
+              	<a class="nav-link active" id="profile-tab" href="OtherAccountReviews.jsp">Reviews</a>
             </li>
 			
 		</ul>

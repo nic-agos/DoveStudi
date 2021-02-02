@@ -60,10 +60,10 @@
                         		<p><a href="OtherAccount.jsp">Luca456</a></p>
                             </div>
                             <div class="col-md-2">
-                              	<label>Date:</label>
+                              	<label>Rating:</label>
                             </div>
                             <div class="col-md-3">
-                        		<p>30-06-2020</p>
+                        		<p>4/5</p>
                             </div>
                         </div>
                         <div class="row">
@@ -91,10 +91,10 @@
                         		<p><a href="OtherAccount.jsp">Mario123</a></p>
                             </div>
                             <div class="col-md-2">
-                              	<label>Date:</label>
+                              	<label>Rating:</label>
                             </div>
                             <div class="col-md-3">
-                        		<p>23-06-2020</p>
+                        		<p>3/5</p>
                             </div>
                         </div>
                         <div class="row">

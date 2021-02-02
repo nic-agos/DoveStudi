@@ -25,7 +25,7 @@
 			
 			res = lContr.login(accountBean);
 			if (res != null){
-				
+
 				String redirectURL = "http://localhost:8080/DoveStudi.git/AccountPersInfo.jsp";
 				response.sendRedirect(redirectURL);		
 			}

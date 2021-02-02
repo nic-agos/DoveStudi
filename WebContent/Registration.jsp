@@ -82,8 +82,15 @@ boolean res1 = false;
 				</div>
 				<div class="row" id="line">
 					<div class="col-md-6">
-						<input type="text" class="form-control" id="studyGrade" name="studyGrade" placeHolder="Study Grade" required/>
-					</div>
+            				<select class="custom-select" id="inputGroupSelect01">
+							   <!-- <option selected>Study grade</option> -->
+							    <option value="1">Elementary school</option>
+							    <option value="2">Middle school</option>
+							    <option value="3">High School</option>
+							    <option value="4">University</option>
+							    <option value="5">PhD</option>
+							</select>
+            			</div>
 					<div class="col-md-6">
 						<input type="text" class="form-control" id="school" name="school" placeHolder="School" required/>
 					</div>

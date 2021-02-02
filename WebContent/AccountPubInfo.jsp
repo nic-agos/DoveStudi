@@ -10,7 +10,11 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.0.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </head>
 
@@ -30,9 +34,9 @@
 		 <ul>
 		 	<li style="background:#FF5500; color:#ffffff"><a style="font-size:20px; font-weight:bold; background-color:#FF5500;">#DoveStudi</a></li>
 		 	<li><a href="SearchRoomsHost.jsp">Search for Rooms</a></li>
-		 	<li><a href="AccPubInfo.jsp">My Account</a></li>
+		 	<li><a href="AccountPubInfo.jsp">My Account</a></li>
 		 	<li><a href="MyGroups.jsp">My Groups</a></li>
-		 	<li><a href="AccountMyFutReservations.jsp">My Reservations</a></li>
+		 	<li><a href="AccountMyReservations.jsp">My Reservations</a></li>
 		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
 		 	<li><a href="AccountMyRooms.jsp">My Rooms</a></li>
 		 	<li><a href="PostRoom.jsp">Post a Room</a></li>
@@ -45,18 +49,18 @@
 			<h1 style="font-weight:600; font-family:sans-serif;margin-top:50px; margin-left:0px;">My Account</h1>
 		</div>
 		<div class="col-md-6" style="margin-top:20px;">
-			<p class="profile-rating">HOST RATE : <span>8/10</span> </p>
-			<p class="profile-rating">GUEST RATE : <span>8/10</span> </p>
+			<p class="profile-rating">HOST RATE : <span>4/5</span> </p>
+			<p class="profile-rating">GUEST RATE : <span>3/5</span> </p>
 		</div>
 	</div>
 	
 	<div class="row">
 		<ul class="nav nav-tabs" id="myTab" role="tabList" style="margin-left:300px; margin-top:30px;">
 			<li class="nav-item">
-				<a class="nav-link active" id="home-tab" data-toggle="tab" href="AccPubInfo.jsp" >Public Info</a>
+				<a class="nav-link active" href="AccountPubInfo.jsp" >Public Info</a>
 			</li>
 			<li class="nav-item">
-              	<a class="nav-link" id="profile-tab" data-toggle="tab" href="AccountPersInfo.jsp">Personal Info</a>
+              	<a class="nav-link" href="AccountPersInfo.jsp">Personal Info</a>
             </li>
 			
 		</ul>
@@ -107,97 +111,92 @@
 	
 	 <div style="position:absolute;top:0px;right:0px;width:25%;height:100%;">
 		 <div class="row">
-	     	<button class="btn btn-outline-warning" id="btn" style="margin-top:50px;"><a href="EditProfile.jsp">Edit profile</a></button>
-	     </div>
-	     <div class="row">
-	     	<button class="btn btn-outline-warning" id="btn" style="margin-top:30px;"><a href="AccountMyPastReservations.jsp">Make a Review</button>
+	     	<button class="btn btn-outline-warning" type="button"id="btn" style="margin-top:50px;"data-toggle="modal" data-target="#buyTokens">Buy Tokens</button>
 	     </div>
 	     <div class="row">
 			<button class="btn btn-outline-warning" id="btn"style="margin-top:30px;"><a href="PostRoom.jsp">Post Room</a></button>
 		</div>
     </div>
-	<!-- <div class= "container head-profile">
-		<form method="post" style="width:900px;">
-			<div class="row">				
-				<div class="col-md-6">
-					<div class="profile-head">
-						<h1 style="font-weight:600;">My name</h1>
-						<p class="profile-rating">HOST RATE : <span>8/10</span> </p>
-						<p class="profile-rating">GUEST RATE : <span>8/10</span> </p>
-						<p class="profile-rating">EARNED TOKENS: <span>7</span></p>
-						<p class="profile-rating">SPENT TOKENS: <span>7</span></p>
-					</div>
-				</div>
-				
-				<div class="col-md-8" id="tab" style="margin-left:300px; margin-top:50px;">
-					<ul class="nav nav-tabs" id="myTab" role="tablist">
-						<li class="nav-item">
-                    		<a class="nav-link active" id="home-tab" data-toggle="tab" href="AccountPublicInfo.jsp" role="tab" aria-controls="home" aria-selected="true">Public Info</a>
-                    	</li>
-                    	<li class="nav-item">
-                     		<a class="nav-link" id="profile-tab" data-toggle="tab" href="AccountPersonalInfo.jsp" role="tab" aria-controls="profile" aria-selected="false">Personal Info</a>
-                    	</li>
-					</ul>
-				</div>
-				</div>
-				<div class="row">
-				<div class="col-md-12" style="margin-left:340px; margin-top:-170px;">
-					<div class="tab-content profile-tab" id="myTabContent">
-						<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" style="width:600px;">
-							<div class="row">
-	                        	<div class="col-md-6">
-	                              	<label>User Id:</label>
-	                            </div>
-	                            <div class="col-md-6">
-	                        		<p>Kshiti123</p>
-	                            </div>
-	                        </div>
-	                        <div class="row">
-	                        	<div class="col-md-6">
-	                              	<label>Email:</label>
-	                            </div>
-	                            <div class="col-md-6">
-	                        		<p>kshitighelani@gmail.com</p>
-	                            </div>
-	                        </div>
-	                        <div class="row">
-	                        	<div class="col-md-6">
-	                              	<label>Birthdate:</label>
-	                            </div>
-	                            <div class="col-md-6">
-	                        		<p>02/07/72</p>
-	                            </div>
-	                        </div>
-	                        <div class="row">
-	                        	<div class="col-md-6">
-	                              	<label>Study grade:</label>
-	                            </div>
-	                            <div class="col-md-8">
-	                        		<p>High school Diploma</p>
-	                            </div>
-	                        </div>
-	               			<div class="row">
-	                        	<div class="col-md-6">
-	                              	<label>School:</label>
-	                            </div>
-	                            <div class="col-md-6">
-	                        		<p>Methuen Highschool</p>
-	                            </div>
-	                        </div>
-						</div>
-					</div>
-			</div></div>
-				
-			<div class="row">
-				<div class="col-md-2">
-					<button class="btn btn-outline-warning" id="btn">Edit profile</button>
-					<button class="btn btn-outline-warning" id="btn">Make a Review</button>
-					<button class="btn btn-outline-warning" id="btn">Post Room</button>
-                </div>
-			</div>
-		</form>
-	</div> -->
 	
+		<!-- Buy Tokens Modal -->
+	<div class="modal fade bd-example-modal-lg" id="buyTokens" tabindex="-1" role="dialog" aria-labelledby="buyTokens" aria-hidden="true">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	      	<img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png" alt="PayPal" />
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	      	<form>
+          		<div class="form-group">
+	      			<div class="row" style="margin-left:30px;">
+            			
+            				<p>If you have finished your tokens you can buy them here through PayPal! Each token costs 2$
+            			
+            		</div>
+            		
+            		<div class="row" style="margin-top:20px; margin-left:30px;">
+            			<div class="col-md-10">
+            				<select class="custom-select" id="inputGroupSelect01">
+							    <option selected>Select the number of tokens you want to buy:</option>
+							    <option value="1">1 at 2$</option>
+							    <option value="2">2 at 4$</option>
+							    <option value="3">3 at 6$</option>
+							    <option value="4">4 at 8$</option>
+							    <option value="5">5 at 10$</option>
+							    <option value="1">6 at 12$</option>
+							    <option value="2">7 at 14$</option>
+							    <option value="3">8 at 16$</option>
+							    <option value="4">9 at 18$</option>
+							    <option value="5">10 at 20$</option>
+							</select>
+            		</div>
+            		<div class="row" style="margin-left:60px;margin-top:15px;">
+            			<a data-toggle="modal" data-target="#payment" href="#" style="margin-top:10px; color:#ff5500;">Or buy 5 tokens at 5$!</a>
+            			<h3><span class="badge badge-secondary">Offer</span></h3>
+            		</div>
+          		</div>
+          		</div>
+	      	</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	        <button type="button" id="btn"class="btn btn-outline-warning" data-toggle="modal" data-target="#payment">Go to payment</a></button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+		<!-- Payment Modal -->
+	<div class="modal fade bd-example-modal-lg" id="payment" tabindex="-1" role="dialog" aria-labelledby="payment" aria-hidden="true">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	      	<img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png" alt="PayPal" />
+	        <h5 style="margin-left:40px;">Select a payment type:</h5>
+	       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	      	<!-- Set up a container element for the button -->
+    		<div id="paypal-button-container"></div>
+
+    		<!-- Include the PayPal JavaScript SDK -->
+    		<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+    		<script>
+		        // Render the PayPal button into #paypal-button-container
+		        paypal.Buttons().render('#paypal-button-container');
+		    </script>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	
 	<script>function toggleSideBar(){
 				document.getElementById("sidebar").classList.toggle("active");
