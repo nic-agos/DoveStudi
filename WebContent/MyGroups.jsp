@@ -29,8 +29,8 @@
 		</div>
 		 <ul>
 		 	<li style="background:#FF5500; color:#ffffff"><a style="font-size:20px; font-weight:bold; background-color:#FF5500;">#DoveStudi</a></li>
-		 	<li><a href="SearchRoomsHost.jsp">Search for Rooms</a></li>
-		 	<li><a href="AccPubInfo.jsp">My Account</a></li>
+		 	<li><a href="SearchRooms.jsp">Search for Rooms</a></li>
+		 	<li><a href="AccountPubInfo.jsp">My Account</a></li>
 		 	<li><a href="MyGroups.jsp">My Groups</a></li>
 		 	<li><a href="AccountMyFutReservations.jsp">My Reservations</a></li>
 		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
@@ -115,8 +115,9 @@
 	                   	</div>
 	                   	<div class="row">
 		                	<div class="col-md-12">
-		                    	<button class="btn btn-outline-warning"id="btn" style="margin-bottom:10px;margin-left:30px;"><a href="SearchRoomsHost.jsp">Book Room</a></button>
+		                    	<button class="btn btn-outline-warning"id="btn" style="margin-bottom:10px;margin-left:30px;"><a href="SearchRoomForGroups.jsp">Book Room</a></button>
 		                    	<button class="btn btn-outline-warning"data-toggle="modal" data-target="#deleteGroupModal"id="btn" style="margin-bottom:10px;margin-left:30px;">Delete Group</button>
+		                    	<button class="btn btn-outline-warning"data-toggle="modal" data-target="#addPersonModal"id="btn" style="margin-bottom:10px;margin-left:30px;">Add Person</button>
 		                    	<!-- da vedere se mettere l'opzione di modificare il gruppo -->
 								<!-- <button class="btn btn-outline-warning"data-toggle="modal" data-target="#modifyGroupModal"id="btn" style="margin-bottom:10px;margin-left:30px;">Modify Group</button> -->		                	
 		                	</div>
@@ -164,21 +165,34 @@
             <input type="text" class="form-control" id="recipient-name">
           </div>
         </form>
-        <form class="d-flex">
-		        <input class="form-control me-2" type="search" placeholder="Username" aria-label="Search">
-		        <button class="btn btn-outline-warning" id="btn"type="submit">Add</button>
-		</form>
-        
-    <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">...</div>
-      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
-      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
-      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
-    </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-outline-warning" id="btn"><a href="MyGroups.jsp">Create Group</button>
+        <button type="button" class="btn btn-outline-warning" id="btn"><a href="MyGroups.jsp">Create Group</a></button>
+      </div>
+    </div>
+  </div></div>
+  
+  <!-- Add Person Modal -->
+<div class="modal fade bd-example-modal-lg" id="addPersonModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Person</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="d-flex">
+		        <input class="form-control me-2" type="search" placeholder="Username" aria-label="Search">
+		        <button class="btn btn-outline-warning" id="btn"type="submit">Search</button>
+		</form>
+		<!-- per ogni utente trovato con la ricerca, visulizzarlo sotto che si può selezionare-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-warning" id="btn"><a href="MyGroups.jsp">Add</a></button>
       </div>
     </div>
   </div></div>

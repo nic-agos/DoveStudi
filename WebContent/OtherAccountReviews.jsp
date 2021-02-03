@@ -31,8 +31,8 @@
 		</div>
 		 <ul>
 		 	<li style="background:#FF5500; color:#ffffff"><a style="font-size:20px; font-weight:bold; background-color:#FF5500;">#DoveStudi</a></li>
-		 	<li><a href="SearchRoomsHost.jsp">Search for Rooms</a></li>
-		 	<li><a href="AccPubInfo.jsp">My Account</a></li>
+		 	<li><a href="SearchRooms.jsp">Search for Rooms</a></li>
+		 	<li><a href="AccountPubInfo.jsp">My Account</a></li>
 		 	<li><a href="MyGroups.jsp">My Groups</a></li>
 		 	<li><a href="AccountMyReservations.jsp">My Reservations</a></li>
 		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
@@ -115,12 +115,13 @@
 		    <br>
 		    <div class="row">
 		      	<div class="col-md-8">
-		        	<h5 class="modal-title" id="exampleModalLongTitle">Mario78</h5> 
+		        	<h5 class="modal-title" id="exampleModalLongTitle">Mario78</h5>
 		        </div>
 		        <div class="col-md-5">
 		        	<h5>006547349</h5>
 		        </div>
 		    </div>   
+		     <h4><span class="badge bg-secondary" style="color:#ffffff;">Guest Review</span></h4>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>

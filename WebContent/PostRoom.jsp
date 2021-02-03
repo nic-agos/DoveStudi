@@ -19,13 +19,19 @@
 	if (request.getParameter("confirmBtn")!= null) {
 		
 		System.out.println("entrato");
+		
 		System.out.println(roomBean.getName());
 		System.out.println(roomBean.getNumPartecipants());
 		System.out.println(roomBean.getSpecification());
 		System.out.println(roomBean.getAddress());
+		System.out.println(roomBean.getId());
+		System.out.println(roomSpecBean.getCap());
+		System.out.println(roomSpecBean.getDescription());
 		RoomController rContr = RoomController.getInstance();
 		
 		try {
+			//qui va preso il codice fiscale della persona che sta postando la room
+			roomBean.setOwner("kkkkkkkkkkkkkkkk");
 			res = rContr.postRoom(roomBean, roomSpecBean);
 			if(res) {
 				
@@ -56,6 +62,10 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- Cose aggiunte -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 </head>
 <body>
 	
@@ -71,8 +81,8 @@
 		</div>
 		 <ul>
 		 	<li style="background:#000000; color:#000000"><a style="font-size:22px;  background-color:#000000;">#DoveStudi</a></li>
-		 	<li><a href="SearchRoomsHost.jsp">Search for Rooms</a></li>
-		 	<li><a href="AccPubInfo.jsp">My Account</a></li>
+		 	<li><a href="SearchRooms.jsp">Search for Rooms</a></li>
+		 	<li><a href="AccountPubInfo.jsp">My Account</a></li>
 		 	<li><a href="MyGroups.jsp">My Groups</a></li>
 		 	<li><a href="AccountMyFutReservations.jsp">My Reservations</a></li>
 		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
@@ -84,17 +94,17 @@
 
 		<h1 style="font-family: sans-serif; font-weight:600;">Post a Room</h1>
 		<div class="card" id="card">
-			<form>
+			<form id="form_post_room" method="POST">
 				<div class="row">
 					<div class="col -md-8">
 		  				<div class="form-group">
-		    				<label for="adName">Name</label>
+		    				<label for="name">Name</label>
 		    				<input type="text" class="form-control" id="name" name="name">
 		  				</div>
 		  			</div>
 		  			<div class="col -md-8">
 		  				<div class="form-group">
-		    				<label for="roomAddress">Address</label>
+		    				<label for="address">Address</label>
 		    				<input type="text" class="form-control" id="address" name="address">
 		  				</div>
 	  				</div>
@@ -102,44 +112,44 @@
 	  			<div class="row">
 	  				<div class="col -md-8">
 		  				<div class="form-group">
-		    				<label for="maxSeats">Date</label>
+		    				<label for="date">Date</label>
 		    				<input type="date" id="date" name="date" placeholder="Birth date" value="" required><!-- style="width:100%; font-size:16px; padding: 8px 0; margin: 8px 0; border-bottom: 1px solid #000000;" -->
 						</div>
 					</div>
 					<div class="col -md-12">	
 		  				<div class="form-group">
-		    				<label for="maxSeats">CAP</label>
+		    				<label for="cap">CAP</label>
 		    				<input type="text" class="form-control" id="cap" name="cap">
 		  				</div>
 		  			</div>	
 		  			<div class="col -md-4">	
 		  				<div class="form-group">
-		    				<label for="maxSeats">Max seats</label>
+		    				<label for="numPartecipants">Max seats</label>
 		    				<input type="text" class="form-control" id="numPartecipants" name="numPartecipants">
 		  				</div>
 		  			</div>
 	  			</div>
 		  				<div class="form-group">
-		    				<label for="roomDescription">Description</label>
-		    				<input type="text" class="form-control" id="description" name="description"  style="height:100px;"></textarea>
+		    				<label for="description">Description</label>
+		    				<input type="text" class="form-control" id="description" name="description"  style="height:100px;">
 		  				</div>
 		  		<div class="row">
 		  		<!-- Start time -->
-	  				<div class="col-md-8">
-           				<select class="custom-select" id="inputGroupSelect01">
-						   <!-- <option selected>Study grade</option> -->
-						    <option value="1">Elementary school</option>
-						    <option value="2">Middle school</option>
+	  				<div class="col-md-6">
+           				<select class="custom-select" id="startTime" name="startTime">
+						   <!-- I value sono i valori che ritorna la selezione -->
+						    <option value="1">11:00</option>
+						    <option value="2">10:30</option>
 						    <option value="3">High School</option>
 						    <option value="4">University</option>
 						    <option value="5">PhD</option>
 						</select>
            			</div>
            			<!-- End time -->
-		  			<div class="col-md-8">
-           				<select class="custom-select" id="inputGroupSelect01">
-						   <!-- <option selected>Study grade</option> -->
-						    <option value="1">Elementary school</option>
+		  			<div class="col-md-6">
+           				<select class="custom-select" id="endTime" name="endTime">
+						   <!-- I value sono i valori che ritorna la selezione  -->
+						    <option value="1">12:00</option>
 						    <option value="2">Middle school</option>
 						    <option value="3">High School</option>
 						    <option value="4">University</option>
@@ -148,13 +158,13 @@
            			</div>
 		  		</div>
 			
-			<div class="container" style="text-align:center; margin-top:480px; margin-bottom:60px;">
+			<div class="container" style="text-align:center; margin-top:70px; margin-bottom:60px;">
   				<div class="vertical-center">
-    				<button type="button" id="postBtn" name = "postBtn" class="btn btn-outline-warning"data-toggle="modal" data-target="#postRoomModal"><a>Post Room</a></button>
+    				<!-- <button type="submit" id="postBtn" name = "postBtn" class="btn btn-outline-warning"data-toggle="modal" data-target="#postRoomModal">Post Room</button> -->
+  					<input type="button" name="postBtn" value="Post Room" id="postBtn" data-toggle="modal" data-target="#postRoomModal" class="btn btn-outline-warning" />
   				</div>
 			</div>
-			</form>
-		</div>
+			
 		<!-- Modal -->
 	<div class="modal fade" id="postRoomModal" tabindex="-1" role="dialog" aria-labelledby="postRoomModal" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered" role="document">
@@ -170,15 +180,32 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-	        <button type="submit" id="confirmBtn" name="confirmBtn" class="btn btn-outline-warning">Yes</button>
+	        <!-- <button type="submit" id="confirmBtn" name="confirmBtn" class="btn btn-outline-warning">Yes</button> -->
+	      	<button id="confirmBtn" id="confirmBtn"name="confirmBtn" class="btn btn-success success">Yes</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
+		<!-- Cose aggiunte -->
+			<script>
+				$('#postRoomBtn').click(function() {
+				    $('#uname').text($('#username').val());
+				    $('#psw').text($('#password').val());
+				});
+			
+				$('#confirmBtn').click(function(){
+				   $('#form_post_room').submit();
+				});
+				<%
+					System.out.println(roomBean.getAddress());
+					System.out.println(roomSpecBean.getStartTime());
+				%>
+			</script>
+	</form>
+</div>
 
-		
-	
-	
+
+
 	<script>function toggleSideBar(){
 				document.getElementById("sidebar").classList.toggle("active");
 			}	

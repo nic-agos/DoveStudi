@@ -28,8 +28,8 @@
 		</div>
 		 <ul>
 		 	<li style="background:#FF5500; color:#ffffff"><a style="font-size:20px; font-weight:bold; background-color:#FF5500;">#DoveStudi</a></li>
-		 	<li><a href="SearchRoomsHost.jsp">Search for Rooms</a></li>
-		 	<li><a href="AccPubInfo.jsp">My Account</a></li>
+		 	<li><a href="SearchRooms.jsp">Search for Rooms</a></li>
+		 	<li><a href="AccountPubInfo.jsp">My Account</a></li>
 		 	<li><a href="MyGroups.jsp">My Groups</a></li>
 		 	<li><a href="AccountMyFutReservations.jsp">My Reservations</a></li>
 		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
@@ -52,6 +52,9 @@
 				<div class="card-header" style="font-size:20px;font-weight:600;">Done reviews</div>
 					<div class="card">
   					<div class="card-body">
+  						<div class="row">
+  						 	<h4><span class="badge bg-secondary" style="color:#ffffff; margin-left:15px;">Guest Review</span></h4>
+  						</div>
 						<div class="row">
                         	<div class="col-md-4">
                               	<label>Reviewed user:</label>
@@ -83,6 +86,9 @@
 				<div class="card-header"style="font-size:20px;font-weight:600;">Received reviews</div>
 				<div class="card">
   				<div class="card-body">
+  						<div class="row">
+  						 	<h4><span class="badge bg-secondary" style="color:#ffffff;margin-left:15px;">Guest Review</span></h4>
+  						</div>
 						<div class="row">
                         	<div class="col-md-4">
                               	<label>Reviewing user:</label>

@@ -33,7 +33,7 @@
 		</div>
 		 <ul>
 		 	<li style="background:#FF5500; color:#ffffff"><a style="font-size:20px; font-weight:bold; background-color:#FF5500;">#DoveStudi</a></li>
-		 	<li><a href="SearchRoomsHost.jsp">Search for Rooms</a></li>
+		 	<li><a href="SearchRooms.jsp">Search for Rooms</a></li>
 		 	<li><a href="AccountPubInfo.jsp">My Account</a></li>
 		 	<li><a href="MyGroups.jsp">My Groups</a></li>
 		 	<li><a href="AccountMyReservations.jsp">My Reservations</a></li>

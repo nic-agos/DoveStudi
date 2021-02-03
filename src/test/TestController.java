@@ -24,7 +24,7 @@ public class TestController {
 		RoomBean roomBean = new RoomBean();
 		RoomSpecBean roomSpecBean = new RoomSpecBean();
 		roomBean.setName("bello");
-		roomBean.setAdress("via");
+		roomBean.setAddress("via");
 		roomBean.setNumPartecipants(4);
 		roomBean.setNumAvailableSeats(4);
 		roomBean.setOwner("1234567890123456");

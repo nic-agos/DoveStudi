@@ -55,18 +55,17 @@
 		          <a class="nav-link" href="SearchRoomsHost.jsp">Host name</a>
 		        </li>
 		        <li class="nav-item">
-		          <a class="nav-link active" aria-current="page" href="SearchRoomsCAP.jsp">CAP</a>
+		          <a class="nav-link" href="SearchRoomsCAP.jsp">CAP</a>
 		        </li>
 		        <li class="nav-item">
 		          <a class="nav-link" href="SearchRoomsDate.jsp">Date</a>
 		        </li>
 		        <li class="nav-item">
-		          <a class="nav-link" href="SearchRoomsAvPl.jsp">Available places</a>
+		          <a class="nav-link active" aria-current="page" href="SearchRoomsAvPl.jsp">Available places</a>
 		        </li>
 		      </ul>
 		      <form class="d-flex">
-		        <input class="form-control me-2" type="search" placeholder="CAP" aria-label="Search">
-		        <button class="btn btn-outline-warning" id="btn" type="submit">Search</button>
+		        <input class="form-control me-2" type="search" placeholder="Available places" aria-label="Search" value="# of group partecipants" readonly>
 		      </form>
 		    </div>
 		  </div>
@@ -131,7 +130,7 @@
 	                <p><a href="OtherAccount.jsp">Mario98, </a> 
 	          		<p><a href="OtherAccount.jsp">Luca.p</a>	                        	
 			</div>
-    		<button id="btn" data-toggle="modal" data-target="#exampleModalCenter"class="btn btn-outline-warning">Book Room</button>
+    		<button class="btn btn-outline-warning" id="btn"data-toggle="modal" data-target="#exampleModalCenter">Book Room</button>
  		 </div>
 	</div>
 	

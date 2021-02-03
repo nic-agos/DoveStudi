@@ -27,7 +27,7 @@
 			if (res != null){
 
 				String redirectURL = "http://localhost:8080/DoveStudi.git/AccountPersInfo.jsp";
-				response.sendRedirect(redirectURL);		
+				response.sendRedirect(redirectURL);
 			}
 			else{
 				System.out.println("errore");
@@ -62,7 +62,7 @@
 			<div class="row">
 	  			<div class="col xs-2">
 	  				<div class="form-group">
-	    				<input type="text" class="form-control" name="email" id="email" placeHolder="Enter Email" required>
+	    				<input type="text" class="form-control" name="email" id="email" placeHolder="Enter Email" required="">
 	  				</div>
 	  			</div>
 	 		</div>

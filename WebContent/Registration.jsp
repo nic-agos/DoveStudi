@@ -82,13 +82,13 @@ boolean res1 = false;
 				</div>
 				<div class="row" id="line">
 					<div class="col-md-6">
-            				<select class="custom-select" id="inputGroupSelect01">
+            				<select class="custom-select" id="studyGrade" name="studyGrade">
 							   <!-- <option selected>Study grade</option> -->
-							    <option value="1">Elementary school</option>
-							    <option value="2">Middle school</option>
-							    <option value="3">High School</option>
-							    <option value="4">University</option>
-							    <option value="5">PhD</option>
+							    <option value="Elementary School">Elementary school</option>
+							    <option value="Middle School">Middle school</option>
+							    <option value="High School">High School</option>
+							    <option value="University">University</option>
+							    <option value="PhD">PhD</option>
 							</select>
             			</div>
 					<div class="col-md-6">
