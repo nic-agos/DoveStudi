@@ -146,7 +146,7 @@
 	      				<div class="col-md-2">
             				<label for="title" class="col-form-label">Rating:</label>
             			</div>
-            			<div class="col-md-8">
+            			<div class="col-md-3">
             				<select class="custom-select" id="inputGroupSelect01">
 							    <option selected>Choose a number from 1 to 5</option>
 							    <option value="1">One</option>
@@ -154,6 +154,15 @@
 							    <option value="3">Three</option>
 							    <option value="4">Four</option>
 							    <option value="5">Five</option>
+							</select>
+            			</div>
+            			<div class="col-md-3">
+            				<label for="title" class="col-form-label">You are reviewing as:</label>
+            			</div>
+            			<div class="col-md-3">
+            				<select class="custom-select" id="inputGroupSelect01">							
+							    <option value="1">Host</option>
+							    <option value="2">Guest</option>
 							</select>
             			</div>
             		</div>
