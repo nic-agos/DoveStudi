@@ -1,13 +1,13 @@
 package logic.exception;
 
-public class PersonException extends Exception{
+public class ReviewException extends Exception {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public PersonException(String message) {
+	public ReviewException(String message) {
 		super(message);
 	}
 }

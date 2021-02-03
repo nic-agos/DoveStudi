@@ -3,8 +3,7 @@ package logic.controller;
 import java.sql.SQLException;
 
 import logic.bean.*;
-import logic.model.dao.AccountDAOImpl;
-import logic.model.dao.PersonDAOImpl;
+import logic.model.dao.*;
 import logic.exception.*;
 import logic.model.*;
 

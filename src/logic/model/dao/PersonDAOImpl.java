@@ -15,7 +15,8 @@ public class PersonDAOImpl implements PersonDAO {
 	private static final String DELETE_PERSON_QUERY = "DELETE FROM person WHERE ID = ?";
 	private static final String GET_PERSON_ID_QUERY = "SELECT ID FROM person WHERE Account = ?";
 	private static final String GETALL_PERSONS_QUERY = "SELECT * FROM person";
-	private static final String UPDATE_PERSON_RATINGS_QUERY = "UPDATE person SET Host_Rating = ?, Guest_Rating = ? WHERE ID = ?";
+	private static final String UPDATE_HOST_RATING_QUERY = "UPDATE person SET Host_Rating = ? WHERE ID = ?";
+	private static final String UPDATE_GUEST_RATING_QUERY = "UPDATE person SET Guest_Rating = ? WHERE ID = ?";
 	private static final String GET_PERSON_QUERY = "SELECT * FROM person WHERE ID = ?";
 	private static final String GET_PERSON_ACCOUNT_QUERY = "SELECT * FROM person WHERE Account = ?";
 	private static final String GET_GROUP_PARTECIPANTS_QUERY = "SELECT Partecipant FROM group_a WHERE Name = ? AND Admin = ?";
@@ -158,7 +159,7 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 	
 	@Override
-	public int updatePerson(PersonBean personBean) throws SQLException {
+	public int updateGuestRating(PersonBean personBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
 		Connection connection = null;
@@ -166,10 +167,9 @@ public class PersonDAOImpl implements PersonDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(UPDATE_PERSON_RATINGS_QUERY);
-			stmt.setDouble(1, personBean.getHostRating());
-			stmt.setDouble(2, personBean.getGuestRating());
-			stmt.setInt(3, personBean.getId());
+			stmt = connection.prepareStatement(UPDATE_GUEST_RATING_QUERY);
+			stmt.setDouble(1, personBean.getGuestRating());
+			stmt.setInt(2, personBean.getId());
 			
 			return stmt.executeUpdate();
 			
@@ -183,6 +183,31 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 	}
 	
+	@Override
+	public int updateHostRating(PersonBean personBean) throws SQLException {
+		
+		PreparedStatement stmt = null;
+		Connection connection = null;
+		
+		try {
+			connection = DBConnection.getInstanceConnection().getConnection();
+			
+			stmt = connection.prepareStatement(UPDATE_HOST_RATING_QUERY);
+			stmt.setDouble(1, personBean.getHostRating());
+			stmt.setInt(2, personBean.getId());
+			
+			return stmt.executeUpdate();
+			
+		}finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
+			}
+		}
+	}
+
 	@Override
 	public PersonBean getPerson(PersonBean personBean) throws SQLException {
 		

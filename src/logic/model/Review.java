@@ -41,17 +41,9 @@ public class Review {
 	}
 	
 	public Review(ReviewBean reviewBean) throws SQLException {
-/*
+
 		this(reviewBean.getTitle(), reviewBean.getRating(), reviewBean.getDescritpion(), reviewBean.getTag());
-		
-		AccountDAOImpl dao1 = new AccountDAOImpl();
-		
-		this.reviewer = new Account(dao1.getAccount(reviewBean.getReviewer()));
-		
-		PersonDAOImpl dao2 = new PersonDAOImpl();
-		
-		this.reviewed = new Person(dao2.getPerson(reviewBean.getId()));
-*/		
+	
 		this.id = reviewBean.getId();
 		
 	}

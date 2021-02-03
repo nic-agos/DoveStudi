@@ -15,7 +15,8 @@ public class GroupDAOImpl implements GroupDAO{
 	private static final String DELETE_GROUP_QUERY = "DELETE FROM group_a WHERE Name = ? AND Admin = ?";
 	private static final String GET_GROUP_ID_QUERY = "SELECT ID FROM group_a WHERE Name = ? AND Admin = ?";
 	private static final String GET_ALL_GROUPS_QUERY = "SELECT * FROM group_a";
-	private static final String GET_ADMINISTERED_GROUPS_QUERY = "SELECT * FROM group_a WHERE Admin = ? AND Partecipant = ?";
+	private static final String GET_ALL_ADMINISTERED_GROUPS_QUERY = "SELECT * FROM group_a WHERE Admin = ? AND Partecipant = ?";
+	private static final String GET_ADMINISTERED_GROUP_QUERY = "SELECT * FROM group_a WHERE Name = ? AND Admin = ? AND Partecipant = ?";
 	private static final String GET_PARTICIPATING_GROUPS_QUERY = "SELECT * FROM group_a WHERE Partecipant = ?";
 	private static final String ADD_GROUP_PARTECIPANT_QUERY = "INSERT INTO group_a (Name, Admin, Num_Partecipants, Partecipant) VALUES (?, ?, ?, ?)";
 	private static final String UPDATE_NUM_PARTECIPANTS_GROUP = "UPDATE group_a SET Num_Partecipants = ? WHERE Name = ? AND Admin = ?";
@@ -157,7 +158,7 @@ public class GroupDAOImpl implements GroupDAO{
 	@Override
 	public List<GroupBean> getAllAdministeredGroups(AccountBean accountBean) throws SQLException {
 		
-		List<GroupBean> adminGroups = new ArrayList<>();
+		List<GroupBean> adminGroupsList = new ArrayList<>();
 		GroupBean group = null;
 		
 		PreparedStatement stmt = null;
@@ -171,19 +172,61 @@ public class GroupDAOImpl implements GroupDAO{
 			
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(GET_ADMINISTERED_GROUPS_QUERY);
+			stmt = connection.prepareStatement(GET_ALL_ADMINISTERED_GROUPS_QUERY);
 			stmt.setString(1, accountBean.getCf());
 			stmt.setInt(2, person.getId());
 			
 			ResultSet res = stmt.executeQuery();
 				while (res.next()) {
 					group = new GroupBean(res.getInt(1), res.getString(2), res.getString(3), res.getInt(4), res.getInt(5));
-					adminGroups.add(group);
+					adminGroupsList.add(group);
 				}
 				
 			res.close();
 			
-			return adminGroups;
+			return adminGroupsList;
+			
+		}finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (connection != null ) {
+				connection.close();
+			}
+		}
+	}
+
+//	take sin input group's name and admin and get the db row of the group's admin
+	public GroupBean getAdministeredGroup(GroupBean groupBean) throws SQLException {
+		
+		GroupBean adminGroup = null;
+		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
+		
+		PreparedStatement stmt = null;
+		Connection connection = null;
+		
+		PersonBean personBean;
+		AccountBean tempAccountBean = new AccountBean();
+		
+		try {
+			tempAccountBean.setCf(groupBean.getAdmin());
+			personBean = personDao.getPersonFromAccount(tempAccountBean);
+			
+			connection = DBConnection.getInstanceConnection().getConnection();
+			
+			stmt = connection.prepareStatement(GET_ADMINISTERED_GROUP_QUERY);
+			stmt.setString(1, groupBean.getName());
+			stmt.setString(2, groupBean.getAdmin());
+			stmt.setInt(3, personBean.getId());
+			
+			ResultSet res = stmt.executeQuery();
+				while (res.next()) {
+					adminGroup = new GroupBean(res.getInt(1), res.getString(2), res.getString(3), res.getInt(4), res.getInt(5));
+				}
+				
+			res.close();
+			
+			return adminGroup;
 			
 		}finally {
 			if (stmt != null) {

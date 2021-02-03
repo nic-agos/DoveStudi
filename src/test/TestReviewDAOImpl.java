@@ -16,8 +16,8 @@ public class TestReviewDAOImpl {
 	
 	private int id = 29;
 	private String title = "bel";
-	private String reviewer = "a";
-	private int reviewed = 19;
+	private String reviewer = "GSTNCL99C23H501K";
+	private int reviewed = 12;
 	private int rating = 4;
 	private String description = "bella";
 	private String tag = "guest";

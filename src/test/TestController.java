@@ -11,6 +11,7 @@ import logic.exception.*;
 import logic.model.Account;
 import logic.model.Person;
 import logic.model.Reservation;
+import logic.model.Review;
 import logic.model.Room;
 import logic.controller.*;
 import logic.bean.*;
@@ -42,8 +43,8 @@ public class TestController {
 	public void testSearchRoomByHost() throws DatabaseException, NotFoundException {
 		RoomController r = RoomController.getInstance();
 		PersonBean person = new PersonBean();
-		person.setUsername("h");
-		List<Room> rooms = r.searchByHost(person);
+		person.setUsername("s");
+		List<Room> rooms = r.searchRoomByHost(person);
 		System.out.println(rooms.get(0).getName());
 		System.out.println(rooms.get(0).getAddress());
 		System.out.println(rooms.get(0).getNumPartecipants());
@@ -56,16 +57,18 @@ public class TestController {
 	public void testSearchByCap() throws DatabaseException, NotFoundException {
 		RoomController r = RoomController.getInstance();
 		RoomSpecBean b = new RoomSpecBean();
-		b.setCap("00130");
-		List<Room> rooms = r.searchByCap(b);
+		b.setCap("00133");
+		List<Room> rooms = r.searchRoomByCap(b);
+		System.out.println(rooms.get(0).getName());
+		System.out.println(rooms.get(1).getName());
 	}
 	
 	@Test
 	public void testSearchByDate() throws DatabaseException, NotFoundException {
 		RoomController r = RoomController.getInstance();
 		RoomSpecBean b = new RoomSpecBean();
-		b.setDate("2019:01:30");
-		List<Room> rooms = r.searchByDate(b);
+		b.setDate("2021:02:03");
+		List<Room> rooms = r.searchRoomByDate(b);
 		System.out.println(rooms.get(0).getName());
 		System.out.println(rooms.get(0).getAddress());
 		System.out.println(rooms.get(0).getNumPartecipants());
@@ -76,9 +79,9 @@ public class TestController {
 	public void testSearchByAvailableSeats() throws DatabaseException, NotFoundException {
 		RoomController r = RoomController.getInstance();
 		RoomBean b = new RoomBean();
-		b.setNumAvailableSeats(5);
+		b.setNumAvailableSeats(3);
 		try {
-		List<Room> rooms = r.searchByAvailableSeats(b);
+		List<Room> rooms = r.searchRoomByAvailableSeats(b);
 		
 		  System.out.println(rooms.get(0).getName());
 		  System.out.println(rooms.get(0).getAddress());
@@ -118,8 +121,9 @@ public class TestController {
 	public void testGetMyRooms() throws DatabaseException, NotFoundException {
 		RoomController r = RoomController.getInstance();
 		AccountBean temp = new AccountBean();
-		temp.setCf("qqqqqqqqqqqqqqqq");
+		temp.setCf("1234567890123456");
 		List<Room> rooms = r.getMyRooms(temp);
+		System.out.println(rooms.get(0).getName());
 		
 	}
 	
@@ -127,17 +131,19 @@ public class TestController {
 	public void testGetRooms() throws DatabaseException, NotFoundException {
 		RoomController r = RoomController.getInstance();
 		List<Room> rooms = r.searchRooms();
+		System.out.println(rooms.get(0).getName());
+		System.out.println(rooms.get(1).getName());
 
 	}
 	
 	@Test
-	public void testBookRoom() throws DatabaseException, RoomException, AccountException, ReservationException {
-		RoomController r = RoomController.getInstance();
+	public void testMakeReservation() throws DatabaseException, RoomException, AccountException, ReservationException {
+		ReservationController r = ReservationController.getInstance();
 		AccountBean temp = new AccountBean();
 		temp.setCf("qqqqqqqqqqqqqqqq");
 		RoomBean temp2 = new RoomBean();
-		temp2.setId(17);
-		boolean res = r.bookRoom(temp2, temp);
+		temp2.setId(18);
+		boolean res = r.makeReservation(temp2, temp);
 		assertEquals(true, res);
 		
 	}
@@ -210,5 +216,118 @@ public class TestController {
 		System.out.println("Room Specification: "+list.get(0).getLinkedRoom().getSpecification().getId()+" "+list.get(0).getLinkedRoom().getSpecification().getDescription()+" "+list.get(0).getLinkedRoom().getSpecification().getDate()+" "+list.get(0).getLinkedRoom().getSpecification().getStartTime()+" "+list.get(0).getLinkedRoom().getSpecification().getEndTime()+" "+list.get(0).getLinkedRoom().getSpecification().getCap());
 		System.out.println("Room Owner Person: " +list.get(0).getRoomOwner().getId()+" "+list.get(0).getRoomOwner().getUsername()+" "+list.get(0).getRoomOwner().getStudyGrade()+" "+list.get(0).getRoomOwner().getSchool()+" "+list.get(0).getRoomOwner().getAccount()+" "+list.get(0).getRoomOwner().getHostRating()+" "+ list.get(0).getRoomOwner().getGuestRating());
 		System.out.println("Room Owner Person Account: "+list.get(0).getRoomOwner().getAccount().getCf()+" "+list.get(0).getRoomOwner().getAccount().getName()+" "+list.get(0).getRoomOwner().getAccount().getSurname()+" "+list.get(0).getRoomOwner().getAccount().getEmail()+" "+list.get(0).getRoomOwner().getAccount().getPassword()+" "+list.get(0).getRoomOwner().getAccount().getDateBirth()+" "+list.get(0).getRoomOwner().getAccount().getNumberToken());
+	}
+	
+	@Test
+	public void testGetAccountInfo() throws DatabaseException {
+		AccountController c = AccountController.getInstance();
+		AccountBean acc = new AccountBean();
+		acc.setCf("GSTNCL99C23H501K");
+		Person p = c.getAccountInfo(acc);
+		System.out.println("Person: "+p.getId()+p.getUsername()+" "+p.getStudyGrade()+" "+p.getSchool()+" "+p.getAccount()+" "+" "+p.getHostRating()+" "+p.getGuestRating());
+		System.out.println("Account: "+ p.getAccount().getCf()+" "+p.getAccount().getName()+" "+p.getAccount().getSurname()+" "+p.getAccount().getEmail()+" "+p.getAccount().getPassword()+" "+p.getAccount().getDateBirth()+" "+p.getAccount().getNumberToken());
+	}
+	
+	@Test
+	public void testGetOtherAccountInfo() throws DatabaseException {
+		AccountController c = AccountController.getInstance();
+		PersonBean person = new PersonBean();
+		person.setUsername("fff");
+		Person p = c.getOtherAccountInfo(person);
+		System.out.println("Person: "+p.getId()+" "+p.getUsername()+" "+p.getStudyGrade()+" "+p.getSchool()+" "+p.getAccount()+" "+" "+p.getHostRating()+" "+p.getGuestRating());
+		System.out.println("Account: "+ p.getAccount().getCf()+" "+p.getAccount().getName()+" "+p.getAccount().getSurname()+" "+p.getAccount().getEmail()+" "+p.getAccount().getPassword()+" "+p.getAccount().getDateBirth()+" "+p.getAccount().getNumberToken());
+	}
+	
+	@Test
+	public void testCreateGroup() throws DatabaseException {
+		GroupController g = GroupController.getInstance();
+		GroupBean gr = new GroupBean();
+		gr.setAdmin("ffffffffffffffff");
+		gr.setName("bel gruppo");
+		g.createGroup(gr);
+	}
+	
+	@Test
+	public void testAddGroupPartecipant() throws DatabaseException, AccountException {
+		GroupController g = GroupController.getInstance();
+		GroupBean gr = new GroupBean();
+		
+		gr.setAdmin("ffffffffffffffff");
+		gr.setName("bel gruppo");
+		
+		PersonBean person = new PersonBean();
+		person.setUsername("q");
+		g.addGroupPartecipant(gr, person);
+	}
+	
+	@Test
+	public void testGetReceivedReview() throws DatabaseException, ReviewException {
+		ReviewController r = ReviewController.getInstance();
+		AccountBean accountBean = new AccountBean();
+		accountBean.setCf("qqqqqqqqqqqqqqqq");
+		List<Review> list = r.getReceivedReviews(accountBean);
+		System.out.println("Review: "+list.get(0).getId()+" "+list.get(0).getTitle()+" "+list.get(0).getReviewer()+" "+list.get(0).getReviewed()+" "+list.get(0).getRating()+" "+list.get(0).getDescritpion()+" "+list.get(0).getTag());
+		System.out.println("Reviewer: "+list.get(0).getReviewer().getCf()+" "+list.get(0).getReviewer().getName()+" "+list.get(0).getReviewer().getSurname()+" "+list.get(0).getReviewer().getEmail()+" "+list.get(0).getReviewer().getPassword()+" "+list.get(0).getReviewer().getDateBirth()+" "+list.get(0).getReviewer().getNumberToken());
+		System.out.println("Reviewed: "+list.get(0).getReviewed().getId()+" "+list.get(0).getReviewed().getUsername()+" "+list.get(0).getReviewed().getStudyGrade()+" "+list.get(0).getReviewed().getStudyGrade()+" "+list.get(0).getReviewed().getSchool()+" "+list.get(0).getReviewed().getAccount()+" "+list.get(0).getReviewed().getHostRating()+" "+list.get(0).getReviewed().getGuestRating());
+		System.out.println("Reviewed Account: "+list.get(0).getReviewed().getAccount().getCf()+" "+list.get(0).getReviewed().getAccount().getName()+" "+list.get(0).getReviewed().getAccount().getSurname()+" "+list.get(0).getReviewed().getAccount().getEmail()+" "+list.get(0).getReviewed().getAccount().getPassword()+" "+list.get(0).getReviewed().getAccount().getDateBirth()+" "+list.get(0).getReviewed().getAccount().getNumberToken());
+	}
+	
+	@Test
+	public void testGetDoneReview() throws DatabaseException, ReviewException {
+		ReviewController r = ReviewController.getInstance();
+		AccountBean accountBean = new AccountBean();
+		accountBean.setCf("qqqqqqqqqqqqqqqq");
+		List<Review> list = r.getDoneReviews(accountBean);
+		System.out.println("Review: "+list.get(0).getId()+" "+list.get(0).getTitle()+" "+list.get(0).getReviewer()+" "+list.get(0).getReviewed()+" "+list.get(0).getRating()+" "+list.get(0).getDescritpion()+" "+list.get(0).getTag());
+		System.out.println("Reviewer: "+list.get(0).getReviewer().getCf()+" "+list.get(0).getReviewer().getName()+" "+list.get(0).getReviewer().getSurname()+" "+list.get(0).getReviewer().getEmail()+" "+list.get(0).getReviewer().getPassword()+" "+list.get(0).getReviewer().getDateBirth()+" "+list.get(0).getReviewer().getNumberToken());
+		System.out.println("Reviewed: "+list.get(0).getReviewed().getId()+" "+list.get(0).getReviewed().getUsername()+" "+list.get(0).getReviewed().getStudyGrade()+" "+list.get(0).getReviewed().getSchool()+" "+list.get(0).getReviewed().getAccount()+" "+list.get(0).getReviewed().getHostRating()+" "+list.get(0).getReviewed().getGuestRating());
+		System.out.println("Reviewed Account: "+list.get(0).getReviewed().getAccount().getCf()+" "+list.get(0).getReviewed().getAccount().getName()+" "+list.get(0).getReviewed().getAccount().getSurname()+" "+list.get(0).getReviewed().getAccount().getEmail()+" "+list.get(0).getReviewed().getAccount().getPassword()+" "+list.get(0).getReviewed().getAccount().getDateBirth()+" "+list.get(0).getReviewed().getAccount().getNumberToken());
+	} 
+	
+	@Test
+	public void testCalculateHostRating() throws DatabaseException, ReviewException, AccountException {
+		ReviewController r = ReviewController.getInstance();
+		PersonBean pers = new PersonBean();
+		pers.setUsername("q");
+		System.out.println(r.calculateHostRating(pers));
+	}
+	
+	@Test
+	public void testCalculateGuestRating() throws DatabaseException, ReviewException, AccountException {
+		ReviewController r = ReviewController.getInstance();
+		PersonBean pers = new PersonBean();
+		pers.setUsername("q");
+		System.out.println(r.calculateGuestRating(pers));
+	}
+	
+	@Test
+	public void testMakeReview() throws DatabaseException, ReviewException, AccountException {
+		ReviewController r = ReviewController.getInstance();
+		ReviewBean revBean = new ReviewBean();
+		revBean.setTitle("male");
+		revBean.setReviewer("GSTNCL99C23H501K");
+		revBean.setRating(5);
+		revBean.setTag("GUEST");
+		revBean.setDescription("male male");
+		PersonBean persBean = new PersonBean();
+		persBean.setUsername("nnn");
+		
+		r.makeReview(revBean, persBean);	
+	}
+	
+	@Test
+	public void testGetAllRoomPartecipants() throws DatabaseException, ReservationException {
+		ReservationController r = ReservationController.getInstance();
+		RoomBean room = new RoomBean();
+		room.setId(18);
+		List<Person> list = r.getAllRoomPartecipants(room);
+	}
+	
+	@Test
+	public void testDeleteReservation() throws DatabaseException {
+		ReservationController r = ReservationController.getInstance();
+		ReservationBean resBean = new ReservationBean();
+		resBean.setId(25);
+		r.deleteReservation(resBean);
 	}
 }

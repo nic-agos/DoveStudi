@@ -7,9 +7,4 @@ public class TriggerExceptions {
 		
 	}
 	
-	public void triggerRegistrationPersonException(String message) throws PersonException {
-		throw new PersonException(message);
-		
-	}
-	
 }

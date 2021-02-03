@@ -4,10 +4,9 @@ import java.sql.SQLException;
 
 import java.util.List;
 
-import logic.exception.*;
-import logic.model.*;
-import logic.model.dao.*;
 import logic.bean.*;
+import logic.model.dao.*;
+import logic.exception.*;
 
 public class GroupController {
 
@@ -25,12 +24,80 @@ public class GroupController {
 		return instance;
 	}
 
-//	takes in input a complete group bean
-	/*
-	 * public boolean createGroup(GroupBean groupBean) {
-	 * 
-	 * }
-	 */
+//	takes in input a group bean with filled in the group's name and the admin's cf
+	public boolean createGroup(GroupBean groupBean) throws DatabaseException {
+		
+		GroupDAOImpl groupDao = GroupDAOImpl.getInstance();
+		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
+		
+		GroupBean grBean = new GroupBean();
+		PersonBean persBean;
+		AccountBean accountBean = new AccountBean();
+		
+		try {
+			grBean.setAdmin(groupBean.getAdmin());
+			grBean.setName(groupBean.getName());
+			
+			accountBean.setCf(groupBean.getAdmin());
+			persBean = personDao.getPersonFromAccount(accountBean);
+			grBean.setNumPartecipants(1);
+			grBean.setPartecipant(persBean.getId());
+			
+			return (groupDao.createGroup(grBean) != 0);
+			
+		}catch (SQLException se) {
+			throw new DatabaseException(se.getMessage());		
+		}
+	}
+	
+//	takes in input group's name and admin and the username of the person that want's to add to the group
+	public boolean addGroupPartecipant(GroupBean groupBean, PersonBean personBean) throws DatabaseException, AccountException {
+		
+		GroupDAOImpl groupDao = GroupDAOImpl.getInstance();
+		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
+		
+		List<PersonBean> groupPartecipants;
+		PersonBean persBean;
+		PersonBean tempPersBean = new PersonBean();
+		GroupBean grBean = new GroupBean();
+		GroupBean tempGroupBean = new GroupBean();
+		
+		try {
+			persBean = personDao.getPersonByUsername(personBean);
+			
+			if(persBean != null) {
+				
+				groupPartecipants = personDao.getGroupPartecipants(groupBean);
+				
+				for(PersonBean perBean : groupPartecipants) {
+					if(persBean.getId() == perBean.getId()) {
+						throw new AccountException("User with username " + personBean.getUsername() + " is already in the group");
+					}
+				}
+				
+				tempGroupBean.setName(groupBean.getName());
+				tempGroupBean.setAdmin(groupBean.getAdmin());
+				
+				grBean.setName(groupBean.getName());
+				grBean.setAdmin(groupBean.getAdmin());
+				grBean.setNumPartecipants(groupDao.getAdministeredGroup(tempGroupBean).getNumPartecipants()+1);
+				
+				tempPersBean = personDao.getPersonByUsername(personBean);
+				grBean.setPartecipant(tempPersBean.getId());
+				
+				groupDao.addGroupPartecipant(grBean);
+				return (groupDao.updateNumPartecipantsGroup(grBean) != 0);
+				
+			}else {
+				throw new AccountException("User with username " + personBean.getUsername() + " not found");
+			}
+			
+		}catch (SQLException se) {
+			throw new DatabaseException(se.getMessage());		
+		}
+		
+	}
+	 
 
 //  takes in input the name and the admin of the group
 	public boolean deleteGroup(GroupBean groupBean) throws DatabaseException {
@@ -41,8 +108,7 @@ public class GroupController {
 			return (groupDao.removeGroup(groupBean) != 0);
 			
 		}catch (SQLException se) {
-			throw new DatabaseException(se.getMessage());
-				
+			throw new DatabaseException(se.getMessage());		
 		}
 	}
 	

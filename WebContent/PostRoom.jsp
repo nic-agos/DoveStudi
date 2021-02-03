@@ -6,8 +6,7 @@
 <%@ page import="java.sql.SQLException"%>
 <%@ page import="logic.exception.DatabaseException"%>
 <%@ page import="logic.controller.RoomController" %>
-<%@ page import="logic.exception.AccountException" %>
-<%@ page import="logic.exception.PersonException" %>
+<%@ page import="logic.exception.AccountException" %>s
 
 <jsp:useBean id="roomBean" scope="request" class="logic.bean.RoomBean"/>
 <jsp:useBean id="roomSpecBean" scope="request" class="logic.bean.RoomSpecBean"/>
@@ -17,8 +16,6 @@
 <%
 	boolean res;
 	if (request.getParameter("confirmBtn")!= null) {
-		
-		System.out.println("entrato");
 		
 		System.out.println(roomBean.getName());
 		System.out.println(roomBean.getNumPartecipants());

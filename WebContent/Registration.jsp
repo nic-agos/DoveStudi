@@ -7,7 +7,6 @@
 <%@ page import="logic.exception.DatabaseException"%>
 <%@ page import="logic.controller.RegistrationController" %>
 <%@ page import="logic.exception.AccountException" %>
-<%@ page import="logic.exception.PersonException" %>
 
 <jsp:useBean id="accountBean" scope="request" class="logic.bean.AccountBean"/>
 <jsp:useBean id="personBean" scope="request" class="logic.bean.PersonBean"/>
@@ -28,7 +27,7 @@ boolean res1 = false;
 		try{
 	res2 = personBean.validate();
 		
-		}catch (PersonException pe){
+		}catch (AccountException pe){
 	pe.printStackTrace();
 		}
 		

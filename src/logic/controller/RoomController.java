@@ -1,13 +1,15 @@
 package logic.controller;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import logic.bean.*;
+import logic.model.dao.*;
 import logic.exception.*;
 import logic.model.*;
-import logic.model.dao.*;
-import logic.bean.*;
 
 public class RoomController {
 
@@ -50,14 +52,18 @@ public class RoomController {
 	}
 
 //  takes in input the username of the host and return a list of user's rooms
-	public List<Room> searchByHost(PersonBean personBean) throws DatabaseException, NotFoundException {
+	public List<Room> searchRoomByHost(PersonBean personBean) throws DatabaseException, NotFoundException {
 		
 		List<RoomBean> roomBeans;
 		List<Room> rooms = new ArrayList<>();
 		PersonBean person;
 		Room room;
 		RoomSpec roomSpec;
+		
 		Account owner;
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		LocalDateTime currentDate = LocalDateTime.now();
 		
 		try {
 			PersonDAOImpl personDao = PersonDAOImpl.getInstance();
@@ -76,12 +82,21 @@ public class RoomController {
 				AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
 				
 				for(RoomBean roomB: roomBeans) {
-					room = new Room(roomB);
+					
 					roomSpec = new RoomSpec(roomSpecDao.getRoomSpec(roomB));
-					room.setSpecification(roomSpec);
-					owner = new Account(accountDao.getAccount(temp1));
-					room.setOwner(owner);
-					rooms.add(room);
+					
+					String dateTemp = roomSpec.getDate() + " " + roomSpec.getStartTime();
+					LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
+					
+					if(currentDate.compareTo(resDateTime) < 0) {
+						
+						room = new Room(roomB);
+						room.setSpecification(roomSpec);
+						owner = new Account(accountDao.getAccount(temp1));
+						room.setOwner(owner);
+						rooms.add(room);
+					}
+
 				}
 				return rooms;
 			
@@ -95,7 +110,7 @@ public class RoomController {
 	}
 
 //	takes in input the cap and returns a list of rooms with that specificated cap
-	public List<Room> searchByCap(RoomSpecBean roomSpecBean) throws DatabaseException, NotFoundException {
+	public List<Room> searchRoomByCap(RoomSpecBean roomSpecBean) throws DatabaseException, NotFoundException {
 	
 		List<RoomSpecBean> roomSpecBeans;
 		List<Room> rooms = new ArrayList<>();
@@ -103,6 +118,9 @@ public class RoomController {
 		Room room;
 		AccountBean owner;
 		AccountBean temp1 = new AccountBean();
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		LocalDateTime currentDate = LocalDateTime.now();
 		
 		try {
 			RoomSpecDAOImpl roomSpecDao = RoomSpecDAOImpl.getInstance();
@@ -114,15 +132,25 @@ public class RoomController {
 			AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
 			
 			if(!roomSpecBeans.isEmpty()) {
+				
 				for(RoomSpecBean rSpecBean: roomSpecBeans) {
-					roomBean = roomDao.getRoomFromSpec(rSpecBean);
-					room = new Room(roomBean);
-					room.setSpecification(new RoomSpec(rSpecBean));
-					temp1.setCf(roomBean.getOwner()); 
-					owner = accountDao.getAccount(temp1);
-					room.setOwner(new Account(owner));
-					rooms.add(room);
+					
+					String dateTemp = rSpecBean.getDate() + " " + rSpecBean.getStartTime();
+					LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
+					
+					if(currentDate.compareTo(resDateTime) < 0) {
+						
+						roomBean = roomDao.getRoomFromSpec(rSpecBean);
+						
+						room = new Room(roomBean);
+						room.setSpecification(new RoomSpec(rSpecBean));
+						temp1.setCf(roomBean.getOwner()); 
+						owner = accountDao.getAccount(temp1);
+						room.setOwner(new Account(owner));
+						rooms.add(room);
+					}	
 				}
+				
 			return rooms;
 			
 			}else {
@@ -136,7 +164,7 @@ public class RoomController {
 	}
 
 //	takes in input a date and returns a list of rooms available in that date
-	public List<Room> searchByDate(RoomSpecBean roomSpecBean) throws DatabaseException, NotFoundException {
+	public List<Room> searchRoomByDate(RoomSpecBean roomSpecBean) throws DatabaseException, NotFoundException {
 		
 		List<RoomSpecBean> roomSpecBeans;
 		List<Room> rooms = new ArrayList<>();
@@ -144,6 +172,9 @@ public class RoomController {
 		Room room;
 		AccountBean owner;
 		AccountBean temp1 = new AccountBean();
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		LocalDateTime currentDate = LocalDateTime.now();
 		
 		try {
 			RoomSpecDAOImpl roomSpecDao = RoomSpecDAOImpl.getInstance();
@@ -155,14 +186,23 @@ public class RoomController {
 			AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
 			
 			if(!roomSpecBeans.isEmpty()) {
+				
 				for(RoomSpecBean rSpecBean: roomSpecBeans) {
-					roomBean = roomDao.getRoomFromSpec(rSpecBean);
-					room = new Room(roomBean);
-					room.setSpecification(new RoomSpec(rSpecBean));
-					temp1.setCf(roomBean.getOwner()); 
-					owner = accountDao.getAccount(temp1);
-					room.setOwner(new Account(owner));
-					rooms.add(room);
+					
+					String dateTemp = rSpecBean.getDate() + " " + rSpecBean.getStartTime();
+					LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
+					
+					if(currentDate.compareTo(resDateTime) < 0) {
+						
+						roomBean = roomDao.getRoomFromSpec(rSpecBean);
+						room = new Room(roomBean);
+						room.setSpecification(new RoomSpec(rSpecBean));
+						temp1.setCf(roomBean.getOwner()); 
+						owner = accountDao.getAccount(temp1);
+						room.setOwner(new Account(owner));
+						rooms.add(room);
+					}
+					
 				}
 			return rooms;
 			
@@ -176,7 +216,7 @@ public class RoomController {
 	}
 
 // 	takes in input the number of seats and returns a list of rooms with at least that number of available seats
-	public List<Room> searchByAvailableSeats(RoomBean roomBean) throws DatabaseException, NotFoundException {
+	public List<Room> searchRoomByAvailableSeats(RoomBean roomBean) throws DatabaseException, NotFoundException {
 		
 		List<RoomBean> roomBeans;
 		List<Room> rooms = new ArrayList<>();
@@ -185,6 +225,9 @@ public class RoomController {
 		Room room;
 		AccountBean owner;
 		AccountBean temp2 = new AccountBean();
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		LocalDateTime currentDate = LocalDateTime.now();
 		
 		try {
 			RoomDAOImpl roomDao = RoomDAOImpl.getInstance();
@@ -198,15 +241,25 @@ public class RoomController {
 				AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
 				
 				for(RoomBean rBean: roomBeans) {
-					room = new Room(rBean);
+					
 					temp1.setSpecification(rBean.getSpecification());
-					rSpecBean = roomSpecDao.getRoomSpec(temp1);
-					room.setSpecification(new RoomSpec(rSpecBean));
-					temp2.setCf(rBean.getOwner()); 
-					owner = accountDao.getAccount(temp2);
-					room.setOwner(new Account(owner));
-					rooms.add(room);
+					rSpecBean = roomSpecDao.getRoomSpec(temp1); 
+					
+					String dateTemp = rSpecBean.getDate() + " " + rSpecBean.getStartTime();
+					LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
+					
+					if(currentDate.compareTo(resDateTime) < 0) {
+						
+						room = new Room(rBean);
+						room.setSpecification(new RoomSpec(rSpecBean));
+						temp2.setCf(rBean.getOwner()); 
+						owner = accountDao.getAccount(temp2);
+						room.setOwner(new Account(owner));
+						rooms.add(room);
+					}
+				
 				}
+				
 			return rooms;
 			
 			}else {
@@ -227,6 +280,9 @@ public class RoomController {
 		RoomBean temp1 = new RoomBean();
 		Room room;
 		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		LocalDateTime currentDate = LocalDateTime.now();
+		
 		try {
 			RoomDAOImpl roomDao = RoomDAOImpl.getInstance();
 			
@@ -237,12 +293,21 @@ public class RoomController {
 				RoomSpecDAOImpl roomSpecDao = RoomSpecDAOImpl.getInstance();
 				
 				for(RoomBean rBean: roomBeans) {
-					room = new Room(rBean);
+					
 					temp1.setSpecification(rBean.getSpecification());
 					rSpecBean = roomSpecDao.getRoomSpec(temp1);
-					room.setSpecification(new RoomSpec(rSpecBean));
-					rooms.add(room);
+					
+					String dateTemp = rSpecBean.getDate() + " " + rSpecBean.getStartTime();
+					LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
+					
+					if(currentDate.compareTo(resDateTime) < 0) {
+						
+						room = new Room(rBean);
+						room.setSpecification(new RoomSpec(rSpecBean));
+						rooms.add(room);
+					}
 				}
+				
 			return rooms;
 			
 			}else {
@@ -264,6 +329,9 @@ public class RoomController {
 		AccountBean owner;
 		AccountBean temp1 = new AccountBean();
 		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		LocalDateTime currentDate = LocalDateTime.now();
+		
 		try {
 			RoomSpecDAOImpl roomSpecDao = RoomSpecDAOImpl.getInstance();
 			
@@ -277,13 +345,19 @@ public class RoomController {
 				
 				for(RoomSpecBean rSpecBean: roomSpecBeans) {
 					
-					roomBean = roomDao.getRoomFromSpec(rSpecBean);
-					room = new Room(roomBean);
-					room.setSpecification(new RoomSpec(rSpecBean));
-					temp1.setCf(roomBean.getOwner()); 
-					owner = accountDao.getAccount(temp1);
-					room.setOwner(new Account(owner));
-					rooms.add(room);
+					String dateTemp = rSpecBean.getDate() + " " + rSpecBean.getStartTime();
+					LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
+					
+					if(currentDate.compareTo(resDateTime) < 0) {
+						
+						roomBean = roomDao.getRoomFromSpec(rSpecBean);
+						room = new Room(roomBean);
+						room.setSpecification(new RoomSpec(rSpecBean));
+						temp1.setCf(roomBean.getOwner()); 
+						owner = accountDao.getAccount(temp1);
+						room.setOwner(new Account(owner));
+						rooms.add(room);
+					}
 				}
 				
 			return rooms;
@@ -296,73 +370,6 @@ public class RoomController {
 			throw new DatabaseException(se.getMessage());
 		}
 		
-	}
-
-//	takes in input the id of the room and and the cf of the user
-	public boolean bookRoom(RoomBean roomBean, AccountBean accountBean) throws DatabaseException, RoomException, AccountException, ReservationException  {
-		
-		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
-		ReservationDAOImpl reservationDao = ReservationDAOImpl.getInstance();
-		RoomDAOImpl roomDao = RoomDAOImpl.getInstance();
-		RoomSpecDAOImpl roomSpecDao = RoomSpecDAOImpl.getInstance();
-		AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
-		
-		PersonBean pBean;
-		AccountBean aBean = new AccountBean();
-		AccountBean a2Bean;
-		RoomBean rBean;
-		RoomBean r2Bean = new RoomBean();
-		RoomSpecBean rsBean;
-		ReservationBean resBean = new ReservationBean();
-		
-		try {
-			rBean = roomDao.getRoom(roomBean);
-			a2Bean = accountDao.getAccount(accountBean);
-			if(a2Bean.getNumberToken() > 0) {
-				
-				if ((rBean.getNumAvailableSeats()-1) >=0) {
-					
-					aBean.setCf(rBean.getOwner());
-					pBean = personDao.getPersonFromAccount(aBean);
-					rsBean = roomSpecDao.getRoomSpec(rBean);
-					
-					resBean.setReservingUser(accountBean.getCf());
-					resBean.setLinkedRoom(rBean.getId());
-					resBean.setRoomOwner(pBean.getId());
-					resBean.setDate(rsBean.getDate());
-					resBean.setStartTime(rsBean.getStartTime());
-					resBean.setEndTime(rsBean.getEndTime());
-					
-					r2Bean.setId(rBean.getId());
-					r2Bean.setNumPartecipants(rBean.getNumPartecipants());
-					r2Bean.setNumAvailableSeats(rBean.getNumAvailableSeats()-1);
-					
-//					check if the user is already booked for the room
-					if(reservationDao.getReservationId(resBean) == 0) {
-						
-//						update the number of token of reserving user
-						a2Bean.setNumberToken(a2Bean.getNumberToken()-1);
-						accountDao.updateNumberToken(a2Bean);
-						
-//						update the number of available seats for the room					
-						roomDao.updateRoom(r2Bean);
-		
-						return (reservationDao.createReservation(resBean) != 0);
-					}else {
-						throw new ReservationException("You are already booked for this room ");
-					}
-				
-				}else {
-					throw new RoomException(rBean.getId() + " does not have enough seats");
-				}
-			}else {
-				throw new AccountException("You does not have enough token to book this room, buy its!");
-			}
-			
-			
-		}catch (SQLException se) {
-			throw new DatabaseException(se.getMessage());
-		}	
 	}
 
 //	takes in input the id of the room that wants to delete

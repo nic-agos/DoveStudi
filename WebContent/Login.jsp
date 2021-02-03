@@ -24,8 +24,10 @@
 		try{
 			
 			res = lContr.login(accountBean);
+			
 			if (res != null){
-
+				
+				session.setAttribute("accPerson", res);
 				String redirectURL = "http://localhost:8080/DoveStudi.git/AccountPersInfo.jsp";
 				response.sendRedirect(redirectURL);
 			}
@@ -34,6 +36,7 @@
 			}
 		}catch (DatabaseException de) {
 			de.printStackTrace();
+			
 		}catch (NotFoundException ne) {
 			ne.printStackTrace();
 		}

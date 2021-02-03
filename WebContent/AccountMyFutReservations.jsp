@@ -1,5 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%> 
+
+<%@ page import="java.util.*"%>
+
+<%@ page import="logic.model.*"%>
+<%@ page import="logic.bean.*"%>
+<%@ page import="logic.exception.*"%>
+<%@ page import="logic.controller.*"%>
+
+<%
+	Person person = (Person)session.getAttribute("accPerson");
+	AccountBean accBean = new AccountBean();
+	PersonBean persBean = new PersonBean();
+	RoomBean roomBean = new RoomBean();
+	accBean.setCf(person.getAccount().getCf());
+	List<Reservation> reservationsList;
+	ReservationController rContr = ReservationController.getInstance();
+	List<List<Person>> list = new ArrayList<List<Person>>();
+	
+	try{
+		reservationsList = rContr.getMyFutureReservations(accBean);
+		request.setAttribute("reservationsList", reservationsList);
+		for(Reservation resList : reservationsList){
+			roomBean.setId(resList.getLinkedRoom().getId());
+			list.add(rContr.getAllRoomPartecipants(roomBean));
+		}
+		request.setAttribute("list", list);
+		
+	
+	}catch(DatabaseException de){
+		de.printStackTrace();
+	}
+	for(List<Person> l: list){
+		for(Person p: l){
+			if(request.getParameter(p.getUsername())!=null){
+				
+				persBean.setUsername(p.getUsername());
+				session.setAttribute("othAccount", persBean);
+				String redirectURL = "http://localhost:8080/DoveStudi.git/OtherAccount.jsp";
+				response.sendRedirect(redirectURL);
+			}
+		}
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,11 +64,6 @@
 
 
 <body>
-
-	<div class="curved">
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319"><path fill="#FF5500" fill-opacity="1" d="M0,64L48,96C96,128,192,192,288,224C384,256,480,256,576,245.3C672,235,768,213,864,181.3C960,149,1056,107,1152,106.7C1248,107,1344,149,1392,170.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
-	</div>
-	
 	<div id="sidebar">
 		<div id="rectangle" >
 			<div class="toggle-btn" onclick="toggleSideBar(); togglePage();toggleTopBar();">
@@ -62,8 +102,10 @@
 			</ul>
 		</div>
 	</div>	
+	
 	<div class= "container head-profile" style="margin-top:120px;">
 		<div class="col-md-10">
+		<c:forEach items="${reservationsList}" var="reservationsList">
 			<div class="card">
   				<div class="card-body">
 						<div class="row"id="line">
@@ -71,13 +113,13 @@
 	                        		<label>Host:</label>
 	                        	</div>
 	                        	<div class="col-md-4">
-	                        		<p><a href="OtherAccount.jsp">Mario78</a>
+	                        		<p><a href="OtherAccount.jsp">${reservationsList.roomOwner.getUsername()}</a>
 	                        	</div>
 								<div class="col-md-2">
 									<label>Reservation ID</label>
 								</div>
 								<div class="col -md-4">
-									<p>006547349
+									<p>${reservationsList.id}
 								</div>
 						</div>
 						<div class="row"id="line">
@@ -85,7 +127,7 @@
 									<label>Address:</label>
 								</div>
 	                            <div class="col-md-7">
-	                        		<p>Via Nomentana 23</p>
+	                        		<p>${reservationsList.linkedRoom.address}</p>
 	                            </div>
 	                    </div>
 	                    <div class="row" id="line">
@@ -93,7 +135,7 @@
 	                        		<label>Description:</label>
 	                        	</div>
 	                            <div class="col-md-7">
-	                        		<p>Room description fdjbglkjebgvlfjebvljfebvlfjdbvlfjdvbfv</p>
+	                        		<p>${reservationsList.linkedRoom.specification.description}</p>
 	                            </div>
 	                    </div>
                         <div class="row"id="line">
@@ -101,13 +143,13 @@
 	                        		<label>CAP:</label>
 	                        	</div>
 	                        	<div class="col-md-4">
-	                        		<p>00019
+	                        		<p>${reservationsList.linkedRoom.specification.cap}
 	                        	</div>
 								<div class="col-md-2">
 									<label>Date:</label>
 								</div>
 								<div class="col -md-4">
-									<p>12/12/2021
+									<p>${reservationsList.linkedRoom.specification.date}
 								</div>
 						</div>
 						<div class="row"id="line">
@@ -115,27 +157,36 @@
 	                        		<label>Start time:</label>
 	                        	</div>
 	                        	<div class="col-md-4">
-	                        		<p>15:00
+	                        		<p>${reservationsList.linkedRoom.specification.startTime}
 	                        	</div>
 								<div class="col-md-2">
 									<label>End time:</label>
 								</div>
 								<div class="col -md-4">
-									<p>19:00
+									<p>${reservationsList.linkedRoom.specification.startTime}
 								</div>
 						</div>
 						<div class="row"id="line">
 	                        	<div class="col-md-2">
 	                        		<label>Participants:</label>
-	                        	</div>	                        	
-	                        		<p><a href="OtherAccount.jsp">Mario98, </a> 
-	                        		<p><a href="OtherAccount.jsp">Luca.p</a>	                        	
+	                        	</div>	
+	                        		<c:forEach items="${list}" var="listoflists">
+	                        			<c:forEach items="${listoflists}" var="person">
+	                        			<form method="get">
+	                        				<button type="submit" style="border:none;backgroup:#ffffff" id="${person.username}" name="${person.username}">${person.username}</button>
+	                        				&nbsp
+	                        			</form>
+	      
+	                        			</c:forEach>
+	                  
+	                        		</c:forEach>                        	
+	               	                        	
 						</div>
-    				<button id="btn" class="btn btn-outline-warning" data-toggle="modal" data-target="#deleteResModal"><a>Delete Reservation</a></button>    		
+    				<button id="deleteBtn" name="deleteBtn" class="btn btn-outline-warning" data-toggle="modal" data-target="#deleteResModal"><a>Delete Reservation</a></button>    		
     				
            		</div>
            </div>
-    				
+    		</c:forEach>		
   		</div>
 	</div>
 	
@@ -151,11 +202,10 @@
 	      </div>
 	      <div class="modal-body">
 	        Are you sure you want to delete this reservation?
-	        If there are less than 24 hours left to the reservation time, you will loose your token!
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-	        <button type="button" id="btn"class="btn btn-outline-warning"><a href="AccountMyFutReservations.jsp">Yes</a></button>
+	        <button type="button" id="yesDeleteBtn" name="yesDeleteBtn"class="btn btn-outline-warning"><a href="AccountMyFutReservations.jsp">Yes</a></button>
 	      </div>
 	    </div>
 	  </div>

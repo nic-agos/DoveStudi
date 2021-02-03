@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
+<%@ page import="logic.model.Person"%>
+
+<%
+	Person person = (Person)session.getAttribute("accPerson");
+	
+%>
    
 <!DOCTYPE html>
 <html>
@@ -38,11 +43,11 @@
 		 	<li><a href="SearchRooms.jsp">Search for Rooms</a></li>
 		 	<li><a href="AccountPubInfo.jsp">My Account</a></li>
 		 	<li><a href="MyGroups.jsp">My Groups</a></li>
-		 	<li><a href="AccountMyReservations.jsp">My Reservations</a></li>
+		 	<li><a href="AccountMyFutReservations.jsp">My Reservations</a></li>
 		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
 		 	<li><a href="AccountMyRooms.jsp">My Rooms</a></li>
 		 	<li><a href="PostRoom.jsp">Post a Room</a></li>
-		 	<li><a href="index.jsp">Log out</a></li>
+		 	<li><a href="Logout.jsp">Log out</a></li>
 		 </ul>
 	</div>
 	
@@ -51,7 +56,7 @@
 			<h1 style="font-weight:600; font-family:sans-serif;margin-top:50px; margin-left:0px;">My Account</h1>
 		</div>
 		<div class="col-md-6" style="margin-top:20px;">
-			<p class="profile-rating">TOKENS : <span>5</span> </p>
+			<p class="profile-rating">TOKENS : <span><%=person.getAccount().getNumberToken()%></span> </p>
 		</div>
 	</div>
 	
@@ -73,7 +78,7 @@
 				<label>CF</label>
 			</div>
 			<div class="col-md-12">
-				<p>MNBVBNMNBVBNMNBV
+				<p><%=person.getAccount().getCf()%>
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
@@ -81,7 +86,7 @@
 				<label>Name:</label>
 			</div>
 			<div class="col-md-12">
-				<p>RTGBNTR
+				<p><%=person.getAccount().getName()%>
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
@@ -89,7 +94,7 @@
 				<label>Surname:</label>
 			</div>
 			<div class="col-md-12">
-				<p>SAJNVEKRNB
+				<p><%=person.getAccount().getSurname()%>
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
@@ -97,7 +102,7 @@
 				<label>Password:</label>
 			</div>
 			<div class="col-md-12">
-				<p>********
+				<p><%=person.getAccount().getPassword()%>
 			</div>
 		</div>
 	</div>

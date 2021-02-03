@@ -15,7 +15,9 @@ public interface PersonDAO {
 	
 	public List<PersonBean> getAllPersons() throws SQLException;
 	
-	public int updatePerson(PersonBean personBean) throws SQLException;
+	public int updateGuestRating(PersonBean personBean) throws SQLException;
+	
+	public int updateHostRating(PersonBean personBean) throws SQLException;
 	
 	public PersonBean getPerson(PersonBean personBean) throws SQLException;
 	

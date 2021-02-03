@@ -84,6 +84,16 @@ public class TestGroupDAOImpl {
 		g.leaveGroup(gr);
 	}
 	
+	@Test
+	public void testGetAdministeredGroup() throws SQLException {
+		GroupDAOImpl g = GroupDAOImpl.getInstance();
+		GroupBean gr = new GroupBean();
+		gr.setAdmin("ffffffffffffffff");
+		gr.setName("bel gruppo");
+		GroupBean group = g.getAdministeredGroup(gr);
+		System.out.println(group.getId()+" "+group.getName()+ " "+group.getAdmin()+" "+group.getNumPartecipants()+" "+group.getPartecipant());
+	}
+	
 	
 	
 }

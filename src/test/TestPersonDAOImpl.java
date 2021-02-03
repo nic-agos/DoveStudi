@@ -32,10 +32,22 @@ public class TestPersonDAOImpl {
 	}
 	
 	@Test
-	public void testUpdatePerson() throws SQLException {
-		PersonBean p = new PersonBean(id, username, studyGrade, school, account, hostRating, guestRating);
+	public void testUpdateHostRating() throws SQLException {
+		PersonBean pers = new PersonBean();
+		pers.setHostRating(3);
+		pers.setId(10);
 		PersonDAOImpl d = PersonDAOImpl.getInstance();
-		int res = d.updatePerson(p);
+		int res = d.updateHostRating(pers);
+		assertEquals(res, 1);
+	}
+	
+	@Test
+	public void testUpdateGuestRating() throws SQLException {
+		PersonBean pers = new PersonBean();
+		pers.setGuestRating(3);
+		pers.setId(10);
+		PersonDAOImpl d = PersonDAOImpl.getInstance();
+		int res = d.updateGuestRating(pers);
 		assertEquals(res, 1);
 	}
 	

@@ -84,8 +84,8 @@ public class ReviewBean {
 		
 	}
 	
-	public void setRating(String rating) {
-		this.rating = Integer.parseInt(rating);
+	public void setRating(int rating) {
+		this.rating = rating;
 		
 	}
 	

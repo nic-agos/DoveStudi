@@ -6,10 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import logic.bean.*;
+import logic.model.dao.*;
 import logic.exception.*;
 import logic.model.*;
-import logic.model.dao.*;
-import logic.bean.*;
 
 public class ReservationController {
 
@@ -27,11 +27,87 @@ public class ReservationController {
 		return instance;
 	}
 	
-	/*
-	 	* public List<Reservation> removeReservation() {
-		* 
-		* }
-	 */
+//	takes in input the id of the room and and the cf of the user
+	public boolean makeReservation(RoomBean roomBean, AccountBean accountBean) throws DatabaseException, RoomException, AccountException, ReservationException  {
+		
+		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
+		ReservationDAOImpl reservationDao = ReservationDAOImpl.getInstance();
+		RoomDAOImpl roomDao = RoomDAOImpl.getInstance();
+		RoomSpecDAOImpl roomSpecDao = RoomSpecDAOImpl.getInstance();
+		AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
+		
+		PersonBean pBean;
+		AccountBean aBean = new AccountBean();
+		AccountBean a2Bean;
+		RoomBean rBean;
+		RoomBean r2Bean = new RoomBean();
+		RoomSpecBean rsBean;
+		ReservationBean resBean = new ReservationBean();
+		
+		try {
+			rBean = roomDao.getRoom(roomBean);
+			a2Bean = accountDao.getAccount(accountBean);
+			if(a2Bean.getNumberToken() > 0) {
+				
+				if ((rBean.getNumAvailableSeats()-1) >=0) {
+					
+					aBean.setCf(rBean.getOwner());
+					pBean = personDao.getPersonFromAccount(aBean);
+					rsBean = roomSpecDao.getRoomSpec(rBean);
+					
+					resBean.setReservingUser(accountBean.getCf());
+					resBean.setLinkedRoom(rBean.getId());
+					resBean.setRoomOwner(pBean.getId());
+					resBean.setDate(rsBean.getDate());
+					resBean.setStartTime(rsBean.getStartTime());
+					resBean.setEndTime(rsBean.getEndTime());
+					
+					r2Bean.setId(rBean.getId());
+					r2Bean.setNumPartecipants(rBean.getNumPartecipants());
+					r2Bean.setNumAvailableSeats(rBean.getNumAvailableSeats()-1);
+					
+//					check if the user is already booked for the room
+					if(reservationDao.getReservationId(resBean) == 0) {
+						
+//						update the number of token of reserving user
+						a2Bean.setNumberToken(a2Bean.getNumberToken()-1);
+						accountDao.updateNumberToken(a2Bean);
+						
+//						update the number of available seats for the room					
+						roomDao.updateRoom(r2Bean);
+		
+						return (reservationDao.createReservation(resBean) != 0);
+					}else {
+						throw new ReservationException("You are already booked for this room ");
+					}
+				
+				}else {
+					throw new RoomException(rBean.getId() + " does not have enough seats");
+				}
+			}else {
+				throw new AccountException("You does not have enough token to book this room, buy its!");
+			}
+			
+			
+		}catch (SQLException se) {
+			throw new DatabaseException(se.getMessage());
+		}	
+	}
+	
+//	takes in input the id of a reservation	
+	public boolean deleteReservation(ReservationBean reservationBean) throws DatabaseException {
+		
+		ReservationDAOImpl reservationDao = ReservationDAOImpl.getInstance();
+		
+		try {
+			
+			return (reservationDao.removeReservation(reservationBean) != 0);
+			
+		}catch (SQLException se) {
+			throw new DatabaseException(se.getMessage());
+		}
+		
+	}
 
 //	get in input the cf of the user and return a list of reservation
 	public List<Reservation> getMyPastReservations(AccountBean accountBean) throws DatabaseException {
@@ -206,8 +282,55 @@ public class ReservationController {
 			return futureReservationsList;
 			
 		}catch (SQLException se) {
-			throw new DatabaseException(se.getMessage());
-				
+			throw new DatabaseException(se.getMessage());		
 		}		
+	}
+	
+//	takes in input the room id and return a list of person that will partecipate to the room
+	public List<Person> getAllRoomPartecipants(RoomBean roomBean) throws DatabaseException, ReservationException {
+		
+		ReservationDAOImpl reservationDao = ReservationDAOImpl.getInstance();
+		AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
+		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
+		
+		List<Person> roomPartecipants = new ArrayList<>();
+		List<ReservationBean> roomPartecipantsBean;
+		
+		PersonBean persBean;
+		AccountBean tempAccBean = new AccountBean();
+		AccountBean accBean;
+		Account account;
+		Person person;
+		
+		
+		try {
+			
+			roomPartecipantsBean = reservationDao.getRoomReservations(roomBean);
+			
+			if(!roomPartecipantsBean.isEmpty()) {
+				
+				for(ReservationBean resBean : roomPartecipantsBean) {
+					
+					tempAccBean.setCf(resBean.getReservingUser());
+					accBean = accountDao.getAccount(tempAccBean);
+					account = new Account(accBean);
+					
+					persBean = personDao.getPersonFromAccount(accBean);
+					person = new Person(persBean);
+
+					person.setAccount(account);
+					
+					roomPartecipants.add(person);
+				}
+				
+				return roomPartecipants;
+				
+			}else {
+				throw new ReservationException("No partecipants for the room: " + roomBean.getId());
+			}
+			
+		}catch (SQLException se) {
+			throw new DatabaseException(se.getMessage());		
+		}
 	}
 }

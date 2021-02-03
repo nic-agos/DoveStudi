@@ -1,6 +1,6 @@
 package logic.bean;
 
-import logic.exception.PersonException;
+import logic.exception.AccountException;
 import logic.exception.TriggerExceptions;
 
 public class PersonBean {
@@ -119,7 +119,7 @@ public class PersonBean {
 		
 	}
 	
-	public boolean validate() throws PersonException {
+	public boolean validate() throws AccountException {
 		String errors = "";
 		if(this.username.length() > 15) {
 			errors = errors + "Invalid Username   ";
@@ -132,7 +132,7 @@ public class PersonBean {
 		}
 		
 		if(!errors.isEmpty()) {
-			this.trigger.triggerRegistrationPersonException(errors);
+			this.trigger.triggerRegistrationAccountException(errors);
 			return false;
 		}
 		return true;

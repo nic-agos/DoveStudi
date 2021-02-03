@@ -1,5 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ page import="logic.model.*"%>
+<%@ page import="logic.bean.*"%>
+<%@ page import="logic.exception.*"%>
+<%@ page import="logic.controller.*"%>   
+<%
+	PersonBean persBean = (PersonBean)session.getAttribute("othAccount");
+	AccountController rContr = AccountController.getInstance();
+	Person person = null;
+	
+	try{
+		person = rContr.getOtherAccountInfo(persBean);
+		
+	}catch(DatabaseException de){
+		de.printStackTrace();
+	}
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,8 +63,8 @@
 			<h1 style="font-weight:600; font-family:sans-serif;margin-top:50px; margin-left:0px;">My Account</h1>
 		</div>
 		<div class="col-md-6" style="margin-top:20px;">
-			<p class="profile-rating">HOST RATE : <span>8/10</span> </p>
-			<p class="profile-rating">GUEST RATE : <span>8/10</span> </p>
+			<p class="profile-rating">HOST RATING : <span><%=person.getHostRating()%></span> </p>
+			<p class="profile-rating">GUEST RATING : <span><%=person.getGuestRating()%></span> </p>
 		</div>
 	</div>
 	
@@ -65,10 +83,10 @@
 	<div class="card" style="width:630px; margin-left:280px;">
 		<div class="row" style="margin-left:20px;margin-top:20px;">
 			<div class="col-md-6">
-				<label>User ID:</label>
+				<label>Username:</label>
 			</div>
 			<div class="col-md-12">
-				<p>Mario97
+				<p><%=person.getUsername()%>
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
@@ -76,7 +94,7 @@
 				<label>Email:</label>
 			</div>
 			<div class="col-md-12">
-				<p>mario.97@gmail.com
+				<p><%=person.getAccount().getEmail()%>
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
@@ -84,7 +102,7 @@
 				<label>Birthdate:</label>
 			</div>
 			<div class="col-md-12">
-				<p>04/06/1997
+				<p><%=person.getAccount().getDateBirth()%>
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
@@ -92,7 +110,7 @@
 				<label>Studygrade:</label>
 			</div>
 			<div class="col-md-12">
-				<p>High School Diploma
+				<p><%=person.getStudyGrade()%>
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
@@ -100,7 +118,7 @@
 				<label>School:</label>
 			</div>
 			<div class="col-md-12">
-				<p>Methuen High School
+				<p><%=person.getSchool()%>
 			</div>
 		</div>
 	</div>
