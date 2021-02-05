@@ -10,9 +10,66 @@
 <%@ page import="logic.exception.*"%>
 <%@ page import="logic.controller.*"%>
 
+<jsp:useBean id="roomBean" scope="request" class="logic.bean.RoomBean"/>
+<jsp:setProperty name="roomBean" property="*"/>
+
 <%
 	Person person = (Person)session.getAttribute("accPerson");
+
+	RoomController rContr = RoomController.getInstance();
+	ReservationController resContr = ReservationController.getInstance();
 	
+	List<Room> roomsList = new ArrayList<>();
+	List<Room> allRoomsList = new ArrayList<>();
+	
+	AccountBean accBean = new AccountBean();
+	PersonBean persBean = new PersonBean();
+	RoomBean rBean = new RoomBean();
+	RoomBean tempRoomBean = new RoomBean();
+	
+	if(request.getParameter("searchBtn") != null){
+		
+		try{
+			
+			allRoomsList = rContr.searchRoomByAvailableSeats(roomBean);
+			
+			if(!allRoomsList.isEmpty()){
+				
+				if(person != null){
+				
+//					create a new list withous user rooms	
+					for(Room r : allRoomsList) {
+						
+						if(r.getOwner().getCf().compareTo(person.getAccount().getCf()) != 0){
+							roomsList.add(r);
+						}
+					}
+				
+				}else{
+					roomsList = allRoomsList;
+				}	
+				
+				for(Room r : roomsList) {
+					
+					tempRoomBean.setId(r.getId());
+					r.setPartecipants(resContr.getAllRoomPartecipants(tempRoomBean));
+					
+				}
+				
+				session.setAttribute("roomsList", roomsList);
+				
+				String site = new String("SearchRoomsResult.jsp");
+			    response.setStatus(response.SC_MOVED_TEMPORARILY);
+			    response.setHeader("Location", site);
+			}	
+
+		}catch(DatabaseException de){
+			de.printStackTrace();
+			
+		}catch(NotFoundException ne){
+			ne.printStackTrace();
+		}
+	}
 %>
    
 <!DOCTYPE html>
@@ -80,98 +137,13 @@
 		        </li>
 		      </ul>
 		      <form class="d-flex">
-		        <input class="form-control me-2" type="search" placeholder="Available places" aria-label="Search">
-		        <button class="btn btn-outline-warning" id="btn" type="submit">Search</button>
+		        <input class="form-control me-2" type="search" placeholder="Available places" id="numAvailableSeats" name="numAvailableSeats" aria-label="Search">
+		        <button class="btn btn-outline-warning" id="searchBtn" name="searchBtn" type="submit">Search</button>
 		      </form>
 		    </div>
 		  </div>
 		</nav>
-	</div> 
-	<div class="card w-75" style="margin-left:300px;">
-  		<div class="card-body">
-    		<h5 class="card-title" style="font-weight:550;">Room name</h5>
-    		<div class="row" id="line">
-    			<div class="col-md-1">
-    				<label>Host:</label>
-    			</div>
-    			<div class="col-md-6">
-    				<p><a href="OtherAccount.jsp">Mario98</a>
-    			</div>
-    		</div>
-    		<p class="card-text">Room description</p>
-    		<div class="row"id="line">
-    			<div class="col-md-1">
-					<label>Address:</label>
-				</div>
-				<div class="col-md-3 ">
-	            	<p>Via Nomentana 23</p>
-	            </div>
-	            <div class="col-md-2">
-	            	<label>CAP:</label>
-	          	</div>
-	          	<div class="col-md-2">
-	            	<p>00019</p>
-	            </div>
-	            <div class="col-md-1">
-	            	<label>Date:</label>
-	          	</div>
-	            <div class="col-md-2">
-	             	<p>22/02/2021
-	            </div>
-    		</div>
-    		<div class="row"id="line">
-	        	<div class="col-md-2">
-	            	<label>Start time:</label>
-	          	</div>
-	            <div class="col-md-2">
-	             	<p>15:00
-	            </div>
-				<div class="col-md-2">
-					<label>End time:</label>
-				</div>
-				<div class="col -md-3">
-					<p>19:00
-				</div>
-				<div class="col-md-2">
-    				<label>Available places:</label>
-    			</div>
-    			<div class="col-md-2">
-    				<p>6</p>
-    			</div>
-			</div>
-			<div class="row"id="line">
-	        	<div class="col-md-2">
-	         		<label>Participants:</label>
-	           	</div>	                        	
-	                <p><a href="OtherAccount.jsp">Mario98, </a> 
-	          		<p><a href="OtherAccount.jsp">Luca.p</a>	                        	
-			</div>
-    		<button class="btn btn-outline-warning" id="btn"data-toggle="modal" data-target="#exampleModalCenter">Book Room</button>
- 		 </div>
 	</div>
-	
-		<!-- Modal -->
-	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	        Are you sure you want to book this room?
-			You will spend 1 token
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-	        <button type="button" id="btn"class="btn btn-outline-warning"><a href="AccountMyFutReservations.jsp">Yes</a></button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	
 	<script>function toggleSideBar(){
 				document.getElementById("sidebar").classList.toggle("active");
 			}	

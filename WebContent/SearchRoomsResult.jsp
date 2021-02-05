@@ -12,59 +12,22 @@
 
 <%
 	Person person = (Person)session.getAttribute("accPerson");
-
+	List<Room> roomsList = (List<Room>)session.getAttribute("roomsList");
+	
+	session.setAttribute("roomsList", roomsList);
+	
 	RoomController rContr = RoomController.getInstance();
 	ReservationController resContr = ReservationController.getInstance();
-	
-	List<Room> roomsList = new ArrayList<>();
-	List<Room> allRoomsList = new ArrayList<>();
 	
 	AccountBean accBean = new AccountBean();
 	PersonBean persBean = new PersonBean();
 	RoomBean roomBean = new RoomBean();
 	RoomBean tempRoomBean = new RoomBean();
 	
-	try{
-		
-		allRoomsList = rContr.searchRooms();
-		
-		if(!allRoomsList.isEmpty()){
-			
-			if(person != null){
-			
-//				create a new list withous user rooms	
-				for(Room r : allRoomsList) {
-					
-					if(r.getOwner().getCf().compareTo(person.getAccount().getCf()) != 0){
-						roomsList.add(r);
-					}
-				}
-			
-			}else{
-				roomsList = allRoomsList;
-			}	
-			
-			for(Room r : roomsList) {
-				
-				tempRoomBean.setId(r.getId());
-				r.setPartecipants(resContr.getAllRoomPartecipants(tempRoomBean));
-				
-			}
-			
-			request.setAttribute("roomsList", roomsList);
-		}	
-
-	}catch(DatabaseException de){
-		de.printStackTrace();
-		
-	}catch(NotFoundException ne){
-		ne.printStackTrace();
-	}
-	
 //	method to handle click on room owner
 	for(Room room : roomsList){
-		
 		if(request.getParameter(room.getOwner().getPerson().getUsername()) != null){
+			
 			
 			persBean.setUsername(room.getOwner().getPerson().getUsername());
 			session.setAttribute("othAccUsername", persBean);

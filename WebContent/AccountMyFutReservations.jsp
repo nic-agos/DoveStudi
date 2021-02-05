@@ -237,10 +237,7 @@
 	                        			<form method="get">
 	                        				<button type="submit" style="border:none;backgroup:#ffffff" id="${person.username}" name="${person.username}">${person.username}</button>
 	                        				&nbsp
-	                        			</form>
-	      
-	                       
-	                  
+	                        			</form>	      	                   	                  
 	                        		</c:forEach>                        	
 	               	                        	
 						</div>

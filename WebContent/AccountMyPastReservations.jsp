@@ -23,24 +23,23 @@
 	
 	ReservationController rContr = ReservationController.getInstance();
 	
-	List<List<Person>> list = new ArrayList<List<Person>>();
-	
 	try{
 		reservationsList = rContr.getMyPastReservations(accBean);
-		request.setAttribute("reservationsList", reservationsList);
-		
-		for(Reservation resList : reservationsList){
+
+		if(!reservationsList.isEmpty()){
 			
-			roomBean.setId(resList.getLinkedRoom().getId());
-			list.add(rContr.getAllRoomPartecipants(roomBean));
+			for(Reservation resList : reservationsList){
+				
+				roomBean.setId(resList.getLinkedRoom().getId());
+				resList.getLinkedRoom().setPartecipants(rContr.getAllRoomPartecipants(roomBean));
+			}
+			
+			request.setAttribute("reservationsList", reservationsList);
+		
 		}
-		
-		request.setAttribute("list", list);
-		
 	
 	}catch(DatabaseException de){
 		de.printStackTrace();
-		
 	}
 	
 //	method to handle click on roomOwner	
@@ -58,20 +57,22 @@
 	}
 
 //	method to handle click on reservation partecipant
-	for(List<Person> l: list) {
-		
-		for(Person p: l) {
+		for(Reservation res: reservationsList){
 			
-			if(request.getParameter(p.getUsername())!=null){
+//			iterate over room's partecipants
+			for(Person p: res.getLinkedRoom().getPartecipants()){
 				
-			    persBean.setUsername(p.getUsername());
-				session.setAttribute("othAccUsername", persBean);
-				String site = new String("OtherAccount.jsp");
-			    response.setStatus(response.SC_MOVED_TEMPORARILY);
-			    response.setHeader("Location", site);
+				if(request.getParameter(p.getUsername())!=null){
+														    	
+					persBean.setUsername(p.getUsername());
+					session.setAttribute("othAccUsername", persBean);
+							
+					String site = new String("OtherAccount.jsp");
+			        response.setStatus(response.SC_MOVED_TEMPORARILY);
+			        response.setHeader("Location", site);
+				}
 			}
 		}
-	}
 %>
 <!DOCTYPE html>
 <html>
@@ -200,16 +201,13 @@
 	                        	<div class="col-md-2">
 	                        		<label>Participants:</label>
 	                        	</div>
-	                        	<c:forEach items="${list}" var="listoflists">
-	                        			<c:forEach items="${listoflists}" var="person">
-	                        				<form method="get">
-	                        					<button type="submit" style="border:none;backgroup:#ffffff" id="${person.username}" name="${person.username}">${person.username}</button>
-	                        					&nbsp
-	                        				</form>
-	      
-	                        			</c:forEach>
-	                  
-	                        	</c:forEach>	                        	
+	                        	<c:forEach items="${reservationsList.linkedRoom.partecipants}" var="person">
+	              
+	                        			<form method="get">
+	                        				<button type="submit" style="border:none;backgroup:#ffffff" id="${person.username}" name="${person.username}">${person.username}</button>
+	                        				&nbsp
+	                        			</form>  
+	                        	</c:forEach>                	
 	                    	                        	
 						</div>
     				<button id="btn" class="btn btn-outline-warning" data-toggle="modal" data-target="#makeAReviewModal"><a>Make a Review</a></button>    		
