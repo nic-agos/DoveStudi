@@ -1,5 +1,81 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%> 
+
+<%@ page import="java.util.*"%>
+
+<%@ page import="logic.model.*"%>
+<%@ page import="logic.bean.*"%>
+<%@ page import="logic.exception.*"%>
+<%@ page import="logic.controller.*"%>
+
+<%
+	Person person = (Person)session.getAttribute("accPerson");
+	if(person != null){
+		
+		
+		ReviewController revContr = ReviewController.getInstance();
+		
+		AccountBean accBean = new AccountBean();
+		accBean.setCf(person.getAccount().getCf());
+		
+		PersonBean persBean = new PersonBean();
+		
+		List<Review> receivedList = new ArrayList<>();
+		List<Review> doneList = new ArrayList<>();
+		
+		try{
+			
+			receivedList = revContr.getReceivedReviews(accBean);
+			doneList = revContr.getDoneReviews(accBean);
+			
+			request.setAttribute("receivedList", receivedList);
+			request.setAttribute("doneList", doneList);
+		
+		}catch(DatabaseException de){
+			de.printStackTrace();
+		
+		}catch(ReviewException re){
+			re.printStackTrace();
+		}
+
+//		method to handle click on reviewing user
+		for(Review r : receivedList) {
+			if(request.getParameter(r.getReviewer().getPerson().getUsername()) != null){
+				
+				persBean.setUsername(r.getReviewer().getPerson().getUsername());
+				session.setAttribute("othAccUsername", persBean);
+				
+				String site = new String("OtherAccount.jsp");
+		        response.setStatus(response.SC_MOVED_TEMPORARILY);
+		        response.setHeader("Location", site);
+		        
+			}
+		}
+
+//		method to handle click on reviewed user
+		for(Review r : doneList){
+			
+			if(request.getParameter(r.getReviewed().getUsername()) != null){
+				
+				persBean.setUsername(r.getReviewed().getUsername());
+				session.setAttribute("othAccUsername", persBean);
+				
+				String site = new String("OtherAccount.jsp");
+		        response.setStatus(response.SC_MOVED_TEMPORARILY);
+		        response.setHeader("Location", site);
+			}
+		}
+		
+ 		
+	}else{
+		String site = new String("Login.jsp");
+        response.setStatus(response.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", site);
+	}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +91,6 @@
 
 
 <body>	
-	<div class="curved">
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319"><path fill="#FF5500" fill-opacity="1" d="M0,64L48,96C96,128,192,192,288,224C384,256,480,256,576,245.3C672,235,768,213,864,181.3C960,149,1056,107,1152,106.7C1248,107,1344,149,1392,170.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
-	</div>
 	<div id="sidebar">
 		<div id="rectangle" >
 			<div class="toggle-btn" onclick="toggleSideBar();">
@@ -35,7 +108,7 @@
 		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
 		 	<li><a href="AccountMyRooms.jsp">My Rooms</a></li>
 		 	<li><a href="PostRoom.jsp">Post a Room</a></li>
-		 	<li><a href="index.jsp">Log out</a></li>
+		 	<li><a href="Logout.jsp">Log out</a></li>
 		 </ul>
 	</div>
 	
@@ -47,72 +120,77 @@
 		
 	<div class= "container head-profile">
 		<div class="col-md-18" style="margin-top:80px;" >
-		<div class="row">
-			<div class="card">
-				<div class="card-header" style="font-size:20px;font-weight:600;">Done reviews</div>
-					<div class="card">
-  					<div class="card-body">
-  						<div class="row">
-  						 	<h4><span class="badge bg-secondary" style="color:#ffffff; margin-left:15px;">Guest Review</span></h4>
-  						</div>
-						<div class="row">
-                        	<div class="col-md-4">
-                              	<label>Reviewed user:</label>
-                            </div>
-                            <div class="col-md-3">
-                        		<p><a href="OtherAccount.jsp">Luca456</a></p>
-                            </div>
-                            <div class="col-md-2">
-                              	<label>Rating:</label>
-                            </div>
-                            <div class="col-md-3">
-                        		<p>4/5</p>
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-md-12">
-                        		<p>4/5 Fantasyivdkbnòekfnbjearnbòerjknrbòenbkà
-                        		erkelnlknklbtrbàkltrà
-                        		kbnòktrnbàlktrq
-                        		bkjntrbltkrnblktr
-                        		fbnlkltrblkrtnwbtrh</p>
-                            </div>
-                        </div>
-                 	</div></div>
-                 </div>
-                 
-                 <div class="card">
-				<div class="card-header"style="font-size:20px;font-weight:600;">Received reviews</div>
+			<div class="row">
 				<div class="card">
-  				<div class="card-body">
-  						<div class="row">
-  						 	<h4><span class="badge bg-secondary" style="color:#ffffff;margin-left:15px;">Guest Review</span></h4>
-  						</div>
-						<div class="row">
-                        	<div class="col-md-4">
-                              	<label>Reviewing user:</label>
-                            </div>
-                            <div class="col-md-3">
-                        		<p><a href="OtherAccount.jsp">Mario123</a></p>
-                            </div>
-                            <div class="col-md-2">
-                              	<label>Rating:</label>
-                            </div>
-                            <div class="col-md-3">
-                        		<p>3/5</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                        		<p>4/5 Fantasyivdkbnòekfnbjearnbòerjknrbòenbkà</p>
-                            </div>
-                        </div>
-                 </div></div>
-                 </div>
-                 
+					<div class="card-header" style="font-size:20px;font-weight:600;">Done reviews</div>
+						<c:forEach items ="${doneList}" var="doneList">
+							<div class="card">
+			  					<div class="card-body">
+			  						<div class="row">
+			  						 	<h4><span class="badge bg-secondary" style="color:#ffffff; margin-left:15px;">${doneList.tag}</span></h4>
+			  						</div>
+									<div class="row">
+			                        	<div class="col-md-4">
+			                              	<label>Reviewed user:</label>                
+			                        	</div>
+			                            <div class="col-md-3">
+			                        		<form method="get">
+				                        			<button type="submit" style="border:none;backgroup:#ffffff" id="${doneList.reviewed.username}" name="${doneList.reviewed.username}">${doneList.reviewed.username}</button>
+				                        	</form>
+				                        </div>
+			                            <div class="col-md-2">
+			                              	<label>Rating:</label>
+			                            </div>
+			                            <div class="col-md-3">
+			                        		<p>${doneList.rating}
+			                            </div>
+			                        </div>
+			                        <div class="row">
+			                            <div class="col-md-12">
+			                        		<p>${doneList.description}</p>
+			                            </div>
+			                        </div>
+			                 	</div>
+		                  </div>
+		      		</c:forEach>
+				</div>
+	                 
+	            <div class="card">
+					<div class="card-header"style="font-size:20px;font-weight:600;">Received reviews</div>
+						<c:forEach items ="${receivedList}" var="receivedList">
+							<div class="card">
+				  				<div class="card-body">
+				  						<div class="row">
+				  						 	<h4><span class="badge bg-secondary" style="color:#ffffff;margin-left:15px;">${receivedList.tag}</span></h4>
+				  						</div>
+										<div class="row">
+				                        	<div class="col-md-4">
+				                              	<label>Reviewing user:</label>
+				                            </div>
+				                            <div class="col-md-3">
+				                            	<form method="get">
+				                        			<button type="submit" style="border:none;backgroup:#ffffff" id="${receivedList.reviewer.person.username}" name="${receivedList.reviewer.person.username}">${receivedList.reviewer.person.username}</button>
+				                        		</form>
+				                            </div>
+				                            <div class="col-md-2">
+				                              	<label>Rating:</label>
+				                            </div>
+				                            <div class="col-md-3">
+				                        		<p>${receivedList.rating}</p>
+				                            </div>
+				                        </div>
+				                        <div class="row">
+				                            <div class="col-md-12">
+				                        		<p>${receivedList.description}</p>
+				                            </div>
+				                        </div>
+				                 </div>
+			                </div>
+		                </c:forEach>
+		           </div> 
 			</div>
-			</div></div>	
+		</div>
+	</div>	
 	
 	<script>function toggleSideBar(){
 				document.getElementById("sidebar").classList.toggle("active");

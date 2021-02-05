@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-<%@ page import="logic.bean.*" %>
-<%@ page import="logic.model.dao.*" %>
-<%@ page import="java.sql.SQLException"%>
-<%@ page import="logic.exception.DatabaseException"%>
-<%@ page import="logic.controller.RoomController" %>
-<%@ page import="logic.exception.AccountException" %>s
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%> 
+
+<%@ page import="java.util.*"%>
+
+<%@ page import="logic.model.*"%>
+<%@ page import="logic.bean.*"%>
+<%@ page import="logic.exception.*"%>
+<%@ page import="logic.controller.*"%>
 
 <jsp:useBean id="roomBean" scope="request" class="logic.bean.RoomBean"/>
 <jsp:useBean id="roomSpecBean" scope="request" class="logic.bean.RoomSpecBean"/>
@@ -14,36 +16,39 @@
 <jsp:setProperty name="roomSpecBean" property="*"/>
 
 <%
-	boolean res;
-	if (request.getParameter("confirmBtn")!= null) {
+	RoomController rContr = RoomController.getInstance();
+	Person person = (Person)session.getAttribute("accPerson");
+	
+	if(person != null){
 		
-		System.out.println(roomBean.getName());
-		System.out.println(roomBean.getNumPartecipants());
-		System.out.println(roomBean.getSpecification());
-		System.out.println(roomBean.getAddress());
-		System.out.println(roomBean.getId());
-		System.out.println(roomSpecBean.getCap());
-		System.out.println(roomSpecBean.getDescription());
-		RoomController rContr = RoomController.getInstance();
+		boolean res;
 		
-		try {
-			//qui va preso il codice fiscale della persona che sta postando la room
-			roomBean.setOwner("kkkkkkkkkkkkkkkk");
-			res = rContr.postRoom(roomBean, roomSpecBean);
-			if(res) {
+		if (request.getParameter("confirmBtn")!= null) {
+			
+			try {
+				roomBean.setOwner(person.getAccount().getCf());
 				
-				String redirectURL = "http://localhost:8080/DoveStudi.git/AccountMyRooms.jsp";
-				response.sendRedirect(redirectURL);	
+				res = rContr.postRoom(roomBean, roomSpecBean);
 				
-			}else{
-				System.out.println("errore");
+				if(res) {
+					
+					String redirectURL = "http://localhost:8080/DoveStudi.git/AccountMyRooms.jsp";
+					response.sendRedirect(redirectURL);	
+					
+				}else{
+					System.out.println("errore");
+				}
+			
+			}catch(DatabaseException de){
+				de.printStackTrace();
 			}
-		
-		}catch(DatabaseException de){
-			de.printStackTrace();
 		}
 		
-	}
+	}else{
+		String site = new String("Login.jsp");
+        response.setStatus(response.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", site);
+	}	
 	
 %>
 
@@ -135,22 +140,69 @@
 	  				<div class="col-md-6">
            				<select class="custom-select" id="startTime" name="startTime">
 						   <!-- I value sono i valori che ritorna la selezione -->
-						    <option value="1">11:00</option>
-						    <option value="2">10:30</option>
-						    <option value="3">High School</option>
-						    <option value="4">University</option>
-						    <option value="5">PhD</option>
+						    <option value="07:00">07:00</option>
+						    <option value="07:30">07:30</option>
+						    <option value="08:00">08:00</option>
+						    <option value="08:30">08:30</option>
+						    <option value="09:00">09:00</option>
+						    <option value="09:30">09:30</option>
+						    <option value="10:00">10:00</option>
+						    <option value="10:30">10:30</option>
+						    <option value="11:00">11:00</option>
+						    <option value="11:30">11:30</option>
+						    <option value="12:00">12:00</option>
+						    <option value="12:30">12:30</option>
+						    <option value="13:00">13:00</option>
+						    <option value="13:30">13:30</option>
+						    <option value="14:00">14:00</option>
+						    <option value="14:30">14:30</option>
+						    <option value="15:00">15:00</option>
+						    <option value="15:30">15:30</option>
+						    <option value="16:00">16:00</option>
+						    <option value="16:30">16:30</option>
+						    <option value="17:00">17:00</option>
+						    <option value="17:30">17:30</option>
+						    <option value="18:00">18:00</option>
+						    <option value="18:30">18:30</option>
+						    <option value="19:00">19:00</option>
+						    <option value="19:30">19:30</option>
+						    <option value="20:00">20:00</option>
+						    <option value="20:30">20:30</option>							    
 						</select>
            			</div>
            			<!-- End time -->
 		  			<div class="col-md-6">
            				<select class="custom-select" id="endTime" name="endTime">
 						   <!-- I value sono i valori che ritorna la selezione  -->
-						    <option value="1">12:00</option>
-						    <option value="2">Middle school</option>
-						    <option value="3">High School</option>
-						    <option value="4">University</option>
-						    <option value="5">PhD</option>
+						    <option value="07:00">07:00</option>
+						    <option value="07:30">07:30</option>
+						    <option value="08:00">08:00</option>
+						    <option value="08:30">08:30</option>
+						    <option value="09:00">09:00</option>
+						    <option value="09:30">09:30</option>
+						    <option value="10:00">10:00</option>
+						    <option value="10:30">10:30</option>
+						    <option value="11:00">11:00</option>
+						    <option value="11:30">11:30</option>
+						    <option value="12:00">12:00</option>
+						    <option value="12:30">12:30</option>
+						    <option value="13:00">13:00</option>
+						    <option value="13:30">13:30</option>
+						    <option value="14:00">14:00</option>
+						    <option value="14:30">14:30</option>
+						    <option value="15:00">15:00</option>
+						    <option value="15:30">15:30</option>
+						    <option value="16:00">16:00</option>
+						    <option value="16:30">16:30</option>
+						    <option value="17:00">17:00</option>
+						    <option value="17:30">17:30</option>
+						    <option value="18:00">18:00</option>
+						    <option value="18:30">18:30</option>
+						    <option value="19:00">19:00</option>
+						    <option value="19:30">19:30</option>
+						    <option value="20:00">20:00</option>
+						    <option value="20:30">20:30</option>
+						    <option value="21:00">21:00</option>
 						</select>
            			</div>
 		  		</div>
@@ -193,10 +245,6 @@
 				$('#confirmBtn').click(function(){
 				   $('#form_post_room').submit();
 				});
-				<%
-					System.out.println(roomBean.getAddress());
-					System.out.println(roomSpecBean.getStartTime());
-				%>
 			</script>
 	</form>
 </div>

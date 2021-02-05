@@ -4,7 +4,7 @@
 
 <%
 	Person person = (Person)session.getAttribute("accPerson");
-	
+	session.setAttribute("personInfo", person);
 %>
    
 <!DOCTYPE html>
@@ -56,7 +56,8 @@
 			<h1 style="font-weight:600; font-family:sans-serif;margin-top:50px; margin-left:0px;">My Account</h1>
 		</div>
 		<div class="col-md-6" style="margin-top:20px;">
-			<p class="profile-rating">TOKENS : <span><%=person.getAccount().getNumberToken()%></span> </p>
+			<p class="profile-rating">TOKENS : <span>${personInfo.account.numberToken}</span> </p>
+			<p class="profile-rating"><span>&nbsp</span> </p>
 		</div>
 	</div>
 	
@@ -78,7 +79,7 @@
 				<label>CF</label>
 			</div>
 			<div class="col-md-12">
-				<p><%=person.getAccount().getCf()%>
+				<p>${personInfo.account.cf}
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
@@ -86,7 +87,7 @@
 				<label>Name:</label>
 			</div>
 			<div class="col-md-12">
-				<p><%=person.getAccount().getName()%>
+				<p>${personInfo.account.name}
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
@@ -94,7 +95,7 @@
 				<label>Surname:</label>
 			</div>
 			<div class="col-md-12">
-				<p><%=person.getAccount().getSurname()%>
+				<p>${personInfo.account.surname}
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
@@ -102,7 +103,7 @@
 				<label>Password:</label>
 			</div>
 			<div class="col-md-12">
-				<p><%=person.getAccount().getPassword()%>
+				<p>${personInfo.account.password}
 			</div>
 		</div>
 	</div>

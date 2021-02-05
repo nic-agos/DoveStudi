@@ -1,7 +1,5 @@
 package logic.model;
 
-import java.sql.SQLException;
-
 import logic.bean.*;
 
 public class Review {
@@ -40,7 +38,7 @@ public class Review {
 		
 	}
 	
-	public Review(ReviewBean reviewBean) throws SQLException {
+	public Review(ReviewBean reviewBean) {
 
 		this(reviewBean.getTitle(), reviewBean.getRating(), reviewBean.getDescritpion(), reviewBean.getTag());
 	
@@ -103,7 +101,7 @@ public class Review {
 		
 	}
 	
-	public String getDescritpion() {
+	public String getDescription() {
 		return this.description;
 		
 	}

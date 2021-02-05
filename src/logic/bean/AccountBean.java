@@ -1,7 +1,7 @@
 package logic.bean;
 
-import logic.exception.AccountException;
-import logic.exception.TriggerExceptions;
+import logic.exception.*;
+import logic.model.*;
 
 public class AccountBean {
 
@@ -20,6 +20,8 @@ public class AccountBean {
 	private String dateBirth;
 	
 	private int numberToken;
+	
+	private Person person;
 	
 	public AccountBean() { 
 		
@@ -110,6 +112,16 @@ public class AccountBean {
 	
 	public int getNumberToken() {
 		return this.numberToken;
+		
+	}
+	
+	public void setPerson(Person person) {
+		this.person = person;
+		
+	}
+	
+	public Person getPerson() {
+		return this.person;
 		
 	}
 	

@@ -32,6 +32,9 @@ public class RegistrationController {
 			
 			personBean.setAccount(accountBean.getCf());
 			PersonDAOImpl personDao = PersonDAOImpl.getInstance();
+			personBean.setHostRating(0);
+			personBean.setGuestRating(0);
+			
 			int res = personDao.createPerson(personBean);
 			
 			return (res != 0);

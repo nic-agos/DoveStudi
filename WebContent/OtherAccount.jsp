@@ -2,16 +2,25 @@
     pageEncoding="ISO-8859-1"%>
     
 <%@ page import="logic.model.*"%>
+<%@ page import="logic.model.dao.*"%>
 <%@ page import="logic.bean.*"%>
 <%@ page import="logic.exception.*"%>
 <%@ page import="logic.controller.*"%>   
 <%
-	PersonBean persBean = (PersonBean)session.getAttribute("othAccount");
+	PersonBean persBean = (PersonBean)session.getAttribute("othAccUsername");
+	PersonDAOImpl personDao = PersonDAOImpl.getInstance();
+	
 	AccountController rContr = AccountController.getInstance();
+	
+	PersonBean personBean = personDao.getPersonByUsername(persBean);
+	session.setAttribute("othPersBean", personBean);
+	
 	Person person = null;
 	
 	try{
 		person = rContr.getOtherAccountInfo(persBean);
+		session.setAttribute("person", person);
+		
 		
 	}catch(DatabaseException de){
 		de.printStackTrace();
@@ -50,11 +59,11 @@
 		 	<li><a href="SearchRooms.jsp">Search for Rooms</a></li>
 		 	<li><a href="AccountPubInfo.jsp">My Account</a></li>
 		 	<li><a href="MyGroups.jsp">My Groups</a></li>
-		 	<li><a href="AccountMyReservations.jsp">My Reservations</a></li>
+		 	<li><a href="AccountMyFutReservations.jsp">My Reservations</a></li>
 		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
 		 	<li><a href="AccountMyRooms.jsp">My Rooms</a></li>
 		 	<li><a href="PostRoom.jsp">Post a Room</a></li>
-		 	<li><a href="index.jsp">Log out</a></li>
+		 	<li><a href="Logout.jsp">Log out</a></li>
 		 </ul>
 	</div>
 	
@@ -63,8 +72,8 @@
 			<h1 style="font-weight:600; font-family:sans-serif;margin-top:50px; margin-left:0px;">My Account</h1>
 		</div>
 		<div class="col-md-6" style="margin-top:20px;">
-			<p class="profile-rating">HOST RATING : <span><%=person.getHostRating()%></span> </p>
-			<p class="profile-rating">GUEST RATING : <span><%=person.getGuestRating()%></span> </p>
+			<p class="profile-rating">HOST RATING : <span>${person.hostRating}</span> </p>
+			<p class="profile-rating">GUEST RATING : <span>${person.guestRating}</span> </p>
 		</div>
 	</div>
 	
@@ -86,7 +95,7 @@
 				<label>Username:</label>
 			</div>
 			<div class="col-md-12">
-				<p><%=person.getUsername()%>
+				<p>${person.username}
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
@@ -94,23 +103,23 @@
 				<label>Email:</label>
 			</div>
 			<div class="col-md-12">
-				<p><%=person.getAccount().getEmail()%>
+				<p>${person.account.email}
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
 			<div class="col-md-6">
-				<label>Birthdate:</label>
+				<label>Date Birth:</label>
 			</div>
 			<div class="col-md-12">
-				<p><%=person.getAccount().getDateBirth()%>
+				<p>${person.account.dateBirth}
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
 			<div class="col-md-6">
-				<label>Studygrade:</label>
+				<label>Study Grade:</label>
 			</div>
 			<div class="col-md-12">
-				<p><%=person.getStudyGrade()%>
+				<p>${person.studyGrade}
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
@@ -118,7 +127,7 @@
 				<label>School:</label>
 			</div>
 			<div class="col-md-12">
-				<p><%=person.getSchool()%>
+				<p>${person.school}
 			</div>
 		</div>
 	</div>

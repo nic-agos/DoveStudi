@@ -1,7 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%> 
+
+<%@ page import="java.util.*"%>
+
+<%@ page import="logic.model.*"%>
+<%@ page import="logic.bean.*"%>
+<%@ page import="logic.exception.*"%>
+<%@ page import="logic.controller.*"%>
+
+<%
+	Person person = (Person)session.getAttribute("accPerson");
+	if(person != null){
+		
+	}else{
+		String site = new String("Login.jsp");
+        response.setStatus(response.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", site);
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +54,7 @@
 		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
 		 	<li><a href="AccountMyRooms.jsp">My Rooms</a></li>
 		 	<li><a href="PostRoom.jsp">Post a Room</a></li>
-		 	<li><a href="index.jsp">Log out</a></li>
+		 	<li><a href="Logout.jsp">Log out</a></li>
 		 </ul>
 	</div>
 	<!-- <div class="curved">
@@ -186,9 +204,8 @@
       <div class="modal-body">
         <form class="d-flex">
 		        <input class="form-control me-2" type="search" placeholder="Username" aria-label="Search">
-		        <button class="btn btn-outline-warning" id="btn"type="submit">Search</button>
 		</form>
-		<!-- per ogni utente trovato con la ricerca, visulizzarlo sotto che si può selezionare-->
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

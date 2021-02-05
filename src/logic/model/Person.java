@@ -21,10 +21,6 @@ public class Person {
 	
 	private double guestRating;
 	
-	private List<Review> reviews;
-	
-	private List<Group> groups;
-	
 	public Person(String username, String studyGrade, String school, double hostRating, double guestRating) {
 		
 		this.username = username;
@@ -47,32 +43,9 @@ public class Person {
 		
 	}
 	
-	public Person (PersonBean personBean) throws SQLException {
+	public Person (PersonBean personBean) {
 		this(personBean.getUsername(), personBean.getStudyGrade(), personBean.getSchool(), personBean.getHostRating(), personBean.getGuestRating());
-/*		
-		AccountDAOImpl dao1 = new AccountDAOImpl();
-		
-		this.account = new Account(dao1.getAccount(personBean.getAccount()));
-		
-		GroupDAOImpl dao2 = new GroupDAOImpl();
-		
-		List<GroupBean> groupBeans = dao2.getAllParticipatingGroups(personBean);
-		if (!groupBeans.isEmpty()) {
-			for(GroupBean groupBean : groupBeans) {
-				this.groups.add(new Group(groupBean));
-			}
-		}
-*	
-		
-		ReviewDAOImpl dao3 = new ReviewDAOImpl();
-		
-		List<ReviewBean> reviewBeans = dao3.getAllReceivedReviews(personBean);
-		if(!reviewBeans.isEmpty()) {
-			for(ReviewBean reviewBean : reviewBeans) {
-				this.reviews.add(new Review(reviewBean));
-			}
-		}
-*/		
+
 		this.id = personBean.getId();
 	}
 	
@@ -143,26 +116,6 @@ public class Person {
 	
 	public double getGuestRating() {
 		return this.guestRating;
-		
-	}
-	
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
-		
-	}
-	
-	public List<Review> getReviews(){
-		return this.reviews;
-		
-	}
-	
-	public void setGroups(List<Group> groups) {
-		this.groups = groups;
-		
-	}
-	
-	public List<Group> getGroups(){
-		return this.groups;
 		
 	}
 }

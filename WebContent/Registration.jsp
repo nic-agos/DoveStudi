@@ -14,34 +14,42 @@
 <jsp:setProperty name="personBean" property="*"/>
 
 <%
-boolean res1 = false;
+	boolean res1 = false;
 	boolean res2 = false;
+	boolean registration;
+	
 	if(request.getParameter("registerBtn")!=null){
 	
 		try{
-	res1 = accountBean.validate();
+			res1 = accountBean.validate();
 		
 		}catch (AccountException ae){
-	ae.printStackTrace();
+			ae.printStackTrace();
 		}
 		try{
-	res2 = personBean.validate();
+			res2 = personBean.validate();
 		
 		}catch (AccountException pe){
-	pe.printStackTrace();
+			pe.printStackTrace();
 		}
 		
 		if (res1 && res2){
-	RegistrationController rContr = RegistrationController.getInstance();
-	try{
-		rContr.register(accountBean, personBean);
-		
-		String redirectURL = "http://localhost:8080/DoveStudi.git/Login.jsp";
-		response.sendRedirect(redirectURL);	
+			
+			RegistrationController rContr = RegistrationController.getInstance();
+			
+				try{
+					registration = rContr.register(accountBean, personBean);
+					
+					if(registration){
+						
+						String site = new String("Login.jsp");
+				        response.setStatus(response.SC_MOVED_TEMPORARILY);
+				        response.setHeader("Location", site);
+					}
 	
-	}catch (DatabaseException de){
-				de.printStackTrace();
-			}	
+				}catch (DatabaseException de){
+					de.printStackTrace();
+				}	
 		}
 	}
 

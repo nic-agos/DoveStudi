@@ -131,7 +131,7 @@ public class TestController {
 	public void testGetRooms() throws DatabaseException, NotFoundException {
 		RoomController r = RoomController.getInstance();
 		List<Room> rooms = r.searchRooms();
-		System.out.println(rooms.get(0).getName());
+		System.out.println(rooms.get(0).getOwner().getPerson());
 		System.out.println(rooms.get(1).getName());
 
 	}
@@ -264,9 +264,9 @@ public class TestController {
 	public void testGetReceivedReview() throws DatabaseException, ReviewException {
 		ReviewController r = ReviewController.getInstance();
 		AccountBean accountBean = new AccountBean();
-		accountBean.setCf("qqqqqqqqqqqqqqqq");
+		accountBean.setCf("GSTNCL99C23H501K");
 		List<Review> list = r.getReceivedReviews(accountBean);
-		System.out.println("Review: "+list.get(0).getId()+" "+list.get(0).getTitle()+" "+list.get(0).getReviewer()+" "+list.get(0).getReviewed()+" "+list.get(0).getRating()+" "+list.get(0).getDescritpion()+" "+list.get(0).getTag());
+		System.out.println("Review: "+list.get(0).getId()+" "+list.get(0).getTitle()+" "+list.get(0).getReviewer()+" "+list.get(0).getReviewed()+" "+list.get(0).getRating()+" "+list.get(0).getDescription()+" "+list.get(0).getTag());
 		System.out.println("Reviewer: "+list.get(0).getReviewer().getCf()+" "+list.get(0).getReviewer().getName()+" "+list.get(0).getReviewer().getSurname()+" "+list.get(0).getReviewer().getEmail()+" "+list.get(0).getReviewer().getPassword()+" "+list.get(0).getReviewer().getDateBirth()+" "+list.get(0).getReviewer().getNumberToken());
 		System.out.println("Reviewed: "+list.get(0).getReviewed().getId()+" "+list.get(0).getReviewed().getUsername()+" "+list.get(0).getReviewed().getStudyGrade()+" "+list.get(0).getReviewed().getStudyGrade()+" "+list.get(0).getReviewed().getSchool()+" "+list.get(0).getReviewed().getAccount()+" "+list.get(0).getReviewed().getHostRating()+" "+list.get(0).getReviewed().getGuestRating());
 		System.out.println("Reviewed Account: "+list.get(0).getReviewed().getAccount().getCf()+" "+list.get(0).getReviewed().getAccount().getName()+" "+list.get(0).getReviewed().getAccount().getSurname()+" "+list.get(0).getReviewed().getAccount().getEmail()+" "+list.get(0).getReviewed().getAccount().getPassword()+" "+list.get(0).getReviewed().getAccount().getDateBirth()+" "+list.get(0).getReviewed().getAccount().getNumberToken());
@@ -276,9 +276,9 @@ public class TestController {
 	public void testGetDoneReview() throws DatabaseException, ReviewException {
 		ReviewController r = ReviewController.getInstance();
 		AccountBean accountBean = new AccountBean();
-		accountBean.setCf("qqqqqqqqqqqqqqqq");
+		accountBean.setCf("GSTNCL99C23H501K");
 		List<Review> list = r.getDoneReviews(accountBean);
-		System.out.println("Review: "+list.get(0).getId()+" "+list.get(0).getTitle()+" "+list.get(0).getReviewer()+" "+list.get(0).getReviewed()+" "+list.get(0).getRating()+" "+list.get(0).getDescritpion()+" "+list.get(0).getTag());
+		System.out.println("Review: "+list.get(0).getId()+" "+list.get(0).getTitle()+" "+list.get(0).getReviewer()+" "+list.get(0).getReviewed()+" "+list.get(0).getRating()+" "+list.get(0).getDescription()+" "+list.get(0).getTag());
 		System.out.println("Reviewer: "+list.get(0).getReviewer().getCf()+" "+list.get(0).getReviewer().getName()+" "+list.get(0).getReviewer().getSurname()+" "+list.get(0).getReviewer().getEmail()+" "+list.get(0).getReviewer().getPassword()+" "+list.get(0).getReviewer().getDateBirth()+" "+list.get(0).getReviewer().getNumberToken());
 		System.out.println("Reviewed: "+list.get(0).getReviewed().getId()+" "+list.get(0).getReviewed().getUsername()+" "+list.get(0).getReviewed().getStudyGrade()+" "+list.get(0).getReviewed().getSchool()+" "+list.get(0).getReviewed().getAccount()+" "+list.get(0).getReviewed().getHostRating()+" "+list.get(0).getReviewed().getGuestRating());
 		System.out.println("Reviewed Account: "+list.get(0).getReviewed().getAccount().getCf()+" "+list.get(0).getReviewed().getAccount().getName()+" "+list.get(0).getReviewed().getAccount().getSurname()+" "+list.get(0).getReviewed().getAccount().getEmail()+" "+list.get(0).getReviewed().getAccount().getPassword()+" "+list.get(0).getReviewed().getAccount().getDateBirth()+" "+list.get(0).getReviewed().getAccount().getNumberToken());

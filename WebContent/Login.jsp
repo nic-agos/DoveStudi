@@ -28,12 +28,14 @@
 			if (res != null){
 				
 				session.setAttribute("accPerson", res);
-				String redirectURL = "http://localhost:8080/DoveStudi.git/AccountPersInfo.jsp";
-				response.sendRedirect(redirectURL);
+				String site = new String("AccountPersInfo.jsp");
+		        response.setStatus(response.SC_MOVED_TEMPORARILY);
+		        response.setHeader("Location", site);
 			}
 			else{
 				System.out.println("errore");
 			}
+			
 		}catch (DatabaseException de) {
 			de.printStackTrace();
 			
@@ -42,7 +44,6 @@
 		}
 	}
 %>	
-	
 
 <!DOCTYPE html>
 <html>

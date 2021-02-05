@@ -4,6 +4,13 @@
 
 <%
 	Person person = (Person)session.getAttribute("accPerson");
+	session.setAttribute("personInfo", person);
+	
+	if(person == null){
+		String site = new String("Login.jsp");
+        response.setStatus(response.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", site);
+	}
 	
 %>
 <!DOCTYPE html>
@@ -42,11 +49,11 @@
 		 	<li><a href="SearchRooms.jsp">Search for Rooms</a></li>
 		 	<li><a href="AccountPubInfo.jsp">My Account</a></li>
 		 	<li><a href="MyGroups.jsp">My Groups</a></li>
-		 	<li><a href="AccountMyReservations.jsp">My Reservations</a></li>
+		 	<li><a href="AccountMyFutReservations.jsp">My Reservations</a></li>
 		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
 		 	<li><a href="AccountMyRooms.jsp">My Rooms</a></li>
 		 	<li><a href="PostRoom.jsp">Post a Room</a></li>
-		 	<li><a href="index.jsp">Log out</a></li>
+		 	<li><a href="Logout.jsp">Log out</a></li>
 		 </ul>
 	</div>
 	
@@ -55,8 +62,8 @@
 			<h1 style="font-weight:600; font-family:sans-serif;margin-top:50px; margin-left:0px;">My Account</h1>
 		</div>
 		<div class="col-md-6" style="margin-top:20px;">
-			<p class="profile-rating">HOST RATING : <span><%=person.getHostRating()%></span> </p>
-			<p class="profile-rating">GUEST RATING : <span><%=person.getHostRating()%></span> </p>
+			<p class="profile-rating">HOST RATING : <span>${personInfo.hostRating}</span> </p>
+			<p class="profile-rating">GUEST RATING : <span>${personInfo.guestRating}</span> </p>
 		</div>
 	</div>
 	
@@ -78,7 +85,7 @@
 				<label>Username:</label>
 			</div>
 			<div class="col-md-12">
-				<p><%=person.getUsername()%>
+				<p>${personInfo.username}
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
@@ -86,7 +93,7 @@
 				<label>Email:</label>
 			</div>
 			<div class="col-md-12">
-				<p><%=person.getAccount().getEmail()%>
+				<p>${personInfo.account.email}
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
@@ -94,7 +101,7 @@
 				<label>Birthdate:</label>
 			</div>
 			<div class="col-md-12">
-				<p><%=person.getAccount().getDateBirth()%>
+				<p>${personInfo.account.dateBirth}
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
@@ -102,7 +109,7 @@
 				<label>Studygrade:</label>
 			</div>
 			<div class="col-md-12">
-				<p><%=person.getStudyGrade()%>
+				<p>${personInfo.studyGrade}
 			</div>
 		</div>
 		<div class="row" style="margin-left:20px;">
@@ -110,7 +117,7 @@
 				<label>School:</label>
 			</div>
 			<div class="col-md-12">
-				<p><%=person.getSchool()%>
+				<p>${personInfo.school}
 			</div>
 		</div>
 	</div>

@@ -32,7 +32,7 @@
 		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
 		 	<li><a href="AccountMyRooms.jsp">My Rooms</a></li>
 		 	<li><a href="PostRoom.jsp">Post a Room</a></li>
-		 	<li><a href="index.jsp">Log out</a></li>
+		 	<li><a href="Logout.jsp">Log out</a></li>
 		 </ul>
 	</div>
 

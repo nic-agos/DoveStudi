@@ -287,8 +287,6 @@ public class RoomController {
 			RoomDAOImpl roomDao = RoomDAOImpl.getInstance();
 			
 			roomBeans = roomDao.getAllAccountRooms(accountBean);
-			
-			if(!roomBeans.isEmpty()) {
 				
 				RoomSpecDAOImpl roomSpecDao = RoomSpecDAOImpl.getInstance();
 				
@@ -310,10 +308,6 @@ public class RoomController {
 				
 			return rooms;
 			
-			}else {
-				throw new NotFoundException("Rooms");
-			}
-			
 		}catch (SQLException se) {
 			throw new DatabaseException(se.getMessage());
 		}
@@ -324,9 +318,14 @@ public class RoomController {
 		
 		List<RoomSpecBean> roomSpecBeans;
 		List<Room> rooms = new ArrayList<>();
+		
+		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
+		
 		RoomBean roomBean;
 		Room room;
-		AccountBean owner;
+		AccountBean ownerBean;
+		Account owner;
+		PersonBean persBean;
 		AccountBean temp1 = new AccountBean();
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -341,7 +340,6 @@ public class RoomController {
 			
 			AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
 			
-			if(!roomSpecBeans.isEmpty()) {
 				
 				for(RoomSpecBean rSpecBean: roomSpecBeans) {
 					
@@ -353,18 +351,22 @@ public class RoomController {
 						roomBean = roomDao.getRoomFromSpec(rSpecBean);
 						room = new Room(roomBean);
 						room.setSpecification(new RoomSpec(rSpecBean));
+						
 						temp1.setCf(roomBean.getOwner()); 
-						owner = accountDao.getAccount(temp1);
-						room.setOwner(new Account(owner));
+						ownerBean = accountDao.getAccount(temp1);
+						owner = new Account(ownerBean);
+						
+						persBean = personDao.getPersonFromAccount(ownerBean);
+						owner.setPerson(new Person(persBean));
+						
+						room.setOwner(owner);
+						
 						rooms.add(room);
 					}
 				}
 				
 			return rooms;
 			
-			}else {
-				throw new NotFoundException("Rooms");
-			}
 			
 		}catch (SQLException se) {
 			throw new DatabaseException(se.getMessage());
@@ -389,6 +391,6 @@ public class RoomController {
 		}catch (SQLException se) {
 			throw new DatabaseException(se.getMessage());
 		}
-		
+
 	}
 }

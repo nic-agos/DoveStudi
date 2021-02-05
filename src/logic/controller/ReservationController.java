@@ -28,7 +28,7 @@ public class ReservationController {
 	}
 	
 //	takes in input the id of the room and and the cf of the user
-	public boolean makeReservation(RoomBean roomBean, AccountBean accountBean) throws DatabaseException, RoomException, AccountException, ReservationException  {
+	public boolean makeReservation(RoomBean roomBean, AccountBean accountBean) throws DatabaseException, RoomException, AccountException, ReservationException {
 		
 		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
 		ReservationDAOImpl reservationDao = ReservationDAOImpl.getInstance();
@@ -307,8 +307,6 @@ public class ReservationController {
 			
 			roomPartecipantsBean = reservationDao.getRoomReservations(roomBean);
 			
-			if(!roomPartecipantsBean.isEmpty()) {
-				
 				for(ReservationBean resBean : roomPartecipantsBean) {
 					
 					tempAccBean.setCf(resBean.getReservingUser());
@@ -324,10 +322,6 @@ public class ReservationController {
 				}
 				
 				return roomPartecipants;
-				
-			}else {
-				throw new ReservationException("No partecipants for the room: " + roomBean.getId());
-			}
 			
 		}catch (SQLException se) {
 			throw new DatabaseException(se.getMessage());		

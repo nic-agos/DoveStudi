@@ -1,17 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
-<%@ page import="logic.model.dao.RoomDAOImpl"%>
-<%@ page import="logic.bean.RoomBean"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%> 
+
 <%@ page import="java.util.*"%>
-<%@ page import="java.util.ArrayList"%>
+
+<%@ page import="logic.model.*"%>
+<%@ page import="logic.bean.*"%>
+<%@ page import="logic.exception.*"%>
+<%@ page import="logic.controller.*"%>
 
 <%
-	RoomDAOImpl dao = RoomDAOImpl.getInstance();
-	List<RoomBean> listRoom;
-	listRoom = dao.getAllRooms();
-	request.setAttribute("listRoom", listRoom);
+	Person person = (Person)session.getAttribute("accPerson");
+	if(person != null){
+		
+		RoomController rContr = RoomController.getInstance();
+		AccountBean accBean = new AccountBean();
+		accBean.setCf(person.getAccount().getCf());
+		List<Room> roomsList = rContr.getMyRooms(accBean);
+		RoomBean roomBean = new RoomBean();
+		
+		request.setAttribute("roomsList", roomsList);
+
+//		method to handle click on delete room
+		for(Room r : roomsList){
+			
+			if(request.getParameter(String.valueOf(r.getId())) != null){
+				
+				try {
+					roomBean.setId(r.getId());
+					 rContr.deleteRoom(roomBean);
+					 
+					 String site = new String("AccountMyRooms.jsp");
+				     response.setStatus(response.SC_MOVED_TEMPORARILY);
+				     response.setHeader("Location", site);
+					
+				}catch(DatabaseException de){
+					de.printStackTrace();
+				}
+			}
+		}
+		
+	}else{
+		String site = new String("Login.jsp");
+        response.setStatus(response.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", site);
+	}
 %>
 
 <!DOCTYPE html>
@@ -45,7 +79,7 @@
 		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
 		 	<li><a href="AccountMyRooms.jsp">My Rooms</a></li>
 		 	<li><a href="PostRoom.jsp">Post a Room</a></li>
-		 	<li><a href="index.jsp">Log out</a></li>
+		 	<li><a href="Logout.jsp">Log out</a></li>
 		 </ul>
 	</div>
 	<div class="container" style="text-align:center; margin-top:20px; font-weight:600;">
@@ -58,20 +92,20 @@
 		
 		
 		
-		<c:forEach items ="${listRoom}" var="listRoom">
+		<c:forEach items ="${roomsList}" var="roomsList">
 			
 			<div class="col-md-9" style="margin-top:70px;">
 				
 				<div class="card">         
 	         		<!-- <div class="card-header" id="myCard" style="background:#ff6b24;font-weight: 600; font-size:15px;"></div> -->
-	  				<div class="card-header" id="myCard2" style="font-weight:600; font-size:20px;"> <c:out value = "${listRoom.name}"/>	</div>
+	  				<div class="card-header" id="myCard2" style="font-weight:600; font-size:20px;"> <c:out value = "${roomsList.name}"/>	</div>
 	  					<div class="card-body">
 							<div class="row" id="line">
 	                        	<div class="col-md-2">
 	                        		<label>Description:</label>
 	                        	</div>
 	                            <div class="col-md-7">
-	                        		<p>Room description fdjbglkjebgvlfjebvljfebvlfjdbvlfjdvbfv</p>
+	                        		<p>${roomsList.specification.description}</p>
 	                            </div>
 	                        </div>
 							<div class="row"id="line">
@@ -79,7 +113,7 @@
 									<label>Address:</label>
 								</div>
 	                            <div class="col-md-7">
-	                        		<p><c:out value = "${listRoom.address}"/></p>
+	                        		<p><c:out value = "${roomsList.address}"/></p>
 	                            </div>
 	                        </div>
 	                        <div class="row"id="line">
@@ -87,13 +121,13 @@
 	                        		<label>CAP:</label>
 	                        	</div>
 	                        	<div class="col-md-4">
-	                        		<p>00019
+	                        		<p>${roomsList.specification.cap}
 	                        	</div>
 								<div class="col-md-2">
 									<label>Date:</label>
 								</div>
 								<div class="col -md-4">
-									<p>12/12/2021
+									<p>${roomsList.specification.date}
 								</div>
 							</div>
 							<div class="row"id="line">
@@ -101,13 +135,13 @@
 	                        		<label>Start time:</label>
 	                        	</div>
 	                        	<div class="col-md-4">
-	                        		<p>15:00
+	                        		<p>${roomsList.specification.startTime}
 	                        	</div>
 								<div class="col-md-2">
 									<label>End time:</label>
 								</div>
 								<div class="col -md-4">
-									<p>19:00
+									<p>${roomsList.specification.endTime}
 								</div>
 							</div>
 							<div class="row"id="line">
@@ -115,13 +149,13 @@
 	                        		<label>Max seats:</label>
 	                        	</div>
 	                        	<div class="col-md-4">
-	                        		<p>8
+	                        		<p>${roomsList.numPartecipants}
 	                        	</div>
 								<div class="col-md-3">
 									<label>Available seats:</label>
 								</div>
 								<div class="col -md-4">
-									<p>6
+									<p>${roomsList.numAvailableSeats}
 								</div>
 							</div>
 							<div class="row"id="line">
@@ -134,7 +168,9 @@
 	                   	</div>
 	                   	<div class="row">
 	                   	<div class="col-md-4">
-		    				<button id="res-btn" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-outline-success"style="margin-bottom:10px;margin-left:20px;">Delete Room</button>
+	                   		<form method="get">
+								<button type="submit" id="${roomsList.id}" name="${roomsList.id}" class="btn btn-outline-warning">Delete Room</a></button>    		
+							</form>
 		    			</div>
 		    			</div>
 	        	</div>
@@ -145,42 +181,42 @@
 	</div>
 	
 	<!-- Delete Room Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to delete this room?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        <button type="button" id="btn"class="btn btn-outline-warning" data-dismiss="modal"data-toggle="modal" data-target="#roomDeleted">Yes</button>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> -->
+<!--   <div class="modal-dialog modal-dialog-centered" role="document"> -->
+<!--     <div class="modal-content"> -->
+<!--       <div class="modal-header"> -->
+<!--         <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
+<!--         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+<!--           <span aria-hidden="true">&times;</span> -->
+<!--         </button> -->
+<!--       </div> -->
+<!--       <div class="modal-body"> -->
+<!--         Are you sure you want to delete this room? -->
+<!--       </div> -->
+<!--       <div class="modal-footer"> -->
+<!--         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button> -->
+<!--         <button type="button" id="btn"class="btn btn-outline-warning" data-dismiss="modal"data-toggle="modal" data-target="#roomDeleted">Yes</button> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </div> -->
 
 <!-- Room Deleted Modal -->
-<div class="modal fade" id="roomDeleted" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Your Room has been deleted!
-      </div>
-    </div>
-  </div>
-</div>
+<!-- <div class="modal fade" id="roomDeleted" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> -->
+<!--   <div class="modal-dialog modal-dialog-centered" role="document"> -->
+<!--     <div class="modal-content"> -->
+<!--       <div class="modal-header"> -->
+<!--         <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
+<!--         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+<!--           <span aria-hidden="true">&times;</span> -->
+<!--         </button> -->
+<!--       </div> -->
+<!--       <div class="modal-body"> -->
+<!--         Your Room has been deleted! -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </div> -->
 	
 	
 	

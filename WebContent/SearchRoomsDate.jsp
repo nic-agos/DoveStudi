@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%> 
+
+<%@ page import="java.util.*"%>
+
+<%@ page import="logic.model.*"%>
+<%@ page import="logic.bean.*"%>
+<%@ page import="logic.exception.*"%>
+<%@ page import="logic.controller.*"%>
+
+<%
+	Person person = (Person)session.getAttribute("accPerson");
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,14 +39,14 @@
 		</div>
 		 <ul>
 		 	<li style="background:#FF5500; color:#ffffff"><a style="font-size:20px; font-weight:bold; background-color:#FF5500;">#DoveStudi</a></li>
-		 	<li><a href="SearchRooms.jsp">Search for Rooms</a></li>
+		 <li><a href="SearchRooms.jsp">Search for Rooms</a></li>
 		 	<li><a href="AccountPubInfo.jsp">My Account</a></li>
 		 	<li><a href="MyGroups.jsp">My Groups</a></li>
 		 	<li><a href="AccountMyFutReservations.jsp">My Reservations</a></li>
 		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
 		 	<li><a href="AccountMyRooms.jsp">My Rooms</a></li>
 		 	<li><a href="PostRoom.jsp">Post a Room</a></li>
-		 	<li><a href="index.jsp">Log out</a></li>
+		 	<li><a href="Logout.jsp">Log out</a></li>
 		 </ul>
 	</div>
 
@@ -65,7 +79,7 @@
 		        </li>
 		      </ul>
 		      <form class="d-flex">
-		        <input class="form-control me-2" type="search" placeholder="DD/MM/YYYY" aria-label="Search">
+		        <input class="form-control me-2" type="search" placeholder="YYYY/MM/DD" aria-label="Search">
 		        <button class="btn btn-outline-warning" id="btn" type="submit">Search</button>
 		      </form>
 		    </div>

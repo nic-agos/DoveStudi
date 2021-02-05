@@ -98,6 +98,7 @@ public class ReviewController {
 		Person reviewedPerson;
 		Account reviewedAccount;
 		Account reviewerAccount;
+		Person reviewerPerson;
 		PersonBean personBean;
 		AccountBean tempAccountBean;
 		PersonBean tempPersonBean = new PersonBean();
@@ -109,15 +110,16 @@ public class ReviewController {
 			tempAccountBean = accountDao.getAccount(accountBean);
 			
 
-//			create the Account entity for the reviewer
+//			create the Account and Person entities for the reviewer
 			reviewerAccount = new Account(tempAccountBean);
+			reviewerPerson = new Person(personDao.getPersonFromAccount(tempAccountBean));
+
+//			linking the Person entity to the Account Entity
+			reviewerAccount.setPerson(reviewerPerson);
 
 			
 //			get a list of all ReviewBean written by an Account
 			writtenReviewBeansList = reviewDao.getAllWrittenReviews(accountBean);
-
-//			check if the list is empty
-			if(!writtenReviewBeansList.isEmpty()) {
 				
 				for(ReviewBean revBean : writtenReviewBeansList) {
 					review = new Review(revBean);
@@ -142,16 +144,13 @@ public class ReviewController {
 				}
 				return receivedReviewList;
 			
-			}else {
-				throw new ReviewException("No reviews maked by the account: " + accountBean.getCf() + " found");
-			}
-			
 		}catch (SQLException se) {
 			throw new DatabaseException(se.getMessage());
 		}
 	  
 	}
-	
+
+//	takes in input the cf of user
 	public List<Review> getReceivedReviews(AccountBean accountBean) throws DatabaseException, ReviewException {
 		
 		ReviewDAOImpl reviewDao = ReviewDAOImpl.getInstance();
@@ -162,6 +161,7 @@ public class ReviewController {
 		List<ReviewBean> receivedReviewBeansList;
 		Review review;
 		Person reviewedPerson;
+		Person reviewerPerson;
 		Account reviewedAccount;
 		Account reviewerAccount;
 		PersonBean personBean;
@@ -185,9 +185,6 @@ public class ReviewController {
 //			get a list of all ReviewBean received by a user
 			receivedReviewBeansList = reviewDao.getAllReceivedReviews(personBean);
 
-//			check if the list is empty
-			if(!receivedReviewBeansList.isEmpty()) {
-				
 				for(ReviewBean revBean : receivedReviewBeansList) {
 					review = new Review(revBean);
 
@@ -197,16 +194,14 @@ public class ReviewController {
 //					create the reviewer Account entity and linking to the review
 					temp2AccountBean.setCf(revBean.getReviewer());
 					reviewerAccount = new Account(accountDao.getAccount(temp2AccountBean));
+					reviewerPerson = new Person(personDao.getPersonFromAccount(temp2AccountBean));
+					reviewerAccount.setPerson(reviewerPerson);
 					review.setReviewer(reviewerAccount);
 
 //					add the review to the returning list
 					receivedReviewList.add(review);
 				}
 				return receivedReviewList;
-			
-			}else {
-				throw new ReviewException("No reviews for the user: " + personBean.getUsername() + " found");
-			}
 			
 		}catch (SQLException se) {
 			throw new DatabaseException(se.getMessage());

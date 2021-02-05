@@ -11,39 +11,99 @@
 <%@ page import="logic.controller.*"%>
 
 <%
-	Person person = (Person)session.getAttribute("accPerson");
-	AccountBean accBean = new AccountBean();
-	PersonBean persBean = new PersonBean();
-	RoomBean roomBean = new RoomBean();
-	accBean.setCf(person.getAccount().getCf());
-	List<Reservation> reservationsList;
 	ReservationController rContr = ReservationController.getInstance();
-	List<List<Person>> list = new ArrayList<List<Person>>();
-	
-	try{
-		reservationsList = rContr.getMyFutureReservations(accBean);
-		request.setAttribute("reservationsList", reservationsList);
-		for(Reservation resList : reservationsList){
-			roomBean.setId(resList.getLinkedRoom().getId());
-			list.add(rContr.getAllRoomPartecipants(roomBean));
-		}
-		request.setAttribute("list", list);
+
+	Person person = (Person)session.getAttribute("accPerson");
+
+//	check if the user is logged
+	if(person != null){
+		AccountBean accBean = new AccountBean();
+		PersonBean persBean = new PersonBean();
+		RoomBean roomBean = new RoomBean();
 		
-	
-	}catch(DatabaseException de){
-		de.printStackTrace();
-	}
-	for(List<Person> l: list){
-		for(Person p: l){
-			if(request.getParameter(p.getUsername())!=null){
+		accBean.setCf(person.getAccount().getCf());
+		
+		List<Reservation> reservationsList = new ArrayList<>();
+		
+		try{
+			reservationsList = rContr.getMyFutureReservations(accBean);
+			
+			if(!reservationsList.isEmpty()){
 				
-				persBean.setUsername(p.getUsername());
-				session.setAttribute("othAccount", persBean);
-				String redirectURL = "http://localhost:8080/DoveStudi.git/OtherAccount.jsp";
-				response.sendRedirect(redirectURL);
+				for(Reservation resList : reservationsList){
+					
+					roomBean.setId(resList.getLinkedRoom().getId());
+					resList.getLinkedRoom().setPartecipants(rContr.getAllRoomPartecipants(roomBean));
+				}
+				
+				request.setAttribute("reservationsList", reservationsList);
+			
+			}
+		
+		}catch(DatabaseException de){
+			de.printStackTrace();
+		}
+
+//		method to handle click on room owner
+		for(Reservation r : reservationsList){
+			
+			if(request.getParameter(r.getRoomOwner().getUsername()) != null){
+			
+					
+			    	persBean.setUsername(r.getRoomOwner().getUsername());
+					session.setAttribute("othAccUsername", persBean);
+					
+					String site = new String("OtherAccount.jsp");
+			        response.setStatus(response.SC_MOVED_TEMPORARILY);
+			        response.setHeader("Location", site);
 			}
 		}
+		
+//		method to handle clicks on partecipant
+		for(Reservation res: reservationsList){
+			
+//			iterate over room's partecipants
+			for(Person p: res.getLinkedRoom().getPartecipants()){
+				
+				if(request.getParameter(p.getUsername())!=null){
+														    	
+					persBean.setUsername(p.getUsername());
+					session.setAttribute("othAccUsername", persBean);
+							
+					String site = new String("OtherAccount.jsp");
+			        response.setStatus(response.SC_MOVED_TEMPORARILY);
+			        response.setHeader("Location", site);
+				}
+			}
+		}
+			
+		ReservationBean resBean = new ReservationBean();
+
+//		method to handle click on delete reservation
+		for(Reservation res : reservationsList){
+			
+			if(request.getParameter(String.valueOf(res.getId())) != null) {
+				try{
+					
+					resBean.setId(res.getId());
+					rContr.deleteReservation(resBean);
+					
+					String site = new String("AccountMyFutReservations.jsp");
+			        response.setStatus(response.SC_MOVED_TEMPORARILY);
+			        response.setHeader("Location", site);
+					
+				}catch(DatabaseException de){
+					de.printStackTrace();
+				}
+			}
+		}
+		
+	}else{
+		String site = new String("Login.jsp");
+        response.setStatus(response.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", site);
 	}
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -81,7 +141,7 @@
 		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
 		 	<li><a href="AccountMyRooms.jsp">My Rooms</a></li>
 		 	<li><a href="PostRoom.jsp">Post a Room</a></li>
-		 	<li><a href="index.jsp">Log out</a></li>
+		 	<li><a href="Logout.jsp">Log out</a></li>
 		 </ul>
 	</div>
 	
@@ -113,7 +173,9 @@
 	                        		<label>Host:</label>
 	                        	</div>
 	                        	<div class="col-md-4">
-	                        		<p><a href="OtherAccount.jsp">${reservationsList.roomOwner.getUsername()}</a>
+	                        		<form method="get">
+	                        			<button type="submit" style="border:none;backgroup:#ffffff" id="${reservationsList.roomOwner.username}" name="${reservationsList.roomOwner.username}">${reservationsList.roomOwner.username}</button>
+	                        		</form>
 	                        	</div>
 								<div class="col-md-2">
 									<label>Reservation ID</label>
@@ -149,7 +211,7 @@
 									<label>Date:</label>
 								</div>
 								<div class="col -md-4">
-									<p>${reservationsList.linkedRoom.specification.date}
+									<p>${reservationsList.date}
 								</div>
 						</div>
 						<div class="row"id="line">
@@ -157,33 +219,35 @@
 	                        		<label>Start time:</label>
 	                        	</div>
 	                        	<div class="col-md-4">
-	                        		<p>${reservationsList.linkedRoom.specification.startTime}
+	                        		<p>${reservationsList.startTime}
 	                        	</div>
 								<div class="col-md-2">
 									<label>End time:</label>
 								</div>
 								<div class="col -md-4">
-									<p>${reservationsList.linkedRoom.specification.startTime}
+									<p>${reservationsList.endTime}
 								</div>
 						</div>
 						<div class="row"id="line">
 	                        	<div class="col-md-2">
 	                        		<label>Participants:</label>
 	                        	</div>	
-	                        		<c:forEach items="${list}" var="listoflists">
-	                        			<c:forEach items="${listoflists}" var="person">
+	                        		<c:forEach items="${reservationsList.linkedRoom.partecipants}" var="person">
+	              
 	                        			<form method="get">
 	                        				<button type="submit" style="border:none;backgroup:#ffffff" id="${person.username}" name="${person.username}">${person.username}</button>
 	                        				&nbsp
 	                        			</form>
 	      
-	                        			</c:forEach>
+	                       
 	                  
 	                        		</c:forEach>                        	
 	               	                        	
 						</div>
-    				<button id="deleteBtn" name="deleteBtn" class="btn btn-outline-warning" data-toggle="modal" data-target="#deleteResModal"><a>Delete Reservation</a></button>    		
-    				
+							<form method="get">
+								<button type="submit" id="${reservationsList.id}" name="${reservationsList.id}" class="btn btn-outline-warning">Delete Reservation</a></button>    		
+							</form>
+  
            		</div>
            </div>
     		</c:forEach>		
@@ -191,28 +255,33 @@
 	</div>
 	
 		<!-- Modal -->
-	<div class="modal fade" id="deleteResModal" tabindex="-1" role="dialog" aria-labelledby="deleteResModal" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLongTitle">Delete Reservation</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	        Are you sure you want to delete this reservation?
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-	        <button type="button" id="yesDeleteBtn" name="yesDeleteBtn"class="btn btn-outline-warning"><a href="AccountMyFutReservations.jsp">Yes</a></button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
+<!-- 	<div class="modal fade" id="deleteResModal" tabindex="-1" role="dialog" aria-labelledby="deleteResModal" aria-hidden="true"> -->
+<!-- 	  <div class="modal-dialog modal-dialog-centered" role="document"> -->
+<!-- 	    <div class="modal-content"> -->
+<!-- 	      <div class="modal-header"> -->
+<!-- 	        <h5 class="modal-title" id="exampleModalLongTitle">Delete Reservation</h5> -->
+<!-- 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+<!-- 	          <span aria-hidden="true">&times;</span> -->
+<!-- 	        </button> -->
+<!-- 	      </div> -->
+<!-- 	      <div class="modal-body"> -->
+<!-- 	        Are you sure you want to delete this reservation? -->
+<!-- 	      </div> -->
+<!-- 	      <div class="modal-footer"> -->
+<!-- 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button> -->
+<!-- 	        <button type="button" id="yesDeleteBtn" name="yesDeleteBtn"class="btn btn-outline-warning"><a href="AccountMyFutReservations.jsp">Yes</a></button> -->
+<!-- 	      </div> -->
+<!-- 	    </div> -->
+<!-- 	  </div> -->
+<!-- 	</div> -->
 	<script>function toggleSideBar(){
 				document.getElementById("sidebar").classList.toggle("active");
 			}	
+	</script>
+	<script>
+		function refreshPage(){
+			window.location.reload();
+		}
 	</script>
 </body>
 </html>

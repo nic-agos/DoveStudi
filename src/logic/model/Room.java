@@ -1,7 +1,6 @@
 package logic.model;
 
-import java.sql.SQLException;
-
+import java.util.*;
 
 import logic.bean.*;
 
@@ -21,7 +20,7 @@ private int id;
 	
 	private RoomSpec specification;
 	
-//	private List<Reservation> reservations;
+	private List<Person> partecipants;
 	
 	public Room(String name, String address, int numPartecipants, int numAvailableSeats) {
 		
@@ -45,28 +44,10 @@ private int id;
 		
 	}
 	
-	public Room(RoomBean roomBean) throws SQLException {
+	public Room(RoomBean roomBean) {
 		
-		this(roomBean.getName(), roomBean.getAddress(), roomBean.getNumPartecipants(), 
-				roomBean.getNumAvailableSeats());
-/*		
-		AccountDAOImpl dao1 = new AccountDAOImpl();
-		
-		this.owner = new Account(dao1.getAccount(roomBean.getOwner()));
-		
-		RoomSpecDAOImpl dao2 = new RoomSpecDAOImpl();
-		
-		this.specification = new RoomSpec(dao2.getRoomSpec(roomBean.getSpecification()));
-		
-		ReservationDAOImpl dao3 = new ReservationDAOImpl();
-		
-		List<ReservationBean> reservationBeans = dao3.getRoomReservations(roomBean);
-		if(!reservationBeans.isEmpty()) {
-			for(ReservationBean reservationBean : reservationBeans) {
-				this.reservations.add(new Reservation(reservationBean));
-			}
-		}
-*/	
+		this(roomBean.getName(), roomBean.getAddress(), roomBean.getNumPartecipants(), roomBean.getNumAvailableSeats());
+
 		this.id = roomBean.getId();
 	}
 	
@@ -140,14 +121,13 @@ private int id;
 		
 	}
 	
-/*	public void setReservations(List<Reservation> reservations) {
-		this.reservations = reservations;
+	public void setPartecipants(List<Person> partecipants) {
+		this.partecipants = partecipants;
 		
 	}
 	
-	public List<Reservation> getReservations(){
-		return this.reservations;
+	public List<Person> getPartecipants(){
+		return this.partecipants;
 		
 	}
-*/
 }

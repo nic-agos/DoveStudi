@@ -25,11 +25,11 @@
 		<div class="buttons">
 			<button id="btn" class="btn btn-outline-warning"
 				style="border: 2px solid #ff5500; font-size: 20px; margin-top: 30px; font-weight: 550;">
-				<a href="Login.jsp">Post Room</a>
+				<a href="PostRoom.jsp">Post Room</a>
 			</button>
 			<button id="btn" class="btn btn-outline-warning"
 				style="border: 2px solid #ff5500; font-size: 20px; margin-top: 30px; font-weight: 550;">
-				<a href="SearchRoomsHost.jsp">Look for Rooms</a>
+				<a href="SearchRooms.jsp">Look for Rooms</a>
 			</button>
 			<button id="btn" class="btn btn-outline-warning"
 				style="border: 2px solid #ff5500; font-size: 20px; margin-top: 30px; font-weight: 550;">
