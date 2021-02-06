@@ -138,14 +138,11 @@
   				<div class="card-body">
 						<div class="row"id="line">
 	                        	<div class="col-md-2">
-	                        		<label>Host:</label>
-	                        	</div>
-	                        	<div class="col-md-4">
-	                        		<form method="get">
-	                        			<button type="submit" style="border:none;backgroup:#ffffff" id="${reservationsList.roomOwner.username}" name="${reservationsList.roomOwner.username}">${reservationsList.roomOwner.username}</button>
-	                        		</form>
-	                        		
-	                        	</div>
+									<label>Room name:</label>
+								</div>
+	                            <div class="col-md-4">
+	                        		<p>${reservationsList.linkedRoom.name}</p>
+	                            </div>
 								<div class="col-md-2">
 									<label>Reservation ID</label>
 								</div>
@@ -153,6 +150,17 @@
 									<p>${reservationsList.id}
 								</div>
 						</div>
+						<div class="row"id="line">
+								<div class="col-md-2">
+	                        		<label>Host:</label>
+	                        	</div>
+	                        	<div class="col-md-7">
+	                        		<form method="get">
+	                        			<button type="submit" style="border:none;backgroup:#ffffff" id="${reservationsList.roomOwner.username}" name="${reservationsList.roomOwner.username}">${reservationsList.roomOwner.username}</button>
+	                        		</form>
+	                        		
+	                        	</div>
+	                    </div>
 						<div class="row"id="line">
 								<div class="col-md-2">
 									<label>Address:</label>

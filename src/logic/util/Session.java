@@ -16,7 +16,7 @@ public class Session {
 	
 	private Session() {
 		currUsername = "";
-		currView = Views.LOGIN;
+		//currView = Views.LOGIN;
 		logged = false;
 	}
 	
@@ -56,7 +56,7 @@ public class Session {
 		logged=value;
 		if(value==false) {
 		currUsername = "";
-		currView = Views.LOGIN;
+		//currView = Views.LOGIN;
 		}
 	}
 

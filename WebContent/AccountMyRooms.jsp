@@ -131,13 +131,13 @@
   		</div>
 	</div>
 	
-	<div class= "container head-profile" style="margin-bottom:30px;">
+	<div class= "container head-profile" style="margin-bottom:30px;margin-top:70px;">
 		
 		
 		
 		<c:forEach items ="${roomsList}" var="roomsList">
 			
-			<div class="col-md-9" style="margin-top:70px;">
+			<div class="col-md-9">
 				
 				<div class="card">         
 	         		<!-- <div class="card-header" id="myCard" style="background:#ff6b24;font-weight: 600; font-size:15px;"></div> -->
@@ -214,7 +214,7 @@
 								</div>
 	                   	</div>
 	                   		<form method="get">
-								<button type="submit" id="${roomsList.id}" name="${roomsList.id}" class="btn btn-outline-warning">Delete Room</a></button>    		
+								<button type="submit" id="${roomsList.id}" name="${roomsList.id}" class="btn btn-outline-warning" style="margin-left:20px;margin-bottom:20px;">Delete Room</a></button>    		
 							</form>
 	        	</div>
 	     	</div>
