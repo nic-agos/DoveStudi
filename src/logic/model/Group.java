@@ -1,5 +1,7 @@
 package logic.model;
 
+import java.util.List;
+
 import logic.bean.*;
 
 public class Group {
@@ -13,6 +15,8 @@ public class Group {
 	private int numPartecipants;
 	
 	private Person partecipant;
+	
+	private List<Person> partecipants;
 	
 	
 	public Group(String name, int numPartecipants) {
@@ -90,6 +94,16 @@ public class Group {
 	
 	public Person getPartecipant() {
 		return this.partecipant;
+		
+	}
+	
+	public void setPartecipants(List<Person> partecipants) {
+		this.partecipants = partecipants;
+		
+	}
+	
+	public List<Person> getPartecipants(){
+		return this.partecipants;
 		
 	}
 }

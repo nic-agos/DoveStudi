@@ -28,7 +28,12 @@ public class RoomController {
 	}
 
 //  takes in input a complete RoomBean and a complete RoomSpecBean (excepts the IDs)
-	public boolean postRoom(RoomBean roomBean, RoomSpecBean roomSpecBean) throws DatabaseException {
+	public boolean postRoom(RoomBean roomBean, RoomSpecBean roomSpecBean) throws DatabaseException, RoomException {
+		
+		AccountBean accBean = new AccountBean();
+		AccountBean tempAccBean = new AccountBean();
+		
+		AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
 		
 		try{
 			RoomSpecDAOImpl roomSpecDao = RoomSpecDAOImpl.getInstance();
@@ -44,7 +49,16 @@ public class RoomController {
 			
 			int id = roomDao.createRoom(roomBean);
 			
-			return (id != 0);
+			if(id != 0) {
+				tempAccBean.setCf(roomBean.getOwner());
+				
+				accBean = accountDao.getAccount(tempAccBean) ;
+				accBean.setNumberToken(accBean.getNumberToken()+2);
+				return (accountDao.updateNumberToken(accBean) != 0);
+			
+			}else {
+				throw new RoomException("cannot be created");
+			}
 			
 		}catch (SQLException se) {
 			throw new DatabaseException(se.getMessage());

@@ -12,15 +12,40 @@
 
 <%
 	Person person = (Person)session.getAttribute("accPerson");
+	
+	RoomController rContr = RoomController.getInstance();
+	ReservationController resContr = ReservationController.getInstance();
+	
+	AccountBean accBean = new AccountBean();
+	RoomBean tempRoomBean = new RoomBean();
+	RoomBean roomBean = new RoomBean();
+	PersonBean persBean = new PersonBean();
+	List<Room> roomsList = new ArrayList<>();
+	
+
 	if(person != null){
 		
-		RoomController rContr = RoomController.getInstance();
-		AccountBean accBean = new AccountBean();
-		accBean.setCf(person.getAccount().getCf());
-		List<Room> roomsList = rContr.getMyRooms(accBean);
-		RoomBean roomBean = new RoomBean();
+		try{
+			accBean.setCf(person.getAccount().getCf());
+			roomsList = rContr.getMyRooms(accBean);
+			
+			if(!roomsList.isEmpty()) {
+				
+//				adding partecipnats list to every room				
+				for(Room r : roomsList) {
+					
+					tempRoomBean.setId(r.getId());
+					r.setPartecipants(resContr.getAllRoomPartecipants(tempRoomBean));
+					
+				}
+
+				request.setAttribute("roomsList", roomsList);
+			}
+
 		
-		request.setAttribute("roomsList", roomsList);
+		}catch(DatabaseException de){
+			de.printStackTrace();
+		}
 
 //		method to handle click on delete room
 		for(Room r : roomsList){
@@ -40,6 +65,24 @@
 				}
 			}
 		}
+
+//		method to handle click on room partecipant
+			for(Room r: roomsList){
+				
+//				iterate over room's partecipants
+				for(Person p: r.getPartecipants()){
+					
+					if(request.getParameter(p.getUsername()) != null){
+															    	
+						persBean.setUsername(p.getUsername());
+						session.setAttribute("othAccUsername", persBean);
+								
+						String site = new String("OtherAccount.jsp");
+				        response.setStatus(response.SC_MOVED_TEMPORARILY);
+				        response.setHeader("Location", site);
+					}
+				}
+			}
 		
 	}else{
 		String site = new String("Login.jsp");
@@ -162,17 +205,17 @@
 	                        	<div class="col-md-2">
 	                        		<label>Participants:</label>
 	                        	</div>	                        	
-	                        		<p><a href="OtherAccount.jsp">Mario98, </a> 
-	                        		<p><a href="OtherAccount.jsp">Luca.p</a>	                        	
-							</div>
+	                        		<c:forEach items="${roomsList.partecipants}" var="person">	           
+	                        			<form method="get">
+	                        				<button type="submit" style="border:none;backgroup:#ffffff" id="${person.username}" name="${person.username}">${person.username}</button>
+	                        				&nbsp
+	                        			</form>	                  
+	               					</c:forEach>	                            	
+								</div>
 	                   	</div>
-	                   	<div class="row">
-	                   	<div class="col-md-4">
 	                   		<form method="get">
 								<button type="submit" id="${roomsList.id}" name="${roomsList.id}" class="btn btn-outline-warning">Delete Room</a></button>    		
 							</form>
-		    			</div>
-		    			</div>
 	        	</div>
 	     	</div>
 	       	

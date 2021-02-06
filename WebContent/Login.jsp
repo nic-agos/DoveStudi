@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
-<%@ page import="logic.exception.DatabaseException"%>
-<%@ page import="logic.exception.NotFoundException"%>
-<%@ page import="logic.controller.LoginController"%>
-<%@ page import="logic.model.dao.AccountDAOImpl"%>
-<%@ page import="java.sql.SQLException"%>
-<%@ page import="logic.model.Person"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%> 
+
 <%@ page import="java.util.*"%>
-<%@ page import="java.util.ArrayList"%>
+
+<%@ page import="logic.model.*"%>
+<%@ page import="logic.bean.*"%>
+<%@ page import="logic.exception.*"%>
+<%@ page import="logic.controller.*"%>
 
 <jsp:useBean id="accountBean" scope="request" class="logic.bean.AccountBean"/>
 <jsp:setProperty name="accountBean" property="*"/>
@@ -39,8 +37,8 @@
 		}catch (DatabaseException de) {
 			de.printStackTrace();
 			
-		}catch (NotFoundException ne) {
-			ne.printStackTrace();
+		}catch (LoginException le) {
+			le.printStackTrace();
 		}
 	}
 %>	

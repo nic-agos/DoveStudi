@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import logic.exception.*;
 import logic.model.Account;
+import logic.model.Group;
 import logic.model.Person;
 import logic.model.Reservation;
 import logic.model.Review;
@@ -19,7 +20,7 @@ import logic.bean.*;
 public class TestController {
 	
 	@Test
-	public void testPostRoom() throws DatabaseException {
+	public void testPostRoom() throws DatabaseException, RoomException {
 		
 		RoomController r = RoomController.getInstance();
 		RoomBean roomBean = new RoomBean();
@@ -108,7 +109,7 @@ public class TestController {
 	}
 	
 	@Test
-	public void testLogin() throws DatabaseException, NotFoundException {
+	public void testLogin() throws DatabaseException, LoginException {
 		LoginController c = LoginController.getInstance();
 		AccountBean temp = new AccountBean();
 		temp.setEmail("n@gmail.com");
@@ -329,5 +330,45 @@ public class TestController {
 		ReservationBean resBean = new ReservationBean();
 		resBean.setId(25);
 		r.deleteReservation(resBean);
+	}
+	
+	@Test
+	public void testGetParticipatingGroups() throws DatabaseException {
+		GroupController g = GroupController.getInstance();
+		PersonBean p = new PersonBean();
+		p.setId(16);
+		List<Group> l = g.getParticipatingGroups(p);
+		System.out.println(l.get(0).getId()+" "+l.get(0).getName()+" "+l.get(0).getAdmin()+" "+l.get(0).getNumPartecipants()+" "+l.get(0).getPartecipant());
+		System.out.println(l.get(0).getAdmin().getCf()+" "+l.get(0).getAdmin().getName()+" "+l.get(0).getAdmin().getSurname()+" "+l.get(0).getAdmin().getEmail()+" "+l.get(0).getAdmin().getPassword()+" "+l.get(0).getAdmin().getDateBirth()+" "+l.get(0).getAdmin().getNumberToken());
+		System.out.println(l.get(0).getAdmin().getPerson().getId());
+		System.out.println(l.get(0).getPartecipant().getId());
+		System.out.println(l.get(0).getPartecipant().getAccount().getCf());
+	}
+	
+	@Test
+	public void testGetAdministeredGroups() throws DatabaseException {
+		GroupController g = GroupController.getInstance();
+		AccountBean a = new AccountBean();
+		a.setCf("GSTNCL99C23H501K");
+		List<Group> l = g.getAdministeredGroups(a);
+		System.out.println(l.get(0).getId()+" "+l.get(0).getName()+" "+l.get(0).getAdmin()+" "+l.get(0).getNumPartecipants()+" "+l.get(0).getPartecipant());
+		System.out.println(l.get(0).getAdmin().getCf()+" "+l.get(0).getAdmin().getName()+" "+l.get(0).getAdmin().getSurname()+" "+l.get(0).getAdmin().getEmail()+" "+l.get(0).getAdmin().getPassword()+" "+l.get(0).getAdmin().getDateBirth()+" "+l.get(0).getAdmin().getNumberToken());
+		System.out.println(l.get(0).getAdmin().getPerson().getId());
+		System.out.println(l.get(0).getPartecipant().getId());
+		System.out.println(l.get(0).getPartecipant().getAccount().getCf());
+	}
+	
+	@Test
+	public void testGetGroupPartecipants() throws DatabaseException {
+		GroupController g = GroupController.getInstance();
+		GroupBean gr = new GroupBean();
+		gr.setName("bel gruppo");
+		gr.setAdmin("GSTNCL99C23H501K");
+		List<Person> list = g.getGroupPartecipants(gr);
+		System.out.println(list.get(0).getId());
+		System.out.println(list.get(0).getAccount().getCf());
+		System.out.println(list.get(1).getId());
+		System.out.println(list.get(1).getAccount().getCf());
+		System.out.println(list.get(2).getAccount().getCf());
 	}
 }

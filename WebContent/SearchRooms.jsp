@@ -42,8 +42,9 @@
 			
 			}else{
 				roomsList = allRoomsList;
-			}	
+			}
 			
+//			adding partecipants list at every room			
 			for(Room r : roomsList) {
 				
 				tempRoomBean.setId(r.getId());
@@ -60,6 +61,7 @@
 	}catch(NotFoundException ne){
 		ne.printStackTrace();
 	}
+	
 	
 //	method to handle click on room owner
 	for(Room room : roomsList){
@@ -115,22 +117,22 @@
 	}
 
 //	method to handle click on room partecipant
-		for(Room r: roomsList){
+	for(Room r: roomsList){
 			
-//			iterate over room's partecipants
-			for(Person p: r.getPartecipants()){
+//		iterate over room's partecipants
+		for(Person p: r.getPartecipants()){
 				
-				if(request.getParameter(p.getUsername()) != null){
+			if(request.getParameter(p.getUsername()) != null){
 														    	
-					persBean.setUsername(p.getUsername());
-					session.setAttribute("othAccUsername", persBean);
+				persBean.setUsername(p.getUsername());
+				session.setAttribute("othAccUsername", persBean);
 							
-					String site = new String("OtherAccount.jsp");
-			        response.setStatus(response.SC_MOVED_TEMPORARILY);
-			        response.setHeader("Location", site);
-				}
+				String site = new String("OtherAccount.jsp");
+			    response.setStatus(response.SC_MOVED_TEMPORARILY);
+			    response.setHeader("Location", site);
 			}
 		}
+	}
 
 %>
 <!DOCTYPE html>

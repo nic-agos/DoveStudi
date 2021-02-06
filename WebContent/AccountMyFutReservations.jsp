@@ -232,8 +232,7 @@
 	                        	<div class="col-md-2">
 	                        		<label>Participants:</label>
 	                        	</div>	
-	                        		<c:forEach items="${reservationsList.linkedRoom.partecipants}" var="person">
-	              
+	                        		<c:forEach items="${reservationsList.linkedRoom.partecipants}" var="person">	              
 	                        			<form method="get">
 	                        				<button type="submit" style="border:none;backgroup:#ffffff" id="${person.username}" name="${person.username}">${person.username}</button>
 	                        				&nbsp

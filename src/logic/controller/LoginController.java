@@ -26,7 +26,7 @@ public class LoginController {
 	
 //  takes in input email and password and return the Person entity (with Account entity linked)
 //	if the login is successful	
-	public Person login(AccountBean accountBean) throws DatabaseException, NotFoundException {
+	public Person login(AccountBean accountBean) throws DatabaseException, LoginException {
 		
 		try {
 			AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
@@ -43,7 +43,7 @@ public class LoginController {
 				return person;
 				
 			}else {
-				throw new NotFoundException("Account " + accountBean.getEmail());
+				throw new LoginException("Wrong Email and/or Password");
 			}
 			
 		}catch (SQLException se) {

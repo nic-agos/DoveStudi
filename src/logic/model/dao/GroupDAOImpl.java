@@ -196,7 +196,7 @@ public class GroupDAOImpl implements GroupDAO{
 		}
 	}
 
-//	take sin input group's name and admin and get the db row of the group's admin
+//	takes in input group's name and admin and get the db row of the group's admin
 	public GroupBean getAdministeredGroup(GroupBean groupBean) throws SQLException {
 		
 		GroupBean adminGroup = null;

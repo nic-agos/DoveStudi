@@ -62,8 +62,9 @@ public class TestGroupDAOImpl {
 	public void testGetAllParticipatingGroups() throws SQLException {
 		GroupDAOImpl g = GroupDAOImpl.getInstance();
 		PersonBean p = new PersonBean();
-		p.setId(21);
+		p.setId(16);
 		List<GroupBean> l = g.getAllParticipatingGroups(p);
+		System.out.println(l.get(0).getAdmin());
 		assertEquals(l, 1);
 	}
 	

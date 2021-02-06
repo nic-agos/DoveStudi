@@ -12,13 +12,148 @@
 
 <%
 	Person person = (Person)session.getAttribute("accPerson");
+	GroupController gContr = GroupController.getInstance();
+	
+	List<Group> adminGroups = new ArrayList<>();
+	List<Group> partGroups = new ArrayList<>();
+	List<Group> part2Groups = new ArrayList<>();
+	
+	AccountBean accBean = new AccountBean();
+	PersonBean persBean = new PersonBean();
+	Group group;
+	GroupBean groupBean = new GroupBean();
+	GroupBean tempGroupBean = new GroupBean();
+	PersonBean tempPersBean = new PersonBean();
+	
 	if(person != null){
 		
+		accBean.setCf(person.getAccount().getCf());
+		persBean.setId(person.getId());
+		
+		try{
+			
+			adminGroups = gContr.getAdministeredGroups(accBean);
+	
+		if(!adminGroups.isEmpty()) {
+		
+			for(Group g : adminGroups){
+	
+				groupBean.setName(g.getName());
+				groupBean.setAdmin(g.getAdmin().getCf());
+				g.setPartecipants(gContr.getGroupPartecipants(groupBean));
+			}
+		}
+	
+		request.setAttribute("adminGroups", adminGroups);
+	
+		partGroups = gContr.getParticipatingGroups(persBean);
+	
+		if(!partGroups.isEmpty()){
+
+//			add participants to the group
+			for(Group g : partGroups){
+	
+				groupBean.setName(g.getName());
+				groupBean.setAdmin(g.getAdmin().getCf());
+				g.setPartecipants(gContr.getGroupPartecipants(groupBean));
+			}
+		}
+
+//			remove the groups of which the user is admin
+			for(Group g: partGroups){
+				if(g.getAdmin().getCf().compareTo(accBean.getCf()) != 0){
+					part2Groups.add(g);
+				}
+			}
+			request.setAttribute("partGroups", part2Groups);
+	
+		}catch(DatabaseException de){
+			de.printStackTrace();
+		}
+		
+//		method to handle clikc on group owner of partecipating groups
+		for(Group g :part2Groups){
+			
+			if(request.getParameter(g.getAdmin().getPerson().getUsername()) != null) {
+				
+				tempPersBean.setUsername(g.getAdmin().getPerson().getUsername());
+				session.setAttribute("othAccUsername", tempPersBean);
+				
+				String site = new String("OtherAccount.jsp");
+			    response.setStatus(response.SC_MOVED_TEMPORARILY);
+			    response.setHeader("Location", site);
+			}
+		}
+
+//		method to handle click on room partecipant for partecipanting groups
+		for(Group g :part2Groups){
+				
+//			iterate over room's partecipants
+			for(Person p: g.getPartecipants()){
+					
+				if(request.getParameter(p.getUsername()) != null){
+															    	
+					tempPersBean.setUsername(p.getUsername());
+					session.setAttribute("othAccUsername", tempPersBean);
+								
+					String site = new String("OtherAccount.jsp");
+				    response.setStatus(response.SC_MOVED_TEMPORARILY);
+				    response.setHeader("Location", site);
+				}
+			}
+		}
+
+//		method to handle click on room partecipant for administered groups
+		for(Group g : adminGroups){
+					
+//			iterate over room's partecipants
+			for(Person p: g.getPartecipants()){
+						
+				if(request.getParameter(p.getUsername()) != null){
+																    	
+					tempPersBean.setUsername(p.getUsername());
+					session.setAttribute("othAccUsername", tempPersBean);
+									
+					String site = new String("OtherAccount.jsp");
+					response.setStatus(response.SC_MOVED_TEMPORARILY);
+					response.setHeader("Location", site);
+				}
+			}
+		}
+
+//		method to handle click on book for groups
+		for(Group g : adminGroups){
+			
+			String s = "book"+g.getName();
+			System.out.println(s);
+			
+			if(request.getParameter(s) != null) {
+				
+				tempGroupBean.setAdmin(person.getAccount().getCf());
+				tempGroupBean.setName(g.getName());
+				
+				try{
+					
+					group = gContr.getSpecificAdministeredGroup(tempGroupBean);
+					session.setAttribute("groupBook", group);
+					
+					String site = new String("SearchRoomForGroups.jsp");
+			        response.setStatus(response.SC_MOVED_TEMPORARILY);
+			        response.setHeader("Location", site);
+					
+					
+				}catch(DatabaseException de){
+					de.printStackTrace();
+				}
+			}
+		}
+
 	}else{
 		String site = new String("Login.jsp");
         response.setStatus(response.SC_MOVED_TEMPORARILY);
         response.setHeader("Location", site);
 	}
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -74,73 +209,94 @@
 	
 			<div class="col-md-10" style="margin-top:50px; margin-left:100px;">
 				
-				<div class="card">         
-	         		<div class="card-header" id="myCard" style="font-weight: 600; font-size:20px;">Group Name</div>
-	  					
-	  					<div class="card-body">						
-	                        <div class="row"id="line">
-	                        	<div class="col-md-1">
-	                        		<label>Admin:</label>
-	                        	</div>
-	                        	<div class="col-md-4">
-	                        		<p><a href="OtherAccount.jsp">Mario72</a></p>
-	                        	</div>
-								<div class="col-md-3">
-									<label>Number of partecipants:</label>
+				<c:forEach items="${adminGroups}" var="adminGroups">
+					<div class="card">         
+		         		<div class="card-header" id="myCard" style="font-weight: 600; font-size:20px;">${adminGroups.name}</div>
+		  					
+		  					<div class="card-body">						
+		                        <div class="row"id="line">
+		                        	<div class="col-md-1">
+		                        		<label>Admin:</label>
+		                        	</div>
+		                        	<div class="col-md-4">
+		                        		<p>Me</p>
+		                        	</div>
+									<div class="col-md-3">
+										<label>Number of partecipants:</label>
+									</div>
+									<div class="col -md-4">
+										<p>${adminGroups.numPartecipants}
+									</div>
 								</div>
-								<div class="col -md-4">
-									<p>3
+								<div class="row"id="line">
+		                        	<div class="col-md-2">
+		                        		<label>Participants:</label>
+		                        	</div>	                        	
+		                        		<c:forEach items="${adminGroups.partecipants}" var="person">	              
+	                        			<form method="get">
+	                        				<button type="submit" style="border:none;backgroup:#ffffff" id="${person.username}" name="${person.username}">${person.username}</button>
+	                        				&nbsp
+	                        			</form>	      	                   	                  
+	                        		</c:forEach>	                        	
 								</div>
-							</div>
-							<div class="row"id="line">
-	                        	<div class="col-md-2">
-	                        		<label>Participants:</label>
-	                        	</div>	                        	
-	                        		<p><a href="OtherAccount.jsp">Mario98, </a> 
-	                        		<p><a href="OtherAccount.jsp">Luca.p</a>	                        	
-							</div>
-	                   	</div>
-	                   	<div class="row">
-		                	<div class="col-md-3">
-		                    	<button class="btn btn-outline-warning"data-toggle="modal" data-target="#exampleModalCenter"id="btn" style="margin-bottom:10px;margin-left:30px;"><a href="#">Leave Group</a></button>
-		                	</div>
-		             	</div>
-	        	</div>
-	        	<div class="card">         
-	         		<div class="card-header" id="myCard" style="font-weight: 600; font-size:20px;">My Group Name</div>
-	  					<div class="card-body">						
-	                        <div class="row"id="line">
-	                        	<div class="col-md-1">
-	                        		<label>Admin:</label>
-	                        	</div>
-	                        	<div class="col-md-4">
-	                        		<p><a>Me</a></p>
-	                        	</div>
-								<div class="col-md-3">
-									<label>Number of partecipants:</label>
+		                   	</div>
+		                   	<div class="row">
+		                   		<div class="col-md-12">
+		                   		<form method="get">
+		                   			<button class="btn btn-outline-warning" id="book${adminGroups.name}" name="book${adminGroups.name}" style="margin-bottom:10px;margin-left:30px;">Book Room</a></button>
+			                    	<button class="btn btn-outline-warning" id="btn" style="margin-bottom:10px;margin-left:30px;">Delete Group</button>
+			                    	<button class="btn btn-outline-warning"data-toggle="modal" data-target="#addPersonModal"id="btn" style="margin-bottom:10px;margin-left:30px;">Add Person</button>
+		                   		</form>
+			                    	
+			                    	<!-- da vedere se mettere l'opzione di modificare il gruppo -->
+									<!-- <button class="btn btn-outline-warning"data-toggle="modal" data-target="#modifyGroupModal"id="btn" style="margin-bottom:10px;margin-left:30px;">Modify Group</button> -->		                	
+			                	</div>
+			            
+			             	</div>
+		        	</div>
+	        	</c:forEach>
+	        	
+	        	<c:forEach items="${partGroups}" var="partGroups">
+		        	<div class="card">         
+		         		<div class="card-header" id="myCard" style="font-weight: 600; font-size:20px;">${partGroups.name}</div>
+		  					<div class="card-body">						
+		                        <div class="row"id="line">
+		                        	<div class="col-md-1">
+		                        		<label>Admin:</label>
+		                        	</div>
+		                        	<div class="col-md-4">
+			                        	<form method="get">
+		                        			<button type="submit" style="border:none;backgroup:#ffffff" id="${partGroups.admin.person.username}" name="${partGroups.admin.person.username}">${partGroups.admin.person.username}</button>
+		                        		</form>
+		                        	</div>
+									<div class="col-md-3">
+										<label>Number of participants:</label>
+									</div>
+									<div class="col -md-4">
+										<p>${partGroups.numPartecipants}
+									</div>
 								</div>
-								<div class="col -md-4">
-									<p>3
+								<div class="row"id="line">
+		                        	<div class="col-md-2">
+		                        		<label>Participants:</label>
+		                        	</div>	                        	
+		                        		<c:forEach items="${partGroups.partecipants}" var="person">	              
+	                        			<form method="get">
+	                        				<button type="submit" style="border:none;backgroup:#ffffff" id="${person.username}" name="${person.username}">${person.username}</button>
+	                        				&nbsp
+	                        			</form>	      	                   	                  
+	                        		</c:forEach>                         	
 								</div>
-							</div>
-							<div class="row"id="line">
-	                        	<div class="col-md-2">
-	                        		<label>Participants:</label>
-	                        	</div>	                        	
-	                        		<p><a href="OtherAccount.jsp">Mario98, </a> 
-	                        		<p><a href="OtherAccount.jsp">Luca.p</a>	                        	
-							</div>
-	                   	</div>
-	                   	<div class="row">
-		                	<div class="col-md-12">
-		                    	<button class="btn btn-outline-warning"id="btn" style="margin-bottom:10px;margin-left:30px;"><a href="SearchRoomForGroups.jsp">Book Room</a></button>
-		                    	<button class="btn btn-outline-warning"data-toggle="modal" data-target="#deleteGroupModal"id="btn" style="margin-bottom:10px;margin-left:30px;">Delete Group</button>
-		                    	<button class="btn btn-outline-warning"data-toggle="modal" data-target="#addPersonModal"id="btn" style="margin-bottom:10px;margin-left:30px;">Add Person</button>
-		                    	<!-- da vedere se mettere l'opzione di modificare il gruppo -->
-								<!-- <button class="btn btn-outline-warning"data-toggle="modal" data-target="#modifyGroupModal"id="btn" style="margin-bottom:10px;margin-left:30px;">Modify Group</button> -->		                	
-		                	</div>
-		             	</div>
-	        	</div>
+		                   	</div>
+		                   	<div class="row">
+			                	<div class="col-md-3">
+			                		<form method="get">
+			                    		<button class="btn btn-outline-warning"data-toggle="modal" data-target="#exampleModalCenter"id="btn" style="margin-bottom:10px;margin-left:30px;"><a href="#">Leave Group</a></button>
+			                		</form>
+			                	</div>
+			             	</div>
+		        	</div>
+	        	</c:forEach>
 	     	</div>	
   		
 	</div>
@@ -213,12 +369,7 @@
       </div>
     </div>
   </div></div>
-
-
-	
-	
-	
-	
+  	
 	<script>function toggleSideBar(){
 				document.getElementById("sidebar").classList.toggle("active");
 			}	

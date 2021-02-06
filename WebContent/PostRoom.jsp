@@ -115,7 +115,7 @@
 	  				<div class="col -md-8">
 		  				<div class="form-group">
 		    				<label for="date">Date</label>
-		    				<input type="date" id="date" name="date" placeholder="Birth date" value="" required><!-- style="width:100%; font-size:16px; padding: 8px 0; margin: 8px 0; border-bottom: 1px solid #000000;" -->
+		    				<input type="date" id="date" name="date" placeholder="Birth date" value="" required>
 						</div>
 					</div>
 					<div class="col -md-12">	
@@ -209,7 +209,6 @@
 			
 			<div class="container" style="text-align:center; margin-top:70px; margin-bottom:60px;">
   				<div class="vertical-center">
-    				<!-- <button type="submit" id="postBtn" name = "postBtn" class="btn btn-outline-warning"data-toggle="modal" data-target="#postRoomModal">Post Room</button> -->
   					<input type="button" name="postBtn" value="Post Room" id="postBtn" data-toggle="modal" data-target="#postRoomModal" class="btn btn-outline-warning" />
   				</div>
 			</div>
@@ -229,7 +228,6 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-	        <!-- <button type="submit" id="confirmBtn" name="confirmBtn" class="btn btn-outline-warning">Yes</button> -->
 	      	<button id="confirmBtn" id="confirmBtn"name="confirmBtn" class="btn btn-success success">Yes</button>
 	      </div>
 	    </div>

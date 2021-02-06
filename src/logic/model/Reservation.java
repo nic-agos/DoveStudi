@@ -1,7 +1,5 @@
 package logic.model;
 
-import java.sql.SQLException;
-
 import logic.bean.ReservationBean;
 
 public class Reservation {

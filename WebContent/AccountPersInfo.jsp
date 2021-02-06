@@ -1,10 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="logic.model.Person"%>
+    
+<%@ page import="logic.model.*"%>
+<%@ page import="logic.bean.*"%>
+<%@ page import="logic.exception.*"%>
+<%@ page import="logic.controller.*"%>
 
 <%
 	Person person = (Person)session.getAttribute("accPerson");
-	session.setAttribute("personInfo", person);
+	
+	AccountBean accBean = new AccountBean();
+	accBean.setCf(person.getAccount().getCf());
+	
+	AccountController aContr = AccountController.getInstance();
+	
+	Person per = aContr.getAccountInfo(accBean);
+	
+	session.setAttribute("personInfo", per);
 %>
    
 <!DOCTYPE html>
