@@ -9,7 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
 import javafx.scene.Node;
 
-public class HomeGController {
+public class HomeGC {
 	
 		
 	}

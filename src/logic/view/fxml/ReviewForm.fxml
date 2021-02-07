@@ -7,14 +7,15 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox prefHeight="720.0" prefWidth="240.0" spacing="25.0">
+
+<BorderPane fx:id="main" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.">
+   <left>
+      <VBox prefHeight="720.0" prefWidth="240.0" spacing="25.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="You are reviewing:">
                <VBox.margin>
@@ -34,7 +35,9 @@
             </Label>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="240.0" prefHeight="720.0" prefWidth="1040.0" spacing="25.0">
+   </left>
+   <center>
+      <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="1040.0" spacing="25.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Review">
                <VBox.margin>
@@ -56,7 +59,8 @@
                   <RadioButton fx:id="rb1" mnemonicParsing="false" text="1">
                      <toggleGroup>
                         <ToggleGroup fx:id="rating" />
-                     </toggleGroup></RadioButton>
+                     </toggleGroup>
+                  </RadioButton>
                   <RadioButton fx:id="rb2" mnemonicParsing="false" text="2" toggleGroup="$rating" />
                   <RadioButton fx:id="rb3" mnemonicParsing="false" text="3" toggleGroup="$rating" />
                   <RadioButton fx:id="rb4" mnemonicParsing="false" text="4" toggleGroup="$rating" />
@@ -73,7 +77,8 @@
                   <RadioButton fx:id="guestRB" mnemonicParsing="false" text="Guest">
                      <toggleGroup>
                         <ToggleGroup fx:id="userType" />
-                     </toggleGroup></RadioButton>
+                     </toggleGroup>
+                  </RadioButton>
                   <RadioButton fx:id="hostRB" mnemonicParsing="false" text="Host" toggleGroup="$userType" />
                </children>
             </HBox>
@@ -85,5 +90,5 @@
             </HBox>
          </children>
       </VBox>
-   </children>
-</AnchorPane>
+   </center>
+</BorderPane>

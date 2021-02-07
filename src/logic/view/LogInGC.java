@@ -9,7 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public class LogInGController {
+public class LogInGC {
 	
 		//This method is an Event Listner for the buttons in the Log In Page
 		public void mouseClick(MouseEvent mouseEvent) throws Exception {

@@ -1,9 +1,10 @@
 package logic.util;
 import logic.util.enumeration.Views;
 import javafx.fxml.*;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import logic.util.Session;
 import java.io.IOException;
 
 public class ViewSwitcher {
@@ -63,5 +64,16 @@ public class ViewSwitcher {
 	}
 	}
 	
-	private static void /*VBox*/ create404Page(String view) {/*INSERIRE UNA VBOX DI ERRORE*/}
+	private static VBox create404Page(String view) {
+		VBox box = new VBox();
+		box.setAlignment(Pos.CENTER);
+		box.setSpacing(20);
+		
+		Label err = new Label("404 - Page Not Found");
+		Label message = new Label("Unable to load " + view +".fxml file");
+		
+		box.getChildren().addAll(err,message);
+		return box;
+
+	}
 }

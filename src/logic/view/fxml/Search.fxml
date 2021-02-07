@@ -5,15 +5,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1">
-   <children>
-      <VBox alignment="TOP_CENTER" layoutX="171.0" prefHeight="720.0" prefWidth="1109.0">
+<BorderPane fx:id="main" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.SearchGC">
+   <center>
+      <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="1109.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Search Rooms">
                <VBox.margin>
@@ -44,26 +44,5 @@
             </ListView>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="180.0" spacing="15.0">
-         <children>
-            <Button fx:id="myRoomsBtn" mnemonicParsing="false" prefWidth="150.0" text="My Rooms" />
-            <Button fx:id="myResBtn" mnemonicParsing="false" prefWidth="150.0" text="My Reservations" />
-            <Button fx:id="myGroupsBtn" mnemonicParsing="false" prefWidth="150.0" text="My Groups" />
-            <Button fx:id="myReviewsBtn" mnemonicParsing="false" prefWidth="150.0" text="My Reviews" />
-            <Button fx:id="postRoomBtn" mnemonicParsing="false" prefWidth="150.0" text="Post Room" />
-            <Button fx:id="searchRoomBtn" mnemonicParsing="false" prefWidth="150.0" text="Search Rooms" />
-         </children>
-         <padding>
-            <Insets top="10.0" />
-         </padding>
-      </VBox>
-      <VBox alignment="BOTTOM_CENTER" layoutY="580.0" prefHeight="140.0" prefWidth="180.0">
-         <children>
-            <Button fx:id="logOutBtn" mnemonicParsing="false" text="Log Out" />
-         </children>
-         <padding>
-            <Insets bottom="15.0" />
-         </padding>
-      </VBox>
-   </children>
-</AnchorPane>
+   </center>
+</BorderPane>
