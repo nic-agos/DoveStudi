@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane fx:id="main" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.">
    <left>
       <VBox prefHeight="720.0" prefWidth="240.0" spacing="25.0" BorderPane.alignment="CENTER">
@@ -84,8 +83,8 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="150.0">
                <children>
-                  <Button fx:id="discardBtn" mnemonicParsing="false" text="Discard" />
-                  <Button fx:id="submitBtn" mnemonicParsing="false" text="Submit" />
+                  <Button fx:id="discardBtn" mnemonicParsing="false" onMouseClicked="#back" text="Discard" />
+                  <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submit" text="Submit" />
                </children>
             </HBox>
          </children>

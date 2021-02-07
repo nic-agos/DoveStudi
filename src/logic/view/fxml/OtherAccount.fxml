@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane fx:id="main" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.OtherAccountGC">
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="1280.0" spacing="50.0" BorderPane.alignment="CENTER">
@@ -144,8 +143,8 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="150.0">
                <children>
-                  <Button fx:id="backBtn" mnemonicParsing="false" text="Back" />
-                  <Button fx:id="makeReviewBtn" mnemonicParsing="false" text="Make A Review" />
+                  <Button fx:id="backBtn" mnemonicParsing="false" onMouseClicked="#back" text="Back" />
+                  <Button fx:id="makeReviewBtn" mnemonicParsing="false" onMouseClicked="#makeReview" text="Make A Review" />
                </children>
             </HBox>
          </children>

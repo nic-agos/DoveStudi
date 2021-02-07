@@ -1,14 +1,19 @@
 package logic.util;
 import logic.util.enumeration.Views;
+import logic.view.NavbarGC;
 import javafx.fxml.*;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
 
 public class ViewSwitcher {
 	private static final String PATH="../view/resources";
+	
+	private static NavbarGC navCtrl;
+	private static VBox navbar = null;
 	
 	private ViewSwitcher() {/*Nothing to do here*/}
 	
@@ -39,9 +44,23 @@ public class ViewSwitcher {
 			return new FXMLLoader(ViewSwitcher.class.getResource(PATH + "GroupBookRoom.fxml"));
 		case GROUPCREATION:
 			return new FXMLLoader(ViewSwitcher.class.getResource(PATH + "CreateGroup.fxml"));
+		case NAVBAR:
+			return new FXMLLoader(ViewSwitcher.class.getResource(PATH + "Navbar.fxml"));
+		case REGISTRATION:
+			return new FXMLLoader(ViewSwitcher.class.getResource(PATH + "Registration.fxml"));			
 		default: /*case HOME*/
 			return new FXMLLoader(ViewSwitcher.class.getResource(PATH + "Home.fxml"));
 		}
+	}
+	
+	private static VBox getNavbar() throws IOException {
+		if (navbar == null) {
+			FXMLLoader loader = loadFXML(Views.NAVBAR);
+			navCtrl = new NavbarGC();
+			loader.setController(navCtrl);
+			navbar = loader.load();
+		}
+		return navbar;
 	}
 	
 	public static Scene switchTo (Views nextView, Initializable controller) {
@@ -55,13 +74,20 @@ public class ViewSwitcher {
 			FXMLLoader loader = loadFXML(nextView);
 			if (controller != null)
 				loader.setController(controller);
-			return new Scene(loader.load());
+			BorderPane pane = loader.load();
+			if(nextView.equals(Views.MYACCOUNT)||nextView.equals(Views.MYGROUPS)||nextView.equals(Views.MYROOMS)||nextView.equals(Views.MYREVIEWS)){
+				pane.setLeft(ViewSwitcher.getNavbar());
+			}
+			return new Scene(pane);
 		}
 	}
 	catch (IOException e)
 	{
 		return new Scene(create404Page(nextView.toString().toLowerCase()));
 	}
+}
+	public static void back() {
+		ViewSwitcher.switchTo(Session.getSession().getPrevView(), null);
 	}
 	
 	private static VBox create404Page(String view) {

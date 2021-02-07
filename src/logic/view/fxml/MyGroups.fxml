@@ -21,7 +21,7 @@
                </VBox.margin>
             </Label>
             <ListView fx:id="groupsList" maxWidth="-Infinity" prefHeight="546.0" prefWidth="1039.0" />
-            <Button fx:id="createBtn" mnemonicParsing="false" text="Create a New Group" />
+            <Button fx:id="createBtn" mnemonicParsing="false" onMouseClicked="#createGroup" text="Create a New Group" />
          </children>
       </VBox>
    </center>
