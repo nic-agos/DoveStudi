@@ -6,15 +6,22 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
+
 
 public class ReviewFormGC implements Initializable{
 	
 	@FXML
-	Button discardBtn;
+	private Button discardBtn;
 	@FXML
-	Button submitBtn;
+	private Button submitBtn;
+	@FXML
+	private BorderPane main;
+	
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -23,13 +30,13 @@ public class ReviewFormGC implements Initializable{
 	
 	@FXML
 	public void back() {
-		ViewSwitcher.back();
+		Stage stage = (Stage) main.getScene().getWindow();
+		stage.setScene(ViewSwitcher.back());
 	}
 	
 	@FXML
 	public void submit() {
-		/* Dove vado?
-		 * ViewSwitcher.switchTo(Views., controller)*/
-		
+		Stage stage = (Stage) main.getScene().getWindow();
+		stage.setScene(ViewSwitcher.switchTo(Views.MYREVIEWS, null));
 	}
 }

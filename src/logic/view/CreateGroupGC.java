@@ -6,12 +6,16 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import logic.util.ViewSwitcher;
 
 public class CreateGroupGC implements Initializable{
 	
-	 @FXML
-	 Button backBtn;
+	@FXML
+	private Button backBtn;
+	@FXML
+	private BorderPane main;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -20,7 +24,8 @@ public class CreateGroupGC implements Initializable{
 	
 	@FXML
 	public void backAction() {
-		ViewSwitcher.back();
+		Stage stage = (Stage) main.getScene().getWindow();
+		stage.setScene(ViewSwitcher.back());
 	}
 
 }

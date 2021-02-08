@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane fx:id="main" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.PostRoomGC">
    <center>
       <VBox alignment="CENTER" prefHeight="720.0" prefWidth="1280.0" spacing="25.0" BorderPane.alignment="CENTER">
@@ -37,7 +36,7 @@
             </HBox>
             <TextArea fx:id="description" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="800.0" promptText="Write a description of your room..." />
             <Button fx:id="postBtn" mnemonicParsing="false" text="Post" />
-            <Button fx:id="backBtn" mnemonicParsing="false" text="Back" />
+            <Button fx:id="backBtn" mnemonicParsing="false" onMouseClicked="#back" text="Back" />
          </children>
       </VBox>
    </center>

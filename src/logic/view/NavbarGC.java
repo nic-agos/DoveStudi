@@ -2,6 +2,8 @@ package logic.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import logic.util.Session;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
@@ -21,35 +23,46 @@ public class NavbarGC {
 	private Button searchRoomBtn;
 	@FXML
 	private Button logOutBtn;
+	@FXML
+	private BorderPane main;
+	
+
 	
 	@FXML
 	public void goToRooms() {
-		ViewSwitcher.switchTo(Views.MYROOMS, new HomeGC());
+		Stage stage = (Stage) main.getScene().getWindow();
+		stage.setScene(ViewSwitcher.switchTo(Views.MYROOMS, null));
 	}
 	@FXML
 	public void goToReservations() {
-		ViewSwitcher.switchTo(Views.MYRESERVATIONS, new HomeGC());
+		Stage stage = (Stage) main.getScene().getWindow();
+		stage.setScene(ViewSwitcher.switchTo(Views.MYRESERVATIONS, null));
 	}
 	@FXML
 	public void goToGroups() {
-		ViewSwitcher.switchTo(Views.MYGROUPS, new HomeGC());
+		Stage stage = (Stage) main.getScene().getWindow();
+		stage.setScene(ViewSwitcher.switchTo(Views.MYGROUPS, null));
 	}
 	@FXML
 	public void goToPostRoom() {
-		ViewSwitcher.switchTo(Views.POSTROOM, new HomeGC());
+		Stage stage = (Stage) main.getScene().getWindow();
+		stage.setScene(ViewSwitcher.switchTo(Views.POSTROOM, null));
 	}
 	@FXML
 	public void goToReviews() {
-		ViewSwitcher.switchTo(Views.MYREVIEWS, new HomeGC());
+		Stage stage = (Stage) main.getScene().getWindow();
+		stage.setScene(ViewSwitcher.switchTo(Views.MYREVIEWS, null));
 	}
 	@FXML
 	public void goToSearch() {
-		ViewSwitcher.switchTo(Views.ROOMSEARCH, new HomeGC());
+		Stage stage = (Stage) main.getScene().getWindow();
+		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, null));
 	}
 	@FXML
 	public void doLogOut(){
+		Stage stage = (Stage) main.getScene().getWindow();
 		Session.getSession().setLogged(false);
-		ViewSwitcher.switchTo(Views.HOME, new HomeGC());
+		stage.setScene(ViewSwitcher.switchTo(Views.HOME, null));
 	}
 	
 	

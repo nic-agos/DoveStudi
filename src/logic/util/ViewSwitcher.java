@@ -10,10 +10,10 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 
 public class ViewSwitcher {
-	private static final String PATH="../view/resources";
+	private static final String PATH="../view/fxml/";
 	
+	private static BorderPane navbar = null;
 	private static NavbarGC navCtrl;
-	private static VBox navbar = null;
 	
 	private ViewSwitcher() {/*Nothing to do here*/}
 	
@@ -53,7 +53,7 @@ public class ViewSwitcher {
 		}
 	}
 	
-	private static VBox getNavbar() throws IOException {
+	private static BorderPane getNavbar() throws IOException {
 		if (navbar == null) {
 			FXMLLoader loader = loadFXML(Views.NAVBAR);
 			navCtrl = new NavbarGC();
@@ -63,7 +63,7 @@ public class ViewSwitcher {
 		return navbar;
 	}
 	
-	public static Scene switchTo (Views nextView, Initializable controller) {
+	public static Scene switchTo (Views nextView, Initializable controller){
 		Session.getSession().setCurrView(nextView);
 	try {
 		if (nextView.equals(Views.LOGIN)) {
@@ -75,7 +75,7 @@ public class ViewSwitcher {
 			if (controller != null)
 				loader.setController(controller);
 			BorderPane pane = loader.load();
-			if(nextView.equals(Views.MYACCOUNT)||nextView.equals(Views.MYGROUPS)||nextView.equals(Views.MYROOMS)||nextView.equals(Views.MYREVIEWS)){
+			if(nextView.equals(Views.MYACCOUNT)||nextView.equals(Views.MYGROUPS)||nextView.equals(Views.MYROOMS)||nextView.equals(Views.MYREVIEWS)||nextView.equals(Views.ROOMSEARCH)){
 				pane.setLeft(ViewSwitcher.getNavbar());
 			}
 			return new Scene(pane);
@@ -83,17 +83,20 @@ public class ViewSwitcher {
 	}
 	catch (IOException e)
 	{
+		e.printStackTrace();
 		return new Scene(create404Page(nextView.toString().toLowerCase()));
+	
 	}
 }
-	public static void back() {
-		ViewSwitcher.switchTo(Session.getSession().getPrevView(), null);
+	public static Scene back(){
+		return ViewSwitcher.switchTo(Session.getSession().getPrevView(), null);
 	}
 	
 	private static VBox create404Page(String view) {
 		VBox box = new VBox();
 		box.setAlignment(Pos.CENTER);
 		box.setSpacing(20);
+		box.setPrefSize(900, 600);
 		
 		Label err = new Label("404 - Page Not Found");
 		Label message = new Label("Unable to load " + view +".fxml file");

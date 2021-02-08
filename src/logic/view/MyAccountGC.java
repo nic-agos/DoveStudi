@@ -14,9 +14,7 @@ import javafx.stage.Stage;
 public class MyAccountGC implements Initializable{
 	
 	@FXML
-	 Button makeReviewBtn;
-	@FXML
-	 Button buyTokensBtn;
+	private Button buyTokensBtn;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -36,11 +34,6 @@ public class MyAccountGC implements Initializable{
         
         pop.setScene(scene);
         pop.show();
-	}
-	
-	@FXML
-	public void makeReview() {
-		/*Dove lo mando?*/
 	}
 	
 	

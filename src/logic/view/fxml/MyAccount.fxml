@@ -206,7 +206,6 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                <children>
                   <Button fx:id="buyTokensBtn" mnemonicParsing="false" onMouseClicked="#buyTokens" text="Buy More Tokens" />
-                  <Button fx:id="makeReviewBtn" mnemonicParsing="false" onMouseClicked="#makeReview" text="Make A Review" />
                </children>
             </HBox>
          </children>
