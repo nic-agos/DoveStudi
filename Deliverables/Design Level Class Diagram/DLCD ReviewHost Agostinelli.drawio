@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-02-08T10:35:03.612Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36 Edg/88.0.705.63" etag="fqw6l5KjBO5ospw4x0j1" version="14.2.9" type="github">
+<mxfile host="app.diagrams.net" modified="2021-02-08T10:36:00.940Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36 Edg/88.0.705.63" etag="IX5ZcfX1HHpLvIURqEtz" version="14.2.9" type="github">
   <diagram id="w0jWqpOduRP_DTYvotxJ" name="Page-1">
-    <mxGraphModel dx="1504" dy="1472" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1065" dy="1284" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -12,13 +12,13 @@
             <mxRectangle x="490" y="250" width="160" height="40" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="_ANVthijb6fyCb5TBOQM-2" value="- instance: ReviewHostController" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_ANVthijb6fyCb5TBOQM-1" vertex="1">
+        <mxCell id="_ANVthijb6fyCb5TBOQM-2" value="- instance: ReviewController" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_ANVthijb6fyCb5TBOQM-1" vertex="1">
           <mxGeometry y="40" width="440" height="26" as="geometry" />
         </mxCell>
         <mxCell id="_ANVthijb6fyCb5TBOQM-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="_ANVthijb6fyCb5TBOQM-1" vertex="1">
           <mxGeometry y="66" width="440" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="_ANVthijb6fyCb5TBOQM-4" value="+ getInstance(): ReviewHostController&#xa;+ makeReview(ReviewBean reviewBean, PersonBean personBean): boolean&#xa;+ getDoneReviews(AccountBean accountBean): List&lt;Review&gt;&#xa;+ getReceivedReviews(AccountBean accountBean): List&lt;Review&gt;&#xa;+ calculateHostRating(PersonBean personBean): double&#xa;+ calculateGuestRating(PersonBean personBean): double" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_ANVthijb6fyCb5TBOQM-1" vertex="1">
+        <mxCell id="_ANVthijb6fyCb5TBOQM-4" value="+ getInstance(): ReviewController&#xa;+ makeReview(ReviewBean reviewBean, PersonBean personBean): boolean&#xa;+ getDoneReviews(AccountBean accountBean): List&lt;Review&gt;&#xa;+ getReceivedReviews(AccountBean accountBean): List&lt;Review&gt;&#xa;+ calculateHostRating(PersonBean personBean): double&#xa;+ calculateGuestRating(PersonBean personBean): double" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="_ANVthijb6fyCb5TBOQM-1" vertex="1">
           <mxGeometry y="74" width="440" height="106" as="geometry" />
         </mxCell>
         <mxCell id="s_rBKiH7ntkBGgYZegSy-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;endArrow=none;endFill=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;" parent="1" source="_ANVthijb6fyCb5TBOQM-5" target="_ANVthijb6fyCb5TBOQM-21" edge="1">
