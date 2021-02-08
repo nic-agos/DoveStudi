@@ -1,8 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%> 
+
+<%@ page import="java.util.*"%>
+
+<%@ page import="logic.model.*"%>
+<%@ page import="logic.bean.*"%>
+<%@ page import="logic.exception.*"%>
+<%@ page import="logic.controller.*"%>
+ 
+<%
+	GroupController gContr = GroupController.getInstance();
+
+	Person person = (Person)session.getAttribute("accPerson");
+	
+	GroupBean groupBean = new GroupBean();
+
+	if(request.getParameter("createGroupBtn") != null){
+		
+		
+		groupBean.setName(request.getParameter("groupName"));
+		groupBean.setAdmin(person.getAccount().getCf());
+		
+		try{
+			
+//			check if all data are correct
+			groupBean.validate();
+			
+			gContr.createGroup(groupBean);
+
+//			redirect
+			String site = new String("MyGroups.jsp");
+	        response.setStatus(response.SC_MOVED_TEMPORARILY);
+	        response.setHeader("Location", site);
+			
+		}catch(GroupException ge){
+			ge.printStackTrace();
+		
+		}catch(DatabaseException de){
+			de.printStackTrace();
+		}
+	}
+%>   
+
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="ISO-8859-1">
 <title>Group Form</title>
 <link href="css/btn1.css" rel="stylesheet"/>
@@ -11,11 +55,10 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </head>
+
 <body>
-<!-- <div class="curved">
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319"><path fill="#FF5500" fill-opacity="1" d="M0,64L48,96C96,128,192,192,288,224C384,256,480,256,576,245.3C672,235,768,213,864,181.3C960,149,1056,107,1152,106.7C1248,107,1344,149,1392,170.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
-	</div> -->
 	<div id="sidebar">
 		<div id="rectangle" >
 			<div class="toggle-btn" onclick="toggleSideBar();">
@@ -44,26 +87,27 @@
 		</div>
 	</div>
 	<div class="card" id="card" style="width:600px; left:30%;margin-top:20px;">
-			<form id="form_post_room" method="POST">
-		  		<div class="row"style="margin-left:20px;margin-top:10px;">
-	      				<div class="col-md-4">
-            				<label for="title" class="col-form-label">Group name:</label>
-            			</div>
-            			<div class="col-md-11">
-            				<input type="text" class="form-control" id="groupName" required="">
-            			</div>
-            		</div>  			
-		  		<div class="container" style="text-align:center; margin-top:20px; margin-bottom:30px;">
-	  				<div class="vertical-center">	    				
-	  					<input type="button" name="createGroup" value="Create Group" id="createGroup" class="btn btn-outline-warning" />
-	  				</div>
-				</div>
-			</form>
+		<form id="form_post_room" method="POST">
+	  		<div class="row"style="margin-left:20px;margin-top:10px;">
+      				<div class="col-md-4">
+           				<label for="title" class="col-form-label">Group name:</label>
+           			</div>
+           			<div class="col-md-11">
+           				<input type="text" class="form-control" id="groupName" name="groupName" required placeHolder="Insert Group Name" required>
+           			</div>
+           	</div>  			
+	  		<div class="container" style="text-align:center; margin-top:20px; margin-bottom:30px;">
+  				<div class="vertical-center">	    				
+  					<button type="submit" id="createGroupBtn" name="createGroupBtn" class="btn btn-outline-warning">Create Group</button>	
+  				</div>
+			</div>
+		</form>
 	</div>
 	
 	<script>function toggleSideBar(){
 				document.getElementById("sidebar").classList.toggle("active");
 			}	
 	</script>
+	
 </body>
 </html>

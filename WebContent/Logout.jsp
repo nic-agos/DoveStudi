@@ -2,8 +2,13 @@
     pageEncoding="ISO-8859-1"%>
     
 <%
+//	remove all session's variables
 	session.invalidate();
-	response.sendRedirect("index.jsp");
+	
+//	redirect
+	String site = new String("MyGroups.jsp");
+	response.setStatus(response.SC_MOVED_TEMPORARILY);
+	response.setHeader("Location", site);
 %>
 
 <!DOCTYPE html>

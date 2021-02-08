@@ -1,5 +1,7 @@
 package logic.bean;
 
+import logic.exception.*;
+
 public class ReviewBean {
 	
 	private int id;
@@ -99,7 +101,7 @@ public class ReviewBean {
 		
 	}
 	
-	public String getDescritpion() {
+	public String getDescription() {
 		return this.description;
 		
 	}
@@ -112,5 +114,28 @@ public class ReviewBean {
 	public String getTag() {
 		return this.tag;
 		
+	}
+	
+	public void validate() throws ReviewException {
+		
+		String errors = "";
+		
+		if(this.title.length() > 45 || this.title.isBlank()) {
+			errors = errors + "Invalid review title   ";
+		}
+		if(this.description.length() > 200 || this.description.isBlank()) {
+			errors = errors + "Invalid review description   ";
+		}
+		if(this.tag.isBlank()) {
+			errors = errors + "Invalid review tag   ";
+		}
+		if(this.rating != 0 && this.rating != 1 && this.rating != 2 && this.rating != 3 && this.rating != 4 && this.rating != 5) {
+			errors = errors + "Invalid review rating   ";
+		}
+		
+		if(!errors.isEmpty()) {
+			
+			throw new ReviewException(errors);
+		}
 	}
 }

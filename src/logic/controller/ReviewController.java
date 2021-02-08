@@ -25,7 +25,7 @@ public class ReviewController {
 		return instance;
 	}
 
-//	takes in input the reviewer cf, the rating, the description and the tag from groupBean
+//	takes in input the reviewer cf, the rating, the description and the tag from reviewBean
 //	and the username of the reviewed from personBean
 //	this method also update the Account host and guest rating 
 	public boolean makeReview(ReviewBean reviewBean, PersonBean personBean) throws DatabaseException, ReviewException, AccountException { 
@@ -50,7 +50,7 @@ public class ReviewController {
 				revBean.setReviewer(reviewBean.getReviewer());
 				revBean.setReviewed(persBean.getId());
 				revBean.setRating(reviewBean.getRating());
-				revBean.setDescription(reviewBean.getDescritpion());
+				revBean.setDescription(reviewBean.getDescription());
 				revBean.setTag(reviewBean.getTag());
 				
 //				add the review to the db
@@ -86,7 +86,7 @@ public class ReviewController {
 		
 	}
 	  
-	public List<Review> getDoneReviews(AccountBean accountBean) throws DatabaseException, ReviewException {
+	public List<Review> getDoneReviews(AccountBean accountBean) throws DatabaseException {
 		
 		ReviewDAOImpl reviewDao = ReviewDAOImpl.getInstance();
 		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
@@ -151,7 +151,7 @@ public class ReviewController {
 	}
 
 //	takes in input the cf of user
-	public List<Review> getReceivedReviews(AccountBean accountBean) throws DatabaseException, ReviewException {
+	public List<Review> getReceivedReviews(AccountBean accountBean) throws DatabaseException {
 		
 		ReviewDAOImpl reviewDao = ReviewDAOImpl.getInstance();
 		PersonDAOImpl personDao = PersonDAOImpl.getInstance();

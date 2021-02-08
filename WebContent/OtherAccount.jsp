@@ -18,18 +18,18 @@
 	Person person = null;
 	
 	try{
+		
 		person = rContr.getOtherAccountInfo(persBean);
 		session.setAttribute("person", person);
-		
-		
+			
 	}catch(DatabaseException de){
 		de.printStackTrace();
 	}
-	
 %>
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="ISO-8859-1">
 <title>Account</title>
 <link href="css/account.css" rel="stylesheet"/>
@@ -40,7 +40,6 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
 </head>
-
 
 <body>
 	<div class="curved">
@@ -54,19 +53,18 @@
 				<span></span>
 			</div>
 		</div>
-		 <ul>
-		 	<li style="background:#FF5500; color:#ffffff"><a style="font-size:20px; font-weight:bold; background-color:#FF5500;">#DoveStudi</a></li>
-		 	<li><a href="SearchRooms.jsp">Search for Rooms</a></li>
-		 	<li><a href="AccountPubInfo.jsp">My Account</a></li>
-		 	<li><a href="MyGroups.jsp">My Groups</a></li>
-		 	<li><a href="AccountMyFutReservations.jsp">My Reservations</a></li>
-		 	<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
-		 	<li><a href="AccountMyRooms.jsp">My Rooms</a></li>
-		 	<li><a href="PostRoom.jsp">Post a Room</a></li>
-		 	<li><a href="Logout.jsp">Log out</a></li>
-		 </ul>
+		<ul>
+			<li style="background:#FF5500; color:#ffffff"><a style="font-size:20px; font-weight:bold; background-color:#FF5500;">#DoveStudi</a></li>
+			<li><a href="SearchRooms.jsp">Search for Rooms</a></li>
+			<li><a href="AccountPubInfo.jsp">My Account</a></li>
+			<li><a href="MyGroups.jsp">My Groups</a></li>
+			<li><a href="AccountMyFutReservations.jsp">My Reservations</a></li>
+			<li><a href="AccountMyReviews.jsp">My Reviews</a></li>
+			<li><a href="AccountMyRooms.jsp">My Rooms</a></li>
+			<li><a href="PostRoom.jsp">Post a Room</a></li>
+			<li><a href="Logout.jsp">Log out</a></li>
+		</ul>
 	</div>
-	
 	<div class="d-flex justify-content-xl-left" style="margin-left:330px;">
 		<div class="col-md-5">
 			<h1 style="font-weight:600; font-family:sans-serif;margin-top:50px; margin-left:0px;">My Account</h1>
@@ -75,8 +73,7 @@
 			<p class="profile-rating">HOST RATING : <span>${person.hostRating}</span> </p>
 			<p class="profile-rating">GUEST RATING : <span>${person.guestRating}</span> </p>
 		</div>
-	</div>
-	
+	</div>	
 	<div class="row">
 		<ul class="nav nav-tabs" id="myTab" role="tabList" style="margin-left:300px; margin-top:30px;">
 			<li class="nav-item">
@@ -84,11 +81,9 @@
 			</li>
 			<li class="nav-item">
               	<a class="nav-link" id="profile-tab" href="OtherAccountReviews.jsp">Reviews</a>
-            </li>
-			
+            </li>			
 		</ul>
-	</div>
-	
+	</div>	
 	<div class="card" style="width:630px; margin-left:280px;">
 		<div class="row" style="margin-left:20px;margin-top:20px;">
 			<div class="col-md-6">
@@ -136,5 +131,6 @@
 				document.getElementById("sidebar").classList.toggle("active");
 			}	
 	</script>
+	
 </body>
 </html>

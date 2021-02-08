@@ -5,6 +5,7 @@ import java.util.List;
 
 import logic.bean.AccountBean;
 import logic.bean.RoomBean;
+import logic.bean.RoomSpecBean;
 
 public interface RoomDAO {
 	
@@ -23,5 +24,7 @@ public interface RoomDAO {
 	public List<RoomBean> getAllAccountRooms(AccountBean accountBean) throws SQLException;
 	
 	public List<RoomBean> getRoomFilteredByAvailableSeats(RoomBean roomBean) throws SQLException;
+	
+	public RoomBean getRoomFromSpec(RoomSpecBean roomSpecBean) throws SQLException;
 
 }

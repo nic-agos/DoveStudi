@@ -19,7 +19,7 @@ public class PersonDAOImpl implements PersonDAO {
 	private static final String UPDATE_GUEST_RATING_QUERY = "UPDATE person SET Guest_Rating = ? WHERE ID = ?";
 	private static final String GET_PERSON_QUERY = "SELECT * FROM person WHERE ID = ?";
 	private static final String GET_PERSON_ACCOUNT_QUERY = "SELECT * FROM person WHERE Account = ?";
-	private static final String GET_GROUP_PARTECIPANTS_QUERY = "SELECT Partecipant FROM group_a WHERE Name = ? AND Admin = ?";
+	private static final String GET_GROUP_PARTICIPANTS_QUERY = "SELECT Partecipant FROM group_a WHERE Name = ? AND Admin = ?";
 	private static final String GET_PERSON_BY_USERNAME_QUERY = "SELECT * FROM person WHERE Username = ?";
 	
 	
@@ -241,6 +241,7 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 	}
 	
+	@Override
 	public PersonBean getPersonByUsername(PersonBean personBean) throws SQLException {
 		
 		PreparedStatement stmt = null;
@@ -306,9 +307,9 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 	
 	@Override
-	public List<PersonBean> getGroupPartecipants(GroupBean groupBean) throws SQLException{
+	public List<PersonBean> getGroupParticipants(GroupBean groupBean) throws SQLException{
 		
-		List<PersonBean> groupPartecipants = new ArrayList<>();
+		List<PersonBean> groupParticipants = new ArrayList<>();
 		PersonBean person = null;
 		List<Integer> personCodes = new ArrayList<>();
 		PersonBean person2 = new PersonBean();
@@ -319,7 +320,7 @@ public class PersonDAOImpl implements PersonDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(GET_GROUP_PARTECIPANTS_QUERY);
+			stmt = connection.prepareStatement(GET_GROUP_PARTICIPANTS_QUERY);
 			stmt.setString(1, groupBean.getName());
 			stmt.setString(2, groupBean.getAdmin());
 			
@@ -332,12 +333,12 @@ public class PersonDAOImpl implements PersonDAO {
 			for (int i=0; i < personCodes.size(); i++) {
 				person2.setId(personCodes.get(i));
 				person = getPerson(person2);
-				groupPartecipants.add(person);
+				groupParticipants.add(person);
 			}
 			
 			res.close();
 			
-			return groupPartecipants;
+			return groupParticipants;
 				
 		}finally{
 			if (stmt != null) {

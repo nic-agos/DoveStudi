@@ -19,4 +19,6 @@ public interface AccountDAO {
 	
 	public AccountBean getAccount(AccountBean accountBean) throws SQLException;
 	
+	public AccountBean login(AccountBean accountBean) throws SQLException;
+	
 }

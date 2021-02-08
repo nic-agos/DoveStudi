@@ -40,7 +40,7 @@ public class Review {
 	
 	public Review(ReviewBean reviewBean) {
 
-		this(reviewBean.getTitle(), reviewBean.getRating(), reviewBean.getDescritpion(), reviewBean.getTag());
+		this(reviewBean.getTitle(), reviewBean.getRating(), reviewBean.getDescription(), reviewBean.getTag());
 	
 		this.id = reviewBean.getId();
 		

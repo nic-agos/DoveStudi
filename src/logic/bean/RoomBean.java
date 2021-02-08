@@ -1,5 +1,7 @@
 package logic.bean;
 
+import logic.exception.*;
+
 public class RoomBean {
 	
 	private int id;
@@ -8,7 +10,7 @@ public class RoomBean {
 	
 	private String address;
 	
-	private int numPartecipants;
+	private int numParticipants;
 
 	private int numAvailableSeats;
 	
@@ -26,7 +28,7 @@ public class RoomBean {
 		
 		this.address = address;
 		
-		this.numPartecipants = numPartecipants;
+		this.numParticipants = numPartecipants;
 		
 		this.numAvailableSeats = numAvailableSeats;
 		
@@ -74,13 +76,13 @@ public class RoomBean {
 		
 	}
 	
-	public void setNumPartecipants(int numPartecipants) {
-		this.numPartecipants = numPartecipants;
+	public void setNumParticipants(int numParticipants) {
+		this.numParticipants = numParticipants;
 		
 	}
 	
-	public int getNumPartecipants() {
-		return this.numPartecipants;
+	public int getNumParticipants() {
+		return this.numParticipants;
 		
 	}
 	
@@ -113,4 +115,25 @@ public class RoomBean {
 		return this.specification;
 		
 	}
+	
+	public void validate() throws RoomException {
+		
+		String errors = "";
+		
+		if(this.name.length() > 45 || this.name.isBlank()) {
+			errors = errors + "Invalid room title   ";
+		}
+		if(this.address.length() > 100 || this.address.isBlank()) {
+			errors = errors + "Invalid room address   ";
+		}
+		if(this.name.length() > 45 || this.name.isBlank()) {
+			errors = errors + "Invalid room title   ";
+		}
+		
+		if(!errors.isEmpty()) {
+			
+			throw new RoomException(errors);
+		}	
+	}
+	
 }

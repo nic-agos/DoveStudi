@@ -47,7 +47,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 			stmt.setString(2, reviewBean.getReviewer());
 			stmt.setInt(3, reviewBean.getReviewed());
 			stmt.setInt(4, reviewBean.getRating());
-			stmt.setString(5, reviewBean.getDescritpion());
+			stmt.setString(5, reviewBean.getDescription());
 			stmt.setString(6, reviewBean.getTag());
 			
 			stmt.executeUpdate();
@@ -226,6 +226,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		}
 	}
 	
+	@Override
 	public List<ReviewBean> getAllPersonReviewsAsGuest(PersonBean personBean) throws SQLException {
 		
 		List<ReviewBean> reviewsGuest = new ArrayList<>();
@@ -262,6 +263,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		}
 	}
 	
+	@Override
 	public List<ReviewBean> getAllPersonReviewsAsHost(PersonBean personBean) throws SQLException {
 		
 		List<ReviewBean> reviewsHost = new ArrayList<>();

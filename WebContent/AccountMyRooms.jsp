@@ -11,7 +11,7 @@
 <%@ page import="logic.controller.*"%>
 
 <%
-	Person person = (Person)session.getAttribute("accPerson");
+Person person = (Person)session.getAttribute("accPerson");
 	
 	RoomController rContr = RoomController.getInstance();
 	ReservationController resContr = ReservationController.getInstance();
@@ -22,67 +22,69 @@
 	PersonBean persBean = new PersonBean();
 	List<Room> roomsList = new ArrayList<>();
 	
-
+//	check if the user is logged	
 	if(person != null){
 		
 		try{
-			accBean.setCf(person.getAccount().getCf());
-			roomsList = rContr.getMyRooms(accBean);
-			
-			if(!roomsList.isEmpty()) {
-				
-//				adding partecipnats list to every room				
-				for(Room r : roomsList) {
-					
-					tempRoomBean.setId(r.getId());
-					r.setPartecipants(resContr.getAllRoomPartecipants(tempRoomBean));
-					
-				}
+	accBean.setCf(person.getAccount().getCf());
+	roomsList = rContr.getMyRooms(accBean);
+	
+	if(!roomsList.isEmpty()) {
+		
+//				adding participnats list to every room				
+		for(Room r : roomsList) {
+	
+	tempRoomBean.setId(r.getId());
+	r.setParticipants(resContr.getAllRoomParticipants(tempRoomBean));
+	
+		}
 
-				request.setAttribute("roomsList", roomsList);
-			}
+		request.setAttribute("roomsList", roomsList);
+	}
 
 		
 		}catch(DatabaseException de){
-			de.printStackTrace();
+	de.printStackTrace();
 		}
 
 //		method to handle click on delete room
 		for(Room r : roomsList){
-			
-			if(request.getParameter(String.valueOf(r.getId())) != null){
-				
-				try {
-					roomBean.setId(r.getId());
-					 rContr.deleteRoom(roomBean);
-					 
-					 String site = new String("AccountMyRooms.jsp");
-				     response.setStatus(response.SC_MOVED_TEMPORARILY);
-				     response.setHeader("Location", site);
-					
-				}catch(DatabaseException de){
-					de.printStackTrace();
-				}
-			}
+	
+	if(request.getParameter(String.valueOf(r.getId())) != null){
+		
+		try {
+	roomBean.setId(r.getId());
+	rContr.deleteRoom(roomBean);
+	
+//					redirect
+	String site = new String("AccountMyRooms.jsp");
+		    response.setStatus(response.SC_MOVED_TEMPORARILY);
+		    response.setHeader("Location", site);
+	
+		}catch(DatabaseException de){
+	de.printStackTrace();
+		}
+	}
 		}
 
-//		method to handle click on room partecipant
-			for(Room r: roomsList){
-				
-//				iterate over room's partecipants
-				for(Person p: r.getPartecipants()){
-					
-					if(request.getParameter(p.getUsername()) != null){
-															    	
-						persBean.setUsername(p.getUsername());
-						session.setAttribute("othAccUsername", persBean);
-								
-						String site = new String("OtherAccount.jsp");
-				        response.setStatus(response.SC_MOVED_TEMPORARILY);
-				        response.setHeader("Location", site);
-					}
-				}
-			}
+//		method to handle click on room participant
+		for(Room r: roomsList){
+		
+//			iterate over room's participants
+	for(Person p: r.getParticipants()){
+	
+		if(request.getParameter(p.getUsername()) != null){
+									    	
+	persBean.setUsername(p.getUsername());
+	session.setAttribute("othAccUsername", persBean);
+	
+//					redirect								
+	String site = new String("OtherAccount.jsp");
+	        response.setStatus(response.SC_MOVED_TEMPORARILY);
+	        response.setHeader("Location", site);
+		}
+	}
+		}
 		
 	}else{
 		String site = new String("Login.jsp");
@@ -94,6 +96,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="ISO-8859-1">
 <title>My Rooms</title>
 <link href="css/myRooms.css" rel="stylesheet"/>
@@ -102,6 +105,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -131,16 +135,10 @@
   		</div>
 	</div>
 	
-	<div class= "container head-profile" style="margin-bottom:30px;margin-top:70px;">
-		
-		
-		
-		<c:forEach items ="${roomsList}" var="roomsList">
-			
+	<div class= "container head-profile" style="margin-bottom:30px;margin-top:70px;">	
+		<c:forEach items ="${roomsList}" var="roomsList">	
 			<div class="col-md-9">
-				
 				<div class="card">         
-	         		<!-- <div class="card-header" id="myCard" style="background:#ff6b24;font-weight: 600; font-size:15px;"></div> -->
 	  				<div class="card-header" id="myCard2" style="font-weight:600; font-size:20px;"> <c:out value = "${roomsList.name}"/>	</div>
 	  					<div class="card-body">
 							<div class="row" id="line">
@@ -192,7 +190,7 @@
 	                        		<label>Max seats:</label>
 	                        	</div>
 	                        	<div class="col-md-4">
-	                        		<p>${roomsList.numPartecipants}
+	                        		<p>${roomsList.numParticipants}
 	                        	</div>
 								<div class="col-md-3">
 									<label>Available seats:</label>
@@ -205,67 +203,26 @@
 	                        	<div class="col-md-2">
 	                        		<label>Participants:</label>
 	                        	</div>	                        	
-	                        		<c:forEach items="${roomsList.partecipants}" var="person">	           
+	                        		<c:forEach items="${roomsList.participants}" var="person">	           
 	                        			<form method="get">
 	                        				<button type="submit" style="border:none;backgroup:#ffffff" id="${person.username}" name="${person.username}">${person.username}</button>
 	                        				&nbsp
 	                        			</form>	                  
 	               					</c:forEach>	                            	
-								</div>
+							</div>
 	                   	</div>
 	                   		<form method="get">
 								<button type="submit" id="${roomsList.id}" name="${roomsList.id}" class="btn btn-outline-warning" style="margin-left:20px;margin-bottom:20px;">Delete Room</a></button>    		
 							</form>
-	        	</div>
-	     	</div>
-	       	
-    	</c:forEach>		
-  		
+	        		</div>
+	     		</div>	
+    	</c:forEach>				
 	</div>
-	
-	<!-- Delete Room Modal -->
-<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> -->
-<!--   <div class="modal-dialog modal-dialog-centered" role="document"> -->
-<!--     <div class="modal-content"> -->
-<!--       <div class="modal-header"> -->
-<!--         <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
-<!--         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
-<!--           <span aria-hidden="true">&times;</span> -->
-<!--         </button> -->
-<!--       </div> -->
-<!--       <div class="modal-body"> -->
-<!--         Are you sure you want to delete this room? -->
-<!--       </div> -->
-<!--       <div class="modal-footer"> -->
-<!--         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button> -->
-<!--         <button type="button" id="btn"class="btn btn-outline-warning" data-dismiss="modal"data-toggle="modal" data-target="#roomDeleted">Yes</button> -->
-<!--       </div> -->
-<!--     </div> -->
-<!--   </div> -->
-<!-- </div> -->
-
-<!-- Room Deleted Modal -->
-<!-- <div class="modal fade" id="roomDeleted" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> -->
-<!--   <div class="modal-dialog modal-dialog-centered" role="document"> -->
-<!--     <div class="modal-content"> -->
-<!--       <div class="modal-header"> -->
-<!--         <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
-<!--         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
-<!--           <span aria-hidden="true">&times;</span> -->
-<!--         </button> -->
-<!--       </div> -->
-<!--       <div class="modal-body"> -->
-<!--         Your Room has been deleted! -->
-<!--       </div> -->
-<!--     </div> -->
-<!--   </div> -->
-<!-- </div> -->
-	
-	
 	
 	<script>function toggleSideBar(){
 				document.getElementById("sidebar").classList.toggle("active");
 			}	
 	</script>
+	
 </body>
 </html>

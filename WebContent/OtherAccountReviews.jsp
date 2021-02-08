@@ -14,7 +14,11 @@
 <%
 
 	PersonBean personBean = (PersonBean)session.getAttribute("othPersBean");
+	
 	AccountBean accBean = new AccountBean();
+	
+	PersonBean persBean = new PersonBean(); 
+	
 	accBean.setCf(personBean.getAccount());
 	
 	ReviewController rContr = ReviewController.getInstance();
@@ -28,7 +32,16 @@
 	}catch(DatabaseException de){
 		de.printStackTrace();
 	}
-	
+	if(request.getParameter("reviewBtn") != null){
+		
+		persBean.setUsername(personBean.getUsername());
+		session.setAttribute("revPers", persBean);
+		
+		String site = new String("ReviewForm.jsp");
+	    response.setStatus(response.SC_MOVED_TEMPORARILY);
+	    response.setHeader("Location", site);
+		
+	}
 %>
 
 <!DOCTYPE html>
@@ -85,129 +98,53 @@
 			</li>
 			<li class="nav-item">
               	<a class="nav-link active" id="profile-tab" href="OtherAccountReviews.jsp">Reviews</a>
-            </li>
-			
+            </li>			
 		</ul>
 	</div>
-	<c:forEach items="${reviewList}" var="reviewList">
 	
-	<div class="card" style="width:630px;min-height:200px; margin-left:280px; max-height:200px;">
-		<div class="row" style="margin-left:20px;margin-top:20px;">
-			<div class="col-md-2">
-				<label>Title:</label>
+	<c:forEach items="${reviewList}" var="reviewList">
+		<div class="card" style="width:630px;min-height:200px; margin-left:280px; max-height:200px;">
+			<div class="row" style="margin-left:20px;margin-top:20px;">
+				<div class="col-md-2">
+					<label>Title:</label>
+				</div>
+				<div class="col-md-12">
+					<p>${reviewList.title}
+				</div>
 			</div>
-			<div class="col-md-12">
-				<p>${reviewList.title}
+			<div class="row" style="margin-left:20px;">
+				<div class="col-md-1">
+					<label>Tag:</label>
+				</div>
+				<div class="col-md-3">
+					<p>${reviewList.tag}
+				</div>
+				<div class="col-md-2">
+					<label>Rating:</label>
+				</div>
+				<div class="col-md-2">
+					<p>${reviewList.rating}
+				</div>
+			</div>
+			<div class="row" style="margin-left:20px;">
+				<div class="col-md-12">
+					<input readOnly style="margin-left:20px;min-height:80px;width:550px; maxlenght:50; overflow:hidden;" value="${reviewList.description}">
+				</div>
 			</div>
 		</div>
-		<div class="row" style="margin-left:20px;">
-			<div class="col-md-1">
-				<label>Tag:</label>
-			</div>
-			<div class="col-md-3">
-				<p>${reviewList.tag}
-			</div>
-			<div class="col-md-2">
-				<label>Rating:</label>
-			</div>
-			<div class="col-md-2">
-				<p>${reviewList.rating}
-			</div>
-		</div>
-		<div class="row" style="margin-left:20px;">
-			<div class="col-md-12">
-				<input readOnly style="margin-left:20px;min-height:80px;width:550px; maxlenght:50; overflow:hidden;" value="${reviewList.description}">
-			</div>
-		</div>
-	</div>
 	</c:forEach>
 	<div style="position:absolute;top:0px;right:0px;width:25%;height:100%;">
 	     <div class="row">
-	     	<button class="btn btn-outline-warning" id="btn" style="margin-top:30px;"data-toggle="modal" data-target="#makeAReviewModal">Make a Review</button>
-	     </div>
-	</div>
-	
-		<!--Review Form Modal -->
-	<div class="modal fade bd-example-modal-lg" id="makeAReviewModal" tabindex="-1" role="dialog" aria-labelledby="makeAReviewModal" aria-hidden="true">
-	  <div class="modal-dialog modal-lg" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	      	<div class="row">
-		      	<div class="col-md-7">
-		        	<h5 class="modal-title" id="exampleModalLongTitle">You are reviewing:</h5> 
-		        </div>
-		        <div class="col-md-7">
-		        	<h5>Reservation ID:</h5>
-		        </div>
-		    </div>   
-		    <br>
-		    <div class="row">
-		      	<div class="col-md-8">
-		        	<h5 class="modal-title" id="exampleModalLongTitle">Mario78</h5>
-		        </div>
-		        <div class="col-md-5">
-		        	<h5>006547349</h5>
-		        </div>
-		    </div>   
-		     <h4><span class="badge bg-secondary" style="color:#ffffff;">Guest Review</span></h4>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	      	<form>
-          		<div class="form-group">
-	      			<div class="row">
-	      				<div class="col-md-2">
-            				<label for="title" class="col-form-label">Title:</label>
-            			</div>
-            			<div class="col-md-8">
-            				<input type="text" class="form-control" id="title">
-            			</div>
-            		</div>
-            		<div class="row">
-	      				<div class="col-md-11">
-            				<textarea class="form-control" id="roomDescription" rows="3" style="max-height:100px; margin-top:20px;" placeHolder="Write a review"></textarea>
-            			</div>        
-            		</div>
-            		<div class="row" style="margin-top:20px;">
-	      				<div class="col-md-2">
-            				<label for="title" class="col-form-label">Rating:</label>
-            			</div>
-            			<div class="col-md-3">
-            				<select class="custom-select" id="inputGroupSelect01">
-							    <option selected>Choose a number from 1 to 5</option>
-							    <option value="1">One</option>
-							    <option value="2">Two</option>
-							    <option value="3">Three</option>
-							    <option value="4">Four</option>
-							    <option value="5">Five</option>
-							</select>
-            			</div>
-            			<div class="col-md-3">
-            				<label for="title" class="col-form-label">You are reviewing as:</label>
-            			</div>
-            			<div class="col-md-3">
-            				<select class="custom-select" id="inputGroupSelect01">							
-							    <option value="1">Host</option>
-							    <option value="2">Guest</option>
-							</select>
-            			</div>
-            		</div>
-          		</div>
-	      	</form>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-	        <button type="button" id="btn"class="btn btn-outline-warning"><a href="AccountMyReviews.jsp">Post Review</a></button>
-	      </div>
-	    </div>
-	  </div>
+		     <form method="get">
+		     	<button class="btn btn-outline-warning" id="reviewBtn" name="reviewBtn" style="margin-top:30px;">Make a Review</button>
+		     </form>
+     	</div>
 	</div>
 	
 	<script>function toggleSideBar(){
 				document.getElementById("sidebar").classList.toggle("active");
 			}	
 	</script>
+	
 </body>
 </html>

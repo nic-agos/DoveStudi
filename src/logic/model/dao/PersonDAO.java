@@ -23,6 +23,7 @@ public interface PersonDAO {
 	
 	public PersonBean getPersonFromAccount(AccountBean accountBean) throws SQLException;
 	
-	public List<PersonBean> getGroupPartecipants(GroupBean groupBean) throws SQLException;
+	public List<PersonBean> getGroupParticipants(GroupBean groupBean) throws SQLException;
 	
+	public PersonBean getPersonByUsername(PersonBean personBean) throws SQLException;
 }

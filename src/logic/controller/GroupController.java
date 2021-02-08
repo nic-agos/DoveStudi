@@ -41,8 +41,8 @@ public class GroupController {
 			
 			accountBean.setCf(groupBean.getAdmin());
 			persBean = personDao.getPersonFromAccount(accountBean);
-			grBean.setNumPartecipants(1);
-			grBean.setPartecipant(persBean.getId());
+			grBean.setNumParticipants(1);
+			grBean.setParticipant(persBean.getId());
 			
 			return (groupDao.createGroup(grBean) != 0);
 			
@@ -52,12 +52,12 @@ public class GroupController {
 	}
 	
 //	takes in input group's name and admin and the username of the person that want's to add to the group
-	public boolean addGroupPartecipant(GroupBean groupBean, PersonBean personBean) throws DatabaseException, AccountException {
+	public boolean addGroupParticipant(GroupBean groupBean, PersonBean personBean) throws DatabaseException, AccountException {
 		
 		GroupDAOImpl groupDao = GroupDAOImpl.getInstance();
 		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
 		
-		List<PersonBean> groupPartecipants;
+		List<PersonBean> groupParticipants;
 		PersonBean persBean;
 		PersonBean tempPersBean = new PersonBean();
 		GroupBean grBean = new GroupBean();
@@ -68,9 +68,9 @@ public class GroupController {
 			
 			if(persBean != null) {
 				
-				groupPartecipants = personDao.getGroupPartecipants(groupBean);
+				groupParticipants = personDao.getGroupParticipants(groupBean);
 				
-				for(PersonBean perBean : groupPartecipants) {
+				for(PersonBean perBean : groupParticipants) {
 					if(persBean.getId() == perBean.getId()) {
 						throw new AccountException("User with username " + personBean.getUsername() + " is already in the group");
 					}
@@ -81,13 +81,13 @@ public class GroupController {
 				
 				grBean.setName(groupBean.getName());
 				grBean.setAdmin(groupBean.getAdmin());
-				grBean.setNumPartecipants(groupDao.getAdministeredGroup(tempGroupBean).getNumPartecipants()+1);
+				grBean.setNumParticipants(groupDao.getAdministeredGroup(tempGroupBean).getNumParticipants()+1);
 				
 				tempPersBean = personDao.getPersonByUsername(personBean);
-				grBean.setPartecipant(tempPersBean.getId());
+				grBean.setParticipant(tempPersBean.getId());
 				
-				groupDao.addGroupPartecipant(grBean);
-				return (groupDao.updateNumPartecipantsGroup(grBean) != 0);
+				groupDao.addGroupParticipant(grBean);
+				return (groupDao.updateNumParticipantsGroup(grBean) != 0);
 				
 			}else {
 				throw new AccountException("User with username " + personBean.getUsername() + " not found");
@@ -119,13 +119,17 @@ public class GroupController {
 		GroupDAOImpl groupDao = GroupDAOImpl.getInstance();
 			
 		GroupBean gBean = new GroupBean(); 
+		GroupBean tempGroupBean;
 			
 		try {
 			if(groupDao.leaveGroup(groupBean) != 0) {
 				gBean.setName(groupBean.getName());
 				gBean.setAdmin(groupBean.getAdmin());
-				gBean.setNumPartecipants(groupBean.getNumPartecipants()-1);
-				return (groupDao.updateNumPartecipantsGroup(gBean) != 0);
+				
+				tempGroupBean = groupDao.getAdministeredGroup(groupBean);
+				
+				gBean.setNumParticipants(tempGroupBean.getNumParticipants()-1);
+				return (groupDao.updateNumParticipantsGroup(gBean) != 0);
 				
 			}else {
 				throw new AccountException("Unable to leave the group");
@@ -146,7 +150,7 @@ public class GroupController {
 		ReservationDAOImpl reservationDao = ReservationDAOImpl.getInstance();
 		RoomSpecDAOImpl roomSpecDao = RoomSpecDAOImpl.getInstance();
 			
-		List<PersonBean> partecipantsList;
+		List<PersonBean> participantsList;
 		RoomBean rBean;
 		RoomSpecBean rsBean;
 		AccountBean aBean = new AccountBean();
@@ -157,8 +161,8 @@ public class GroupController {
 		PersonBean roomOwner;
 			
 		try {
-//			get all group partecipants
-			partecipantsList = personDao.getGroupPartecipants(groupBean);
+//			get all group participants
+			participantsList = personDao.getGroupParticipants(groupBean);
 
 //			get the room and room spec info
 			rBean = roomDao.getRoom(roomBean);
@@ -169,10 +173,10 @@ public class GroupController {
 			roomOwner = personDao.getPersonFromAccount(a2Bean);
 				
 //			check if the room has enough available seats for all the groups
-			if(partecipantsList.size() <= rBean.getNumAvailableSeats()) {
+			if(participantsList.size() <= rBean.getNumAvailableSeats()) {
 
 //				check if all group members have enough tokens
-				for(PersonBean persBean : partecipantsList) {
+				for(PersonBean persBean : participantsList) {
 					aBean.setCf(persBean.getAccount());
 					if(accountDao.getNumberToken(aBean)-1 <= 0) {
 						throw new AccountException("One or more accounts do not have enough tokens to reserve the room");
@@ -180,7 +184,7 @@ public class GroupController {
 				}
 					
 //	 			check if none of the participants are already booked for the room				
-				for(PersonBean persBean : partecipantsList) {
+				for(PersonBean persBean : participantsList) {
 					resBean.setReservingUser(persBean.getAccount());
 					resBean.setLinkedRoom(roomBean.getId());
 					resBean.setRoomOwner(roomOwner.getId());
@@ -190,7 +194,7 @@ public class GroupController {
 				}
 
 //				creates the reservation for each member of the group
-				for(PersonBean persBean : partecipantsList) {
+				for(PersonBean persBean : participantsList) {
 					resBean.setReservingUser(persBean.getAccount());
 					resBean.setLinkedRoom(rBean.getId());
 					resBean.setRoomOwner(roomOwner.getId());
@@ -207,8 +211,8 @@ public class GroupController {
 
 					reservationDao.createReservation(resBean);
 				}
-				rBean.setNumPartecipants(rBean.getNumPartecipants());
-				rBean.setNumAvailableSeats(rBean.getNumAvailableSeats()-partecipantsList.size());
+				rBean.setNumParticipants(rBean.getNumParticipants());
+				rBean.setNumAvailableSeats(rBean.getNumAvailableSeats()-participantsList.size());
 				roomDao.updateRoom(rBean);
 					
 			}else {
@@ -227,14 +231,14 @@ public class GroupController {
 		AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
 		GroupDAOImpl groupDao = GroupDAOImpl.getInstance();
 		
-		List<Group> groupPartecipants = new ArrayList<>();
-		List<GroupBean> groupBeanPartecipants;
+		List<Group> groupParticipants = new ArrayList<>();
+		List<GroupBean> groupBeanParticipants;
 		Account admin;
 		Person personAdmin;
 		AccountBean accBean = new AccountBean();
 		AccountBean tempAccBean = new AccountBean();
-		Person partecipant;
-		Account accPartecipant;
+		Person participant;
+		Account accParticipant;
 		PersonBean partBean = new PersonBean();
 		PersonBean tempPersBean;
 		
@@ -242,11 +246,11 @@ public class GroupController {
 		
 		try {
 			
-			groupBeanPartecipants = groupDao.getAllParticipatingGroups(personBean);
+			groupBeanParticipants = groupDao.getAllParticipatingGroups(personBean);
 			
-			if(!groupBeanPartecipants.isEmpty()) {
+			if(!groupBeanParticipants.isEmpty()) {
 				
-				for(GroupBean g : groupBeanPartecipants) {
+				for(GroupBean g : groupBeanParticipants) {
 					
 					group = new Group(g);
 					accBean.setCf(g.getAdmin());
@@ -255,25 +259,25 @@ public class GroupController {
 					personAdmin = new Person(personDao.getPersonFromAccount(accBean));
 					admin.setPerson(personAdmin);
 					
-					partBean.setId(g.getPartecipant());
+					partBean.setId(g.getParticipant());
 					
 					tempPersBean = personDao.getPerson(partBean);
-					partecipant = new Person(tempPersBean);
+					participant = new Person(tempPersBean);
 					
 					tempAccBean.setCf(tempPersBean.getAccount());
-					accPartecipant = new Account(accountDao.getAccount(tempAccBean));
-					partecipant.setAccount(accPartecipant);
+					accParticipant = new Account(accountDao.getAccount(tempAccBean));
+					participant.setAccount(accParticipant);
 					
 					group.setAdmin(admin);
-					group.setPartecipant(partecipant);
+					group.setParticipant(participant);
 					
-					groupPartecipants.add(group);
+					groupParticipants.add(group);
 					
 				}
 
 			}
 			
-			return groupPartecipants;
+			return groupParticipants;
 			
 		}catch (SQLException se) {
 			throw new DatabaseException(se.getMessage());
@@ -281,20 +285,20 @@ public class GroupController {
 		
 	}
 	
-public List<Group> getAdministeredGroups(AccountBean accountBean) throws DatabaseException {
+	public List<Group> getAdministeredGroups(AccountBean accountBean) throws DatabaseException {
 		
 		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
 		AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
 		GroupDAOImpl groupDao = GroupDAOImpl.getInstance();
 		
-		List<Group> groupPartecipants = new ArrayList<>();
-		List<GroupBean> groupBeanPartecipants;
+		List<Group> groupParticipants = new ArrayList<>();
+		List<GroupBean> groupBeanParticipants;
 		Account admin;
 		Person personAdmin;
 		AccountBean accBean = new AccountBean();
 		AccountBean tempAccBean = new AccountBean();
-		Person partecipant;
-		Account accPartecipant;
+		Person participant;
+		Account accParticipant;
 		PersonBean partBean = new PersonBean();
 		PersonBean tempPersBean;
 		
@@ -302,11 +306,11 @@ public List<Group> getAdministeredGroups(AccountBean accountBean) throws Databas
 		
 		try {
 			
-			groupBeanPartecipants = groupDao.getAllAdministeredGroups(accountBean);
+			groupBeanParticipants = groupDao.getAllAdministeredGroups(accountBean);
 			
-			if(!groupBeanPartecipants.isEmpty()) {
+			if(!groupBeanParticipants.isEmpty()) {
 				
-				for(GroupBean g : groupBeanPartecipants) {
+				for(GroupBean g : groupBeanParticipants) {
 					
 					group = new Group(g);
 					accBean.setCf(g.getAdmin());
@@ -315,39 +319,38 @@ public List<Group> getAdministeredGroups(AccountBean accountBean) throws Databas
 					personAdmin = new Person(personDao.getPersonFromAccount(accBean));
 					admin.setPerson(personAdmin);
 					
-					partBean.setId(g.getPartecipant());
+					partBean.setId(g.getParticipant());
 					
 					tempPersBean = personDao.getPerson(partBean);
-					partecipant = new Person(tempPersBean);
+					participant = new Person(tempPersBean);
 					
 					tempAccBean.setCf(tempPersBean.getAccount());
-					accPartecipant = new Account(accountDao.getAccount(tempAccBean));
-					partecipant.setAccount(accPartecipant);
+					accParticipant = new Account(accountDao.getAccount(tempAccBean));
+					participant.setAccount(accParticipant);
 					
 					group.setAdmin(admin);
-					group.setPartecipant(partecipant);
+					group.setParticipant(participant);
 					
-					groupPartecipants.add(group);
+					groupParticipants.add(group);
 					
 				}
 
 			}
 			
-			return groupPartecipants;
+			return groupParticipants;
 			
 		}catch (SQLException se) {
 			throw new DatabaseException(se.getMessage());
 		}
 	}
 
-	public List<Person> getGroupPartecipants(GroupBean groupBean) throws DatabaseException {
+	public List<Person> getGroupParticipants(GroupBean groupBean) throws DatabaseException {
 		
 		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
 		
-		List<Person> groupPartecipants = new ArrayList<>();
-		List<PersonBean> groupBeanPartecipants;
+		List<Person> groupParticipants = new ArrayList<>();
+		List<PersonBean> groupBeanParticipants;
 		
-		AccountBean accBean;
 		AccountBean tempAccBean = new AccountBean();
 		PersonBean persBean;
 		PersonBean tempPersBean = new PersonBean();
@@ -356,11 +359,11 @@ public List<Group> getAdministeredGroups(AccountBean accountBean) throws Databas
 		Person person;
 		
 		try {
-			groupBeanPartecipants = personDao.getGroupPartecipants(groupBean);
+			groupBeanParticipants = personDao.getGroupParticipants(groupBean);
 			
-			if(!groupBeanPartecipants.isEmpty()) {
+			if(!groupBeanParticipants.isEmpty()) {
 				
-				for(PersonBean p : groupBeanPartecipants) {
+				for(PersonBean p : groupBeanParticipants) {
 					
 					tempPersBean.setUsername(p.getUsername());
 					persBean = personDao.getPersonByUsername(tempPersBean);
@@ -371,11 +374,11 @@ public List<Group> getAdministeredGroups(AccountBean accountBean) throws Databas
 					
 					person.setAccount(account);
 					
-					groupPartecipants.add(person);
+					groupParticipants.add(person);
 				}
 			}
 			
-			return groupPartecipants;
+			return groupParticipants;
 			
 		}catch (SQLException se) {
 			throw new DatabaseException(se.getMessage());		

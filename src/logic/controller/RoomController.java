@@ -44,8 +44,8 @@ public class RoomController {
 			
 			RoomDAOImpl roomDao = RoomDAOImpl.getInstance();
 			
-//			at the end the number of available seats is the same of the number of partecipants			
-			roomBean.setNumAvailableSeats(roomBean.getNumPartecipants());
+//			at the end the number of available seats is the same of the number of participants			
+			roomBean.setNumAvailableSeats(roomBean.getNumParticipants());
 			
 			int id = roomDao.createRoom(roomBean);
 			
@@ -120,7 +120,6 @@ public class RoomController {
 							rooms.add(room);
 						}
 					}
-				
 				}
 				
 			return rooms;
@@ -325,7 +324,7 @@ public class RoomController {
 	}
 
 //	takes in input the cf of the user and return a list of all his rooms
-	public List<Room> getMyRooms(AccountBean accountBean) throws DatabaseException, NotFoundException {
+	public List<Room> getMyRooms(AccountBean accountBean) throws DatabaseException {
 		
 		List<RoomBean> roomBeans;
 		List<Room> rooms = new ArrayList<>();
@@ -400,30 +399,33 @@ public class RoomController {
 					
 				for(RoomSpecBean rSpecBean: roomSpecBeans) {
 					
-				String dateTemp = rSpecBean.getDate() + " " + rSpecBean.getStartTime();
-				LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
-					
-				if(currentDate.compareTo(resDateTime) < 0) {
+					String dateTemp = rSpecBean.getDate() + " " + rSpecBean.getStartTime();
+					LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
 						
-					roomBean = roomDao.getRoomFromSpec(rSpecBean);
-					room = new Room(roomBean);
-					room.setSpecification(new RoomSpec(rSpecBean));
-						
-					temp1.setCf(roomBean.getOwner()); 
-					ownerBean = accountDao.getAccount(temp1);
-					owner = new Account(ownerBean);
-						
-					persBean = personDao.getPersonFromAccount(ownerBean);
-					owner.setPerson(new Person(persBean));
-						
-					room.setOwner(owner);
-						
-					rooms.add(room);
+					if(currentDate.compareTo(resDateTime) < 0) {
+							
+						roomBean = roomDao.getRoomFromSpec(rSpecBean);
+						room = new Room(roomBean);
+						room.setSpecification(new RoomSpec(rSpecBean));
+							
+						temp1.setCf(roomBean.getOwner()); 
+						ownerBean = accountDao.getAccount(temp1);
+						owner = new Account(ownerBean);
+							
+						persBean = personDao.getPersonFromAccount(ownerBean);
+						owner.setPerson(new Person(persBean));
+							
+						room.setOwner(owner);
+							
+						rooms.add(room);
+					}
 				}
-			}
-			}
+				
+				return rooms;
 			
-			return rooms;
+			}else {
+				throw new NotFoundException("No rooms available");
+			}
 			
 		}catch (SQLException se) {
 			throw new DatabaseException(se.getMessage());

@@ -18,6 +18,10 @@ public interface ReviewDAO {
 	public List<ReviewBean> getAllWrittenReviews(AccountBean accountBean) throws SQLException;
 	
 	public List<ReviewBean> getAllReviews() throws SQLException;
+	
+	public List<ReviewBean> getAllPersonReviewsAsGuest(PersonBean personBean) throws SQLException;
+	
+	public List<ReviewBean> getAllPersonReviewsAsHost(PersonBean personBean) throws SQLException;
 
 
 }

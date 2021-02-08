@@ -12,35 +12,35 @@ public class Group {
 	
 	private Account admin;
 	
-	private int numPartecipants;
+	private int numParticipants;
 	
-	private Person partecipant;
+	private Person participant;
 	
-	private List<Person> partecipants;
+	private List<Person> participants;
 	
 	
-	public Group(String name, int numPartecipants) {
+	public Group(String name, int numParticipants) {
 		
 		this.name = name;
 		
-		this.numPartecipants = numPartecipants;
+		this.numParticipants = numParticipants;
 		
 	}
 	
-	public Group(String name, Account admin, int numPartecipants, Person partecipant) {
+	public Group(String name, Account admin, int numParticipants, Person participant) {
 		
-		this(name, numPartecipants);
+		this(name, numParticipants);
 		
 		this.admin = admin;
 		
-		this.partecipant = partecipant;
+		this.participant = participant;
 		
 	}
 	
 	public Group(GroupBean groupBean) {
 
 
-		this(groupBean.getName(), groupBean.getNumPartecipants());
+		this(groupBean.getName(), groupBean.getNumParticipants());
 		
 		this.id = groupBean.getId();
 	}
@@ -77,33 +77,33 @@ public class Group {
 		
 	}
 	
-	public void setNumPartecipants(int numPartecipants) {
-		this.numPartecipants = numPartecipants;
+	public void setNumParticipants(int numParticipants) {
+		this.numParticipants = numParticipants;
 		
 	}
 	
-	public int getNumPartecipants() {
-		return this.numPartecipants;
+	public int getNumParticipants() {
+		return this.numParticipants;
 		
 	}
 	
-	public void setPartecipant(Person partecipant) {
-		this.partecipant = partecipant;
+	public void setParticipant(Person participant) {
+		this.participant = participant;
 		
 	}
 	
-	public Person getPartecipant() {
-		return this.partecipant;
+	public Person getParticipant() {
+		return this.participant;
 		
 	}
 	
-	public void setPartecipants(List<Person> partecipants) {
-		this.partecipants = partecipants;
+	public void setParticipants(List<Person> participants) {
+		this.participants = participants;
 		
 	}
 	
-	public List<Person> getPartecipants(){
-		return this.partecipants;
+	public List<Person> getParticipants(){
+		return this.participants;
 		
 	}
 }

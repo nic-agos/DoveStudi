@@ -63,7 +63,7 @@ public class ReservationController {
 					resBean.setEndTime(rsBean.getEndTime());
 					
 					r2Bean.setId(rBean.getId());
-					r2Bean.setNumPartecipants(rBean.getNumPartecipants());
+					r2Bean.setNumParticipants(rBean.getNumParticipants());
 					r2Bean.setNumAvailableSeats(rBean.getNumAvailableSeats()-1);
 					
 //					check if the user is already booked for the room
@@ -95,13 +95,28 @@ public class ReservationController {
 	}
 	
 //	takes in input the id of a reservation	
-	public boolean deleteReservation(ReservationBean reservationBean) throws DatabaseException {
+	public boolean deleteReservation(ReservationBean reservationBean) throws DatabaseException, ReservationException {
 		
 		ReservationDAOImpl reservationDao = ReservationDAOImpl.getInstance();
+		RoomDAOImpl roomDao = RoomDAOImpl.getInstance();
+		RoomBean roomBean;
+		RoomBean tempRoomBean = new RoomBean();
+		ReservationBean resBean;
 		
 		try {
 			
-			return (reservationDao.removeReservation(reservationBean) != 0);
+			resBean = reservationDao.getReservation(reservationBean);
+			tempRoomBean.setId(resBean.getLinkedRoom());
+			
+			if(reservationDao.removeReservation(reservationBean) != 0) {
+			
+				roomBean = roomDao.getRoom(tempRoomBean);
+				roomBean.setNumAvailableSeats(roomBean.getNumAvailableSeats()+1);
+				return (roomDao.updateRoom(roomBean)!=0);
+				
+			}else {
+				throw new ReservationException("Unable to delete your reservation");
+			}
 			
 		}catch (SQLException se) {
 			throw new DatabaseException(se.getMessage());
@@ -286,15 +301,15 @@ public class ReservationController {
 		}		
 	}
 	
-//	takes in input the room id and return a list of person that will partecipate to the room
-	public List<Person> getAllRoomPartecipants(RoomBean roomBean) throws DatabaseException, ReservationException {
+//	takes in input the room id and return a list of person that will participate to the room
+	public List<Person> getAllRoomParticipants(RoomBean roomBean) throws DatabaseException {
 		
 		ReservationDAOImpl reservationDao = ReservationDAOImpl.getInstance();
 		AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
 		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
 		
-		List<Person> roomPartecipants = new ArrayList<>();
-		List<ReservationBean> roomPartecipantsBean;
+		List<Person> roomParticipants = new ArrayList<>();
+		List<ReservationBean> roomParticipantsBean;
 		
 		PersonBean persBean;
 		AccountBean tempAccBean = new AccountBean();
@@ -305,9 +320,9 @@ public class ReservationController {
 		
 		try {
 			
-			roomPartecipantsBean = reservationDao.getRoomReservations(roomBean);
+			roomParticipantsBean = reservationDao.getRoomReservations(roomBean);
 			
-				for(ReservationBean resBean : roomPartecipantsBean) {
+				for(ReservationBean resBean : roomParticipantsBean) {
 					
 					tempAccBean.setCf(resBean.getReservingUser());
 					accBean = accountDao.getAccount(tempAccBean);
@@ -318,10 +333,10 @@ public class ReservationController {
 
 					person.setAccount(account);
 					
-					roomPartecipants.add(person);
+					roomParticipants.add(person);
 				}
 				
-				return roomPartecipants;
+				return roomParticipants;
 			
 		}catch (SQLException se) {
 			throw new DatabaseException(se.getMessage());		

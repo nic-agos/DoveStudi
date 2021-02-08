@@ -21,38 +21,28 @@
 	if(request.getParameter("registerBtn")!=null){
 	
 		try{
-			res1 = accountBean.validate();
-		
-		}catch (AccountException ae){
-			ae.printStackTrace();
-		}
-		try{
-			res2 = personBean.validate();
-		
-		}catch (AccountException pe){
-			pe.printStackTrace();
-		}
-		
-		if (res1 && res2){
+			accountBean.validate();
+			personBean.validate();
 			
 			RegistrationController rContr = RegistrationController.getInstance();
 			
-				try{
-					registration = rContr.register(accountBean, personBean);
-					
-					if(registration){
-						
-						String site = new String("Login.jsp");
-				        response.setStatus(response.SC_MOVED_TEMPORARILY);
-				        response.setHeader("Location", site);
-					}
-	
-				}catch (DatabaseException de){
-					de.printStackTrace();
-				}	
+			registration = rContr.register(accountBean, personBean);
+				
+			if(registration){
+
+//				redirect
+				String site = new String("Login.jsp");
+			    response.setStatus(response.SC_MOVED_TEMPORARILY);
+			    response.setHeader("Location", site);
+			}	
+		
+		}catch (AccountException ae){
+			ae.printStackTrace();
+			
+		}catch (DatabaseException de){
+			de.printStackTrace();
 		}
 	}
-
 %>
 
 
@@ -89,7 +79,7 @@
 				</div>
 				<div class="row" id="line">
 					<div class="col-md-6">
-            				<select class="custom-select" id="studyGrade" name="studyGrade">
+            				<select class="custom-select" id="studyGrade" name="studyGrade" required>
 							   <!-- <option selected>Study grade</option> -->
 							    <option value="Elementary School">Elementary school</option>
 							    <option value="Middle School">Middle school</option>
@@ -118,7 +108,7 @@
 					</div>
 				</div>
 				<div class="d-flex justify-content-xl-center">
-				<button type="submit" class="btn btn-outline-warning" id="registerBtn" name="registerBtn" style="margin-top:30px;">Register</a></button>
+				<button type="submit" class="btn btn-outline-warning" id="registerBtn" name="registerBtn" style="margin-top:30px;">Register</button>
 			</div>
 			</form>
 	</div>	

@@ -1,5 +1,6 @@
 package logic.bean;
 
+import logic.exception.*;
 
 public class GroupBean {
 	
@@ -9,9 +10,9 @@ public class GroupBean {
 	
 	private String admin;
 	
-	private int numPartecipants;
+	private int numParticipants;
 	
-	private int partecipant;
+	private int participant;
 	
 	
 	public GroupBean() {
@@ -24,9 +25,9 @@ public class GroupBean {
 		
 		this.admin = admin;
 		
-		this.numPartecipants = numPartecipants;
+		this.numParticipants = numPartecipants;
 		
-		this.partecipant = partecipant;
+		this.participant = partecipant;
 	}
 	
 	public GroupBean(int id, String name, String admin, int numPartecipants, int partecipant) {
@@ -66,23 +67,38 @@ public class GroupBean {
 		
 	}
 	
-	public void setNumPartecipants(int numPartecipants) {
-		this.numPartecipants = numPartecipants;
+	public void setNumParticipants(int numParticipants) {
+		this.numParticipants = numParticipants;
 		
 	}
 	
-	public int getNumPartecipants() {
-		return this.numPartecipants;
+	public int getNumParticipants() {
+		return this.numParticipants;
 		
 	}
 	
-	public void setPartecipant(int partecipant) {
-		this.partecipant = partecipant;
+	public void setParticipant(int participant) {
+		this.participant = participant;
 		
 	}
 	
-	public int getPartecipant() {
-		return this.partecipant;
+	public int getParticipant() {
+		return this.participant;
 		
+	}
+	
+	public void validate() throws GroupException {
+		
+		String errors = "";
+		
+		if(this.name.length() > 45 || this.name.isBlank()) {
+			errors = errors + "Invalid Group Name";
+		
+		}
+		
+		if(!errors.isEmpty()) {
+			
+			throw new GroupException(errors);
+		}
 	}
 }

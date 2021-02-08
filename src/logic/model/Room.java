@@ -12,7 +12,7 @@ private int id;
 	
 	private String address;
 	
-	private int numPartecipants;
+	private int numParticipants;
 
 	private int numAvailableSeats;
 	
@@ -20,23 +20,23 @@ private int id;
 	
 	private RoomSpec specification;
 	
-	private List<Person> partecipants;
+	private List<Person> participants;
 	
-	public Room(String name, String address, int numPartecipants, int numAvailableSeats) {
+	public Room(String name, String address, int numParticipants, int numAvailableSeats) {
 		
 		this.name = name;
 		
 		this.address = address;
 		
-		this.numPartecipants = numPartecipants;
+		this.numParticipants = numParticipants;
 		
 		this.numAvailableSeats = numAvailableSeats;
 		
 	}
 	
-	public Room(String name, String address, int numPartecipants, int numAvailableSeats, Account owner, RoomSpec specification) {
+	public Room(String name, String address, int numParticipants, int numAvailableSeats, Account owner, RoomSpec specification) {
 		
-		this(name, address, numPartecipants, numAvailableSeats);
+		this(name, address, numParticipants, numAvailableSeats);
 		
 		this.owner = owner;
 		
@@ -46,7 +46,7 @@ private int id;
 	
 	public Room(RoomBean roomBean) {
 		
-		this(roomBean.getName(), roomBean.getAddress(), roomBean.getNumPartecipants(), roomBean.getNumAvailableSeats());
+		this(roomBean.getName(), roomBean.getAddress(), roomBean.getNumParticipants(), roomBean.getNumAvailableSeats());
 
 		this.id = roomBean.getId();
 	}
@@ -81,13 +81,13 @@ private int id;
 		
 	}
 	
-	public void setNumPartecipants(int numPartecipants) {
-		this.numPartecipants = numPartecipants;
+	public void setNumParticipants(int numParticipants) {
+		this.numParticipants = numParticipants;
 		
 	}
 	
-	public int getNumPartecipants() {
-		return this.numPartecipants;
+	public int getNumParticipants() {
+		return this.numParticipants;
 		
 	}
 	
@@ -121,13 +121,13 @@ private int id;
 		
 	}
 	
-	public void setPartecipants(List<Person> partecipants) {
-		this.partecipants = partecipants;
+	public void setParticipants(List<Person> participants) {
+		this.participants = participants;
 		
 	}
 	
-	public List<Person> getPartecipants(){
-		return this.partecipants;
+	public List<Person> getParticipants(){
+		return this.participants;
 		
 	}
 }

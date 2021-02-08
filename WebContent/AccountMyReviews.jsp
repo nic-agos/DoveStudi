@@ -12,8 +12,9 @@
 
 <%
 	Person person = (Person)session.getAttribute("accPerson");
+
+//	check if the user is logged	
 	if(person != null){
-		
 		
 		ReviewController revContr = ReviewController.getInstance();
 		
@@ -35,9 +36,6 @@
 		
 		}catch(DatabaseException de){
 			de.printStackTrace();
-		
-		}catch(ReviewException re){
-			re.printStackTrace();
 		}
 
 //		method to handle click on reviewing user
@@ -47,6 +45,7 @@
 				persBean.setUsername(r.getReviewer().getPerson().getUsername());
 				session.setAttribute("othAccUsername", persBean);
 				
+//				redirect				
 				String site = new String("OtherAccount.jsp");
 		        response.setStatus(response.SC_MOVED_TEMPORARILY);
 		        response.setHeader("Location", site);
@@ -62,13 +61,13 @@
 				persBean.setUsername(r.getReviewed().getUsername());
 				session.setAttribute("othAccUsername", persBean);
 				
+//				redirect				
 				String site = new String("OtherAccount.jsp");
 		        response.setStatus(response.SC_MOVED_TEMPORARILY);
 		        response.setHeader("Location", site);
 			}
 		}
-		
- 		
+			
 	}else{
 		String site = new String("Login.jsp");
         response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -79,6 +78,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="ISO-8859-1">
 <title>My Reviews</title>
 <link href="css/myReviews.css" rel="stylesheet"/>
@@ -87,8 +87,8 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</head>
 
+</head>
 
 <body>	
 	<div id="sidebar">
@@ -196,5 +196,6 @@
 				document.getElementById("sidebar").classList.toggle("active");
 			}	
 	</script>
+	
 </body>
 </html>

@@ -4,8 +4,6 @@ import logic.exception.*;
 import logic.model.*;
 
 public class AccountBean {
-
-	private TriggerExceptions trigger = new TriggerExceptions();
 	
 	private String cf;
 	
@@ -125,8 +123,10 @@ public class AccountBean {
 		
 	}
 	
-	public boolean validate() throws AccountException {
+	public void validate() throws AccountException {
+		
 		String errors = "";
+		
 		if(this.cf.length() != 16) {
 			errors = errors + "Invalid Fiscal Code   ";
 		}
@@ -147,10 +147,9 @@ public class AccountBean {
 		}
 		
 		if(!errors.isEmpty()) {
-			this.trigger.triggerRegistrationAccountException(errors);
-			return false;
+			
+			throw new AccountException(errors);
 		}
-		return true;
 	}
 
 }

@@ -18,8 +18,8 @@ public class GroupDAOImpl implements GroupDAO{
 	private static final String GET_ALL_ADMINISTERED_GROUPS_QUERY = "SELECT * FROM group_a WHERE Admin = ? AND Partecipant = ?";
 	private static final String GET_ADMINISTERED_GROUP_QUERY = "SELECT * FROM group_a WHERE Name = ? AND Admin = ? AND Partecipant = ?";
 	private static final String GET_PARTICIPATING_GROUPS_QUERY = "SELECT * FROM group_a WHERE Partecipant = ?";
-	private static final String ADD_GROUP_PARTECIPANT_QUERY = "INSERT INTO group_a (Name, Admin, Num_Partecipants, Partecipant) VALUES (?, ?, ?, ?)";
-	private static final String UPDATE_NUM_PARTECIPANTS_GROUP = "UPDATE group_a SET Num_Partecipants = ? WHERE Name = ? AND Admin = ?";
+	private static final String ADD_GROUP_PARTICIPANT_QUERY = "INSERT INTO group_a (Name, Admin, Num_Partecipants, Partecipant) VALUES (?, ?, ?, ?)";
+	private static final String UPDATE_NUM_PARTICIPANTS_GROUP = "UPDATE group_a SET Num_Partecipants = ? WHERE Name = ? AND Admin = ?";
 	private static final String LEAVE_GROUP_QUERY = "DELETE FROM group_a WHERE Name = ? AND Admin = ? AND Partecipant = ?";
 	
 	private static GroupDAOImpl instance = null;
@@ -47,8 +47,8 @@ public class GroupDAOImpl implements GroupDAO{
 			stmt = connection.prepareStatement(CREATE_GROUP_QUERY);
 			stmt.setString(1, groupBean.getName());
 			stmt.setString(2, groupBean.getAdmin());
-			stmt.setInt(3, groupBean.getNumPartecipants());
-			stmt.setInt(4, groupBean.getPartecipant());
+			stmt.setInt(3, groupBean.getNumParticipants());
+			stmt.setInt(4, groupBean.getParticipant());
 			
 			stmt.executeUpdate();
 			
@@ -197,6 +197,7 @@ public class GroupDAOImpl implements GroupDAO{
 	}
 
 //	takes in input group's name and admin and get the db row of the group's admin
+	@Override
 	public GroupBean getAdministeredGroup(GroupBean groupBean) throws SQLException {
 		
 		GroupBean adminGroup = null;
@@ -239,13 +240,13 @@ public class GroupDAOImpl implements GroupDAO{
 	}
 	
 	
-//  it return a list with all groups a PersonBean partecipates in
+//  it return a list with all groups a PersonBean participates in
 //	in the returned list is included also the PersonBean linked to the admin of the group
 
 	@Override
 	public List<GroupBean> getAllParticipatingGroups(PersonBean personBean) throws SQLException {
 		
-		List<GroupBean> partecipantGroups = new ArrayList<>();
+		List<GroupBean> participantGroups = new ArrayList<>();
 		GroupBean group = null;
 		
 		PreparedStatement stmt = null;
@@ -260,12 +261,12 @@ public class GroupDAOImpl implements GroupDAO{
 			ResultSet res = stmt.executeQuery();
 				while (res.next()) {
 					group = new GroupBean(res.getInt(1), res.getString(2), res.getString(3), res.getInt(4), res.getInt(5));
-					partecipantGroups.add(group);
+					participantGroups.add(group);
 				}
 				
 			res.close();
 			
-			return partecipantGroups;
+			return participantGroups;
 			
 		}finally {
 			if (stmt != null) {
@@ -278,7 +279,7 @@ public class GroupDAOImpl implements GroupDAO{
 	}
 	
 	@Override
-	public int addGroupPartecipant(GroupBean groupBean) throws SQLException {
+	public int addGroupParticipant(GroupBean groupBean) throws SQLException {
 		
 		Connection connection = null;
 		PreparedStatement stmt = null;
@@ -286,15 +287,15 @@ public class GroupDAOImpl implements GroupDAO{
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(ADD_GROUP_PARTECIPANT_QUERY);
+			stmt = connection.prepareStatement(ADD_GROUP_PARTICIPANT_QUERY);
 			stmt.setString(1, groupBean.getName());
 			stmt.setString(2, groupBean.getAdmin());
-			stmt.setInt(3, groupBean.getNumPartecipants());
-			stmt.setInt(4, groupBean.getPartecipant());
+			stmt.setInt(3, groupBean.getNumParticipants());
+			stmt.setInt(4, groupBean.getParticipant());
 			
 			stmt.executeUpdate();
 			
-			return updateNumPartecipantsGroup(groupBean);
+			return updateNumParticipantsGroup(groupBean);
 			
 		}finally {
 			if (stmt != null) {
@@ -307,7 +308,7 @@ public class GroupDAOImpl implements GroupDAO{
 	}
 	
 	@Override
-	public int updateNumPartecipantsGroup(GroupBean groupBean) throws SQLException {
+	public int updateNumParticipantsGroup(GroupBean groupBean) throws SQLException {
 		
 		Connection connection = null;
 		PreparedStatement stmt = null;
@@ -315,8 +316,8 @@ public class GroupDAOImpl implements GroupDAO{
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(UPDATE_NUM_PARTECIPANTS_GROUP);
-			stmt.setInt(1, groupBean.getNumPartecipants());
+			stmt = connection.prepareStatement(UPDATE_NUM_PARTICIPANTS_GROUP);
+			stmt.setInt(1, groupBean.getNumParticipants());
 			stmt.setString(2, groupBean.getName());
 			stmt.setString(3, groupBean.getAdmin());
 			
@@ -333,6 +334,7 @@ public class GroupDAOImpl implements GroupDAO{
 		}
 	}
 	
+	@Override
 	public int leaveGroup(GroupBean groupBean) throws SQLException {
 		
 		Connection connection = null;
@@ -344,7 +346,7 @@ public class GroupDAOImpl implements GroupDAO{
 			stmt = connection.prepareStatement(LEAVE_GROUP_QUERY);
 			stmt.setString(1, groupBean.getName());
 			stmt.setString(2, groupBean.getAdmin());
-			stmt.setInt(3, groupBean.getPartecipant());
+			stmt.setInt(3, groupBean.getParticipant());
 			
 			return stmt.executeUpdate();
 			

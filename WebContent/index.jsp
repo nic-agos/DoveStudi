@@ -4,12 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="ISO-8859-1">
 <title>Welcome</title>
 <link href="css/welcome.css" rel="stylesheet" />
 <link href="css/btn1.css" rel="stylesheet" />
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
 </head>
 
 <body>
@@ -21,7 +22,6 @@
 	<div class="curved">
 		<h1>Welcome to DoveStudi</h1>
 		<h3>Start looking for Rooms where to study with your friends</h3>
-
 		<div class="buttons">
 			<button id="btn" class="btn btn-outline-warning"
 				style="border: 2px solid #ff5500; font-size: 20px; margin-top: 30px; font-weight: 550;">

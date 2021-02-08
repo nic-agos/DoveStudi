@@ -151,7 +151,8 @@ public class RoomSpecDAOImpl implements RoomSpecDAO {
 		}
 	}	
 	
-	public List<RoomSpecBean> getRoomsSpecByCap(RoomSpecBean roomSpecBean) throws SQLException{
+	@Override
+	public List<RoomSpecBean> getRoomsSpecByCap(RoomSpecBean roomSpecBean) throws SQLException {
 		
 		List<RoomSpecBean> roomsList = new ArrayList<>();
 		RoomSpecBean roomSpec = null;
@@ -187,7 +188,8 @@ public class RoomSpecDAOImpl implements RoomSpecDAO {
 		}
 	}
 	
-	public List<RoomSpecBean> getOrderedRoomsSpec() throws SQLException{
+	@Override
+	public List<RoomSpecBean> getOrderedRoomsSpec() throws SQLException {
 		
 		List<RoomSpecBean> orderedRoomsSpecList = new ArrayList<>();
 		RoomSpecBean roomSpec = null;
@@ -221,7 +223,8 @@ public class RoomSpecDAOImpl implements RoomSpecDAO {
 		}
 	}
 	
-	public List<RoomSpecBean> getRoomsSpecByDate(RoomSpecBean roomSpecBean) throws SQLException{
+	@Override
+	public List<RoomSpecBean> getRoomsSpecByDate(RoomSpecBean roomSpecBean) throws SQLException {
 		
 		List<RoomSpecBean> roomsSpecByDateList = new ArrayList<>();
 		RoomSpecBean roomSpec = null;
@@ -256,7 +259,8 @@ public class RoomSpecDAOImpl implements RoomSpecDAO {
 		}
 	}
 	
-	public List<RoomSpecBean> getAllRoomsSpec() throws SQLException{
+	@Override
+	public List<RoomSpecBean> getAllRoomsSpec() throws SQLException {
 		
 		List<RoomSpecBean> allRoomsSpecList = new ArrayList<>();
 		RoomSpecBean roomSpec = null;

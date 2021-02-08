@@ -14,7 +14,7 @@ import logic.bean.RoomSpecBean;
 public class RoomDAOImpl implements RoomDAO {
 	
 	private static final String CREATE_ROOM_QUERY = "INSERT INTO room (Name, Address, Num_Partecipants, Num_Available_Seats, Owner, Specification) VALUES (?, ?, ?, ?, ?, ?)";
-	private static final String UPDATE_ROOM_PARTECIPANTS_QUERY = "UPDATE room SET Num_Partecipants = ?, Num_Available_Seats = ? WHERE ID = ?";
+	private static final String UPDATE_ROOM_PARTICIPANTS_QUERY = "UPDATE room SET Num_Partecipants = ?, Num_Available_Seats = ? WHERE ID = ?";
 	private static final String GETALL_ROOMS_QUERY = "SELECT * FROM room" ;
 	private static final String DELETE_ROOM_QUERY = "DELETE FROM room WHERE ID = ?";
 	private static final String GET_ROOM_QUERY = "SELECT * FROM room WHERE ID = ?";
@@ -49,7 +49,7 @@ public class RoomDAOImpl implements RoomDAO {
 			stmt = connection.prepareStatement(CREATE_ROOM_QUERY);
 			stmt.setString(1, roomBean.getName());
 			stmt.setString(2, roomBean.getAddress());
-			stmt.setInt(3, roomBean.getNumPartecipants());
+			stmt.setInt(3, roomBean.getNumParticipants());
 			stmt.setInt(4, roomBean.getNumAvailableSeats());
 			stmt.setString(5, roomBean.getOwner());
 			stmt.setInt(6, roomBean.getSpecification());
@@ -113,8 +113,8 @@ public class RoomDAOImpl implements RoomDAO {
 		try {
 			connection = DBConnection.getInstanceConnection().getConnection();
 			
-			stmt = connection.prepareStatement(UPDATE_ROOM_PARTECIPANTS_QUERY);
-			stmt.setInt(1, roomBean.getNumPartecipants());
+			stmt = connection.prepareStatement(UPDATE_ROOM_PARTICIPANTS_QUERY);
+			stmt.setInt(1, roomBean.getNumParticipants());
 			stmt.setInt(2, roomBean.getNumAvailableSeats());
 			stmt.setInt(3, roomBean.getId());
 			
@@ -251,6 +251,7 @@ public class RoomDAOImpl implements RoomDAO {
 		}
 	}
 	
+	@Override
 	public RoomBean getRoomFromSpec(RoomSpecBean roomSpecBean) throws SQLException {
 		
 		PreparedStatement stmt = null;

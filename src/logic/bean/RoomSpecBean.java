@@ -1,5 +1,7 @@
 package logic.bean;
 
+import logic.exception.*;
+
 public class RoomSpecBean {
 	
 	private int id;
@@ -98,5 +100,22 @@ public class RoomSpecBean {
 	public String getCap() {
 		return this.cap;
 		
+	}
+	
+	public void validate() throws RoomException {
+		
+		String errors = "";
+		
+		if(this.description.length() > 300 || this.description.isBlank()) {
+			errors = errors + "description not valid   ";
+		}
+		if(this.cap.length() != 5) {
+			errors = errors + "CAP not valid   ";
+		}
+		
+		if(!errors.isEmpty()) {
+			
+			throw new RoomException(errors);
+		}	
 	}
 }

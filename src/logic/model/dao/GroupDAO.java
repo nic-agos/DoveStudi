@@ -19,8 +19,12 @@ public interface GroupDAO {
 	
 	public List<GroupBean> getAllParticipatingGroups(PersonBean personBean) throws SQLException;
 	
-	public int addGroupPartecipant(GroupBean groupBean) throws SQLException;
+	public int addGroupParticipant(GroupBean groupBean) throws SQLException;
 	
-	public int updateNumPartecipantsGroup(GroupBean groupBean) throws SQLException;
+	public int updateNumParticipantsGroup(GroupBean groupBean) throws SQLException;
+	
+	public GroupBean getAdministeredGroup(GroupBean groupBean) throws SQLException;
+	
+	public int leaveGroup(GroupBean groupBean) throws SQLException;
 
 }
