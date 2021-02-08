@@ -10,10 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane fx:id="main" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.SearchGC">
    <center>
-      <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="1109.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="792.0" prefWidth="1109.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Search Rooms">
                <VBox.margin>
@@ -29,6 +28,7 @@
                   <Button fx:id="capBtn" mnemonicParsing="false" text="By CAP" />
                   <Button fx:id="hostBtn" mnemonicParsing="false" text="By Host" />
                   <Button fx:id="dateBtn" mnemonicParsing="false" text="By Date" />
+                  <Button fx:id="seatsBtn" mnemonicParsing="false" text="By Available Seats" />
                   <Label text="or">
                      <font>
                         <Font size="15.0" />
@@ -42,6 +42,7 @@
                   <Insets left="15.0" right="15.0" />
                </VBox.margin>
             </ListView>
+            <Button fx:id="backBtn" mnemonicParsing="false" onMouseClicked="#back" text="Back" />
          </children>
       </VBox>
    </center>

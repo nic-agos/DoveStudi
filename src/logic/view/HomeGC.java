@@ -34,7 +34,8 @@ public class HomeGC implements Initializable {
 	@FXML
 	public void lookAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
-		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, null));	}
+		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, null));
+	}
 	@FXML
 	public void logInAction() {
 		Stage stage = (Stage) main.getScene().getWindow();

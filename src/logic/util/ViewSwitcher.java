@@ -13,7 +13,7 @@ public class ViewSwitcher {
 	private static final String PATH="../view/fxml/";
 	
 	private static BorderPane navbar = null;
-	private static NavbarGC navCtrl;
+
 	
 	private ViewSwitcher() {/*Nothing to do here*/}
 	
@@ -47,7 +47,9 @@ public class ViewSwitcher {
 		case NAVBAR:
 			return new FXMLLoader(ViewSwitcher.class.getResource(PATH + "Navbar.fxml"));
 		case REGISTRATION:
-			return new FXMLLoader(ViewSwitcher.class.getResource(PATH + "Registration.fxml"));			
+			return new FXMLLoader(ViewSwitcher.class.getResource(PATH + "Registration.fxml"));		
+		case ADDGROUPMEMBER:
+			return new FXMLLoader(ViewSwitcher.class.getResource(PATH + "AddGroupMember.fxml"));	
 		default: /*case HOME*/
 			return new FXMLLoader(ViewSwitcher.class.getResource(PATH + "Home.fxml"));
 		}
@@ -56,7 +58,7 @@ public class ViewSwitcher {
 	private static BorderPane getNavbar() throws IOException {
 		if (navbar == null) {
 			FXMLLoader loader = loadFXML(Views.NAVBAR);
-			navCtrl = new NavbarGC();
+			NavbarGC navCtrl = new NavbarGC();
 			loader.setController(navCtrl);
 			navbar = loader.load();
 		}
@@ -75,7 +77,7 @@ public class ViewSwitcher {
 			if (controller != null)
 				loader.setController(controller);
 			BorderPane pane = loader.load();
-			if(nextView.equals(Views.MYACCOUNT)||nextView.equals(Views.MYGROUPS)||nextView.equals(Views.MYROOMS)||nextView.equals(Views.MYREVIEWS)||nextView.equals(Views.ROOMSEARCH)){
+			if(nextView.equals(Views.MYACCOUNT)||nextView.equals(Views.MYGROUPS)||nextView.equals(Views.MYROOMS)||nextView.equals(Views.MYREVIEWS)){
 				pane.setLeft(ViewSwitcher.getNavbar());
 			}
 			return new Scene(pane);

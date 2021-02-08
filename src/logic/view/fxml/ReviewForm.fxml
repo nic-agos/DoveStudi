@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="main" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.">
+<BorderPane fx:id="main" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.ReviewForm">
    <left>
       <VBox prefHeight="720.0" prefWidth="240.0" spacing="25.0" BorderPane.alignment="CENTER">
          <children>
@@ -46,7 +46,7 @@
                   <Font name="Calisto MT" size="41.0" />
                </font>
             </Label>
-            <TextField fx:id="reviewTitlle" maxWidth="-Infinity" prefHeight="25.0" prefWidth="821.0" promptText="Title" />
+            <TextField fx:id="reviewTitle" maxWidth="-Infinity" prefHeight="25.0" prefWidth="821.0" promptText="Title" />
             <TextArea fx:id="reviewArea" maxWidth="-Infinity" prefHeight="200.0" prefWidth="909.0" promptText="Description" />
             <Label text="Rate">
                <font>

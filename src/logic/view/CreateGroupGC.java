@@ -15,11 +15,18 @@ public class CreateGroupGC implements Initializable{
 	@FXML
 	private Button backBtn;
 	@FXML
+	private Button createBtn;
+	@FXML
 	private BorderPane main;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		/*nothing to do here for now*/
+	}
+	
+	@FXML
+	public void createGroup() {
+		//
 	}
 	
 	@FXML

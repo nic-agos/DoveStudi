@@ -6,22 +6,35 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import logic.util.ViewSwitcher;
 
 public class SearchGC implements Initializable{
-	
 	@FXML
-	Button capBtn;
+	private BorderPane main;
 	@FXML
-	Button hostBtn;
+	private Button capBtn;
 	@FXML
-	Button dateBtn;
+	private Button hostBtn;
 	@FXML
-	Button allBtn;
+	private Button dateBtn;
+	@FXML
+	private Button seatsBtn;
+	@FXML
+	private Button allBtn;
+	@FXML
+	private Button back;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		/**/
 	}
 	
+	@FXML
+	public void back() {
+		Stage stage = (Stage) main.getScene().getWindow();
+		stage.setScene(ViewSwitcher.back());
+	}
 	
 }

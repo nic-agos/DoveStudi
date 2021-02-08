@@ -1,5 +1,6 @@
 package logic.util;
 
+import logic.model.Person;
 import logic.util.enumeration.Views;
 
 /**
@@ -9,13 +10,13 @@ public class Session {
 	
 	private static Session instance = null;
 
-	private String currUsername;
+	private Person currUser;
 	private Views currView;
 	private Views prevView;
 	private boolean logged;
 	
 	private Session() {
-		currUsername = "";
+		currUser = null;
 		currView = Views.HOME;
 		logged = false;
 	}
@@ -27,16 +28,16 @@ public class Session {
 		return instance;
 	}
 	
-	public String getCurrUser() {
-		return currUsername;
+	public Person getCurrUser() {
+		return currUser;
 	}
 
 	public Views getCurrView() {
 		return currView;
 	}
 	
-	public void setCurrUser(String currUser) {
-		this.currUsername = currUser;
+	public void setCurrUser(Person currUser) {
+		this.currUser = currUser;
 	}
 
 	public void setCurrView(Views nextView) {
@@ -54,8 +55,8 @@ public class Session {
 	
 	public void setLogged(boolean value) {
 		logged=value;
-		if(value==false) {
-		currUsername = "";
+		if(!value) {
+		currUser=null;
 		currView = Views.HOME;
 		}
 	}
