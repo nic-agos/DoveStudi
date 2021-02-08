@@ -98,12 +98,12 @@
                                     <Font name="Times New Roman" size="21.0" />
                                  </font>
                               </Label>
-                              <Label text="Host Rate" GridPane.rowIndex="5">
+                              <Label text="Host Rate:" GridPane.rowIndex="5">
                                  <font>
                                     <Font name="Times New Roman Italic" size="21.0" />
                                  </font>
                               </Label>
-                              <Label text="Guest Rate" GridPane.rowIndex="6">
+                              <Label text="Guest Rate:" GridPane.rowIndex="6">
                                  <font>
                                     <Font name="Times New Roman Italic" size="21.0" />
                                  </font>

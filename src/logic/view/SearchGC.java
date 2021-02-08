@@ -6,8 +6,10 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import logic.model.Room;
 import logic.util.ViewSwitcher;
 
 public class SearchGC implements Initializable{
@@ -25,6 +27,8 @@ public class SearchGC implements Initializable{
 	private Button allBtn;
 	@FXML
 	private Button back;
+	@FXML
+	private ListView<Room> roomList;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
