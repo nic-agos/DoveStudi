@@ -35,7 +35,7 @@
 		
 		if(!roomsList.isEmpty()){
 	
-	request.setAttribute("roomsList", roomsList);
+			request.setAttribute("roomsList", roomsList);
 		}	
 	
 	}catch(DatabaseException de){

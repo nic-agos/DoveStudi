@@ -1,16 +1,16 @@
 package logic.view;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
 import logic.bean.*;
 import logic.controller.GroupController;
-import logic.exception.DatabaseException;
-import logic.model.Group;
+import logic.exception.*;
+import logic.model.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -30,8 +30,8 @@ public class MyGroupsGC implements Initializable{
 	@FXML
 	private ListView<Group> groupsList;
 	
-	private List<Group> adminGroups = new ArrayList<>();
-	private List<Group> partGroups = new ArrayList<>();
+	private ObservableList<Group> adminGroups;	
+	private ObservableList<Group> partGroups;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -53,7 +53,7 @@ public class MyGroupsGC implements Initializable{
 		
 		try {
 			
-			this.adminGroups = gContr.getAdministeredGroups(aBean);
+			this.adminGroups = FXCollections.observableArrayList(gContr.getAdministeredGroups(aBean));
 			
 		}catch(DatabaseException de) {
 			JOptionPane.showMessageDialog(null,de.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
@@ -69,7 +69,7 @@ public class MyGroupsGC implements Initializable{
 		
 		try {
 			
-			this.partGroups = gContr.getParticipatingGroups(pBean);
+			this.partGroups = FXCollections.observableArrayList(gContr.getParticipatingGroups(pBean));
 			
 		}catch(DatabaseException de) {
 			JOptionPane.showMessageDialog(null,de.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);

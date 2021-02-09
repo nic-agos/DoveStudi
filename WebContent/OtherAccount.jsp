@@ -9,13 +9,13 @@
 <%
 	PersonBean persBean = (PersonBean)session.getAttribute("othAccUsername");;
 	
-	AccountController rContr = AccountController.getInstance();
+	AccountController aContr = AccountController.getInstance();
 	
 	Person person = null;
 	
 	try {
 
-		person = rContr.getOtherAccountInfo(persBean);
+		person = aContr.getOtherAccountInfo(persBean);
 		session.setAttribute("person", person);
 			
 	}catch(DatabaseException de){
