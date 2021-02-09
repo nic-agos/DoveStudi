@@ -52,17 +52,63 @@ public class MyReservationGC implements Initializable{
 
 		if(!allPast.isEmpty()) {
 			past.setItems(allPast);
-			past.setCellFactory(list -> new ResCell());
+			past.setCellFactory(list -> new PastResCell());
 		}	
 		
 		if(!allFuture.isEmpty()) {
 			future.setItems(allFuture);
-			future.setCellFactory(list -> new ResCell());
+			future.setCellFactory(list -> new FutureResCell());
 		}
 		
 	}
+	class PastResCell extends ListCell<Reservation>{
+		@Override
+		public void updateItem(Reservation item, boolean empty) {
+			super.updateItem(item, empty);
+			if (!empty) {
+				VBox v = new VBox();
+				Label title = new Label("Room Name+ "+item.getLinkedRoom().getName());
+				Label host = new Label("Host: ");
+				Label description = new Label(item.getLinkedRoom().getSpecification().getDescription());
+				Label address = new Label ("Address: " + item.getLinkedRoom().getAddress());
+				Label cap = new Label("CAP: " + item.getLinkedRoom().getSpecification().getCap());
+				Label date = new Label("Date: " + item.getDate());
+				Label start = new Label ("Start Time: " + item.getStartTime());
+				Label end = new Label ("End Time: " + item.getEndTime());
+				
+				ObservableList<Hyperlink> linkList = FXCollections.observableArrayList();
+				
+				for (Person p  : item.getLinkedRoom().getParticipants()) {
+					Hyperlink link = new Hyperlink();
+					link.setText(p.getUsername());
+					link.setOnAction(e->{
+						Stage stage = (Stage) main.getScene().getWindow();
+						stage.setScene(ViewSwitcher.switchTo(Views.OTHERACCOUNT, new OtherAccountGC(link.getText())));
+					});
+					linkList.add(link);
+				}
+				
+				ListView<Hyperlink> partecipants = new ListView<>();
+				partecipants.setItems(linkList);
+				partecipants.setOrientation(Orientation.HORIZONTAL);
+				partecipants.setPrefHeight(25);
+				partecipants.setMaxHeight(USE_PREF_SIZE);
+				
+				Hyperlink hostLink = new Hyperlink(item.getRoomOwner().getUsername());
+				
+				hostLink.setOnAction(e ->{
+					Stage stage = (Stage) main.getScene().getWindow();
+					stage.setScene(ViewSwitcher.switchTo(Views.OTHERACCOUNT, new OtherAccountGC(hostLink.getText())));
+				});
+				
+				v.getChildren().addAll(title,host,hostLink,description,address,cap,date,start,end,partecipants);			
+				
+				setGraphic(v);
+			}
+		}
+	}
 	
-	class ResCell extends ListCell<Reservation>{
+	class FutureResCell extends ListCell<Reservation>{
 		@Override
 		public void updateItem(Reservation item, boolean empty) {
 			super.updateItem(item, empty);

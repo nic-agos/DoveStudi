@@ -1,8 +1,12 @@
 package logic.view;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javax.swing.JOptionPane;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -14,7 +18,7 @@ import logic.util.Session;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 
-public class AddGroupMemberGC {
+public class AddGroupMemberGC implements Initializable{
 	
 	@FXML
 	private BorderPane main;
@@ -26,6 +30,11 @@ public class AddGroupMemberGC {
 	private TextField usernameLbl;
 	
 	private String groupName;
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		/**/
+		}
 	
 	public AddGroupMemberGC(String gName) {
 		this.groupName = gName;

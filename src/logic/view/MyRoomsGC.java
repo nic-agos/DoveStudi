@@ -18,12 +18,14 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import logic.bean.AccountBean;
 import logic.bean.RoomBean;
 import logic.controller.RoomController;
 import logic.exception.DatabaseException;
 import logic.model.Person;
 import logic.model.Reservation;
 import logic.model.Room;
+import logic.util.Session;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 
@@ -34,16 +36,15 @@ public class MyRoomsGC implements Initializable {
 	@FXML
 	private ListView<Room> myRoomsList;
 	
-	private ObservableList<Reservation> allRooms;
+	private ObservableList<Room> myRooms;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		if(!allRooms.isEmpty()) {
-			//myRoomsList.setItems(allRooms);
+		setRooms();
+		if(!myRooms.isEmpty()) {
+			myRoomsList.setItems(myRooms);
 			myRoomsList.setCellFactory(list -> new RoomCell());
 		}
-		
 	}
 	
 	class RoomCell extends ListCell<Room>{
@@ -85,15 +86,30 @@ public class MyRoomsGC implements Initializable {
 					bean.setId(item.getId());
 					RoomController ctrl = RoomController.getInstance();
 					try{ctrl.deleteRoom(bean);}
-					catch (DatabaseException e1) {JOptionPane.showMessageDialog(null,e1.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);}					
+					catch (DatabaseException e1) {JOptionPane.showMessageDialog(null,e1.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);}	
+					Stage stage = (Stage) main.getScene().getWindow();
+					stage.setScene(ViewSwitcher.switchTo(Views.MYROOMS, null));
 				});
 				
 				v.getChildren().addAll(title,description,address,cap,date,start,end,totalSeats,availableSeats,partecipants,delete);
 				setGraphic(v);			
 			}
 		}
-		
 	}
 	
+	private void setRooms() {
+		AccountBean bean = new AccountBean();
+		bean.setCf(Session.getSession().getCurrUser().getAccount().getCf());
+		RoomController ctrl = RoomController.getInstance();
+		
+		try {
+			this.myRooms=FXCollections.observableArrayList(ctrl.getMyRooms(bean));
+		}
+		catch (DatabaseException ex1) {
+			JOptionPane.showMessageDialog(null,ex1.getMessage(),"ERROR", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		
+	}
 	
 }

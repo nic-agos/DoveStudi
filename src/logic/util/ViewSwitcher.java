@@ -4,9 +4,12 @@ import logic.view.NavbarGC;
 import javafx.fxml.*;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+
+
 import java.io.IOException;
 
 public class ViewSwitcher {
@@ -77,7 +80,7 @@ public class ViewSwitcher {
 			if (controller != null)
 				loader.setController(controller);
 			BorderPane pane = loader.load();
-			if(nextView.equals(Views.MYACCOUNT)||nextView.equals(Views.MYGROUPS)||nextView.equals(Views.MYROOMS)||nextView.equals(Views.MYREVIEWS)){
+			if(nextView.equals(Views.MYACCOUNT)||nextView.equals(Views.MYGROUPS)||nextView.equals(Views.MYROOMS)||nextView.equals(Views.MYREVIEWS)||nextView.equals(Views.MYRESERVATIONS)){
 				pane.setLeft(ViewSwitcher.getNavbar());
 			}
 			return new Scene(pane);
@@ -95,6 +98,7 @@ public class ViewSwitcher {
 	}
 	
 	private static VBox create404Page(String view) {
+		
 		VBox box = new VBox();
 		box.setAlignment(Pos.CENTER);
 		box.setSpacing(20);
@@ -105,6 +109,5 @@ public class ViewSwitcher {
 		
 		box.getChildren().addAll(err,message);
 		return box;
-
 	}
 }
