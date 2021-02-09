@@ -56,7 +56,7 @@ public class NavbarGC {
 	@FXML
 	public void goToSearch() {
 		Stage stage = (Stage) main.getScene().getWindow();
-		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, null));
+		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC()));
 	}
 	@FXML
 	public void doLogOut(){
