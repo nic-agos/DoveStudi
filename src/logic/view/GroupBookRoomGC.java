@@ -32,7 +32,7 @@ public class GroupBookRoomGC implements Initializable{
 	private ObservableList<Room> roomsForGroup;
 	
 	public GroupBookRoomGC(String groupName) {
-		
+		getRoomsForGroup(groupName);
 	}
 	
 	@Override

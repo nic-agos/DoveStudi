@@ -64,7 +64,14 @@ public class OtherAccountGC implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		/**/
+		usernameLbl.setText(person.getUsername());
+		emailLbl.setText(person.getAccount().getEmail());
+		gradeLbl.setText(person.getStudyGrade());
+		dateLbl.setText(person.getAccount().getDateBirth());
+		schoolLbl.setText(person.getSchool());
+		hRateLbl.setText(String.valueOf(person.getHostRating()));
+		gRateLbl.setText(String.valueOf(person.getGuestRating()));
+		
 	}
 	
 	@FXML

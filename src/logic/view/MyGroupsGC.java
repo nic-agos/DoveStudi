@@ -1,6 +1,8 @@
 package logic.view;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -30,8 +32,7 @@ public class MyGroupsGC implements Initializable{
 	@FXML
 	private ListView<Group> groupsList;
 	
-	private ObservableList<Group> adminGroups;	
-	private ObservableList<Group> partGroups;
+	private ObservableList<Group> groups;	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -44,32 +45,27 @@ public class MyGroupsGC implements Initializable{
 		stage.setScene(ViewSwitcher.switchTo(Views.GROUPCREATION, null));
 	}
 	
-	public void getAdminGroups() {
+
+	private void getGroups() {
+		PersonBean pBean = new PersonBean();
 		AccountBean aBean = new AccountBean();
+		List<Group> partGroups = new ArrayList<>();
+		List<Group> adminGroups = new ArrayList<>();
+		List<Group> groupsList = new ArrayList<>();
 		
 		GroupController gContr = GroupController.getInstance();
 		
+		pBean.setId(Session.getSession().getCurrUser().getId());
 		aBean.setCf(Session.getSession().getCurrUser().getAccount().getCf());
 		
 		try {
+			partGroups = gContr.getParticipatingGroups(pBean);
+			adminGroups = gContr.getAdministeredGroups(aBean);
+
+			groupsList.addAll(adminGroups);
+			groupsList.addAll(partGroups);
 			
-			this.adminGroups = FXCollections.observableArrayList(gContr.getAdministeredGroups(aBean));
-			
-		}catch(DatabaseException de) {
-			JOptionPane.showMessageDialog(null,de.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
-		}
-		
-	}
-	
-	public void getPartGroups() {
-		PersonBean pBean = new PersonBean();
-		
-		GroupController gContr = GroupController.getInstance();
-		pBean.setId(Session.getSession().getCurrUser().getId());
-		
-		try {
-			
-			this.partGroups = FXCollections.observableArrayList(gContr.getParticipatingGroups(pBean));
+			this.groups = FXCollections.observableArrayList(groupsList);
 			
 		}catch(DatabaseException de) {
 			JOptionPane.showMessageDialog(null,de.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
