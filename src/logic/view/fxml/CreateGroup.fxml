@@ -22,7 +22,7 @@
             </Label>
             <TextField fx:id="nameField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="500.0" promptText="Group Name...." />
             <Button fx:id="createBtn" mnemonicParsing="false" onMouseClicked="#createGroup" text="Create!" />
-            <Button fx:id="backBtn" mnemonicParsing="false" text="Back" />
+            <Button fx:id="backBtn" mnemonicParsing="false" onMouseClicked="#backAction" text="Back" />
          </children>
       </VBox>
    </center>

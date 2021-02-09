@@ -27,7 +27,7 @@ public class ViewSwitcher {
 		case MYGROUPS:
 			return new FXMLLoader(ViewSwitcher.class.getResource(PATH + "MyGroups.fxml"));
 		case MYRESERVATIONS:
-			return new FXMLLoader(ViewSwitcher.class.getResource(PATH + "MyReservation.fxml"));
+			return new FXMLLoader(ViewSwitcher.class.getResource(PATH + "MyReservations.fxml"));
 		case MYREVIEWS:
 			return new FXMLLoader(ViewSwitcher.class.getResource(PATH + "MyReviews.fxml"));
 		case MYROOMS:
