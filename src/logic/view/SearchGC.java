@@ -25,6 +25,7 @@ import logic.model.Room;
 import logic.exception.*;
 import logic.util.Session;
 import logic.util.ViewSwitcher;
+import logic.util.enumeration.Search;
 
 public class SearchGC implements Initializable{
 	@FXML
@@ -50,10 +51,29 @@ public class SearchGC implements Initializable{
 	
 	private ObservableList<Room> searchResult;
 	
+	public void SearchGC(Search filter) {
+		switch(filter) {
+		case CAP:
+			searchByCap();break;
+		case HOST:
+			searchByUser();break;
+		case ALL:
+			break;
+		case DATE:
+			searchByDate();break;
+		case SEATS:
+			searchBySeats();break;
+		default: 
+			searchResult=null;
+		}
+		
+	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		/**/
 	}
+	
+	
 	
 	@FXML
 	public void back() {
