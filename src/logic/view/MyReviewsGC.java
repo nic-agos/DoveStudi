@@ -113,7 +113,7 @@ public class MyReviewsGC implements Initializable{
 		
 		try {
 			this.doneReviews = FXCollections.observableArrayList(revContr.getDoneReviews(accBean));
-			System.out.println(doneReviews.get(0).getId());
+			
 		}catch(DatabaseException de) {
 			JOptionPane.showMessageDialog(null,de.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
 		}

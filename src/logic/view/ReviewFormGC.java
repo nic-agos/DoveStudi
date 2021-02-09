@@ -45,20 +45,23 @@ public class ReviewFormGC implements Initializable{
 	@FXML
 	private ToggleGroup userType;
 	
+	String username; 
 	
-	PersonBean p; //Questa Bean è popolata solo con l'username della persona che voglio recensire
-	public ReviewFormGC(PersonBean p) {
-		this.p=p;
+	public ReviewFormGC(String username) {
+		this.username = username;
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		reviewdUserLbl.setText(p.getUsername());
+		reviewdUserLbl.setText(username);
 	}
 	
 	@FXML
 	public void submit() {
 		ReviewBean r = new ReviewBean();
+		PersonBean p = new PersonBean();
+		
+		p.setUsername(username);
 		
 		r.setTitle(reviewTitle.getText());
 		r.setDescription(reviewArea.getText());

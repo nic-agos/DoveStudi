@@ -112,7 +112,7 @@ public class OtherAccountGC implements Initializable {
 	@FXML
 	public void makeReview() {
 		Stage stage = (Stage) main.getScene().getWindow();
-		stage.setScene(ViewSwitcher.switchTo(Views.REVIEWFORM, null));
+		stage.setScene(ViewSwitcher.switchTo(Views.REVIEWFORM, new ReviewFormGC(person.getUsername())));
 	}
 	
 	@FXML
