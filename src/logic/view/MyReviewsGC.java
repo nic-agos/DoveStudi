@@ -39,13 +39,18 @@ public class MyReviewsGC implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setDone();setReceived();
-		if(!doneReviews.isEmpty()) {
-			doneList.setItems(doneReviews);
-			doneList.setCellFactory(list -> new DoneRevCell());
+		if(doneReviews != null) {
+			if(!doneReviews.isEmpty()) {
+				doneList.setItems(doneReviews);
+				doneList.setCellFactory(list -> new DoneRevCell());
+			}
 		}
-		if(!receivedReviews.isEmpty()) {
-			receivedList.setItems(receivedReviews);
-			receivedList.setCellFactory(list -> new RecRevCell());
+		
+		if(receivedReviews != null) {
+			if(!receivedReviews.isEmpty()) {
+				receivedList.setItems(receivedReviews);
+				receivedList.setCellFactory(list -> new RecRevCell());
+			}
 		}
 	}
 	
@@ -107,7 +112,8 @@ public class MyReviewsGC implements Initializable{
 		accBean.setCf(Session.getSession().getCurrUser().getAccount().getCf());
 		
 		try {
-			this.receivedReviews = FXCollections.observableArrayList(revContr.getReceivedReviews(accBean));
+			this.doneReviews = FXCollections.observableArrayList(revContr.getDoneReviews(accBean));
+			System.out.println(doneReviews.get(0).getId());
 		}catch(DatabaseException de) {
 			JOptionPane.showMessageDialog(null,de.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
 		}

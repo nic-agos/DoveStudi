@@ -16,12 +16,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import logic.bean.PersonBean;
-import logic.bean.RoomBean;
-import logic.bean.RoomSpecBean;
+import logic.bean.*;
 import logic.controller.RoomController;
-import logic.model.Reservation;
-import logic.model.Room;
+import logic.model.*;
 import logic.exception.*;
 import logic.util.Session;
 import logic.util.ViewSwitcher;
@@ -189,6 +186,34 @@ public class SearchGC implements Initializable{
 		
 		try {
 			tempList = rContr.searchRoomByDate(bean);
+			
+			if(Session.getSession().getCurrUser() != null) {
+				
+				for(Room r : tempList) {
+					
+					if(r.getOwner().getCf().compareTo(Session.getSession().getCurrUser().getAccount().getCf()) != 0 ) {
+						roomsList.add(r);
+					}
+				}
+			}
+			this.searchResult = FXCollections.observableArrayList(roomsList);
+				
+		}catch(DatabaseException de){
+			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+	
+		}catch(NotFoundException ne){
+			JOptionPane.showMessageDialog(null,ne.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public void searchRooms() {
+		RoomController rContr = RoomController.getInstance();
+		
+		List<Room> tempList = new ArrayList<>();
+		List<Room> roomsList = new ArrayList<>();
+		
+		try {
+			tempList = rContr.searchRooms();
 			
 			if(Session.getSession().getCurrUser() != null) {
 				
