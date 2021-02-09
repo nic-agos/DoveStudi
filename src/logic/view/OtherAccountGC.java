@@ -5,6 +5,8 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -12,8 +14,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import logic.bean.AccountBean;
 import logic.bean.PersonBean;
 import logic.controller.AccountController;
+import logic.controller.ReviewController;
 import logic.exception.DatabaseException;
 import logic.model.Person;
 import logic.model.Review;
@@ -45,33 +49,31 @@ public class OtherAccountGC implements Initializable {
 	@FXML
 	private ListView<Review> reviewsList;
 	
+	private ObservableList<Review> reviews;
 	private Person person;
 	
 	public OtherAccountGC(String username) {
-		PersonBean pBean = new PersonBean();
-		pBean.setUsername(username);
-		AccountController aContr = AccountController.getInstance();
 		
-		try {
-			
-			this.person = aContr.getOtherAccountInfo(pBean);
+		getPerson(username);
 		
-		}catch(DatabaseException de) {
-			JOptionPane.showMessageDialog(null,de.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+		if(this.person != null) {
+			getReviews();
 		}
 		
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		usernameLbl.setText(person.getUsername());
-		emailLbl.setText(person.getAccount().getEmail());
-		gradeLbl.setText(person.getStudyGrade());
-		dateLbl.setText(person.getAccount().getDateBirth());
-		schoolLbl.setText(person.getSchool());
-		hRateLbl.setText(String.valueOf(person.getHostRating()));
-		gRateLbl.setText(String.valueOf(person.getGuestRating()));
 		
+		if(this.person != null) {
+			usernameLbl.setText(person.getUsername());
+			emailLbl.setText(person.getAccount().getEmail());
+			gradeLbl.setText(person.getStudyGrade());
+			dateLbl.setText(person.getAccount().getDateBirth());
+			schoolLbl.setText(person.getSchool());
+			hRateLbl.setText(String.valueOf(person.getHostRating()));
+			gRateLbl.setText(String.valueOf(person.getGuestRating()));
+		}
 	}
 	
 	@FXML
@@ -85,4 +87,35 @@ public class OtherAccountGC implements Initializable {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.back());
 	}
+	
+	private void getPerson(String username) {
+		PersonBean pBean = new PersonBean();
+		pBean.setUsername(username);
+		AccountController aContr = AccountController.getInstance();
+		
+		try {
+			
+			this.person = aContr.getOtherAccountInfo(pBean);
+		
+		}catch(DatabaseException de) {
+			JOptionPane.showMessageDialog(null,de.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	private void getReviews() {
+		AccountBean accBean = new AccountBean();
+		ReviewController rContr = ReviewController.getInstance();
+		
+		accBean.setCf(this.person.getAccount().getCf());
+		
+		try {
+			
+			this.reviews = FXCollections.observableArrayList(rContr.getReceivedReviews(accBean));
+		
+		}catch(DatabaseException de) {
+			JOptionPane.showMessageDialog(null,de.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	
 }
