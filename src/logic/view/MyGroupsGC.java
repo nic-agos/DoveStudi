@@ -57,7 +57,7 @@ public class MyGroupsGC implements Initializable{
 				VBox v = new VBox();
 				Label name = new Label(item.getName());
 				Label admin = new Label("Admin: "); 
-				Label numPartecipants = new Label("Partecipants: "+String.valueOf(item.getNumParticipants()));
+				Label numPartecipants = new Label("Partecipants: "+ String.valueOf(item.getNumParticipants()));
 		
 				ObservableList<Hyperlink> linkList = FXCollections.observableArrayList();
 				

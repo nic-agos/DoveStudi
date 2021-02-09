@@ -1,6 +1,7 @@
 package logic.util;
 import logic.util.enumeration.Views;
 import logic.view.NavbarGC;
+import logic.view.SearchGC;
 import javafx.fxml.*;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -94,7 +95,10 @@ public class ViewSwitcher {
 	}
 }
 	public static Scene back(){
-		return ViewSwitcher.switchTo(Session.getSession().getPrevView(), null);
+		if(Session.getSession().getPrevView().equals(Views.ROOMSEARCH))
+			return (ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC()));
+		else
+			return ViewSwitcher.switchTo(Session.getSession().getPrevView(), null);
 	}
 	
 	private static VBox create404Page(String view) {

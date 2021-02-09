@@ -25,16 +25,16 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                <children>
                   <TextField fx:id="searchBar" prefHeight="25.0" prefWidth="260.0" promptText="Search..." />
-                  <Button fx:id="capBtn" mnemonicParsing="false" text="By CAP" />
-                  <Button fx:id="hostBtn" mnemonicParsing="false" text="By Host" />
-                  <Button fx:id="dateBtn" mnemonicParsing="false" text="By Date" />
-                  <Button fx:id="seatsBtn" mnemonicParsing="false" text="By Available Seats" />
+                  <Button fx:id="capBtn" mnemonicParsing="false" onMouseClicked="#capAction" text="By CAP" />
+                  <Button fx:id="hostBtn" mnemonicParsing="false" onMouseClicked="#hostAction" text="By Host" />
+                  <Button fx:id="dateBtn" mnemonicParsing="false" onMouseClicked="#dateAction" text="By Date" />
+                  <Button fx:id="seatsBtn" mnemonicParsing="false" onMouseClicked="#seatsAction" text="By Available Seats" />
                   <Label text="or">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button fx:id="allBtn" mnemonicParsing="false" text="Show All Avaiable Places" />
+                  <Button fx:id="allBtn" mnemonicParsing="false" onMouseClicked="#allAction" text="Show All Avaiable Places" />
                </children>
             </HBox>
             <ListView fx:id="roomList" prefHeight="509.0" prefWidth="1280.0">

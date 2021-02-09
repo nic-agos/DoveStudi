@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import logic.util.enumeration.Search;
 import logic.util.enumeration.Views;
 
 public class HomeGC implements Initializable {
@@ -34,7 +35,7 @@ public class HomeGC implements Initializable {
 	@FXML
 	public void lookAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
-		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, null));
+		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.ALL)));
 	}
 	@FXML
 	public void logInAction() {

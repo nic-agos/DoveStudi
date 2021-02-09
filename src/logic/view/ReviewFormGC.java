@@ -44,6 +44,10 @@ public class ReviewFormGC implements Initializable{
 	private ToggleGroup rating;
 	@FXML
 	private ToggleGroup userType;
+	@FXML
+	private RadioButton hostRB;
+	@FXML
+	private RadioButton guestRB;
 	
 	String username; 
 	
@@ -69,9 +73,9 @@ public class ReviewFormGC implements Initializable{
 		
 		r.setRating(Integer.parseInt(((RadioButton)rating.getSelectedToggle()).getText()));
 		
-		if(((RadioButton)userType.getSelectedToggle()).getText()=="Guest")
+		if(userType.getSelectedToggle().equals(guestRB))
 			r.setTag("GUEST");
-		if(((RadioButton)userType.getSelectedToggle()).getText()=="Host")
+		if(userType.getSelectedToggle().equals(hostRB))
 			r.setTag("HOST");
 		try {
 			r.validate();
