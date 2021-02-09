@@ -25,16 +25,24 @@
 	PersonBean persBean = new PersonBean();
 	
 	List<Room> roomsList = new ArrayList<>();
+	List<Room> tempList = new ArrayList<>();
 	RoomBean rBean = new RoomBean();
 	
 	try{
 		
 		rBean.setNumAvailableSeats(group.getNumParticipants());
 		
-		roomsList = rContr.searchRoomByAvailableSeats(rBean);
+		tempList = rContr.searchRoomByAvailableSeats(rBean);
 		
 		if(!roomsList.isEmpty()){
-	
+			
+			for(Room r : roomsList) {
+				
+				if(r.getOwner().getCf().compareTo(group.getAdmin().getCf()) != 0){
+					
+					roomsList.add(r);
+				}
+			}
 			request.setAttribute("roomsList", roomsList);
 		}	
 	

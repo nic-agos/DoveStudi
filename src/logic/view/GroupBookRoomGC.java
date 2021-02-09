@@ -1,6 +1,8 @@
 package logic.view;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -49,8 +51,12 @@ public class GroupBookRoomGC implements Initializable{
 		
 		GroupBean gBean = new GroupBean();
 		Group group;
+		
 		GroupController gContr = GroupController.getInstance();
 		RoomController rContr = RoomController.getInstance();
+		
+		List<Room> roomsList = new ArrayList<>();
+		List<Room> tempList = new ArrayList<>();
 		
 		gBean.setAdmin(Session.getSession().getCurrUser().getAccount().getCf());
 		gBean.setName(groupName);
@@ -61,7 +67,14 @@ public class GroupBookRoomGC implements Initializable{
 			RoomBean rBean = new RoomBean();
 			rBean.setNumAvailableSeats(group.getNumParticipants());
 			
-			this.roomsForGroup = FXCollections.observableArrayList(rContr.searchRoomByAvailableSeats(rBean));
+			tempList = rContr.searchRoomByAvailableSeats(rBean);
+			
+			for(Room r : tempList) {
+				if(r.getOwner().getCf().compareTo(Session.getSession().getCurrUser().getAccount().getCf()) != 0) {
+					roomsList.add(r);
+				}
+			}
+			this.roomsForGroup = FXCollections.observableArrayList(roomsList);
 			
 			
 		}catch(DatabaseException de) {

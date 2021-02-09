@@ -62,8 +62,12 @@ public class PostRoomGC implements Initializable{
 		
 		rBean.setName(roomName.getText());
 		rBean.setAddress(roomAddress.getText());
-		rBean.setNumParticipants(Integer.parseInt(seatLbl.getText()));
-		rBean.setOwner(Session.getSession().getCurrUser().getAccount().getCf());
+		if(seatLbl.getText() == "") {
+			rBean.setNumParticipants(0);
+		}else {
+			rBean.setNumParticipants(Integer.parseInt(seatLbl.getText()));
+		}
+		//rBean.setOwner(Session.getSession().getCurrUser().getAccount().getCf());
 		
 		rSBean.setDescription(description.getText());
 		rSBean.setDate(String.valueOf(date.getValue()));

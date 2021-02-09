@@ -126,8 +126,8 @@ public class RoomBean {
 		if(this.address.length() > 100 || this.address.isBlank()) {
 			errors = errors + "Invalid room address   ";
 		}
-		if(this.name.length() > 45 || this.name.isBlank()) {
-			errors = errors + "Invalid room title   ";
+		if(this.numParticipants <= 0) {
+			errors = errors + "Invalid numParticipants   ";
 		}
 		
 		if(!errors.isEmpty()) {

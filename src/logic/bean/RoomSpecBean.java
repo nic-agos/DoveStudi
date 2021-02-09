@@ -112,6 +112,9 @@ public class RoomSpecBean {
 		if(this.cap.length() != 5) {
 			errors = errors + "CAP not valid   ";
 		}
+		if(this.date.isBlank()) {
+			errors = errors + "date not valid   ";
+		}
 		
 		if(!errors.isEmpty()) {
 			

@@ -39,18 +39,14 @@ public class MyReviewsGC implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setDone();setReceived();
-		if(doneReviews != null) {
-			if(!doneReviews.isEmpty()) {
+		if(doneReviews != null && !doneReviews.isEmpty()) {
 				doneList.setItems(doneReviews);
 				doneList.setCellFactory(list -> new DoneRevCell());
-			}
 		}
 		
-		if(receivedReviews != null) {
-			if(!receivedReviews.isEmpty()) {
+		if(receivedReviews != null && !receivedReviews.isEmpty() ) {
 				receivedList.setItems(receivedReviews);
 				receivedList.setCellFactory(list -> new RecRevCell());
-			}
 		}
 	}
 	
