@@ -3,6 +3,7 @@ package logic.model;
 import logic.bean.*;
 
 public class Review {
+	
 	private int id;
 	
 	private String title;

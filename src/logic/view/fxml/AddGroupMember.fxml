@@ -18,7 +18,7 @@
                </font>
             </Label>
             <TextField fx:id="usernameLbl" maxWidth="-Infinity" prefWidth="200.0" />
-            <Button fx:id="addBtn" mnemonicParsing="false" text="Add" />
+            <Button fx:id="addBtn" mnemonicParsing="false" onMouseClicked="#addMember" text="Add" />
             <Button fx:id="backBtn" mnemonicParsing="false" onMouseClicked="#back" text="Back" />
          </children>
       </VBox>

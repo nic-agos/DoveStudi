@@ -27,7 +27,7 @@ public class Reservation {
 		this.endTime = endTime;
 	}
 	
-public Reservation(Account reservingUser, Room linkedRoom, Person roomOwner, String date, String startTime, String endTime ) {
+	public Reservation(Account reservingUser, Room linkedRoom, Person roomOwner, String date, String startTime, String endTime ) {
 		
 		this(date, startTime, endTime);
 	

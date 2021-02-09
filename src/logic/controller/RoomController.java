@@ -68,6 +68,7 @@ public class RoomController {
 //  takes in input the username of the host and return a list of user's rooms
 	public List<Room> searchRoomByHost(PersonBean personBean) throws DatabaseException, NotFoundException {
 		
+		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
 		List<RoomBean> roomBeans;
 		List<Room> rooms = new ArrayList<>();
 		
@@ -82,7 +83,6 @@ public class RoomController {
 		LocalDateTime currentDate = LocalDateTime.now();
 		
 		try {
-			PersonDAOImpl personDao = PersonDAOImpl.getInstance();
 			
 			person = personDao.getPersonByUsername(personBean);
 			
@@ -117,6 +117,7 @@ public class RoomController {
 							owner.setPerson(ownerPerson);
 							
 							room.setOwner(owner);
+							room.setParticipants(getAllRoomParticipants(roomB));
 							rooms.add(room);
 						}
 					}
@@ -180,6 +181,7 @@ public class RoomController {
 						
 					
 						room.setOwner(ownerAccount);
+						room.setParticipants(getAllRoomParticipants(roomBean));
 						rooms.add(room);
 					}	
 				}
@@ -242,6 +244,7 @@ public class RoomController {
 						ownerAccount.setPerson(ownerPerson);
 						
 						room.setOwner(ownerAccount);
+						room.setParticipants(getAllRoomParticipants(roomBean));
 						rooms.add(room);
 					}
 					
@@ -307,6 +310,7 @@ public class RoomController {
 						ownerAccount.setPerson(ownerPerson);
 						
 						room.setOwner(ownerAccount);
+						room.setParticipants(getAllRoomParticipants(rBean));
 						rooms.add(room);
 					}
 				
@@ -356,6 +360,7 @@ public class RoomController {
 						
 						room = new Room(rBean);
 						room.setSpecification(new RoomSpec(rSpecBean));
+						room.setParticipants(getAllRoomParticipants(rBean));
 						rooms.add(room);
 					}
 				}
@@ -416,7 +421,7 @@ public class RoomController {
 						owner.setPerson(new Person(persBean));
 							
 						room.setOwner(owner);
-							
+						room.setParticipants(getAllRoomParticipants(roomBean));	
 						rooms.add(room);
 					}
 				}
@@ -424,7 +429,7 @@ public class RoomController {
 				return rooms;
 			
 			}else {
-				throw new NotFoundException("No rooms available");
+				throw new NotFoundException("Available rooms not found");
 			}
 			
 		}catch (SQLException se) {
@@ -450,6 +455,46 @@ public class RoomController {
 		}catch (SQLException se) {
 			throw new DatabaseException(se.getMessage());
 		}
+	}
+	
+//	takes in input the room id and return a list of person that will participate to the room
+	public List<Person> getAllRoomParticipants(RoomBean roomBean) throws DatabaseException {
+		
+		ReservationDAOImpl reservationDao = ReservationDAOImpl.getInstance();
+		AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
+		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
+		
+		List<Person> roomParticipants = new ArrayList<>();
+		List<ReservationBean> roomParticipantsBean;
+		
+		PersonBean persBean;
+		AccountBean tempAccBean = new AccountBean();
+		AccountBean accBean;
+		Account account;
+		Person person;
+		
+		try {
+			
+			roomParticipantsBean = reservationDao.getRoomReservations(roomBean);
+			
+				for(ReservationBean resBean : roomParticipantsBean) {
+					
+					tempAccBean.setCf(resBean.getReservingUser());
+					accBean = accountDao.getAccount(tempAccBean);
+					account = new Account(accBean);
+					
+					persBean = personDao.getPersonFromAccount(accBean);
+					person = new Person(persBean);
 
+					person.setAccount(account);
+					
+					roomParticipants.add(person);
+				}
+				
+				return roomParticipants;
+			
+		}catch (SQLException se) {
+			throw new DatabaseException(se.getMessage());		
+		}
 	}
 }

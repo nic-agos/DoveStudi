@@ -133,6 +133,8 @@ public class ReservationController {
 		AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
 		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
 		
+		RoomController roomCtrl = RoomController.getInstance();
+		
 		List<Reservation> futureReservationsList = new ArrayList<>();
 		List<ReservationBean> reservationsList;
 		AccountBean reservingUser;
@@ -155,53 +157,59 @@ public class ReservationController {
 		try {
 			reservationsList = reservationDao.getAllAccountReservations(accountBean);
 			
-			for(ReservationBean resBean : reservationsList) {
+			if(!reservationsList.isEmpty()) {
+				
+				for(ReservationBean resBean : reservationsList) {
 			  
-				String dateTemp = resBean.getDate() + " " + resBean.getEndTime();
-				LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
-			  
-				if(currentDate.compareTo(resDateTime) > 0) {
-					Reservation reservation = new Reservation(resBean);
+					String dateTemp = resBean.getDate() + " " + resBean.getEndTime();
+					LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
+				  
+					if(currentDate.compareTo(resDateTime) > 0) {
+						Reservation reservation = new Reservation(resBean);
 
-//					getting the reserving user form db and linked the Account entity
-					reservingUser = accountDao.getAccount(accountBean);
-					reservation.setReservingUser(new Account(reservingUser));
+//						getting the reserving user form db and linked the Account entity
+						reservingUser = accountDao.getAccount(accountBean);
+						reservation.setReservingUser(new Account(reservingUser));
 
-//					getting the room from db and creates the entity
-					tempRoomBean.setId(resBean.getLinkedRoom());
-					roomBean = roomDao.getRoom(tempRoomBean);
-					room = new Room (roomBean);
-					
-//					getting the room specification from db and creates the entity
-					roomSpecBean = roomSpecDao.getRoomSpec(roomBean);
-					roomSpec = new RoomSpec(roomSpecBean);
+//						getting the room from db and creates the entity
+						tempRoomBean.setId(resBean.getLinkedRoom());
+						roomBean = roomDao.getRoom(tempRoomBean);
+						room = new Room (roomBean);
+						
+//						getting the room specification from db and creates the entity
+						roomSpecBean = roomSpecDao.getRoomSpec(roomBean);
+						roomSpec = new RoomSpec(roomSpecBean);
 
-//					link the specification entity to the room entity
-					room.setSpecification(roomSpec);
+//						link the specification entity to the room entity
+						room.setSpecification(roomSpec);
 
-//					getting the room owner Account from db and creates the entity
-					tempRoomOwnerBean.setCf(roomBean.getOwner());
-					roomOwnerAccountBean = accountDao.getAccount(tempRoomOwnerBean);
-					roomOwnerAccount = new Account(roomOwnerAccountBean);
-					
-//					link the room owner Account to the room					
-					room.setOwner(roomOwnerAccount);
-
-//					link the room to the reservation
-					reservation.setLinkedRoom(room);
-					
-//					getting the room owner Person (reservation) from db and creates the entity				
-					tempResRoomOwnerBean.setId(resBean.getRoomOwner());
-					roomOwnerPersonBean = personDao.getPerson(tempResRoomOwnerBean);
-					roomOwnerPerson = new Person(roomOwnerPersonBean);
-					
-//					link the room owner account(reservation) to the person(reservation) entity					
-					roomOwnerPerson.setAccount(roomOwnerAccount);
-					
-//					link the room owner person (reservation) to the reservation entity			
-					reservation.setRoomOwner(roomOwnerPerson);
-					
-					futureReservationsList.add(reservation);
+//						getting the room owner Account from db and creates the entity
+						tempRoomOwnerBean.setCf(roomBean.getOwner());
+						roomOwnerAccountBean = accountDao.getAccount(tempRoomOwnerBean);
+						roomOwnerAccount = new Account(roomOwnerAccountBean);
+						
+//						link the room owner Account to the room					
+						room.setOwner(roomOwnerAccount);
+						
+//						adding participants list to the room
+						room.setParticipants(roomCtrl.getAllRoomParticipants(roomBean));
+						
+//						link the room to the reservation
+						reservation.setLinkedRoom(room);
+						
+//						getting the room owner Person (reservation) from db and creates the entity				
+						tempResRoomOwnerBean.setId(resBean.getRoomOwner());
+						roomOwnerPersonBean = personDao.getPerson(tempResRoomOwnerBean);
+						roomOwnerPerson = new Person(roomOwnerPersonBean);
+						
+//						link the room owner account(reservation) to the person(reservation) entity					
+						roomOwnerPerson.setAccount(roomOwnerAccount);
+						
+//						link the room owner person (reservation) to the reservation entity			
+						reservation.setRoomOwner(roomOwnerPerson);
+						
+						futureReservationsList.add(reservation);
+					}  
 				}
 			}
 			 
@@ -222,6 +230,8 @@ public class ReservationController {
 		AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
 		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
 		
+		RoomController roomCtrl = RoomController.getInstance();
+		
 		List<Reservation> futureReservationsList = new ArrayList<>();
 		List<ReservationBean> reservationsList;
 		AccountBean reservingUser;
@@ -244,53 +254,59 @@ public class ReservationController {
 		try {
 			reservationsList = reservationDao.getAllAccountReservations(accountBean);
 			
-			for(ReservationBean resBean : reservationsList) {
-			  
-				String dateTemp = resBean.getDate() + " " + resBean.getEndTime();
-				LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
-			  
-				if(currentDate.compareTo(resDateTime) < 0) {
-					Reservation reservation = new Reservation(resBean);
+			if(!reservationsList.isEmpty()) {
+				
+				for(ReservationBean resBean : reservationsList) {
+					  
+					String dateTemp = resBean.getDate() + " " + resBean.getEndTime();
+					LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
+				  
+					if(currentDate.compareTo(resDateTime) < 0) {
+						Reservation reservation = new Reservation(resBean);
 
-//					getting the reserving user form db and linked the Account entity
-					reservingUser = accountDao.getAccount(accountBean);
-					reservation.setReservingUser(new Account(reservingUser));
+//						getting the reserving user form db and linked the Account entity
+						reservingUser = accountDao.getAccount(accountBean);
+						reservation.setReservingUser(new Account(reservingUser));
 
-//					getting the room from db and creates the entity
-					tempRoomBean.setId(resBean.getLinkedRoom());
-					roomBean = roomDao.getRoom(tempRoomBean);
-					room = new Room (roomBean);
-					
-//					getting the room specification from db and creates the entity
-					roomSpecBean = roomSpecDao.getRoomSpec(roomBean);
-					roomSpec = new RoomSpec(roomSpecBean);
+//						getting the room from db and creates the entity
+						tempRoomBean.setId(resBean.getLinkedRoom());
+						roomBean = roomDao.getRoom(tempRoomBean);
+						room = new Room (roomBean);
+						
+//						getting the room specification from db and creates the entity
+						roomSpecBean = roomSpecDao.getRoomSpec(roomBean);
+						roomSpec = new RoomSpec(roomSpecBean);
 
-//					link the specification entity to the room entity
-					room.setSpecification(roomSpec);
+//						link the specification entity to the room entity
+						room.setSpecification(roomSpec);
 
-//					getting the room owner Account from db and creates the entity
-					tempRoomOwnerBean.setCf(roomBean.getOwner());
-					roomOwnerAccountBean = accountDao.getAccount(tempRoomOwnerBean);
-					roomOwnerAccount = new Account(roomOwnerAccountBean);
-					
-//					link the room owner Account to the room					
-					room.setOwner(roomOwnerAccount);
-
-//					link the room to the reservation
-					reservation.setLinkedRoom(room);
-					
-//					getting the room owner Person (reservation) from db and creates the entity				
-					tempResRoomOwnerBean.setId(resBean.getRoomOwner());
-					roomOwnerPersonBean = personDao.getPerson(tempResRoomOwnerBean);
-					roomOwnerPerson = new Person(roomOwnerPersonBean);
-					
-//					link the room owner account(reservation) to the person(reservation) entity					
-					roomOwnerPerson.setAccount(roomOwnerAccount);
-					
-//					link the room owner person (reservation) to the reservation entity			
-					reservation.setRoomOwner(roomOwnerPerson);
-					
-					futureReservationsList.add(reservation);
+//						getting the room owner Account from db and creates the entity
+						tempRoomOwnerBean.setCf(roomBean.getOwner());
+						roomOwnerAccountBean = accountDao.getAccount(tempRoomOwnerBean);
+						roomOwnerAccount = new Account(roomOwnerAccountBean);
+						
+//						link the room owner Account to the room					
+						room.setOwner(roomOwnerAccount);
+						
+//						adding participants list to the room
+						room.setParticipants(roomCtrl.getAllRoomParticipants(roomBean));
+						
+//						link the room to the reservation
+						reservation.setLinkedRoom(room);
+						
+//						getting the room owner Person (reservation) from db and creates the entity				
+						tempResRoomOwnerBean.setId(resBean.getRoomOwner());
+						roomOwnerPersonBean = personDao.getPerson(tempResRoomOwnerBean);
+						roomOwnerPerson = new Person(roomOwnerPersonBean);
+						
+//						link the room owner account(reservation) to the person(reservation) entity					
+						roomOwnerPerson.setAccount(roomOwnerAccount);
+						
+//						link the room owner person (reservation) to the reservation entity			
+						reservation.setRoomOwner(roomOwnerPerson);
+						
+						futureReservationsList.add(reservation);
+					}
 				}
 			}
 			 
@@ -301,45 +317,5 @@ public class ReservationController {
 		}		
 	}
 	
-//	takes in input the room id and return a list of person that will participate to the room
-	public List<Person> getAllRoomParticipants(RoomBean roomBean) throws DatabaseException {
-		
-		ReservationDAOImpl reservationDao = ReservationDAOImpl.getInstance();
-		AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
-		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
-		
-		List<Person> roomParticipants = new ArrayList<>();
-		List<ReservationBean> roomParticipantsBean;
-		
-		PersonBean persBean;
-		AccountBean tempAccBean = new AccountBean();
-		AccountBean accBean;
-		Account account;
-		Person person;
-		
-		
-		try {
-			
-			roomParticipantsBean = reservationDao.getRoomReservations(roomBean);
-			
-				for(ReservationBean resBean : roomParticipantsBean) {
-					
-					tempAccBean.setCf(resBean.getReservingUser());
-					accBean = accountDao.getAccount(tempAccBean);
-					account = new Account(accBean);
-					
-					persBean = personDao.getPersonFromAccount(accBean);
-					person = new Person(persBean);
-
-					person.setAccount(account);
-					
-					roomParticipants.add(person);
-				}
-				
-				return roomParticipants;
-			
-		}catch (SQLException se) {
-			throw new DatabaseException(se.getMessage());		
-		}
-	}
+	
 }
