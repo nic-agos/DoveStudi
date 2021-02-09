@@ -28,18 +28,17 @@ GroupController gContr = GroupController.getInstance();
 		
 		try{
 	
-	gContr.addGroupParticipant(groupBean, persBean);
+			gContr.addGroupParticipant(groupBean, persBean);
 
 //			redirect
-	String site = new String("MyGroups.jsp");
+			String site = new String("MyGroups.jsp");
 	        response.setStatus(response.SC_MOVED_TEMPORARILY);
 	        response.setHeader("Location", site);
 	
 		}catch(DatabaseException de){
-	de.printStackTrace();
-	
+			out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+de.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
 		}catch(AccountException ae){
-	ae.printStackTrace();
+			out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+ae.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
 		}
 	}
 %>   

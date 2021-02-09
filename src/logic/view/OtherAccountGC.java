@@ -39,7 +39,11 @@ public class OtherAccountGC implements Initializable {
 	@FXML
 	private ListView<Review> reviewsList;
 	
+	private String username;
 	
+	public OtherAccountGC(String username) {
+		this.username = username;
+	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

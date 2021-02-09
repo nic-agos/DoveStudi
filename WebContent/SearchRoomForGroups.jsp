@@ -11,7 +11,7 @@
 <%@ page import="logic.controller.*"%>
 
 <%
-Person person = (Person)session.getAttribute("accPerson");
+	Person person = (Person)session.getAttribute("accPerson");
 	Group group = (Group)session.getAttribute("groupBook");
 	
 	GroupController gContr = GroupController.getInstance();
@@ -35,21 +35,13 @@ Person person = (Person)session.getAttribute("accPerson");
 		
 		if(!roomsList.isEmpty()){
 	
-	for(Room r : roomsList) {
-		
-		tempRoomBean.setId(r.getId());
-		r.setParticipants(resContr.getAllRoomParticipants(tempRoomBean));
-		
-	}
-	
 	request.setAttribute("roomsList", roomsList);
 		}	
 	
 	}catch(DatabaseException de){
-		de.printStackTrace();
-	
+		out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+de.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
 	}catch(NotFoundException ne){
-		ne.printStackTrace();
+		out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+ne.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
 	}
 	
 //	method to handle click on room owner

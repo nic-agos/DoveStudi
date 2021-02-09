@@ -14,7 +14,7 @@
 <jsp:setProperty name="roomSpecBean" property="*"/>
 
 <%
-Person person = (Person)session.getAttribute("accPerson");
+	Person person = (Person)session.getAttribute("accPerson");
 
 	RoomController rContr = RoomController.getInstance();
 	ReservationController resContr = ReservationController.getInstance();
@@ -31,43 +31,35 @@ Person person = (Person)session.getAttribute("accPerson");
 		
 		try{
 	
-	allRoomsList = rContr.searchRoomByDate(roomSpecBean);
+			allRoomsList = rContr.searchRoomByDate(roomSpecBean);
 	
-	if(!allRoomsList.isEmpty()){
+			if(!allRoomsList.isEmpty()){
 		
-		if(person != null){
+				if(person != null){
 		
 //					create a new list withous user rooms	
-	for(Room r : allRoomsList) {
+					for(Room r : allRoomsList) {
+			
+						if(r.getOwner().getCf().compareTo(person.getAccount().getCf()) != 0){
+							roomsList.add(r);
+						}
+					}
 		
-		if(r.getOwner().getCf().compareTo(person.getAccount().getCf()) != 0){
-			roomsList.add(r);
-		}
-	}
+				}else{
+					roomsList = allRoomsList;
+				}	
 		
-		}else{
-	roomsList = allRoomsList;
-		}	
+				session.setAttribute("roomsList", roomsList);
 		
-		for(Room r : roomsList) {
-	
-	tempRoomBean.setId(r.getId());
-	r.setParticipants(resContr.getAllRoomParticipants(tempRoomBean));
-	
-		}
-		
-		session.setAttribute("roomsList", roomsList);
-		
-		String site = new String("SearchRoomsResult.jsp");
-	    response.setStatus(response.SC_MOVED_TEMPORARILY);
-	    response.setHeader("Location", site);
-	}	
+				String site = new String("SearchRoomsResult.jsp");
+	    		response.setStatus(response.SC_MOVED_TEMPORARILY);
+	    		response.setHeader("Location", site);
+			}	
 
 		}catch(DatabaseException de){
-	de.printStackTrace();
-	
+			out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+de.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
 		}catch(NotFoundException ne){
-	ne.printStackTrace();
+			out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+ne.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
 		}	
 	}
 %>

@@ -270,7 +270,7 @@ public class GroupController {
 					
 					group.setAdmin(admin);
 					group.setParticipant(participant);
-					
+					group.setParticipants(getGroupParticipants(g));
 					groupParticipants.add(group);
 					
 				}
@@ -330,7 +330,7 @@ public class GroupController {
 					
 					group.setAdmin(admin);
 					group.setParticipant(participant);
-					
+					group.setParticipants(getGroupParticipants(g));
 					groupParticipants.add(group);
 					
 				}
@@ -412,6 +412,7 @@ public class GroupController {
 				accountAdmin.setPerson(personAdmin);
 				
 				specificGroup.setAdmin(accountAdmin);
+				specificGroup.setParticipants(getGroupParticipants(grBean));
 				
 			}
 			

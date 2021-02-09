@@ -11,7 +11,7 @@
 <%@ page import="logic.controller.*"%>
 
 <%
-Person person = (Person)session.getAttribute("accPerson");
+	Person person = (Person)session.getAttribute("accPerson");
 	List<Room> roomsList = (List<Room>)session.getAttribute("roomsList");
 	
 	session.setAttribute("roomsList", roomsList);
@@ -26,16 +26,15 @@ Person person = (Person)session.getAttribute("accPerson");
 	
 //	method to handle click on room owner
 	for(Room room : roomsList){
+		
 		if(request.getParameter(room.getOwner().getPerson().getUsername()) != null){
 	
-	
-	persBean.setUsername(room.getOwner().getPerson().getUsername());
-	session.setAttribute("othAccUsername", persBean);
+			persBean.setUsername(room.getOwner().getPerson().getUsername());
+			session.setAttribute("othAccUsername", persBean);
 		
-	String site = new String("OtherAccount.jsp");
+			String site = new String("OtherAccount.jsp");
 		    response.setStatus(response.SC_MOVED_TEMPORARILY);
-		    response.setHeader("Location", site);
-		    
+		    response.setHeader("Location", site); 
 		}
 	}
 
@@ -44,36 +43,33 @@ Person person = (Person)session.getAttribute("accPerson");
 		
 		if(request.getParameter(String.valueOf(ro.getId())) != null) {
 		
-	if(person != null){
+			if(person != null){
 			
-			try{
+				try{
 				
-				roomBean.setId(ro.getId());
-				accBean.setCf(person.getAccount().getCf());
-				resContr.makeReservation(roomBean, accBean);
-				
-				String site = new String("AccountMyFutReservations.jsp");
+					roomBean.setId(ro.getId());
+					accBean.setCf(person.getAccount().getCf());
+					resContr.makeReservation(roomBean, accBean);
+					
+					String site = new String("AccountMyFutReservations.jsp");
+			        response.setStatus(response.SC_MOVED_TEMPORARILY);
+			        response.setHeader("Location", site);
+			
+				}catch(DatabaseException de){
+					out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+de.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
+				}catch(RoomException re){
+					out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+re.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
+				}catch(AccountException ae){
+					out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+ae.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
+				}catch(ReservationException ree){
+					out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+ree.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
+				}
+			
+			}else{
+				String site = new String("Login.jsp");
 		        response.setStatus(response.SC_MOVED_TEMPORARILY);
 		        response.setHeader("Location", site);
-			
-			}catch(DatabaseException de){
-				de.printStackTrace();
-			
-			}catch(RoomException re){
-				re.printStackTrace();
-			
-			}catch(AccountException ae){
-				ae.printStackTrace();
-				
-			}catch(ReservationException ree){
-				ree.printStackTrace();
 			}
-			
-	}else{
-		String site = new String("Login.jsp");
-		        response.setStatus(response.SC_MOVED_TEMPORARILY);
-		        response.setHeader("Location", site);
-	}
 		}
 	}
 

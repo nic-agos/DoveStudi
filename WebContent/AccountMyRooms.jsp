@@ -26,64 +26,52 @@ Person person = (Person)session.getAttribute("accPerson");
 	if(person != null){
 		
 		try{
-	accBean.setCf(person.getAccount().getCf());
-	roomsList = rContr.getMyRooms(accBean);
-	
-	if(!roomsList.isEmpty()) {
-		
-//				adding participnats list to every room				
-		for(Room r : roomsList) {
-	
-	tempRoomBean.setId(r.getId());
-	r.setParticipants(resContr.getAllRoomParticipants(tempRoomBean));
-	
-		}
+			accBean.setCf(person.getAccount().getCf());
+			roomsList = rContr.getMyRooms(accBean);
+			
+			request.setAttribute("roomsList", roomsList);
 
-		request.setAttribute("roomsList", roomsList);
-	}
-
-		
 		}catch(DatabaseException de){
-	de.printStackTrace();
+			de.printStackTrace();
 		}
 
 //		method to handle click on delete room
 		for(Room r : roomsList){
 	
-	if(request.getParameter(String.valueOf(r.getId())) != null){
+			if(request.getParameter(String.valueOf(r.getId())) != null){
 		
-		try {
-	roomBean.setId(r.getId());
-	rContr.deleteRoom(roomBean);
+				try {
+					roomBean.setId(r.getId());
+					rContr.deleteRoom(roomBean);
 	
 //					redirect
-	String site = new String("AccountMyRooms.jsp");
-		    response.setStatus(response.SC_MOVED_TEMPORARILY);
-		    response.setHeader("Location", site);
+					String site = new String("AccountMyRooms.jsp");
+		   			response.setStatus(response.SC_MOVED_TEMPORARILY);
+		    		response.setHeader("Location", site);
 	
-		}catch(DatabaseException de){
-	de.printStackTrace();
-		}
-	}
+				}catch(DatabaseException de){
+					out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+de.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
+				}
+			}
 		}
 
 //		method to handle click on room participant
 		for(Room r: roomsList){
 		
 //			iterate over room's participants
-	for(Person p: r.getParticipants()){
+			for(Person p: r.getParticipants()){
 	
-		if(request.getParameter(p.getUsername()) != null){
+				if(request.getParameter(p.getUsername()) != null){
 									    	
-	persBean.setUsername(p.getUsername());
-	session.setAttribute("othAccUsername", persBean);
+					persBean.setUsername(p.getUsername());
+					session.setAttribute("othAccUsername", persBean);
 	
 //					redirect								
-	String site = new String("OtherAccount.jsp");
-	        response.setStatus(response.SC_MOVED_TEMPORARILY);
-	        response.setHeader("Location", site);
-		}
-	}
+					String site = new String("OtherAccount.jsp");
+	        		response.setStatus(response.SC_MOVED_TEMPORARILY);
+	        		response.setHeader("Location", site);
+				}
+			}
 		}
 		
 	}else{

@@ -11,7 +11,7 @@
 <%@ page import="logic.controller.*"%>
 
 <%
-Person person = (Person)session.getAttribute("accPerson");
+	Person person = (Person)session.getAttribute("accPerson");
 	GroupController gContr = GroupController.getInstance();
 	
 	List<Group> adminGroups = new ArrayList<>();
@@ -33,229 +33,194 @@ Person person = (Person)session.getAttribute("accPerson");
 		
 		try{
 	
-	adminGroups = gContr.getAdministeredGroups(accBean);
+			adminGroups = gContr.getAdministeredGroups(accBean);
 	
-	if(!adminGroups.isEmpty()) {
+			request.setAttribute("adminGroups", adminGroups);
+	
+			partGroups = gContr.getParticipatingGroups(persBean);
 
-//				add participants list to every group
-		for(Group g : adminGroups){
-	
-	try{
+//			remove the groups of which the user is admin from the partecipating group
+			for(Group g: partGroups){
 		
-		groupBean.setName(g.getName());
-		groupBean.setAdmin(g.getAdmin().getCf());
-		g.setParticipants(gContr.getGroupParticipants(groupBean));
-	
-	}catch(DatabaseException de){
-		de.printStackTrace();
-	}
-		}
-	}
-	
-	request.setAttribute("adminGroups", adminGroups);
-	
-	partGroups = gContr.getParticipatingGroups(persBean);
-	
-	if(!partGroups.isEmpty()){
+				if(g.getAdmin().getCf().compareTo(accBean.getCf()) != 0){
+					part2Groups.add(g);
+				}
+			}
 
-//			add participants to the group
-		for(Group g : partGroups){
-	
-	try {
-		
-		groupBean.setName(g.getName());
-		groupBean.setAdmin(g.getAdmin().getCf());
-		g.setParticipants(gContr.getGroupParticipants(groupBean));
-	
-	}catch(DatabaseException de){
-		de.printStackTrace();
-	}
-		}
-	}
-
-//			remove the groups of which the user is admin
-	for(Group g: partGroups){
-		
-		if(g.getAdmin().getCf().compareTo(accBean.getCf()) != 0){
-	part2Groups.add(g);
-		}
-	}
-
-	request.setAttribute("partGroups", part2Groups);
+			request.setAttribute("partGroups", part2Groups);
 	
 		}catch(DatabaseException de){
-	de.printStackTrace();
+			out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+de.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
 		}
 		
 //		method to handle clikc on group owner of participating groups
 		for(Group g :part2Groups){
 	
-	if(request.getParameter(g.getAdmin().getPerson().getUsername()) != null) {
+			if(request.getParameter(g.getAdmin().getPerson().getUsername()) != null) {
 		
-		tempPersBean.setUsername(g.getAdmin().getPerson().getUsername());
-		session.setAttribute("othAccUsername", tempPersBean);
+				tempPersBean.setUsername(g.getAdmin().getPerson().getUsername());
+				session.setAttribute("othAccUsername", tempPersBean);
 
 //				redirect
-		String site = new String("OtherAccount.jsp");
-	    response.setStatus(response.SC_MOVED_TEMPORARILY);
-	    response.setHeader("Location", site);
-	}
+				String site = new String("OtherAccount.jsp");
+	    		response.setStatus(response.SC_MOVED_TEMPORARILY);
+	    		response.setHeader("Location", site);
+			}
 		}
 
 //		method to handle click on room participant for participanting groups
 		for(Group g :part2Groups){
 		
 //			iterate over room's participants
-	for(Person p: g.getParticipants()){
+			for(Person p: g.getParticipants()){
 	
-		if(request.getParameter(p.getUsername()) != null){
+				if(request.getParameter(p.getUsername()) != null){
 							    	
-	tempPersBean.setUsername(p.getUsername());
-	session.setAttribute("othAccUsername", tempPersBean);
+					tempPersBean.setUsername(p.getUsername());
+					session.setAttribute("othAccUsername", tempPersBean);
 
 //					redirect
-	String site = new String("OtherAccount.jsp");
-		    response.setStatus(response.SC_MOVED_TEMPORARILY);
-		    response.setHeader("Location", site);
-		}
-	}
+					String site = new String("OtherAccount.jsp");
+		   		 	response.setStatus(response.SC_MOVED_TEMPORARILY);
+		    		response.setHeader("Location", site);
+				}
+			}
 		}
 
 //		method to handle click on room participant for administered groups
 		for(Group g : adminGroups){
 	
 //			iterate over room's participants
-	for(Person p: g.getParticipants()){
+			for(Person p: g.getParticipants()){
 		
-		if(request.getParameter(p.getUsername()) != null){
+				if(request.getParameter(p.getUsername()) != null){
 								    	
-	tempPersBean.setUsername(p.getUsername());
-	session.setAttribute("othAccUsername", tempPersBean);
+					tempPersBean.setUsername(p.getUsername());
+					session.setAttribute("othAccUsername", tempPersBean);
 
 //					redirect
-	String site = new String("OtherAccount.jsp");
-	response.setStatus(response.SC_MOVED_TEMPORARILY);
-	response.setHeader("Location", site);
-		}
-	}
+					String site = new String("OtherAccount.jsp");
+					response.setStatus(response.SC_MOVED_TEMPORARILY);
+					response.setHeader("Location", site);
+				}
+			}
 		}
 
 //		method to handle click on book room for groups
 		for(Group g : adminGroups){
 	
-	String s = "book"+g.getName();
+			String s = "book"+g.getName();
 	
-	if(request.getParameter(s) != null) {
+			if(request.getParameter(s) != null) {
 		
-		tempGroupBean.setAdmin(person.getAccount().getCf());
-		tempGroupBean.setName(g.getName());
+				tempGroupBean.setAdmin(person.getAccount().getCf());
+				tempGroupBean.setName(g.getName());
 		
-		try{
+				try{
 	
-	group = gContr.getSpecificAdministeredGroup(tempGroupBean);
-	session.setAttribute("groupBook", group);
+					group = gContr.getSpecificAdministeredGroup(tempGroupBean);
+					session.setAttribute("groupBook", group);
 
 //					redirect
-	String site = new String("SearchRoomForGroups.jsp");
-	        response.setStatus(response.SC_MOVED_TEMPORARILY);
-	        response.setHeader("Location", site);
+					String site = new String("SearchRoomForGroups.jsp");
+	       	 		response.setStatus(response.SC_MOVED_TEMPORARILY);
+	        		response.setHeader("Location", site);
 	
 	
-		}catch(DatabaseException de){
-	de.printStackTrace();
-		}
-	}
+				}catch(DatabaseException de){
+					out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+de.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
+				}
+			}
 		}
 
 //		method to handle click on create group button		
 		if(request.getParameter("createBtn") != null){
 
 //			redirect
-	String site = new String("CreateGroup.jsp");
+			String site = new String("CreateGroup.jsp");
 	        response.setStatus(response.SC_MOVED_TEMPORARILY);
 	        response.setHeader("Location", site);
-
 		}
 
 //		methods to handle click on leave from participating group
 		for(Group g : partGroups){
 	
-	String s = "leave"+g.getName();
+			String s = "leave"+g.getName();
 	
-	if(request.getParameter(s) != null) {
+			if(request.getParameter(s) != null) {
 		
-		tempGroupBean.setAdmin(g.getAdmin().getCf());
-		tempGroupBean.setName(g.getName());
-		tempGroupBean.setParticipant(person.getId());
+				tempGroupBean.setAdmin(g.getAdmin().getCf());
+				tempGroupBean.setName(g.getName());
+				tempGroupBean.setParticipant(person.getId());
 		
-		try{
+				try{
 	
-	gContr.leaveGroup(tempGroupBean);
+					gContr.leaveGroup(tempGroupBean);
 	
-	String site = new String("MyGroups.jsp");
-	        response.setStatus(response.SC_MOVED_TEMPORARILY);
-	        response.setHeader("Location", site);
+					String site = new String("MyGroups.jsp");
+	        		response.setStatus(response.SC_MOVED_TEMPORARILY);
+	        		response.setHeader("Location", site);
 	
 	
-		}catch(DatabaseException de){
-	de.printStackTrace();
+				}catch(DatabaseException de){
+					out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+de.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
 		
-		}catch(AccountException ae){
-	ae.printStackTrace();
-		}
-	}
+				}catch(AccountException ae){
+					out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+ae.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
+				}
+			}
 		}
 
 //		methods to handle click on delete administered group
 		for(Group g : adminGroups){
 	
-	String s = "delete"+g.getName();
+			String s = "delete"+g.getName();
 	
-	if(request.getParameter(s) != null) {
+			if(request.getParameter(s) != null) {
 		
-		tempGroupBean.setAdmin(person.getAccount().getCf());
-		tempGroupBean.setName(g.getName());
+				tempGroupBean.setAdmin(person.getAccount().getCf());
+				tempGroupBean.setName(g.getName());
 		
-		try{
+			try{
 	
-	gContr.deleteGroup(tempGroupBean);
+				gContr.deleteGroup(tempGroupBean);
 	
-	String site = new String("MyGroups.jsp");
-	        response.setStatus(response.SC_MOVED_TEMPORARILY);
-	        response.setHeader("Location", site);
+				String site = new String("MyGroups.jsp");
+	       	 	response.setStatus(response.SC_MOVED_TEMPORARILY);
+	        	response.setHeader("Location", site);
 	
 	
-		}catch(DatabaseException de){
-	de.printStackTrace();
+			}catch(DatabaseException de){
+				out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+de.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
+			}
 		}
 	}
-		}
 
 //		methods to handle click on add participant to administered group
 		for(Group g : adminGroups){
 	
-	String s = "add"+g.getName();
+			String s = "add"+g.getName();
 	
-	if(request.getParameter(s) != null) {
+			if(request.getParameter(s) != null) {
 		
 
-		tempGroupBean.setAdmin(person.getAccount().getCf());
+				tempGroupBean.setAdmin(person.getAccount().getCf());
  				tempGroupBean.setName(g.getName());
 		
-		try{
+				try{
 	
-	group = gContr.getSpecificAdministeredGroup(tempGroupBean);
-	session.setAttribute("groupAdd", group);
+					group = gContr.getSpecificAdministeredGroup(tempGroupBean);
+					session.setAttribute("groupAdd", group);
 	
-	String site = new String("AddGroupParticipants.jsp");
-	        response.setStatus(response.SC_MOVED_TEMPORARILY);
-	        response.setHeader("Location", site);
+					String site = new String("AddGroupParticipants.jsp");
+	        		response.setStatus(response.SC_MOVED_TEMPORARILY);
+	       		 	response.setHeader("Location", site);
 	
 	
-		}catch(DatabaseException de){
-	de.printStackTrace();
-		}
-	}
+				}catch(DatabaseException de){
+					out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+de.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
+				}
+			}
 		}
 
 	}else{

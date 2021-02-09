@@ -30,83 +30,75 @@ ReservationController rContr = ReservationController.getInstance();
 		try{
 
 //			getting a list with my future reservation
-	reservationsList = rContr.getMyFutureReservations(accBean);
+			reservationsList = rContr.getMyFutureReservations(accBean);
 	
-	if(!reservationsList.isEmpty()){
-
-//				adding participants list to every room linked to the reservation
-		for(Reservation resList : reservationsList){
-	
-	roomBean.setId(resList.getLinkedRoom().getId());
-	resList.getLinkedRoom().setParticipants(rContr.getAllRoomParticipants(roomBean));
-		}
+			if(!reservationsList.isEmpty()) {
 		
-		request.setAttribute("reservationsList", reservationsList);
+				request.setAttribute("reservationsList", reservationsList);
 	
-	}
+			}
 		
 		}catch(DatabaseException de){
-	de.printStackTrace();
+			out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+de.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
+			
 		}
 
 //		method to handle clicks on room owner
 		for(Reservation r : reservationsList){
 	
-	if(request.getParameter(r.getRoomOwner().getUsername()) != null){
+			if(request.getParameter(r.getRoomOwner().getUsername()) != null){
+		
+		    	persBean.setUsername(r.getRoomOwner().getUsername());
+				session.setAttribute("othAccUsername", persBean);
 	
-	
-	    persBean.setUsername(r.getRoomOwner().getUsername());
-		session.setAttribute("othAccUsername", persBean);
-
 //				redirect
-		String site = new String("OtherAccount.jsp");
-	    response.setStatus(response.SC_MOVED_TEMPORARILY);
-		        response.setHeader("Location", site);
-	}
+				String site = new String("OtherAccount.jsp");
+		    	response.setStatus(response.SC_MOVED_TEMPORARILY);
+			    response.setHeader("Location", site);
+			}
 		}
 		
 //		method to handle clicks on participant
 		for(Reservation res : reservationsList){
 	
 //			iterate over room's participants
-	for(Person p: res.getLinkedRoom().getParticipants()){
+			for(Person p: res.getLinkedRoom().getParticipants()){
 		
-		if(request.getParameter(p.getUsername())!=null){
+				if(request.getParameter(p.getUsername())!=null){
 								    	
-	persBean.setUsername(p.getUsername());
-	session.setAttribute("othAccUsername", persBean);
+					persBean.setUsername(p.getUsername());
+					session.setAttribute("othAccUsername", persBean);
 	
 //					redirect							
-	String site = new String("OtherAccount.jsp");
-	        response.setStatus(response.SC_MOVED_TEMPORARILY);
-	        response.setHeader("Location", site);
-		}
-	}
+					String site = new String("OtherAccount.jsp");
+	        		response.setStatus(response.SC_MOVED_TEMPORARILY);
+	        		response.setHeader("Location", site);
+				}
+			}
 		}
 	
 
 //		method to handle click on delete reservation
 		for(Reservation res : reservationsList){
 	
-	if(request.getParameter(String.valueOf(res.getId())) != null) {
+			if(request.getParameter(String.valueOf(res.getId())) != null) {
 		
-		try{
+				try{
 	
-	resBean.setId(res.getId());
-	rContr.deleteReservation(resBean);
+					resBean.setId(res.getId());
+					rContr.deleteReservation(resBean);
 
 //					redirect
-	String site = new String("AccountMyFutReservations.jsp");
-	        response.setStatus(response.SC_MOVED_TEMPORARILY);
-	        response.setHeader("Location", site);
+					String site = new String("AccountMyFutReservations.jsp");
+	        		response.setStatus(response.SC_MOVED_TEMPORARILY);
+	        		response.setHeader("Location", site);
 	
-		}catch(DatabaseException de){
-	de.printStackTrace();
-		
-		}catch(ReservationException re){
-	re.printStackTrace();
-		}
-	}
+				}catch(DatabaseException de){
+					out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+de.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
+				}catch(ReservationException re){
+					out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+re.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");
+				}
+			}
 		}
 		
 	}else{

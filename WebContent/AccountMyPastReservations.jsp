@@ -13,72 +13,65 @@
 <%
     Person person = (Person)session.getAttribute("accPerson");
             	
-            	AccountBean accBean = new AccountBean();
-            	PersonBean persBean = new PersonBean();
-            	RoomBean roomBean = new RoomBean();
+  	AccountBean accBean = new AccountBean();
+   	PersonBean persBean = new PersonBean();
+   	RoomBean roomBean = new RoomBean();
             	
-            	accBean.setCf(person.getAccount().getCf());
+   	accBean.setCf(person.getAccount().getCf());
             	
-            	List<Reservation> reservationsList = new ArrayList<>();
+   	List<Reservation> reservationsList = new ArrayList<>();
             	
-            	ReservationController rContr = ReservationController.getInstance();
+   	ReservationController rContr = ReservationController.getInstance();
             	
             	
-            	try{
+   	try{
             		
-            //		getting a list with my past reservation
-            		reservationsList = rContr.getMyPastReservations(accBean);
+//			getting a list with my past reservation
+   			reservationsList = rContr.getMyPastReservations(accBean);
 
-            		if(!reservationsList.isEmpty()){
+   			if(!reservationsList.isEmpty()){
+            	
+           		request.setAttribute("reservationsList", reservationsList);
+            		
+       		}
+            	
+       	}catch(DatabaseException de){
+       		out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+de.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");	
+       	}
+            	
+//		method to handle clicks on roomOwner	
+		for(Reservation r : reservationsList){
+		
+			if(request.getParameter(r.getRoomOwner().getUsername()) != null){
+		
+		   		persBean.setUsername(r.getRoomOwner().getUsername());
+				session.setAttribute("othAccUsername", persBean);
+		
+//				redirect			
+				String site = new String("OtherAccount.jsp");
+		    	response.setStatus(response.SC_MOVED_TEMPORARILY);
+		    	response.setHeader("Location", site);
+			}	
+		}
 
-            //			adding participants list to every room linked to the every reservation
-            	for(Reservation resList : reservationsList){
-            		
-            		roomBean.setId(resList.getLinkedRoom().getId());
-            		resList.getLinkedRoom().setParticipants(rContr.getAllRoomParticipants(roomBean));
-            	}
+//		method to handle clicks on reservation participant
+       	for(Reservation res: reservationsList){
             	
-            	request.setAttribute("reservationsList", reservationsList);
-            		
-            		}
-            	
-            	}catch(DatabaseException de){
-            		de.printStackTrace();
-            	}
-            	
-            //	method to handle clicks on roomOwner	
-            	for(Reservation r : reservationsList){
-            		
-            		if(request.getParameter(r.getRoomOwner().getUsername()) != null){
-            		
-            		    	persBean.setUsername(r.getRoomOwner().getUsername());
-            		session.setAttribute("othAccUsername", persBean);
-            		
-            //				redirect			
-            		String site = new String("OtherAccount.jsp");
-            		        response.setStatus(response.SC_MOVED_TEMPORARILY);
-            		        response.setHeader("Location", site);
-            		}
-            	}
-
-            //	method to handle clicks on reservation participant
-            	for(Reservation res: reservationsList){
-            	
-            //		iterate over room's participants
-            		for(Person p: res.getLinkedRoom().getParticipants()){
+//			iterate over room's participants
+       		for(Person p: res.getLinkedRoom().getParticipants()){
             		
             	if(request.getParameter(p.getUsername())!=null){
-            												    	
+		            												    	
             		persBean.setUsername(p.getUsername());
             		session.setAttribute("othAccUsername", persBean);
-            		
-            //				redirect									
-            		String site = new String("OtherAccount.jsp");
-            	    response.setStatus(response.SC_MOVED_TEMPORARILY);
-            	    response.setHeader("Location", site);
-            	}
-            		}
-            	}
+	            		
+//					redirect									
+			        String site = new String("OtherAccount.jsp");
+			        response.setStatus(response.SC_MOVED_TEMPORARILY);
+			        response.setHeader("Location", site);
+	            }
+            }
+		}
     %>
 <!DOCTYPE html>
 <html>
