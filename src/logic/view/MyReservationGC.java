@@ -1,17 +1,16 @@
 package logic.view;
 
 import java.net.URL;
-
 import java.util.ResourceBundle;
-
 import javax.swing.JOptionPane;
-
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -22,7 +21,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.bean.AccountBean;
 import logic.bean.ReservationBean;
-
 import logic.controller.ReservationController;
 import logic.exception.DatabaseException;
 import logic.exception.ReservationException;
@@ -31,6 +29,7 @@ import logic.model.Reservation;
 import logic.util.Session;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
+import logic.util.gmaps.GoogleMapsWindow;
 
 public class MyReservationGC implements Initializable{
 	@FXML
@@ -138,7 +137,7 @@ public class MyReservationGC implements Initializable{
 				ListView<Hyperlink> partecipants = new ListView<>();
 				partecipants.setItems(linkList);
 				partecipants.setOrientation(Orientation.HORIZONTAL);
-				partecipants.setPrefHeight(25);
+				partecipants.setPrefHeight(30);
 				partecipants.setMaxHeight(USE_PREF_SIZE);
 				
 				Hyperlink hostLink = new Hyperlink(item.getRoomOwner().getUsername());
@@ -159,8 +158,17 @@ public class MyReservationGC implements Initializable{
 					catch (ReservationException ex) {JOptionPane.showMessageDialog(null,ex.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);}
 				});
 				
-				v.getChildren().addAll(title,host,hostLink,description,address,cap,date,start,end,cancel,partecipants);			
+				Button maps = new Button ("GMaps Link");
+				maps.setOnAction(e->{
+					GoogleMapsWindow gWindow = new GoogleMapsWindow(item.getLinkedRoom().getAddress());
+					Stage stage = new Stage();
+					stage.setScene(new Scene(gWindow.createBorderPane()));
+					stage.show();
+				});
 				
+				v.getChildren().addAll(title,host,hostLink,description,address,cap,date,start,end,partecipants,cancel,maps);			
+				v.setAlignment(Pos.CENTER);
+				v.setSpacing(5);
 				setGraphic(v);
 			}
 		}

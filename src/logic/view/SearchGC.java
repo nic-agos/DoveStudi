@@ -52,14 +52,15 @@ public class SearchGC implements Initializable{
 	private TextField searchBar;
 	
 	private static final String ERROR = "Error";
-	
+	private String search;
 	private ObservableList<Room> searchResult;
 	
 	public SearchGC() {
 		searchResult=null;
 	}
 	
-	public SearchGC(Search filter) {
+	public SearchGC(Search filter, String search) {
+		this.search = search;
 		switch(filter) {
 		case CAP:
 			searchByCap();break;
@@ -78,7 +79,8 @@ public class SearchGC implements Initializable{
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		if(!searchResult.isEmpty())
+		searchBar.setText(search);
+		if(searchResult!=null && !searchResult.isEmpty())
 		{
 			roomList.setItems(searchResult);
 			roomList.setCellFactory(list -> new RoomCell());
@@ -143,8 +145,12 @@ public class SearchGC implements Initializable{
 					catch (ReservationException e4) {JOptionPane.showMessageDialog(null,e4.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);}
 					
 					Stage stage = (Stage) main.getScene().getWindow();
-					stage.setScene(ViewSwitcher.switchTo(Views.MYROOMS, null));
+					stage.setScene(ViewSwitcher.switchTo(Views.MYRESERVATIONS, null));
 				});
+				
+				if(!Session.getSession().isLogged()) {
+					book.setDisable(true);
+				}
 				
 				v.getChildren().addAll(title,description,address,cap,date,start,end,totalSeats,availableSeats,partecipants,book);
 				setGraphic(v);			
@@ -155,27 +161,27 @@ public class SearchGC implements Initializable{
 	@FXML
 	public void allAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
-		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.ALL)));
+		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.ALL," ")));
 	}
 	@FXML
 	public void capAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
-		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.CAP)));
+		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.CAP,searchBar.getText())));
 	}
 	@FXML
 	public void dateAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
-		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.DATE)));
+		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.DATE,searchBar.getText())));
 	}
 	@FXML
 	public void seatsAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
-		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.SEATS)));
+		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.SEATS,searchBar.getText())));
 	}
 	@FXML
 	public void hostAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
-		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.HOST)));
+		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.HOST,searchBar.getText())));
 	}
 	
 	@FXML
@@ -206,6 +212,7 @@ public class SearchGC implements Initializable{
 					}
 				}
 			}
+			else {roomsList=tempList;}
 			this.searchResult = FXCollections.observableArrayList(roomsList);
 				
 		}catch(DatabaseException de){
@@ -238,6 +245,7 @@ public class SearchGC implements Initializable{
 					}
 				}
 			}
+			else {roomsList=tempList;}
 			this.searchResult = FXCollections.observableArrayList(roomsList);
 				
 		}catch(DatabaseException de){
@@ -270,6 +278,7 @@ public class SearchGC implements Initializable{
 					}
 				}
 			}
+			else {roomsList=tempList;}
 			this.searchResult = FXCollections.observableArrayList(roomsList);
 				
 		}catch(DatabaseException de){
@@ -302,6 +311,7 @@ public class SearchGC implements Initializable{
 					}
 				}
 			}
+			else {roomsList=tempList;}
 			this.searchResult = FXCollections.observableArrayList(roomsList);
 				
 		}catch(DatabaseException de){
@@ -330,6 +340,7 @@ public class SearchGC implements Initializable{
 					}
 				}
 			}
+			else {roomsList=tempList;}
 			this.searchResult = FXCollections.observableArrayList(roomsList);
 				
 		}catch(DatabaseException de){

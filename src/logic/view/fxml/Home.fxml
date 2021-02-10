@@ -24,17 +24,6 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="80.0">
                <children>
-                  <Button fx:id="postBtn" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#postAction" prefHeight="60.0" prefWidth="200.0" text="Post Room">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </padding>
-                     <font>
-                        <Font name="Lucida Sans Demibold Italic" size="17.0" />
-                     </font>
-                  </Button>
                   <Button fx:id="lookBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#lookAction" prefHeight="60.0" prefWidth="200.0" text="Look for Rooms" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
