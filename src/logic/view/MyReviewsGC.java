@@ -76,6 +76,7 @@ public class MyReviewsGC implements Initializable{
 				v.getChildren().addAll(reviewdUser,title,description,tag,rate);
 				v.setSpacing(5);
 				v.setAlignment(Pos.CENTER);
+				v.setMaxWidth(525);
 				setGraphic(v);				
 			}
 			}
@@ -104,6 +105,7 @@ public class MyReviewsGC implements Initializable{
 				v.getChildren().addAll(reviewingUser,title,description,tag,rate);
 				v.setSpacing(5);
 				v.setAlignment(Pos.CENTER);
+				v.setMaxWidth(525);
 				setGraphic(v);
 			}
 		}

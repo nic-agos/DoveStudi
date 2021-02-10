@@ -48,7 +48,7 @@ public class MyReservationGC implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		setAllPast();
 		setAllFuture();
-
+		
 		if(!allPast.isEmpty()) {
 			past.setItems(allPast);
 			past.setCellFactory(list -> new PastResCell());
@@ -105,6 +105,7 @@ public class MyReservationGC implements Initializable{
 				v.getChildren().addAll(title,host,hostLink,description,address,cap,date,start,end,partecipants);			
 				v.setAlignment(Pos.CENTER);
 				v.setSpacing(5);
+				v.setMaxWidth(480);
 				setGraphic(v);
 			}
 		}
@@ -182,6 +183,7 @@ public class MyReservationGC implements Initializable{
 				v.getChildren().addAll(title,host,hostLink,description,address,cap,date,start,end,partecipants,cancel,maps);			
 				v.setAlignment(Pos.CENTER);
 				v.setSpacing(5);
+				v.setMaxWidth(480);
 				setGraphic(v);
 			}
 		}

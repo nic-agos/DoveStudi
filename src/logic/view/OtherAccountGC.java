@@ -113,6 +113,7 @@ public class OtherAccountGC implements Initializable {
 				v.getChildren().addAll(reviewingUser,title,description,tag,rate);
 				v.setSpacing(5);
 				v.setAlignment(Pos.CENTER);
+				v.setMaxWidth(535);
 				setGraphic(v);
 			}
 			

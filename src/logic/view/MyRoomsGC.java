@@ -101,6 +101,7 @@ public class MyRoomsGC implements Initializable {
 				v.getChildren().addAll(title,description,address,cap,date,start,end,totalSeats,availableSeats,partecipants,delete);
 				v.setSpacing(5);
 				v.setAlignment(Pos.CENTER);
+				v.setMaxWidth(1000);
 				setGraphic(v);			
 			}
 		}

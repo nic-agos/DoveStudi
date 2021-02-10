@@ -127,6 +127,7 @@ public class GroupBookRoomGC implements Initializable{
 				v.getChildren().addAll(title,description,address,cap,date,start,end,totalSeats,availableSeats,partecipants,book);
 				v.setAlignment(Pos.CENTER);
 				v.setSpacing(5);
+				v.setMaxWidth(1000);
 				setGraphic(v);			
 			}
 		}

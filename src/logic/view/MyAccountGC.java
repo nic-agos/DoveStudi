@@ -88,7 +88,7 @@ public class MyAccountGC implements Initializable{
 		pop.setTitle("Buy Your Tokens");
 		
 		WebView webView = new WebView();
-        webView.getEngine().load("www.paypal.com");
+        webView.getEngine().load("https://www.paypal.com/");
         
         VBox box = new VBox(webView);
         Scene scene = new Scene(box, 960, 600);

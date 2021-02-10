@@ -142,6 +142,7 @@ public class MyGroupsGC implements Initializable{
 				}
 				v.setAlignment(Pos.CENTER);
 				v.setSpacing(5);
+				v.setMaxWidth(1000);
 				setGraphic(v);				
 			}
 		}

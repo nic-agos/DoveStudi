@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -163,6 +164,9 @@ public class SearchGC implements Initializable{
 				}
 				
 				v.getChildren().addAll(title,hostLink,description,address,cap,date,start,end,totalSeats,availableSeats,partecipants,book);
+				v.setAlignment(Pos.CENTER);
+				v.setMaxWidth(1000);
+				v.setSpacing(5);
 				setGraphic(v);			
 			}
 		}
