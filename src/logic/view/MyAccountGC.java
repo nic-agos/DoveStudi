@@ -3,7 +3,7 @@ package logic.view;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+import javax.swing.JOptionPane;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +13,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import logic.bean.AccountBean;
+import logic.controller.AccountController;
+import logic.exception.DatabaseException;
 import logic.model.Person;
 import logic.util.Session;
 
@@ -45,11 +48,22 @@ public class MyAccountGC implements Initializable{
 	private Label pswLbl;
 	@FXML
 	private Label tokensLbl;
+	private static final String ERROR = "ERROR";
 	
 	private Person p;
+	private Person curr;
 	
 	public MyAccountGC() {
-		p = Session.getSession().getCurrUser();
+		curr = Session.getSession().getCurrUser();
+		AccountBean bean = new AccountBean();
+		bean.setCf(curr.getAccount().getCf());
+		AccountController ctrl = AccountController.getInstance();
+		try {
+			p = ctrl.getAccountInfo(bean);
+		}
+		catch (DatabaseException e) {
+			JOptionPane.showMessageDialog(null,e.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	@Override
