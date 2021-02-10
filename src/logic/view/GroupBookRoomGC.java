@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -92,7 +93,7 @@ public class GroupBookRoomGC implements Initializable{
 				ListView<Hyperlink> partecipants = new ListView<>();
 				partecipants.setItems(linkList);
 				partecipants.setOrientation(Orientation.HORIZONTAL);
-				partecipants.setPrefHeight(25);
+				partecipants.setPrefHeight(30);
 				partecipants.setMaxHeight(USE_PREF_SIZE);
 				
 				Button book = new Button("Book This Room");
@@ -122,6 +123,8 @@ public class GroupBookRoomGC implements Initializable{
 				});
 				
 				v.getChildren().addAll(title,description,address,cap,date,start,end,totalSeats,availableSeats,partecipants,book);
+				v.setAlignment(Pos.CENTER);
+				v.setSpacing(5);
 				setGraphic(v);			
 			}
 		}

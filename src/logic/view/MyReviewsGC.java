@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -71,6 +72,8 @@ public class MyReviewsGC implements Initializable{
 				});
 				
 				v.getChildren().addAll(reviewdUser,title,description,tag,rate);
+				v.setSpacing(5);
+				v.setAlignment(Pos.CENTER);
 				setGraphic(v);				
 			}
 			}
@@ -95,6 +98,8 @@ public class MyReviewsGC implements Initializable{
 				});
 				
 				v.getChildren().addAll(reviewingUser,title,description,tag,rate);
+				v.setSpacing(5);
+				v.setAlignment(Pos.CENTER);
 				setGraphic(v);
 			}
 		}

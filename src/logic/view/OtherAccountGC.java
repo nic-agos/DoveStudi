@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -105,8 +106,10 @@ public class OtherAccountGC implements Initializable {
 					Stage stage = (Stage) main.getScene().getWindow();
 					stage.setScene(ViewSwitcher.switchTo(Views.OTHERACCOUNT, new OtherAccountGC(reviewingUser.getText())));
 				});
-				
+			
 				v.getChildren().addAll(reviewingUser,title,description,tag,rate);
+				v.setSpacing(5);
+				v.setAlignment(Pos.CENTER);
 				setGraphic(v);
 			}
 			

@@ -90,7 +90,7 @@ public class MyReservationGC implements Initializable{
 				ListView<Hyperlink> partecipants = new ListView<>();
 				partecipants.setItems(linkList);
 				partecipants.setOrientation(Orientation.HORIZONTAL);
-				partecipants.setPrefHeight(25);
+				partecipants.setPrefHeight(30);
 				partecipants.setMaxHeight(USE_PREF_SIZE);
 				
 				Hyperlink hostLink = new Hyperlink(item.getRoomOwner().getUsername());
@@ -101,7 +101,8 @@ public class MyReservationGC implements Initializable{
 				});
 				
 				v.getChildren().addAll(title,host,hostLink,description,address,cap,date,start,end,partecipants);			
-				
+				v.setAlignment(Pos.CENTER);
+				v.setSpacing(5);
 				setGraphic(v);
 			}
 		}
