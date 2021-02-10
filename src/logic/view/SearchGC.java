@@ -56,7 +56,7 @@ public class SearchGC implements Initializable{
 	private ObservableList<Room> searchResult;
 	
 	public SearchGC() {
-		searchResult=null;
+		searchResult.clear();
 	}
 	
 	public SearchGC(Search filter, String search) {
@@ -73,7 +73,7 @@ public class SearchGC implements Initializable{
 		case SEATS:
 			searchBySeats();break;
 		default: 
-			searchResult=null;
+			searchResult.clear();
 		}
 		
 	}
@@ -152,7 +152,7 @@ public class SearchGC implements Initializable{
 					book.setDisable(true);
 				}
 				
-				v.getChildren().addAll(title,description,address,cap,date,start,end,totalSeats,availableSeats,partecipants,book);
+				v.getChildren().addAll(title,hostLink,description,address,cap,date,start,end,totalSeats,availableSeats,partecipants,book);
 				setGraphic(v);			
 			}
 		}
@@ -186,8 +186,15 @@ public class SearchGC implements Initializable{
 	
 	@FXML
 	public void back() {
+		if(Session.getSession().isLogged()) {
+			Stage stage = (Stage) main.getScene().getWindow();
+			stage.setScene(ViewSwitcher.switchTo(Views.MYACCOUNT,null));
+			}
+		else {
 		Stage stage = (Stage) main.getScene().getWindow();
-		stage.setScene(ViewSwitcher.back());
+		stage.setScene(ViewSwitcher.switchTo(Views.HOME, null));
+		}
+		
 	}
 	
 	public void searchByCap() {
