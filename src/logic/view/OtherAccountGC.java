@@ -27,6 +27,7 @@ import logic.model.Person;
 import logic.model.Review;
 import logic.util.Session;
 import logic.util.ViewSwitcher;
+import logic.util.enumeration.Search;
 import logic.util.enumeration.Views;
 
 public class OtherAccountGC implements Initializable {
@@ -125,10 +126,16 @@ public class OtherAccountGC implements Initializable {
 	
 	@FXML
 	public void back() {
+		if(Session.getSession().getPrevView().equals(Views.ROOMSEARCH))
+		{
+			Stage stage = (Stage) main.getScene().getWindow();
+			stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH,new SearchGC(Search.ALL,"")));
+		}
+		else {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.back());
+		}
 	}
-	
 	private void getPerson(String username) {
 		PersonBean pBean = new PersonBean();
 		pBean.setUsername(username);
