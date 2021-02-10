@@ -64,6 +64,8 @@ public class MyReviewsGC implements Initializable{
 				Label title = new Label(item.getTitle());
 				Label tag = new Label(item.getTag());
 				
+				description.setWrapText(true);
+				
 				Hyperlink reviewdUser = new Hyperlink();
 				reviewdUser.setText(item.getReviewed().getUsername());
 				reviewdUser.setOnAction(e ->{
@@ -89,6 +91,8 @@ public class MyReviewsGC implements Initializable{
 				Label description = new Label("Description" + item.getDescription());
 				Label title = new Label(item.getTitle());
 				Label tag = new Label(item.getTag());
+				
+				description.setWrapText(true);
 				
 				Hyperlink reviewingUser = new Hyperlink();
 				reviewingUser.setText(item.getReviewer().getPerson().getUsername());

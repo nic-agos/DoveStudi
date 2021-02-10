@@ -75,6 +75,8 @@ public class MyReservationGC implements Initializable{
 				Label start = new Label ("Start Time: " + item.getStartTime());
 				Label end = new Label ("End Time: " + item.getEndTime());
 				
+				description.setWrapText(true);
+				
 				ObservableList<Hyperlink> linkList = FXCollections.observableArrayList();
 				
 				for (Person p  : item.getLinkedRoom().getParticipants()) {
@@ -122,6 +124,8 @@ public class MyReservationGC implements Initializable{
 				Label date = new Label("Date: " + item.getDate());
 				Label start = new Label ("Start Time: " + item.getStartTime());
 				Label end = new Label ("End Time: " + item.getEndTime());
+				
+				description.setWrapText(true);
 				
 				ObservableList<Hyperlink> linkList = FXCollections.observableArrayList();
 				

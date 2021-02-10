@@ -71,6 +71,8 @@ public class GroupBookRoomGC implements Initializable{
 				Label totalSeats = new Label ("Total Seats: "+ String.valueOf(item.getNumParticipants()));
 				Label availableSeats = new Label ("Available Seats: "+ String.valueOf(item.getNumAvailableSeats()));
 				
+				description.setWrapText(true);
+				
 				Hyperlink hostLink = new Hyperlink();
 				hostLink.setText(item.getOwner().getPerson().getUsername());
 				hostLink.setOnAction(e-> {

@@ -62,7 +62,10 @@ public class MyRoomsGC implements Initializable {
 				Label end = new Label ("End Time: " + item.getSpecification().getEndTime());
 				Label totalSeats = new Label ("Total Seats: "+ String.valueOf(item.getNumParticipants()));
 				Label availableSeats = new Label ("Available Seats: "+ String.valueOf(item.getNumAvailableSeats()));
-				ObservableList<Hyperlink> linkList = FXCollections.observableArrayList();
+				
+				description.setWrapText(true);
+				
+				ObservableList<Hyperlink> linkList = FXCollections.observableArrayList();		
 				
 				for (Person p : item.getParticipants()) {
 					Hyperlink link = new Hyperlink();

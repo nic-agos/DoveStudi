@@ -101,6 +101,8 @@ public class OtherAccountGC implements Initializable {
 				Label title = new Label(item.getTitle());
 				Label tag = new Label(item.getTag());
 				
+				description.setWrapText(true);
+				
 				Hyperlink reviewingUser = new Hyperlink();
 				reviewingUser.setText(item.getReviewer().getPerson().getUsername());
 				reviewingUser.setOnAction(e ->{
