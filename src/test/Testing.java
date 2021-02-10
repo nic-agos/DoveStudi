@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import org.junit.Test;
 
-import logic.model.dao.DBCreation;
+import logic.model.database.DBCreation;
 
 public class Testing {
 

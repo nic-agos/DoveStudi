@@ -14,7 +14,8 @@ import logic.model.*;
 public class RoomController {
 
 	private static final String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss"; 
-//	implemented with singleton pattern
+
+	//	implemented with singleton pattern
 	private static RoomController instance = null;
 	
 	private RoomController() {
@@ -324,7 +325,7 @@ public class RoomController {
 			return rooms;
 			
 			}else {
-				throw new NotFoundException("Rooms with " + roomBean.getNumAvailableSeats() + " or more available seats ");
+				throw new NotFoundException("Rooms with " + roomBean.getNumAvailableSeats() + " or more available seats");
 			}
 			
 		}catch (SQLException se) {
@@ -434,7 +435,7 @@ public class RoomController {
 				return rooms;
 			
 			}else {
-				throw new NotFoundException("Available rooms ");
+				throw new NotFoundException("Available rooms");
 			}
 			
 		}catch (SQLException se) {

@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import logic.bean.AccountBean;
 import logic.bean.RoomBean;
 import logic.bean.RoomSpecBean;
+import logic.model.database.DBConnection;
 
 public class RoomDAOImpl implements RoomDAO {
 	

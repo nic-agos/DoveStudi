@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import logic.bean.*;
+import logic.model.database.DBConnection;
 
 public class GroupDAOImpl implements GroupDAO{
 

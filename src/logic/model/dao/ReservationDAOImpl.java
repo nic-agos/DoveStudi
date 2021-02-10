@@ -10,6 +10,7 @@ import java.util.List;
 import logic.bean.AccountBean;
 import logic.bean.ReservationBean;
 import logic.bean.RoomBean;
+import logic.model.database.DBConnection;
 
 public class ReservationDAOImpl implements ReservationDAO {
 	

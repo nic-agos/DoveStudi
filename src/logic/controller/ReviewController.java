@@ -11,6 +11,7 @@ import logic.model.*;
 
 public class ReviewController {
 
+	private static final String NOT_FOUND = " not found";
 //	implemented with singleton pattern
 	private static ReviewController instance = null;
 	
@@ -77,7 +78,7 @@ public class ReviewController {
 				}
 				
 			}else {
-				throw new AccountException("User " + personBean.getUsername() + " not found");
+				throw new AccountException("User " + personBean.getUsername() + NOT_FOUND);
 			}
 			
 		}catch (SQLException se) {
@@ -240,7 +241,7 @@ public class ReviewController {
 				}
 			
 			}else {
-				throw new AccountException("User with username " + personBean.getUsername() + " not found");
+				throw new AccountException("User with username " + personBean.getUsername() + NOT_FOUND);
 			}
 			
 		}catch (SQLException se) {
@@ -279,7 +280,7 @@ public class ReviewController {
 				}
 			
 			}else {
-				throw new AccountException("User with username " + personBean.getUsername() + " not found");
+				throw new AccountException("User with username " + personBean.getUsername() + NOT_FOUND);
 			}
 			
 		}catch (SQLException se) {

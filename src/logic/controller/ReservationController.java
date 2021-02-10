@@ -85,7 +85,7 @@ public class ReservationController {
 					throw new RoomException(rBean.getId() + " does not have enough seats");
 				}
 			}else {
-				throw new AccountException("You does not have enough token to book this room, buy its!");
+				throw new AccountException("You don't have enough token to book this room, buy them!");
 			}
 			
 			
