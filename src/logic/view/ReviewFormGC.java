@@ -102,6 +102,6 @@ public class ReviewFormGC implements Initializable{
 	@FXML
 	public void back() {
 		Stage stage = (Stage) main.getScene().getWindow();
-		stage.setScene(ViewSwitcher.back());
+		stage.setScene(ViewSwitcher.switchTo(Views.OTHERACCOUNT,new OtherAccountGC(reviewdUserLbl.getText())));
 	}
 }

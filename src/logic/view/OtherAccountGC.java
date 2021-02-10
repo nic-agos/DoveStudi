@@ -24,6 +24,7 @@ import logic.controller.ReviewController;
 import logic.exception.DatabaseException;
 import logic.model.Person;
 import logic.model.Review;
+import logic.util.Session;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 
@@ -67,7 +68,9 @@ public class OtherAccountGC implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		if(!Session.getSession().isLogged()) {
+			makeReviewBtn.setDisable(true);
+		}
 		if(this.person != null) {
 			usernameLbl.setText(person.getUsername());
 			emailLbl.setText(person.getAccount().getEmail());

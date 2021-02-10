@@ -6,9 +6,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import logic.util.Session;
 import logic.util.ViewSwitcher;
+import logic.util.enumeration.Search;
 import logic.util.enumeration.Views;
 
 public class NavbarGC {
+	@FXML
+	private Button myAccountBtn;
 	@FXML
 	private Button myRoomsBtn;
 	@FXML
@@ -27,7 +30,11 @@ public class NavbarGC {
 	private BorderPane main;
 	
 
-	
+	@FXML
+	public void goToAccount() {
+		Stage stage = (Stage) main.getScene().getWindow();
+		stage.setScene(ViewSwitcher.switchTo(Views.MYACCOUNT, null));
+	}
 	@FXML
 	public void goToRooms() {
 		Stage stage = (Stage) main.getScene().getWindow();
@@ -56,7 +63,7 @@ public class NavbarGC {
 	@FXML
 	public void goToSearch() {
 		Stage stage = (Stage) main.getScene().getWindow();
-		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC()));
+		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.ALL,"")));
 	}
 	@FXML
 	public void doLogOut(){

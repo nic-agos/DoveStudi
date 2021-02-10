@@ -161,7 +161,7 @@ public class SearchGC implements Initializable{
 	@FXML
 	public void allAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
-		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.ALL," ")));
+		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.ALL,"")));
 	}
 	@FXML
 	public void capAction() {

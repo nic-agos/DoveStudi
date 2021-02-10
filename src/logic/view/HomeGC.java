@@ -30,7 +30,7 @@ public class HomeGC implements Initializable {
 	@FXML
 	public void lookAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
-		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.ALL," ")));
+		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.ALL,"")));
 	}
 	@FXML
 	public void logInAction() {

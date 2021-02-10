@@ -9,6 +9,7 @@
    <left>
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="180.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
+            <Button fx:id="myAccountBtn" mnemonicParsing="false" onMouseClicked="#goToAccount" prefWidth="150.0" text="My Account" />
             <Button fx:id="myRoomsBtn" mnemonicParsing="false" onMouseClicked="#goToRooms" prefWidth="150.0" text="My Rooms" />
             <Button fx:id="myResBtn" mnemonicParsing="false" onMouseClicked="#goToReservations" prefWidth="150.0" text="My Reservations" />
             <Button fx:id="myGroupsBtn" mnemonicParsing="false" onMouseClicked="#goToGroups" prefWidth="150.0" text="My Groups" />
