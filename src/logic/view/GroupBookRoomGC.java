@@ -37,8 +37,10 @@ public class GroupBookRoomGC implements Initializable{
 	@FXML
 	private ListView<Room> roomForGroupsList;
 	
-	private static final String ERROR="ERROR";
+	private static final String ERROR = "ERROR";
+	
 	private String gName;
+	
 	private ObservableList<Room> roomsForGroup;
 	
 	public GroupBookRoomGC(String groupName) {
@@ -104,11 +106,16 @@ public class GroupBookRoomGC implements Initializable{
 					
 					try{
 						ctrl.bookRoomGroup(gBean, rBean);
+					
+					}catch (DatabaseException e1) {
+						JOptionPane.showMessageDialog(null,e1.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+					}catch (RoomException e2) {
+						JOptionPane.showMessageDialog(null,e2.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+					}catch (AccountException e3) {
+						JOptionPane.showMessageDialog(null,e3.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+					}catch (ReservationException e4) {
+						JOptionPane.showMessageDialog(null,e4.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 					}
-					catch (DatabaseException e1) {JOptionPane.showMessageDialog(null,e1.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);}	
-					catch (RoomException e2) {JOptionPane.showMessageDialog(null,e2.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);}
-					catch (AccountException e3) {JOptionPane.showMessageDialog(null,e3.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);}
-					catch (ReservationException e4) {JOptionPane.showMessageDialog(null,e4.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);}
 					
 					Stage stage = (Stage) main.getScene().getWindow();
 					stage.setScene(ViewSwitcher.switchTo(Views.MYRESERVATIONS, null));
@@ -155,13 +162,10 @@ public class GroupBookRoomGC implements Initializable{
 			}
 			this.roomsForGroup = FXCollections.observableArrayList(roomsList);
 			
-			
 		}catch(DatabaseException de) {
-			JOptionPane.showMessageDialog(null,de.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}catch(NotFoundException ne) {
-			JOptionPane.showMessageDialog(null,ne.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,ne.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
-		
 	}
-	
 }

@@ -82,6 +82,4 @@ public class MyAccountGC implements Initializable{
         pop.setScene(scene);
         pop.show();
 	}
-	
-	
 }

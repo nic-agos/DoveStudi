@@ -33,6 +33,8 @@ public class MyReviewsGC implements Initializable{
 	@FXML
 	private ListView<Review> receivedList;
 	
+	private static final String ERROR = "ERROR";
+	
 	private ObservableList<Review> doneReviews;
 	private ObservableList<Review> receivedReviews;
 	
@@ -40,13 +42,13 @@ public class MyReviewsGC implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		setDone();setReceived();
 		if(doneReviews != null && !doneReviews.isEmpty()) {
-				doneList.setItems(doneReviews);
-				doneList.setCellFactory(list -> new DoneRevCell());
+			doneList.setItems(doneReviews);
+			doneList.setCellFactory(list -> new DoneRevCell());
 		}
 		
 		if(receivedReviews != null && !receivedReviews.isEmpty() ) {
-				receivedList.setItems(receivedReviews);
-				receivedList.setCellFactory(list -> new RecRevCell());
+			receivedList.setItems(receivedReviews);
+			receivedList.setCellFactory(list -> new RecRevCell());
 		}
 	}
 	
@@ -95,9 +97,7 @@ public class MyReviewsGC implements Initializable{
 				v.getChildren().addAll(reviewingUser,title,description,tag,rate);
 				setGraphic(v);
 			}
-			
 		}
-		
 	}
 	
 	private void setDone() {
@@ -111,7 +111,7 @@ public class MyReviewsGC implements Initializable{
 			this.doneReviews = FXCollections.observableArrayList(revContr.getDoneReviews(accBean));
 			
 		}catch(DatabaseException de) {
-			JOptionPane.showMessageDialog(null,de.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -125,7 +125,7 @@ public class MyReviewsGC implements Initializable{
 			this.receivedReviews = FXCollections.observableArrayList(revContr.getReceivedReviews(accBean));
 		
 		}catch(DatabaseException de) {
-			JOptionPane.showMessageDialog(null,de.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

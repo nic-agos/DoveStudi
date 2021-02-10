@@ -103,8 +103,13 @@ public class MyGroupsGC implements Initializable{
 					bean.setAdmin(item.getAdmin().getCf());
 					bean.setName(item.getName());
 					GroupController ctrl = GroupController.getInstance();
-					try {ctrl.deleteGroup(bean);}
-					catch(DatabaseException ex1) {JOptionPane.showMessageDialog(null,ex1.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);}
+					try {
+						ctrl.deleteGroup(bean);
+					
+					}catch(DatabaseException ex1) {
+						JOptionPane.showMessageDialog(null,ex1.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+					}
+					
 					Stage stage = (Stage) main.getScene().getWindow();
 					stage.setScene(ViewSwitcher.switchTo(Views.MYGROUPS,null));
 				});
@@ -115,9 +120,15 @@ public class MyGroupsGC implements Initializable{
 					bean.setName(item.getName());
 					bean.setParticipant(Session.getSession().getCurrUser().getId());
 					GroupController ctrl = GroupController.getInstance();
-					try{ctrl.leaveGroup(bean);}
-					catch(DatabaseException ex1) {JOptionPane.showMessageDialog(null,ex1.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);}
-					catch(AccountException ex2) {JOptionPane.showMessageDialog(null,ex2.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);}
+					try{
+						ctrl.leaveGroup(bean);
+						
+					}catch(DatabaseException ex1) {
+						JOptionPane.showMessageDialog(null,ex1.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+					}catch(AccountException ex2) {
+						JOptionPane.showMessageDialog(null,ex2.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+					}
+					
 					Stage stage = (Stage) main.getScene().getWindow();
 					stage.setScene(ViewSwitcher.switchTo(Views.MYGROUPS,null));
 				});

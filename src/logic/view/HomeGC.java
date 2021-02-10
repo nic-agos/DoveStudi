@@ -36,5 +36,5 @@ public class HomeGC implements Initializable {
 	public void logInAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.switchTo(Views.LOGIN, null));
-}
+	}
 }

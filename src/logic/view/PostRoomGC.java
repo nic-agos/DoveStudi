@@ -65,12 +65,15 @@ public class PostRoomGC implements Initializable{
 		rBean.setName(roomName.getText());
 		rBean.setAddress(roomAddress.getText());
 		if(seatLbl.getText().equals("")) {
+			
 			rBean.setNumParticipants(0);
 		}else {
+			
 			rBean.setNumParticipants(Integer.parseInt(seatLbl.getText()));
 		}
-		rBean.setOwner(Session.getSession().getCurrUser().getAccount().getCf());
 		
+		rBean.setOwner(Session.getSession().getCurrUser().getAccount().getCf());
+
 		rSBean.setDescription(description.getText());
 		rSBean.setDate(String.valueOf(date.getValue()));
 		rSBean.setCap(capLbl.getText());
@@ -82,6 +85,7 @@ public class PostRoomGC implements Initializable{
 			
 			RoomController ctrl = RoomController.getInstance();
 			boolean value = ctrl.postRoom(rBean, rSBean);
+			
 			if(value) {
 				Stage stage = (Stage) main.getScene().getWindow();
 				stage.setScene(ViewSwitcher.switchTo(Views.MYROOMS, null));

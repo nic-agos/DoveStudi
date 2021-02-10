@@ -51,7 +51,7 @@ public class SearchGC implements Initializable{
 	@FXML
 	private TextField searchBar;
 	
-	private static final String ERROR = "Error";
+	private static final String ERROR = "ERROR";
 	
 	private String search;
 	
@@ -62,7 +62,9 @@ public class SearchGC implements Initializable{
 	}
 	
 	public SearchGC(Search filter, String search) {
+		
 		this.search = search;
+		
 		switch(filter) {
 		case CAP:
 			searchByCap();break;
@@ -140,11 +142,15 @@ public class SearchGC implements Initializable{
 					ReservationController ctrl = ReservationController.getInstance();
 					try{
 						ctrl.makeReservation(rBean, aBean);
+					}catch (DatabaseException e1) {
+						JOptionPane.showMessageDialog(null,e1.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+					}catch (RoomException e2) {
+						JOptionPane.showMessageDialog(null,e2.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+					}catch (AccountException e3) {
+						JOptionPane.showMessageDialog(null,e3.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+					}catch (ReservationException e4) {
+						JOptionPane.showMessageDialog(null,e4.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 					}
-					catch (DatabaseException e1) {JOptionPane.showMessageDialog(null,e1.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);}	
-					catch (RoomException e2) {JOptionPane.showMessageDialog(null,e2.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);}
-					catch (AccountException e3) {JOptionPane.showMessageDialog(null,e3.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);}
-					catch (ReservationException e4) {JOptionPane.showMessageDialog(null,e4.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);}
 					
 					Stage stage = (Stage) main.getScene().getWindow();
 					stage.setScene(ViewSwitcher.switchTo(Views.MYRESERVATIONS, null));
@@ -191,7 +197,8 @@ public class SearchGC implements Initializable{
 		if(Session.getSession().isLogged()) {
 			Stage stage = (Stage) main.getScene().getWindow();
 			stage.setScene(ViewSwitcher.switchTo(Views.MYACCOUNT,null));
-			}
+		}
+		
 		else {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.switchTo(Views.HOME, null));
@@ -220,15 +227,17 @@ public class SearchGC implements Initializable{
 						roomsList.add(r);
 					}
 				}
+				
+			}else {
+				roomsList=tempList;
 			}
-			else {roomsList=tempList;}
+			
 			this.searchResult = FXCollections.observableArrayList(roomsList);
 				
 		}catch(DatabaseException de){
-			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
-	
+			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR,JOptionPane.ERROR_MESSAGE);
 		}catch(NotFoundException ne){
-			JOptionPane.showMessageDialog(null,ne.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,ne.getMessage(),ERROR,JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -252,16 +261,18 @@ public class SearchGC implements Initializable{
 					if(r.getOwner().getCf().compareTo(Session.getSession().getCurrUser().getAccount().getCf()) != 0 ) {
 						roomsList.add(r);
 					}
-				}
+				}	
+			
+			}else {
+				roomsList=tempList;
 			}
-			else {roomsList=tempList;}
+			
 			this.searchResult = FXCollections.observableArrayList(roomsList);
 				
 		}catch(DatabaseException de){
-			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
-	
+			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR,JOptionPane.ERROR_MESSAGE);
 		}catch(NotFoundException ne){
-			JOptionPane.showMessageDialog(null,ne.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,ne.getMessage(),ERROR,JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -281,7 +292,6 @@ public class SearchGC implements Initializable{
 			bean.setNumAvailableSeats(Integer.parseInt(search));
 		}
 	
-		
 		try {
 			
 			bean.validateSeats();
@@ -296,17 +306,19 @@ public class SearchGC implements Initializable{
 						roomsList.add(r);
 					}
 				}
+			
+			}else {
+				roomsList = tempList;
 			}
-			else {roomsList=tempList;}
+			
 			this.searchResult = FXCollections.observableArrayList(roomsList);
 				
 		}catch(DatabaseException de){
-			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
-	
+			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR,JOptionPane.ERROR_MESSAGE);
 		}catch(NotFoundException ne){
-			JOptionPane.showMessageDialog(null,ne.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,ne.getMessage(),ERROR,JOptionPane.ERROR_MESSAGE);
 		}catch(RoomException re){
-			JOptionPane.showMessageDialog(null,re.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,re.getMessage(),ERROR,JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -335,16 +347,18 @@ public class SearchGC implements Initializable{
 					}
 				}
 			}
-			else {roomsList=tempList;}
+			else {
+				roomsList=tempList;
+			}
+			
 			this.searchResult = FXCollections.observableArrayList(roomsList);
 				
 		}catch(DatabaseException de){
-			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
-	
+			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR,JOptionPane.ERROR_MESSAGE);
 		}catch(NotFoundException ne){
-			JOptionPane.showMessageDialog(null,ne.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,ne.getMessage(),ERROR,JOptionPane.ERROR_MESSAGE);
 		}catch(RoomException re) {
-			JOptionPane.showMessageDialog(null,re.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,re.getMessage(),ERROR,JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -366,15 +380,16 @@ public class SearchGC implements Initializable{
 					}
 				}
 			}
-			else {roomsList=tempList;}
+			else {
+				roomsList=tempList;
+			}
+			
 			this.searchResult = FXCollections.observableArrayList(roomsList);
 				
 		}catch(DatabaseException de){
-			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
-	
+			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR,JOptionPane.ERROR_MESSAGE);
 		}catch(NotFoundException ne){
-			JOptionPane.showMessageDialog(null,ne.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,ne.getMessage(),ERROR,JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
 }

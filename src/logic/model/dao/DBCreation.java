@@ -139,11 +139,11 @@ public class DBCreation {
 			driverEx.printStackTrace();
 		
 		}finally {
-			if (stmt != null) {
-				stmt.close();
-			}
 			if (conn != null) {
 				conn.close();
+			}
+			if (stmt != null) {
+				stmt.close();
 			}
 		}
 	}

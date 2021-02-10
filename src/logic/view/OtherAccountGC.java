@@ -53,6 +53,8 @@ public class OtherAccountGC implements Initializable {
 	@FXML
 	private ListView<Review> reviewsList;
 	
+	private static final String ERROR = "ERROR";
+	
 	private ObservableList<Review> reviews;
 	private Person person;
 	
@@ -134,7 +136,7 @@ public class OtherAccountGC implements Initializable {
 			this.person = aContr.getOtherAccountInfo(pBean);
 		
 		}catch(DatabaseException de) {
-			JOptionPane.showMessageDialog(null,de.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -149,7 +151,7 @@ public class OtherAccountGC implements Initializable {
 			this.reviews = FXCollections.observableArrayList(rContr.getReceivedReviews(accBean));
 		
 		}catch(DatabaseException de) {
-			JOptionPane.showMessageDialog(null,de.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	

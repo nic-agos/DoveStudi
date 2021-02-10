@@ -33,6 +33,8 @@ public class MyRoomsGC implements Initializable {
 	@FXML
 	private ListView<Room> myRoomsList;
 	
+	private static final String ERROR = "ERROR";
+	
 	private ObservableList<Room> myRooms;
 	
 	@Override
@@ -82,8 +84,12 @@ public class MyRoomsGC implements Initializable {
 					RoomBean bean = new RoomBean();
 					bean.setId(item.getId());
 					RoomController ctrl = RoomController.getInstance();
-					try{ctrl.deleteRoom(bean);}
-					catch (DatabaseException e1) {JOptionPane.showMessageDialog(null,e1.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);}	
+					try{
+						ctrl.deleteRoom(bean);
+					}catch (DatabaseException e1) {
+						JOptionPane.showMessageDialog(null,e1.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+					}
+					
 					Stage stage = (Stage) main.getScene().getWindow();
 					stage.setScene(ViewSwitcher.switchTo(Views.MYROOMS, null));
 				});
@@ -103,7 +109,7 @@ public class MyRoomsGC implements Initializable {
 			this.myRooms=FXCollections.observableArrayList(ctrl.getMyRooms(bean));
 		}
 		catch (DatabaseException ex1) {
-			JOptionPane.showMessageDialog(null,ex1.getMessage(),"ERROR", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,ex1.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 		
 		

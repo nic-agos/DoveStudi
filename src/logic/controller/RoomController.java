@@ -13,6 +13,7 @@ import logic.model.*;
 
 public class RoomController {
 
+	private static final String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss"; 
 //	implemented with singleton pattern
 	private static RoomController instance = null;
 	
@@ -83,7 +84,7 @@ public class RoomController {
 		Account owner;
 		Person ownerPerson;
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_PATTERN);
 		LocalDateTime currentDate = LocalDateTime.now();
 		
 		try {
@@ -155,7 +156,7 @@ public class RoomController {
 		Person ownerPerson;
 		Account ownerAccount;
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_PATTERN);
 		LocalDateTime currentDate = LocalDateTime.now();
 		
 		try {
@@ -220,7 +221,7 @@ public class RoomController {
 		Person ownerPerson;
 		Account ownerAccount;
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_PATTERN);
 		LocalDateTime currentDate = LocalDateTime.now();
 		
 		try {
@@ -279,7 +280,7 @@ public class RoomController {
 		Person ownerPerson;
 		Account ownerAccount;
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_PATTERN);
 		LocalDateTime currentDate = LocalDateTime.now();
 		
 		try {
@@ -323,7 +324,7 @@ public class RoomController {
 			return rooms;
 			
 			}else {
-				throw new NotFoundException("Rooms with " + roomBean.getNumAvailableSeats() + " or more available seats");
+				throw new NotFoundException("Rooms with " + roomBean.getNumAvailableSeats() + " or more available seats ");
 			}
 			
 		}catch (SQLException se) {
@@ -340,7 +341,7 @@ public class RoomController {
 		RoomBean temp1 = new RoomBean();
 		Room room;
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_PATTERN);
 		LocalDateTime currentDate = LocalDateTime.now();
 		
 		try {
@@ -392,7 +393,7 @@ public class RoomController {
 		PersonBean persBean;
 		AccountBean temp1 = new AccountBean();
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_PATTERN);
 		LocalDateTime currentDate = LocalDateTime.now();
 		
 		try {
@@ -433,7 +434,7 @@ public class RoomController {
 				return rooms;
 			
 			}else {
-				throw new NotFoundException("Available rooms not found");
+				throw new NotFoundException("Available rooms ");
 			}
 			
 		}catch (SQLException se) {

@@ -29,6 +29,8 @@ public class CreateGroupGC implements Initializable{
 	@FXML
 	private TextField nameField;
 	
+	private static final String ERROR = "ERROR";
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		/*nothing to do here for now*/
@@ -54,11 +56,10 @@ public class CreateGroupGC implements Initializable{
 			}
 			
 		}catch(DatabaseException e) {
-			JOptionPane.showMessageDialog(null,e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,e.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}catch(GroupException ge) {
-			JOptionPane.showMessageDialog(null,ge.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,ge.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
-		
 	}
 	
 	@FXML

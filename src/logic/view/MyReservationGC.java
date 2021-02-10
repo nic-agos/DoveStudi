@@ -153,9 +153,14 @@ public class MyReservationGC implements Initializable{
 					ReservationBean bean = new ReservationBean();
 					bean.setId(item.getId());
 					ReservationController ctrl = ReservationController.getInstance();
-					try {ctrl.deleteReservation(new ReservationBean());}
-					catch (DatabaseException exc) {JOptionPane.showMessageDialog(null,exc.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);}
-					catch (ReservationException ex) {JOptionPane.showMessageDialog(null,ex.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);}
+					try {
+						ctrl.deleteReservation(new ReservationBean());
+					
+					}catch (DatabaseException exc) {
+						JOptionPane.showMessageDialog(null,exc.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+					}catch (ReservationException ex) {
+						JOptionPane.showMessageDialog(null,ex.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+					}
 				});
 				
 				Button maps = new Button ("GMaps Link");

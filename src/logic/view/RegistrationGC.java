@@ -48,6 +48,8 @@ public class RegistrationGC implements Initializable{
 	@FXML
 	private PasswordField pswLbl;
 	
+	private static final String ERROR = "ERROR";
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		gradeBox.getItems().addAll("Elementary","MiddleSchool","HighSchool","University","PhD");
@@ -75,16 +77,17 @@ public class RegistrationGC implements Initializable{
 			aBean.validate();
 			RegistrationController regCtrl = RegistrationController.getInstance();
 			value = regCtrl.register(aBean, pBean);
+			
 			if(value) {
 				Stage stage = (Stage) main.getScene().getWindow();
 				stage.setScene(ViewSwitcher.switchTo(Views.LOGIN,null));
 			}
 		}
 		catch (AccountException e){
-			JOptionPane.showMessageDialog(null,e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,e.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 		catch (DatabaseException ex) {
-			JOptionPane.showMessageDialog(null,ex.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,ex.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	

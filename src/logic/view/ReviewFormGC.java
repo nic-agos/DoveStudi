@@ -49,6 +49,8 @@ public class ReviewFormGC implements Initializable{
 	@FXML
 	private RadioButton guestRB;
 	
+	private static final String ERROR = "ERROR";
+	
 	String username; 
 	
 	public ReviewFormGC(String username) {
@@ -77,6 +79,7 @@ public class ReviewFormGC implements Initializable{
 			r.setTag("GUEST");
 		if(userType.getSelectedToggle().equals(hostRB))
 			r.setTag("HOST");
+		
 		try {
 			r.validate();
 			ReviewController ctrl = ReviewController.getInstance();
@@ -86,16 +89,16 @@ public class ReviewFormGC implements Initializable{
 				Stage stage = (Stage) main.getScene().getWindow();
 				stage.setScene(ViewSwitcher.switchTo(Views.MYREVIEWS, null));
 			}
-			
 		}
+		
 		catch (ReviewException e){
-			JOptionPane.showMessageDialog(null,e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,e.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 		catch (DatabaseException ex) {
-			JOptionPane.showMessageDialog(null,ex.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,ex.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 		catch (AccountException exc) {
-			JOptionPane.showMessageDialog(null,exc.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,exc.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}	
 	}
 	

@@ -29,6 +29,8 @@ public class AddGroupMemberGC implements Initializable{
 	@FXML
 	private TextField usernameLbl;
 	
+	private static final String ERROR = "ERROR";
+	
 	private String groupName;
 	
 	@Override
@@ -63,11 +65,10 @@ public class AddGroupMemberGC implements Initializable{
 			}
 			
 		}catch(DatabaseException e) {
-			JOptionPane.showMessageDialog(null,e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,e.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}catch(AccountException ae) {
-			JOptionPane.showMessageDialog(null,ae.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,ae.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
-		
 	}
 	
 	@FXML
