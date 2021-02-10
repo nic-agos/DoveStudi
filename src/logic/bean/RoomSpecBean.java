@@ -1,5 +1,11 @@
 package logic.bean;
 
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import logic.exception.*;
 
 public class RoomSpecBean {
@@ -102,9 +108,19 @@ public class RoomSpecBean {
 		
 	}
 	
-	public void validate() throws RoomException {
+	public void validate() throws RoomException, ParseException {
 		
 		String errors = "";
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		LocalDateTime currentDate = LocalDateTime.now();
+		
+		String dateTemp = this.date + " " + this.startTime;
+		LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
+		
+	    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+	    Date d1 = sdf.parse(this.startTime);
+	    Date d2 = sdf.parse(this.endTime);
 		
 		if(this.description.length() > 300 || this.description.isBlank()) {
 			errors = errors + "description not valid   ";
@@ -115,10 +131,24 @@ public class RoomSpecBean {
 		if(this.date.isBlank()) {
 			errors = errors + "date not valid   ";
 		}
+		if(currentDate.compareTo(resDateTime) > 0) {
+			errors = errors + "Past date not allowed   ";
+		}
+		if(d1.compareTo(d2) > 0) {
+			errors = errors + "Start time must be earlier than end time   ";
+		}
 		
 		if(!errors.isEmpty()) {
 			
 			throw new RoomException(errors);
 		}	
+	}
+	
+	public void validateDate() throws RoomException {
+		
+		if(this.date.length() != 10 || this.date.isBlank()) {
+			
+			throw new RoomException ("Date not valid, format YYYY:MM:DD required");
+		}
 	}
 }

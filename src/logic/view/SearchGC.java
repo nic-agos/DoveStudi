@@ -52,7 +52,9 @@ public class SearchGC implements Initializable{
 	private TextField searchBar;
 	
 	private static final String ERROR = "Error";
+	
 	private String search;
+	
 	private ObservableList<Room> searchResult;
 	
 	public SearchGC() {
@@ -205,7 +207,7 @@ public class SearchGC implements Initializable{
 		List<Room> tempList = new ArrayList<>();
 		List<Room> roomsList = new ArrayList<>();
 		
-		bean.setCap(searchBar.getText());
+		bean.setCap(search);
 		
 		try {
 			tempList = rContr.searchRoomByCap(bean);
@@ -238,7 +240,7 @@ public class SearchGC implements Initializable{
 		List<Room> tempList = new ArrayList<>();
 		List<Room> roomsList = new ArrayList<>();
 		
-		bean.setUsername(searchBar.getText());
+		bean.setUsername(search);
 		
 		try {
 			tempList = rContr.searchRoomByHost(bean);
@@ -271,9 +273,19 @@ public class SearchGC implements Initializable{
 		List<Room> tempList = new ArrayList<>();
 		List<Room> roomsList = new ArrayList<>();
 		
-		bean.setNumAvailableSeats(Integer.parseInt(searchBar.getText()));
+		if(search.equals("")) {
+			
+			bean.setNumAvailableSeats(1);
+		
+		}else {
+			bean.setNumAvailableSeats(Integer.parseInt(search));
+		}
+	
 		
 		try {
+			
+			bean.validateSeats();
+			
 			tempList = rContr.searchRoomByAvailableSeats(bean);
 			
 			if(Session.getSession().getCurrUser() != null) {
@@ -293,6 +305,8 @@ public class SearchGC implements Initializable{
 	
 		}catch(NotFoundException ne){
 			JOptionPane.showMessageDialog(null,ne.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+		}catch(RoomException re){
+			JOptionPane.showMessageDialog(null,re.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -304,9 +318,12 @@ public class SearchGC implements Initializable{
 		List<Room> tempList = new ArrayList<>();
 		List<Room> roomsList = new ArrayList<>();
 		
-		bean.setDate(searchBar.getText());
+		bean.setDate(search);
 		
 		try {
+			
+			bean.validateDate();
+			
 			tempList = rContr.searchRoomByDate(bean);
 			
 			if(Session.getSession().getCurrUser() != null) {
@@ -326,6 +343,8 @@ public class SearchGC implements Initializable{
 	
 		}catch(NotFoundException ne){
 			JOptionPane.showMessageDialog(null,ne.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+		}catch(RoomException re) {
+			JOptionPane.showMessageDialog(null,re.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	

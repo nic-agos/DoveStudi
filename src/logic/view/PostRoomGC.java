@@ -1,6 +1,7 @@
 package logic.view;
 
 import java.net.URL;
+import java.text.ParseException;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -48,11 +49,12 @@ public class PostRoomGC implements Initializable{
 	@FXML
 	private ChoiceBox<String> end;
 	
+	private static final String ERROR = "Error";
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		start.getItems().addAll("7:00","7:30","7:00","7:30","7:00","7:30","7:00","7:30","7:00","7:30","7:00","7:30","7:30","7:30","7:30","7:30","7:30","7:30","7:30","7:30","7:30","7:00","7:30","7:00","7:30","7:00","7:30","7:00");
-		end.getItems().addAll("7:00","7:30","7:00","7:30","7:00","7:30","7:00","7:30","7:00","7:30","7:00","7:30","7:30","7:30","7:30","7:30","7:30","7:30","7:30","7:30","7:30","7:00","7:30","7:00","7:30","7:00","7:30","7:00");
+		start.getItems().addAll("07:00","07:30","08:00","08:30","09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00","17:30","18:00","18:30","19:00","19:30","20:00","20:30");
+		end.getItems().addAll("07:30","08:00","08:30","09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00","17:30","18:00","18:30","19:00","19:30","20:00","20:30","21:00");
 	}
 	
 	@FXML
@@ -62,12 +64,12 @@ public class PostRoomGC implements Initializable{
 		
 		rBean.setName(roomName.getText());
 		rBean.setAddress(roomAddress.getText());
-		if(seatLbl.getText() == "") {
+		if(seatLbl.getText().equals("")) {
 			rBean.setNumParticipants(0);
 		}else {
 			rBean.setNumParticipants(Integer.parseInt(seatLbl.getText()));
 		}
-		//rBean.setOwner(Session.getSession().getCurrUser().getAccount().getCf());
+		rBean.setOwner(Session.getSession().getCurrUser().getAccount().getCf());
 		
 		rSBean.setDescription(description.getText());
 		rSBean.setDate(String.valueOf(date.getValue()));
@@ -86,10 +88,12 @@ public class PostRoomGC implements Initializable{
 			}
 		}
 		catch(RoomException e) {
-			 JOptionPane.showMessageDialog(null,e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			 JOptionPane.showMessageDialog(null,e.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 		catch(DatabaseException ex){
-			 JOptionPane.showMessageDialog(null,ex.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+			 JOptionPane.showMessageDialog(null,ex.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
+		} catch (ParseException pe) {
+			JOptionPane.showMessageDialog(null,pe.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}	
 	}
 	

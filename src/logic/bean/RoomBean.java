@@ -135,5 +135,9 @@ public class RoomBean {
 			throw new RoomException(errors);
 		}	
 	}
-	
+	public void validateSeats() throws RoomException {
+		if(this.numAvailableSeats <= 0) {
+			throw new RoomException("Num participants must be positive");
+		}
+	}
 }

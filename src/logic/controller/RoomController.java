@@ -32,6 +32,7 @@ public class RoomController {
 		
 		AccountBean accBean = new AccountBean();
 		AccountBean tempAccBean = new AccountBean();
+		RoomSpecBean rSBean = new RoomSpecBean();
 		
 		AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
 		
@@ -57,6 +58,9 @@ public class RoomController {
 				return (accountDao.updateNumberToken(accBean) != 0);
 			
 			}else {
+				rSBean.setId(spec);
+				roomSpecDao.removeRoomSpec(rSBean);
+				
 				throw new RoomException("cannot be created");
 			}
 			
