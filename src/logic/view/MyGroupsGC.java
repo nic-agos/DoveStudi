@@ -45,6 +45,7 @@ public class MyGroupsGC implements Initializable{
 		setGroups();
 		
 		if(!groups.isEmpty()) {
+			groupsList.setFocusTraversable(false);
 			groupsList.setItems(groups);
 			groupsList.setCellFactory(list -> new GroupCell());
 		}

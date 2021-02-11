@@ -98,7 +98,7 @@ public class SearchGC implements Initializable{
 			super.updateItem(item,empty);
 			if(!empty) {
 				VBox v = new VBox();
-				Label title = new Label("Room Name+ "+item.getName());
+				Label title = new Label("Room Name "+item.getName());
 				Label description = new Label(item.getSpecification().getDescription());
 				Label address = new Label ("Address: ********");
 				Label cap = new Label("CAP: " + item.getSpecification().getCap());

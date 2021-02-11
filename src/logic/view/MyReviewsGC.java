@@ -59,7 +59,7 @@ public class MyReviewsGC implements Initializable{
 			super.updateItem(item,empty);
 			if(!empty) {
 				VBox v = new VBox();
-				Label rate = new Label("Rate" + String.valueOf(item.getRating()));
+				Label rate = new Label("Rate: " + String.valueOf(item.getRating()));
 				Label description = new Label("Description" + item.getDescription());
 				Label title = new Label(item.getTitle());
 				Label tag = new Label(item.getTag());

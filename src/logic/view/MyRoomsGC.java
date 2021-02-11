@@ -42,6 +42,7 @@ public class MyRoomsGC implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		setRooms();
 		if(!myRooms.isEmpty()) {
+			myRoomsList.setFocusTraversable(false);
 			myRoomsList.setItems(myRooms);
 			myRoomsList.setCellFactory(list -> new RoomCell());
 		}
@@ -53,7 +54,7 @@ public class MyRoomsGC implements Initializable {
 			super.updateItem(item,empty);
 			if(!empty) {
 				VBox v = new VBox();
-				Label title = new Label("Room Name+ "+item.getName());
+				Label title = new Label("Room Name: "+item.getName());
 				Label description = new Label(item.getSpecification().getDescription());
 				Label address = new Label ("Address: " + item.getAddress());
 				Label cap = new Label("CAP: " + item.getSpecification().getCap());
@@ -78,6 +79,7 @@ public class MyRoomsGC implements Initializable {
 				}
 				
 				ListView<Hyperlink> partecipants = new ListView<>();
+				partecipants.setFocusTraversable(false);
 				partecipants.setItems(linkList);
 				partecipants.setOrientation(Orientation.HORIZONTAL);
 				partecipants.setPrefHeight(30);
