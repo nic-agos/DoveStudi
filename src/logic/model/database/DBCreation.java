@@ -125,25 +125,33 @@ public class DBCreation {
 	
 	private static void createDatabase() throws SQLException {
 		
+		String driver = DRIVER_CLASS_NAME;
+		
 		Connection conn = null;
 		Statement stmt = null;
 		
 		try {
-			Class.forName(DRIVER_CLASS_NAME);
+			Class.forName(driver);
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			stmt = conn.createStatement();
 			stmt.executeUpdate(CREATE_DATABASE_QUERY);
 			
-		}catch (ClassNotFoundException driverEx) {
-			
-			driverEx.printStackTrace();
-		
-		}finally {
-			if (conn != null) {
-				conn.close();
-			}
-			if (stmt != null) {
-				stmt.close();
+		}catch(ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			}catch(SQLException e2){
+				e2.printStackTrace();
+			}try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			}catch(SQLException e3) {
+				e3.printStackTrace();
 			}
 		}
 	}

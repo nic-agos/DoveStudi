@@ -159,7 +159,7 @@ public class MyGroupsGC implements Initializable{
 		AccountBean aBean = new AccountBean();
 		List<Group> partGroups = new ArrayList<>();
 		List<Group> adminGroups = new ArrayList<>();
-		List<Group> groupsList = new ArrayList<>();
+		List<Group> gList = new ArrayList<>();
 		List<Group> temp = new ArrayList<>();
 		GroupController gContr = GroupController.getInstance();
 		
@@ -174,10 +174,10 @@ public class MyGroupsGC implements Initializable{
 					partGroups.add(g);
 				}
 			}
-			groupsList.addAll(adminGroups);
-			groupsList.addAll(partGroups);
+			gList.addAll(adminGroups);
+			gList.addAll(partGroups);
 			
-			this.groups = FXCollections.observableArrayList(groupsList);
+			this.groups = FXCollections.observableArrayList(gList);
 			
 		}catch(DatabaseException de) {
 			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);

@@ -24,8 +24,9 @@ public class DBConnection {
 	}
 	
 	private static void openDBConnection() throws SQLException {
+		String driver = DRIVER_CLASS_NAME;
 		try {
-			Class.forName(DRIVER_CLASS_NAME);
+			Class.forName(driver);
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			
 		}catch (ClassNotFoundException driverEx) {
