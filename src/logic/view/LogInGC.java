@@ -36,8 +36,6 @@ public class LogInGC implements Initializable{
 	
 	private static final String ERROR = "ERROR";
 	
-	private Person p;
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		/*nothing to do here for now*/
@@ -45,6 +43,7 @@ public class LogInGC implements Initializable{
 	
 	@FXML
 	public void logIn() {
+		Person p;
 		AccountBean bean = new AccountBean();
 		bean.setEmail(emailField.getText());
 		bean.setPassword(pswLbl.getText());		
