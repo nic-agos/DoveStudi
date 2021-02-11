@@ -117,13 +117,13 @@ public class DBCreation {
 			+ " CONSTRAINT `reviewer` FOREIGN KEY (`Reviewer`) REFERENCES `account` (`CF`) ON DELETE RESTRICT ON UPDATE RESTRICT\r\n"
 			+ ") ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
 	
-	private DBCreation() throws SQLException {
+	private DBCreation() {
 		
 		createDatabase();
 		
 	}
 	
-	private static void createDatabase() throws SQLException {
+	private static void createDatabase() {
 		
 		String driver = DRIVER_CLASS_NAME;
 		
@@ -136,7 +136,7 @@ public class DBCreation {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(CREATE_DATABASE_QUERY);
 			
-		}catch(ClassNotFoundException e1) {
+		}catch(ClassNotFoundException | SQLException e1 ) {
 			e1.printStackTrace();
 		}
 		finally {
@@ -156,7 +156,7 @@ public class DBCreation {
 		}
 	}
 	
-	private final void executeQuery(String query) throws SQLException {
+	private final void executeQuery(String query) {
 		
 		Connection conn = null;
 		Statement stmt= null;
@@ -167,24 +167,32 @@ public class DBCreation {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(query);
 			
+		}catch(SQLException e){
+			e.printStackTrace();
 		}finally {
+
 			if (stmt != null) {
-				stmt.close();
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 			if (conn != null) {
-				conn.close();
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
 	
+	
 	public static synchronized DBCreation getInstanceCreation() {
 		
 		if (instance == null) {
-			try {
-				instance = new DBCreation();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			instance = new DBCreation();
 		}
 
 		return instance;
@@ -203,11 +211,9 @@ public class DBCreation {
 			d.executeQuery(CREATE_TABLE_REVIEW);
 			d.executeQuery(CREATE_TABLE_GROUP);
 		
-		}catch(SQLException e) {
-			e.printStackTrace();
+		}catch(NullPointerException ne) {
+			ne.printStackTrace();
 		}
-		
-		
 	}
 }
 
