@@ -18,12 +18,12 @@ public class DBConnection {
 	
 	private static Connection conn = null;
 
-	private DBConnection() throws SQLException {
+	private DBConnection() {
 		
 		openDBConnection();
 	}
 	
-	private static void openDBConnection() throws SQLException {
+	private static void openDBConnection() {
 		String driver = DRIVER_CLASS_NAME;
 		try {
 			Class.forName(driver);
@@ -31,17 +31,25 @@ public class DBConnection {
 			
 		}catch (ClassNotFoundException driverEx) {
 			driverEx.printStackTrace();
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
 		}
 	}
 		
-	public static synchronized DBConnection getInstanceConnection() throws SQLException {
+	public static synchronized DBConnection getInstanceConnection() {
 
 		if (instance == null) {
 			instance = new DBConnection();
 
-		} else if (instance.getConnection().isClosed()) {
-			openDBConnection();
-		}
+		} else
+			try {
+				if (instance.getConnection().isClosed()) {
+					openDBConnection();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		
 		return instance;
 	}	

@@ -177,26 +177,36 @@ public class DBCreation {
 		}
 	}
 	
-	public static synchronized DBCreation getInstanceCreation() throws SQLException {
+	public static synchronized DBCreation getInstanceCreation() {
 		
 		if (instance == null) {
-			instance = new DBCreation();
+			try {
+				instance = new DBCreation();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return instance;
 	}
 	
-	public static final void createTables() throws SQLException {
+	public static final void createTables() {
 		
-		DBCreation d = DBCreation.getInstanceCreation();
+		try {
+			DBCreation d = DBCreation.getInstanceCreation();
+			
+			d.executeQuery(CREATE_TABLE_ACCOUNT);
+			d.executeQuery(CREATE_TABLE_PERSON);
+			d.executeQuery(CREATE_TABLE_ROOMSPEC);
+			d.executeQuery(CREATE_TABLE_ROOM);
+			d.executeQuery(CREATE_TABLE_RESERVATION);
+			d.executeQuery(CREATE_TABLE_REVIEW);
+			d.executeQuery(CREATE_TABLE_GROUP);
 		
-		d.executeQuery(CREATE_TABLE_ACCOUNT);
-		d.executeQuery(CREATE_TABLE_PERSON);
-		d.executeQuery(CREATE_TABLE_ROOMSPEC);
-		d.executeQuery(CREATE_TABLE_ROOM);
-		d.executeQuery(CREATE_TABLE_RESERVATION);
-		d.executeQuery(CREATE_TABLE_REVIEW);
-		d.executeQuery(CREATE_TABLE_GROUP);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
 		
 	}
 }
