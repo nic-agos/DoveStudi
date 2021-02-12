@@ -235,9 +235,10 @@
 
 <meta charset="ISO-8859-1">
 <title>My Groups</title>
+
 <link href="css/myGroups.css" rel="stylesheet"/>
-<link href="css/btn2.css" rel="stylesheet"/>
-<link href="css/btn1.css" rel="stylesheet"/>
+<link href="css/sidebar.css" rel="stylesheet"/>
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

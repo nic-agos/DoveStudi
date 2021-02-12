@@ -1,10 +1,5 @@
 @charset "ISO-8859-1";
 body{
-	/* width: 100vw;
-	height:100vh; */
-	/* margin:0;
-	overflow: hidden;
-	font-family: sans-serif; */
 	margin:0;
 }
 *{
@@ -52,4 +47,36 @@ form{
 	width:670px;
 	height:420px;
 	left:30%;
+}
+#postBtn{
+	border:1px solid #FF5500;
+	color:#FF5500;
+	background:#ffffff;
+}
+#postBtn:hover{
+	background:#ff5500;
+	color:#ffffff;
+}
+#postBtn a{
+	color:#ff5500;
+	text-decoration: none;
+} 
+#postBtn a:hover{
+	color:#ffffff;
+}
+#confirmBtn{
+	border:1px solid #FF5500;
+	color:#FF5500;
+	background:#ffffff;
+}
+#confirmBtn:hover{
+	background:#ff5500;
+	color:#ffffff;
+}
+#confirmBtntn a{
+	color:#ff5500;
+	text-decoration: none;
+} 
+#confirmBtn a:hover{
+	color:#ffffff;
 }

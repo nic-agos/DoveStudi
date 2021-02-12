@@ -6,18 +6,6 @@ body{
 	overflow: hidden;
 	font-family: sans-serif;
 }
-
-/* .curved{
-	background:#ffffff;
-	color:#000000;
-	text-align:center;
-}
-
-.curved svg{
-	display:block;
-	bottom:0px;
-} */
-
 p{
 	position:absolute;
 	font-size:20px;
@@ -48,46 +36,19 @@ form{
 #line input{
 	font-size:16px;
 }
-.registerbtn{
-	margin-top:25px;
-	font-weight:bold;
-	height: 50px;
-	width: 160px;
-	font-size: 16px;
-	color: rgb(29, 35, 39);
-	background:rgb(0, 0, 0, 0);
-	border: none;
-	outline: none;
-	cursor: pointer;
-	border-radius: 20px;
-	transition: .4s;
-	font-size: 18px;
+#registerBtn{
+	border:1px solid #FF5500;
+	color:#FF5500;
+	background:#ffffff;
 }
-.registerbtn a{
-	font-size: 18px;
-	text-decoration:none;
-	color:rgb(29, 35, 39);
-	background:rgba(76, 175, 80, 0.0);
+#registerBtn:hover{
+	background:#ff5500;
+	color:#ffffff;
 }
-.registerbtn:hover{
-	background:#FF5500;
+#registerBtn a{
+	color:#ff5500;
+	text-decoration: none;
+} 
+#registerBtn a:hover{
+	color:#ffffff;
 }
-
-/* input{
-	outline:none;
-	background: none;
-	color: black;
-	font-size: 18px;
-	width: 50%;
-	margin: 8px 10px;
-	padding:3px;
-}
-select{
-	outline:none;
-	background: none;
-	color: black;
-	font-size: 18px;
-	width: 50%;
-	margin: 8px 10px;
-	padding:3px;
-} */

@@ -7,50 +7,19 @@ body{
   padding:0px;
   font-family:sans-serif; 
 }
-
-#sidebar{
-	position:fixed;
-	width:200px;
-	height:100%;
-	background:#373d39;
-	left: -200px;
-	transition: .4s;
+#createBtn{
+	border:1px solid #FF5500;
+	color:#FF5500;
+	background:#ffffff;
 }
-
-#sidebar.active {
-	left:0px;
-	background:#373d39;
-}
-
-#sidebar ul li {
+#createBtn:hover{
+	background:#ff5500;
 	color:#ffffff;
-	list-style:none;
-	padding:15px 10px;
-	/* border-bottom: 1px solid #FF5500; */
-	
 }
-#sidebar ul li a{
+#createBtn a{
+	color:#ff5500;
+	text-decoration: none;
+} 
+#createBtn a:hover{
 	color:#ffffff;
-	background:rgb(0,0,0,0);
-	text-decoration:none;
-}
-#sidebar ul li:hover{
-	background-color: #121413;
-}
-#sidebar ul li a:hover{
-	background-color: #121413;
-}
-
-#sidebar .toggle-btn {
-	position:absolute; 
-	left:230px;
-	top:60px; 
-}
-
-#sidebar .toggle-btn span {
-	display:block;
-	width:30px;
-	height:5px;
-	background: #000000;
-	margin: 3px 0px;
 }

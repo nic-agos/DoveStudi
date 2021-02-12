@@ -15,9 +15,11 @@ body{
 	background:#373d39;
 	left: -200px;
 	transition: .4s;
+	top:0px;
 }
 
 #sidebar.active {
+	top:0px;
 	left:0px;
 	background:#373d39;
 }

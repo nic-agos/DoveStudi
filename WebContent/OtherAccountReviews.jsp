@@ -50,6 +50,7 @@
 <meta charset="ISO-8859-1">
 <title>My Account</title>
 <link href="css/account.css" rel="stylesheet"/>
+<link href="css/sidebar.css" rel="stylesheet"/>
 <link href="css/btn1.css" rel="stylesheet"/>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <!-- Riga dopo è in conflitto con le tab -->

@@ -1,17 +1,50 @@
 @charset "ISO-8859-1";
-#btn{
+#createGroupBtn{
 	border:1px solid #FF5500;
 	color:#FF5500;
 	background:#ffffff;
 }
-#btn:hover{
+#createGroupBtn:hover{
 	background:#ff5500;
 	color:#ffffff;
 }
-#btn a{
+#createGroupBtn a{
 	color:#ff5500;
 	text-decoration: none;
 } 
-#btn a:hover{
+#createGroupBtn a:hover{
 	color:#ffffff;
 }
+#addToGroup{
+	border:1px solid #FF5500;
+	color:#FF5500;
+	background:#ffffff;
+}
+#addToGroup:hover{
+	background:#ff5500;
+	color:#ffffff;
+}
+#addToGroup a{
+	color:#ff5500;
+	text-decoration: none;
+} 
+#addToGroup a:hover{
+	color:#ffffff;
+}
+#reviewBtn{
+	border:1px solid #FF5500;
+	color:#FF5500;
+	background:#ffffff;
+}
+#reviewBtn:hover{
+	background:#ff5500;
+	color:#ffffff;
+}
+#reviewBtn a{
+	color:#ff5500;
+	text-decoration: none;
+} 
+#reviewBtn a:hover{
+	color:#ffffff;
+}
+

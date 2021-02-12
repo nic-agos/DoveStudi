@@ -27,27 +27,19 @@ body{
 .curved.upper{
 	background:#FF5500;
 }
-
-/* .buttons button{
-	font-weight:bold;
-	height: 50px;
-	width: 160px;
-	font-size: 16px;
-	color: rgb(29, 35, 39);
-	background:rgb(0, 0, 0, 0);
-	border: none;
-	outline: none;
-	cursor: pointer;
-	border-radius: 20px;
-	transition: .4s;
+#btn{
+	border:1px solid #FF5500;
+	color:#FF5500;
+	background:#ffffff;
 }
-
-.buttons button a{
-	font-size: 18px;
-	text-decoration:none;
-	color:rgb(29, 35, 39);
-	background:rgba(76, 175, 80, 0.0);
+#btn:hover{
+	background:#ff5500;
+	color:#ffffff;
 }
-.buttons button:hover{
-	background:#FF5500;
-} */
+#btn a{
+	color:#ff5500;
+	text-decoration: none;
+} 
+#btn a:hover{
+	color:#ffffff;
+}

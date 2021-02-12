@@ -19,6 +19,22 @@ h5 a:hover{
 	margin-bottom:0px;
 	display:block;
 }
+#loginBtn{
+	border:1px solid #FF5500;
+	color:#FF5500;
+	background:#ffffff;
+}
+#loginBtn:hover{
+	background:#ff5500;
+	color:#ffffff;
+}
+#loginBtn a{
+	color:#ff5500;
+	text-decoration: none;
+} 
+#loginBtn a:hover{
+	color:#ffffff;
+}
 
 
 

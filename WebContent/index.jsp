@@ -8,7 +8,6 @@
 <meta charset="ISO-8859-1">
 <title>Welcome</title>
 <link href="css/welcome.css" rel="stylesheet" />
-<link href="css/btn1.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 </head>
@@ -24,17 +23,14 @@
 		<h3>Start looking for Rooms where to study with your friends</h3>
 		<div class="buttons">
 			<button id="btn" class="btn btn-outline-warning"
-				style="border: 2px solid #ff5500; font-size: 20px; margin-top: 30px; font-weight: 550;">
-				<a href="PostRoom.jsp">Post Room</a>
-			</button>
-			<button id="btn" class="btn btn-outline-warning"
-				style="border: 2px solid #ff5500; font-size: 20px; margin-top: 30px; font-weight: 550;">
+				style="border: 2px solid #ff5500; font-size: 20px; margin-top: 30px; margin-left:-5%;font-weight: 550;">
 				<a href="SearchRooms.jsp">Look for Rooms</a>
 			</button>
 			<button id="btn" class="btn btn-outline-warning"
 				style="border: 2px solid #ff5500; font-size: 20px; margin-top: 30px; font-weight: 550;">
 				<a href="Login.jsp">Log in</a>
 			</button>
+		</div>
 		</div>
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
 			<path fill="#FF5500" fill-opacity="1"
