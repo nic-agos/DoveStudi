@@ -26,7 +26,7 @@ public class ReviewController {
 		return instance;
 	}
 
-//	takes in input the reviewer cf, the rating, the description and the tag from reviewBean
+//	takes in input the reviewer cf, the title, the rating, the description and the tag from reviewBean
 //	and the username of the reviewed from personBean
 //	this method also update the Account host and guest rating 
 	public boolean makeReview(ReviewBean reviewBean, PersonBean personBean) throws DatabaseException, ReviewException, AccountException { 
@@ -218,7 +218,7 @@ public class ReviewController {
 		
 		double ratingSum = 0;
 		int size = 0;
-		List<ReviewBean> reviewsHost;
+		List<ReviewBean> reviewsHost = new ArrayList();
 		PersonBean persBean;
 		
 		try {
@@ -237,7 +237,7 @@ public class ReviewController {
 					return ratingSum/size;
 				
 				}else {
-					throw new ReviewException("No review as Host received by user "+ personBean.getUsername());
+					return 0;
 				}
 			
 			}else {
@@ -276,7 +276,7 @@ public class ReviewController {
 					return ratingSum/size;
 				
 				}else {
-					throw new ReviewException("No review as Host received by user "+ personBean.getUsername());
+					return 0;
 				}
 			
 			}else {
