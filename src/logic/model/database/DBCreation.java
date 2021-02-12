@@ -114,7 +114,7 @@ public class DBCreation {
 			+ " KEY `reviewer_idx` (`Reviewer`),\r\n"
 			+ " KEY `reviewed_idx` (`Reviewed`),\r\n"
 			+ " CONSTRAINT `reviewed` FOREIGN KEY (`Reviewed`) REFERENCES `person` (`ID`) ON DELETE CASCADE ON UPDATE RESTRICT,\r\n"
-			+ " CONSTRAINT `reviewer` FOREIGN KEY (`Reviewer`) REFERENCES `account` (`CF`) ON DELETE RESTRICT ON UPDATE RESTRICT\r\n"
+			+ " CONSTRAINT `reviewer` FOREIGN KEY (`Reviewer`) REFERENCES `account` (`CF`) ON DELETE CASCADE ON UPDATE RESTRICT\r\n"
 			+ ") ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
 	
 	private DBCreation() {

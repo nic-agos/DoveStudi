@@ -17,6 +17,9 @@ import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
+/*
+ * JUnit test class Agostinelli Niccolò matr. 0269776
+ */
 public class TestReviewController {
 	
 	@BeforeClass
