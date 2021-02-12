@@ -197,7 +197,7 @@ ReservationController rContr = ReservationController.getInstance();
 								<label>Address:</label>
 							</div>
                             <div class="col-md-7">
-                        		<p>${reservationsList.linkedRoom.address}</p>
+                        		<p><a href="https://www.google.com/maps/search/?api=1&query=${reservationsList.linkedRoom.address}">${reservationsList.linkedRoom.address}</a></p>
                             </div>
 	                    </div>
 		                    <div class="row" id="line">
