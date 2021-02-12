@@ -19,7 +19,7 @@ import logic.exception.DatabaseException;
 import logic.model.Person;
 import logic.util.Session;
 
-
+/*Linked FXML file: */
 public class MyAccountGC implements Initializable{
 	
 	@FXML

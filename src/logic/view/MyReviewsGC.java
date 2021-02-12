@@ -25,6 +25,7 @@ import logic.util.Session;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 
+/*Linked FXML file: MyReviews.*/
 public class MyReviewsGC implements Initializable{
 	
 	@FXML
@@ -42,6 +43,7 @@ public class MyReviewsGC implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setDone();setReceived();
+		//This view has got two separated lists and two different cells layout
 		if(doneReviews != null && !doneReviews.isEmpty()) {
 			doneList.setItems(doneReviews);
 			doneList.setCellFactory(list -> new DoneRevCell());
@@ -65,7 +67,7 @@ public class MyReviewsGC implements Initializable{
 				Label tag = new Label(item.getTag());
 				
 				description.setWrapText(true);
-				
+				// Link to the reviewd user
 				Hyperlink reviewdUser = new Hyperlink();
 				reviewdUser.setText(item.getReviewed().getUsername());
 				reviewdUser.setOnAction(e ->{
@@ -94,7 +96,7 @@ public class MyReviewsGC implements Initializable{
 				Label tag = new Label(item.getTag());
 				
 				description.setWrapText(true);
-				
+				// Link to the reviewing user
 				Hyperlink reviewingUser = new Hyperlink();
 				reviewingUser.setText(item.getReviewer().getPerson().getUsername());
 				reviewingUser.setOnAction(e ->{
@@ -110,7 +112,7 @@ public class MyReviewsGC implements Initializable{
 			}
 		}
 	}
-	
+	/*this method get all the done reviews by the current user and populate a local observable list*/
 	private void setDone() {
 		
 		ReviewController revContr = ReviewController.getInstance();
@@ -125,7 +127,7 @@ public class MyReviewsGC implements Initializable{
 			JOptionPane.showMessageDialog(null,de.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
+	/*As above, but for the received reviews*/
 	private void setReceived() {
 		ReviewController revContr = ReviewController.getInstance();
 		AccountBean accBean = new AccountBean();

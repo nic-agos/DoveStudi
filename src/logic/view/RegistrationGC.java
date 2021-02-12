@@ -20,7 +20,7 @@ import logic.exception.AccountException;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 
-
+/*Linked FXML file: */
 public class RegistrationGC implements Initializable{
 	
 	@FXML

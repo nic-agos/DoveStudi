@@ -30,6 +30,7 @@ import logic.util.ViewSwitcher;
 import logic.util.enumeration.Search;
 import logic.util.enumeration.Views;
 
+/*Linked FXML file: OtherAccount.fxml*/
 public class OtherAccountGC implements Initializable {
 	
 	@FXML
@@ -61,7 +62,7 @@ public class OtherAccountGC implements Initializable {
 	private Person person;
 	
 	public OtherAccountGC(String username) {
-		
+		// Constructor for getting user's info only based on username
 		getPerson(username);
 		
 		if(this.person != null) {
@@ -140,6 +141,7 @@ public class OtherAccountGC implements Initializable {
 		stage.setScene(ViewSwitcher.back());
 		}
 	}
+	//This method gets the user information and set an Entity with those
 	private void getPerson(String username) {
 		PersonBean pBean = new PersonBean();
 		pBean.setUsername(username);
@@ -154,6 +156,7 @@ public class OtherAccountGC implements Initializable {
 		}
 	}
 	
+	//This method get all the review of an account and set a local Observable list
 	private void getReviews() {
 		AccountBean accBean = new AccountBean();
 		ReviewController rContr = ReviewController.getInstance();

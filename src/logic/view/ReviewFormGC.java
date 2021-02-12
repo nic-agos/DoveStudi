@@ -25,7 +25,7 @@ import logic.util.Session;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 
-
+/*Linked FXML file: */
 public class ReviewFormGC implements Initializable{
 	
 	@FXML

@@ -24,6 +24,7 @@ import logic.util.Session;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 
+/*Linked FXML file: PostRoom.fxml*/
 public class PostRoomGC implements Initializable{
 	
 	@FXML
@@ -60,33 +61,35 @@ public class PostRoomGC implements Initializable{
 	
 	@FXML
 	public void postRoom() {
+		//Create and populate the Room Beans with the text in the fields
 		RoomBean rBean = new RoomBean();
 		RoomSpecBean rSBean = new RoomSpecBean();
 		
+		//The owner informations are taken from the current session
+		rBean.setOwner(Session.getSession().getCurrUser().getAccount().getCf());
 		rBean.setName(roomName.getText());
 		rBean.setAddress(roomAddress.getText());
+		
 		if(seatLbl.getText().equals("")) {
-			
 			rBean.setNumParticipants(0);
 		}else {
-			
 			rBean.setNumParticipants(Integer.parseInt(seatLbl.getText()));
 		}
 		
-		rBean.setOwner(Session.getSession().getCurrUser().getAccount().getCf());
-
 		rSBean.setDescription(description.getText());
 		rSBean.setDate(String.valueOf(date.getValue()));
 		rSBean.setCap(capLbl.getText());
 		rSBean.setStartTime(start.getValue());
 		rSBean.setEndTime(end.getValue());
+		
 		try {
+			// data format validation
 			rBean.validate();
 			rSBean.validate();
-			
+			// post room
 			RoomController ctrl = RoomController.getInstance();
 			boolean value = ctrl.postRoom(rBean, rSBean);
-			
+			// is it gone well? okay switch to myrooms
 			if(value) {
 				Stage stage = (Stage) main.getScene().getWindow();
 				stage.setScene(ViewSwitcher.switchTo(Views.MYROOMS, null));
@@ -102,7 +105,7 @@ public class PostRoomGC implements Initializable{
 		}	
 	}
 	
-	@FXML
+	@FXML //easy classic back button, nothing special here :)
 	public void back() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.back());

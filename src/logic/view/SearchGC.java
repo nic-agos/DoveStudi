@@ -32,6 +32,7 @@ import logic.util.ViewSwitcher;
 import logic.util.enumeration.Search;
 import logic.util.enumeration.Views;
 
+/*Linked FXML file: */
 public class SearchGC implements Initializable{
 	@FXML
 	private BorderPane main;

@@ -31,6 +31,8 @@ import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 import logic.util.gmaps.GoogleMapsWindow;
 
+/*Linked FXML file: MyReservations.fxml*/
+
 public class MyReservationGC implements Initializable{
 	@FXML
 	private BorderPane main;
@@ -48,7 +50,7 @@ public class MyReservationGC implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		setAllPast();
 		setAllFuture();
-		
+		//This view has got two different list for past and future reservation
 		if(!allPast.isEmpty()) {
 			past.setItems(allPast);
 			past.setCellFactory(list -> new PastResCell());
@@ -58,8 +60,8 @@ public class MyReservationGC implements Initializable{
 			future.setItems(allFuture);
 			future.setCellFactory(list -> new FutureResCell());
 		}
-		
 	}
+	
 	class PastResCell extends ListCell<Reservation>{
 		@Override
 		public void updateItem(Reservation item, boolean empty) {
@@ -75,10 +77,10 @@ public class MyReservationGC implements Initializable{
 				Label start = new Label ("Start Time: " + item.getStartTime());
 				Label end = new Label ("End Time: " + item.getEndTime());
 				
-				description.setWrapText(true);
+				description.setWrapText(true); //this method make the label go automatically new line 
 				
-				ObservableList<Hyperlink> linkList = FXCollections.observableArrayList();
-				
+				ObservableList<Hyperlink> linkList = FXCollections.observableArrayList(); 
+				// get all the partecipant and put them in a list as links
 				for (Person p  : item.getLinkedRoom().getParticipants()) {
 					Hyperlink link = new Hyperlink();
 					link.setText(p.getUsername());
@@ -88,13 +90,13 @@ public class MyReservationGC implements Initializable{
 					});
 					linkList.add(link);
 				}
-				
+				// Fill the partecipants list
 				ListView<Hyperlink> partecipants = new ListView<>();
 				partecipants.setItems(linkList);
 				partecipants.setOrientation(Orientation.HORIZONTAL);
 				partecipants.setPrefHeight(30);
 				partecipants.setMaxHeight(USE_PREF_SIZE);
-				
+				//Link to the host of the room
 				Hyperlink hostLink = new Hyperlink(item.getRoomOwner().getUsername());
 				
 				hostLink.setOnAction(e ->{
@@ -188,12 +190,12 @@ public class MyReservationGC implements Initializable{
 			}
 		}
 	}
-	
+	/*This method get all the past reservation of an account and set a local observable list*/
 	private void setAllPast() {
 		ReservationController resCtrl = ReservationController.getInstance();
 		AccountBean aBean = new AccountBean();
 		aBean.setCf(Session.getSession().getCurrUser().getAccount().getCf());
-		
+		// just current user CF packed in a bean is needed
 		try {
 			this.allPast = FXCollections.observableArrayList(resCtrl.getMyPastReservations(aBean));
 		}
@@ -201,7 +203,7 @@ public class MyReservationGC implements Initializable{
 			JOptionPane.showMessageDialog(null,e.getMessage(),ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
+	/*same as above, but for the future ones*/
 	private void setAllFuture() {
 		ReservationController resCtrl = ReservationController.getInstance();
 		AccountBean aBean = new AccountBean();

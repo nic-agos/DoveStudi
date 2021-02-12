@@ -19,6 +19,7 @@ import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 import javax.swing.JOptionPane;
 
+/*Linked FXML file: */
 public class LogInGC implements Initializable{
 	
 	@FXML

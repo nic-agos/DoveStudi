@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import logic.util.enumeration.Search;
 import logic.util.enumeration.Views;
 
+/*Linked FXML file: */
 public class HomeGC implements Initializable {
 	
 	@FXML

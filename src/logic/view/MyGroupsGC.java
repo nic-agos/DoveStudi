@@ -29,6 +29,7 @@ import logic.util.Session;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 
+/*Linked FXML file: */
 public class MyGroupsGC implements Initializable{
 	
 	@FXML

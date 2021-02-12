@@ -27,6 +27,7 @@ import logic.util.Session;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 
+/*Linked FXML file: MyRooms.fxml*/
 public class MyRoomsGC implements Initializable {
 	
 	@FXML
@@ -67,7 +68,7 @@ public class MyRoomsGC implements Initializable {
 				description.setWrapText(true);
 				
 				ObservableList<Hyperlink> linkList = FXCollections.observableArrayList();		
-				
+				//Set a list with all the partecipants as links
 				for (Person p : item.getParticipants()) {
 					Hyperlink link = new Hyperlink();
 					link.setText(p.getUsername());
@@ -77,7 +78,7 @@ public class MyRoomsGC implements Initializable {
 					});
 					linkList.add(link);
 				}
-				
+				// Populate the ListView with the links
 				ListView<Hyperlink> partecipants = new ListView<>();
 				partecipants.setFocusTraversable(false);
 				partecipants.setItems(linkList);
@@ -85,6 +86,7 @@ public class MyRoomsGC implements Initializable {
 				partecipants.setPrefHeight(30);
 				partecipants.setMaxHeight(USE_PREF_SIZE);
 				
+				//Actions for the delete button (only the id packed in a bean is needed)
 				Button delete = new Button("Delete This Room");
 				delete.setOnAction(e->{
 					RoomBean bean = new RoomBean();
@@ -108,7 +110,7 @@ public class MyRoomsGC implements Initializable {
 			}
 		}
 	}
-	
+	/*This method gets all the current user's active rooms and set a local Observable List*/
 	private void setRooms() {
 		AccountBean bean = new AccountBean();
 		bean.setCf(Session.getSession().getCurrUser().getAccount().getCf());
