@@ -89,7 +89,7 @@
 	
 	<div class="d-flex justify-content-xl-left" style="margin-left:330px;">
 		<div class="col-md-5">
-			<h1 style="font-weight:600; font-family:sans-serif;margin-top:50px; margin-left:0px;">My Account</h1>
+			<h1 style="font-weight:600; font-family:sans-serif;margin-top:50px; margin-left:0px;">${person.username}</h1>
 		</div>
 		<div class="col-md-6" style="margin-top:20px;">
 		</div>
