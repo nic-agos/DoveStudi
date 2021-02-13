@@ -1,0 +1,335 @@
+{
+  "id": "12497624-4a0e-4e3b-a818-db2549b76a9d",
+  "version": "2.0",
+  "name": "DoveStudi Francesco Dalena",
+  "url": "http://localhost:8080/DoveStudi.git/index.jsp",
+  "tests": [{
+    "id": "e92ffaec-f042-4c1f-8c00-dce8971c9c39",
+    "name": "TestGroupAddMember",
+    "commands": [{
+      "id": "ed68709f-8458-4242-90f8-2534abeff4ed",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/DoveStudi.git/index.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5b93a1c6-f1be-4e28-93f7-92a025662ebf",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1936x1066",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9e32df93-6924-4338-a333-d928a98c712e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Log in",
+      "targets": [
+        ["linkText=Log in", "linkText"],
+        ["xpath=//a[contains(text(),'Log in')]", "xpath:link"],
+        ["xpath=(//button[@id='btn']/a)[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'Login.jsp')]", "xpath:href"],
+        ["xpath=//button[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Log in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "47fc96ef-0713-4193-88b0-f2753847f8e9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.xs-2",
+      "targets": [
+        ["css=.xs-2", "css:finder"],
+        ["xpath=//div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "336c0a7d-5208-47dd-b163-b7425b4b4420",
+      "comment": "",
+      "command": "click",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "df2d88d4-4ae0-437f-9fe2-cf410474de80",
+      "comment": "",
+      "command": "type",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "test@test.test"
+    }, {
+      "id": "449b28f5-527a-4e1f-bd61-83692f0b1754",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/div/div/input", "xpath:position"]
+      ],
+      "value": "test"
+    }, {
+      "id": "e1401341-af43-41a3-bfd2-38d5d5d419ff",
+      "comment": "",
+      "command": "click",
+      "target": "id=loginBtn",
+      "targets": [
+        ["id=loginBtn", "id"],
+        ["name=loginBtn", "name"],
+        ["css=#loginBtn", "css:finder"],
+        ["xpath=//button[@id='loginBtn']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "bf6c18f4-6dd3-45ba-bfb2-cede51b0d50f",
+      "comment": "",
+      "command": "click",
+      "target": "css=span:nth-child(2)",
+      "targets": [
+        ["css=span:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='rectangle']/div/span[2]", "xpath:idRelative"],
+        ["xpath=//span[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "83a327d7-98d5-4993-b7ce-e3c6a218cae7",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=My Groups",
+      "targets": [
+        ["linkText=My Groups", "linkText"],
+        ["css=li:nth-child(4) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'My Groups')]", "xpath:link"],
+        ["xpath=//div[@id='sidebar']/ul/li[4]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'MyGroups.jsp')]", "xpath:href"],
+        ["xpath=//li[4]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'My Groups')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5abf1d90-8175-4ef7-9e46-baa623d4051a",
+      "comment": "",
+      "command": "click",
+      "target": "id=createBtn",
+      "targets": [
+        ["id=createBtn", "id"],
+        ["name=createBtn", "name"],
+        ["css=#createBtn", "css:finder"],
+        ["xpath=//button[@id='createBtn']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Create Group')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ad6e46b2-ae09-4b21-a2b5-ef60a102a230",
+      "comment": "",
+      "command": "click",
+      "target": "id=groupName",
+      "targets": [
+        ["id=groupName", "id"],
+        ["name=groupName", "name"],
+        ["css=#groupName", "css:finder"],
+        ["xpath=//input[@id='groupName']", "xpath:attributes"],
+        ["xpath=//form[@id='form_post_room']/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "71469377-ef68-4c5c-8e2f-ba46fa39d8da",
+      "comment": "",
+      "command": "type",
+      "target": "id=groupName",
+      "targets": [
+        ["id=groupName", "id"],
+        ["name=groupName", "name"],
+        ["css=#groupName", "css:finder"],
+        ["xpath=//input[@id='groupName']", "xpath:attributes"],
+        ["xpath=//form[@id='form_post_room']/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "TestGroup"
+    }, {
+      "id": "a9dd3826-ec75-4bd0-8cdc-697afd5563d2",
+      "comment": "",
+      "command": "click",
+      "target": "id=createGroupBtn",
+      "targets": [
+        ["id=createGroupBtn", "id"],
+        ["name=createGroupBtn", "name"],
+        ["css=#createGroupBtn", "css:finder"],
+        ["xpath=//button[@id='createGroupBtn']", "xpath:attributes"],
+        ["xpath=//form[@id='form_post_room']/div[2]/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Create Group')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3703c564-4beb-498b-8ded-34b4837b5e14",
+      "comment": "",
+      "command": "click",
+      "target": "id=addTestGroup",
+      "targets": [
+        ["id=addTestGroup", "id"],
+        ["name=addTestGroup", "name"],
+        ["css=#addTestGroup", "css:finder"],
+        ["xpath=//button[@id='addTestGroup']", "xpath:attributes"],
+        ["xpath=//button[3]", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Person')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1917ac0f-ce63-44fa-ada2-76a144aa01e5",
+      "comment": "",
+      "command": "click",
+      "target": "id=partUser",
+      "targets": [
+        ["id=partUser", "id"],
+        ["name=partUser", "name"],
+        ["css=#partUser", "css:finder"],
+        ["xpath=//input[@id='partUser']", "xpath:attributes"],
+        ["xpath=//form[@id='form_post_room']/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bc858d09-1de1-4e4f-a2f6-58fe648af718",
+      "comment": "",
+      "command": "type",
+      "target": "id=partUser",
+      "targets": [
+        ["id=partUser", "id"],
+        ["name=partUser", "name"],
+        ["css=#partUser", "css:finder"],
+        ["xpath=//input[@id='partUser']", "xpath:attributes"],
+        ["xpath=//form[@id='form_post_room']/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Anarion"
+    }, {
+      "id": "3954be66-5d87-417d-87ee-4d89b4e05f61",
+      "comment": "",
+      "command": "click",
+      "target": "id=addToGroup",
+      "targets": [
+        ["id=addToGroup", "id"],
+        ["name=addToGroup", "name"],
+        ["css=#addToGroup", "css:finder"],
+        ["xpath=//button[@id='addToGroup']", "xpath:attributes"],
+        ["xpath=//form[@id='form_post_room']/div[2]/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add to Group')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cdea5ca1-7ca5-4f2e-89e5-d393d22bb902",
+      "comment": "",
+      "command": "click",
+      "target": "id=addTestGroup",
+      "targets": [
+        ["id=addTestGroup", "id"],
+        ["name=addTestGroup", "name"],
+        ["css=#addTestGroup", "css:finder"],
+        ["xpath=//button[@id='addTestGroup']", "xpath:attributes"],
+        ["xpath=//button[3]", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Person')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2facd5c6-7c75-4606-ab60-3e10e321e9b6",
+      "comment": "",
+      "command": "click",
+      "target": "id=partUser",
+      "targets": [
+        ["id=partUser", "id"],
+        ["name=partUser", "name"],
+        ["css=#partUser", "css:finder"],
+        ["xpath=//input[@id='partUser']", "xpath:attributes"],
+        ["xpath=//form[@id='form_post_room']/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b3e5a699-b71b-4d44-9f23-55605edf8833",
+      "comment": "",
+      "command": "type",
+      "target": "id=partUser",
+      "targets": [
+        ["id=partUser", "id"],
+        ["name=partUser", "name"],
+        ["css=#partUser", "css:finder"],
+        ["xpath=//input[@id='partUser']", "xpath:attributes"],
+        ["xpath=//form[@id='form_post_room']/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Lolletto"
+    }, {
+      "id": "38e6051b-13b8-4ae1-b5a6-ad91d1a51ec9",
+      "comment": "",
+      "command": "click",
+      "target": "id=addToGroup",
+      "targets": [
+        ["id=addToGroup", "id"],
+        ["name=addToGroup", "name"],
+        ["css=#addToGroup", "css:finder"],
+        ["xpath=//button[@id='addToGroup']", "xpath:attributes"],
+        ["xpath=//form[@id='form_post_room']/div[2]/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Add to Group')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7606dc8f-0243-4f43-9d07-3276414eedfc",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.col > p",
+      "targets": [
+        ["css=.col > p", "css:finder"],
+        ["xpath=//div[@id='line']/div[4]/p", "xpath:idRelative"],
+        ["xpath=//div[4]/p", "xpath:position"],
+        ["xpath=//p[contains(.,'3')]", "xpath:innerText"]
+      ],
+      "value": "3"
+    }, {
+      "id": "d31d60da-2d3f-49cf-8055-17c351aca110",
+      "comment": "",
+      "command": "click",
+      "target": "id=deleteTestGroup",
+      "targets": [
+        ["id=deleteTestGroup", "id"],
+        ["name=deleteTestGroup", "name"],
+        ["css=#deleteTestGroup", "css:finder"],
+        ["xpath=//button[@id='deleteTestGroup']", "xpath:attributes"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Delete Group')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "25ad00c4-1149-41ee-bf19-6287222193b6",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:8080/", "http://localhost:8080/DoveStudi.git/index.jsp"],
+  "plugins": []
+}
