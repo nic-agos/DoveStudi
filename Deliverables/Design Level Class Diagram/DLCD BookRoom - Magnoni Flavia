@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-02-13T13:56:44.530Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36" etag="fPxynBGSFrqMu350wWxd" version="14.3.1" type="github">
+<mxfile host="app.diagrams.net" modified="2021-02-13T14:24:55.976Z" agent="5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36" etag="lry7gJT8IwgrL2NP3Q6D" version="14.3.1" type="github">
   <diagram id="blTUcrdXGkkVZ_vQHdCE" name="Page-1">
-    <mxGraphModel dx="962" dy="512" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1154" dy="614" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -213,16 +213,16 @@
           <mxGeometry y="78" width="200" height="32" as="geometry" />
         </mxCell>
         <mxCell id="BmS6d2qqrduRZxUAUe5K-47" value="&lt;&lt;interface&gt;&gt;&#xa;RoomSpecDAOImpl" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="1570" y="1410" width="200" height="110" as="geometry" />
+          <mxGeometry x="1570" y="1410" width="390" height="220" as="geometry" />
         </mxCell>
-        <mxCell id="BmS6d2qqrduRZxUAUe5K-48" value="+ field: type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BmS6d2qqrduRZxUAUe5K-47">
-          <mxGeometry y="40" width="200" height="30" as="geometry" />
+        <mxCell id="BmS6d2qqrduRZxUAUe5K-48" value="- instance: RoomSpecDAOImpl" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BmS6d2qqrduRZxUAUe5K-47">
+          <mxGeometry y="40" width="390" height="30" as="geometry" />
         </mxCell>
         <mxCell id="BmS6d2qqrduRZxUAUe5K-49" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="BmS6d2qqrduRZxUAUe5K-47">
-          <mxGeometry y="70" width="200" height="8" as="geometry" />
+          <mxGeometry y="70" width="390" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="BmS6d2qqrduRZxUAUe5K-50" value="+ method(type): type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BmS6d2qqrduRZxUAUe5K-47">
-          <mxGeometry y="78" width="200" height="32" as="geometry" />
+        <mxCell id="BmS6d2qqrduRZxUAUe5K-50" value="+ getInstance(): RoomSpecDAOImpl&#xa;+ createRoomSpec(RoomSpecBean): Integer&#xa;+ getRoomSpecId(RoomSpecBean): Integer&#xa;+ removeRoomSpec(RoomSpecBean): Integer&#xa;+ getRoomSpec(RoomBean): RoomSpecBean&#xa;+ getRoomsSpecByCap(RoomSpecBean): List&lt;RoomSpecBean&gt;&#xa;+ getOrderedRoomSpec(): List&lt;RoomSpecBean&gt;&#xa;+ getRoomsSpecByDate(RoomSpecBean): List&lt;RoomSpecBean&gt;&#xa;+ getAllRoomsSpec(): List&lt;RoomSpecBean&gt;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BmS6d2qqrduRZxUAUe5K-47">
+          <mxGeometry y="78" width="390" height="142" as="geometry" />
         </mxCell>
         <mxCell id="BmS6d2qqrduRZxUAUe5K-51" value="PersonBean" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
           <mxGeometry x="980" y="44" width="160" height="200" as="geometry">
@@ -265,28 +265,28 @@
           <mxGeometry y="78" width="200" height="32" as="geometry" />
         </mxCell>
         <mxCell id="BmS6d2qqrduRZxUAUe5K-63" value="ReservationDAOImpl" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="1530" y="958" width="200" height="110" as="geometry" />
+          <mxGeometry x="1530" y="958" width="390" height="210" as="geometry" />
         </mxCell>
-        <mxCell id="BmS6d2qqrduRZxUAUe5K-64" value="+ field: type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BmS6d2qqrduRZxUAUe5K-63">
-          <mxGeometry y="40" width="200" height="30" as="geometry" />
+        <mxCell id="BmS6d2qqrduRZxUAUe5K-64" value="- instance: ReservationDAOImpl&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BmS6d2qqrduRZxUAUe5K-63">
+          <mxGeometry y="40" width="390" height="30" as="geometry" />
         </mxCell>
         <mxCell id="BmS6d2qqrduRZxUAUe5K-65" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="BmS6d2qqrduRZxUAUe5K-63">
-          <mxGeometry y="70" width="200" height="8" as="geometry" />
+          <mxGeometry y="70" width="390" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="BmS6d2qqrduRZxUAUe5K-66" value="+ method(type): type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BmS6d2qqrduRZxUAUe5K-63">
-          <mxGeometry y="78" width="200" height="32" as="geometry" />
+        <mxCell id="BmS6d2qqrduRZxUAUe5K-66" value="+ getInstance(): ReservationDAOImpl&#xa;+ createReservation(ReservationBean): Integer&#xa;+ removeReservation(ReservationBean): Integer&#xa;+ getReservationId(ReservationBean): Integer&#xa;+ getAllAccountReservations(AccountBean): List&lt;ReservationBean&gt;&#xa;+ getAllReservations(): List&lt;ReservationBean&gt;&#xa;+ getReservation(ReservationBean): ReservationBean&#xa;+ getRoomReservations(RoomBean): List&lt;ReservationBean&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BmS6d2qqrduRZxUAUe5K-63">
+          <mxGeometry y="78" width="390" height="132" as="geometry" />
         </mxCell>
         <mxCell id="BmS6d2qqrduRZxUAUe5K-67" value="RoomDAOImpl" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="1600" y="1838" width="200" height="250" as="geometry" />
+          <mxGeometry x="1600" y="1838" width="370" height="240" as="geometry" />
         </mxCell>
-        <mxCell id="BmS6d2qqrduRZxUAUe5K-68" value="+ instance: RoomDAOImpl" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BmS6d2qqrduRZxUAUe5K-67">
-          <mxGeometry y="40" width="200" height="30" as="geometry" />
+        <mxCell id="BmS6d2qqrduRZxUAUe5K-68" value="- instance: RoomDAOImpl" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BmS6d2qqrduRZxUAUe5K-67">
+          <mxGeometry y="40" width="370" height="30" as="geometry" />
         </mxCell>
         <mxCell id="BmS6d2qqrduRZxUAUe5K-69" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="BmS6d2qqrduRZxUAUe5K-67">
-          <mxGeometry y="70" width="200" height="8" as="geometry" />
+          <mxGeometry y="70" width="370" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="BmS6d2qqrduRZxUAUe5K-70" value="+ getInstance(): RoomDAOImpl&#xa;+ createRoom(RoomBean): Integer&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BmS6d2qqrduRZxUAUe5K-67">
-          <mxGeometry y="78" width="200" height="172" as="geometry" />
+        <mxCell id="BmS6d2qqrduRZxUAUe5K-70" value="+ getInstance(): RoomDAOImpl&#xa;+ createRoom(RoomBean): Integer&#xa;+ getAllRooms(): List&lt;RoomBean&gt;&#xa;+ updateRoom(RoomBean): Integer&#xa;+ removeRoom(RoomBean): Integer&#xa;+ getRoom(RoomBean): RoomBean&#xa;+ getRoomId(RoomBean): Integer&#xa;+ getAllAccountRooms(AccountBean): List&lt;RoomBean&gt;&#xa;+ getRoomFromSpec(RoomSpecBean): RoomBean&#xa;+ getRoomFilteredByAvailableSeats(RoomBean): List&lt;RoomBean&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BmS6d2qqrduRZxUAUe5K-67">
+          <mxGeometry y="78" width="370" height="162" as="geometry" />
         </mxCell>
         <mxCell id="BmS6d2qqrduRZxUAUe5K-71" value="&lt;&lt;interface&gt;&gt;&#xa;RoomDAO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
           <mxGeometry x="1370" y="1838" width="200" height="110" as="geometry" />
