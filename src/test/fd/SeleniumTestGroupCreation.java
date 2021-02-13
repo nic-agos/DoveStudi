@@ -49,14 +49,16 @@ public class SeleniumTestGroupCreation {
 			driver.findElement(By.xpath("//*[@id=\"email\"]")).sendKeys(EMAIL);
 			driver.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys(PASSWORD);
 			driver.findElement(By.xpath("//*[@id=\"loginBtn\"]")).click();
-			driver.findElement(By.xpath("//*[@id=\"rectangle\"]/div")).click();
-			driver.findElement(By.xpath("//*[@id=\"sidebar\"]/ul/li[4]/a")).click();
+			
+			driver.get("http://localhost:8080/DoveStudi.git/MyGroups.jsp");
+
+			driver.findElement(By.xpath("/html/body/div[3]/form/button")).click();
 			driver.findElement(By.xpath("//*[@id=\"groupName\"]")).sendKeys(GROUPNAME);
-			driver.findElement(By.xpath("//*[@id=\"createBtn\"]")).click();
+			driver.findElement(By.xpath("/html/body/div[3]/form/div[2]/div/button")).click();
 			
-			WebElement txtBoxContent = driver.findElement(By.xpath("/html/body/div[4]/div/div[1]/div[1]"));
+			WebElement txtBoxContent = driver.findElement(By.xpath("//*[@id=\"myCard\"]"));
 			
-			assertEquals(GROUPNAME,txtBoxContent.getAttribute("value"));
+			assertEquals(GROUPNAME,txtBoxContent.getText());
 			
 			driver.close();
 	}
