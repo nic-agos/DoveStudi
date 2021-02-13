@@ -20,7 +20,7 @@ import org.junit.Before;
 
 /*
  * 
- * TESTING BY @author Francesco Dalena
+ * Test BY @author Francesco Dalena
  * 					  matr. 0266977
  * 
  * */

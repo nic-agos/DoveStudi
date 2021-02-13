@@ -18,7 +18,7 @@ import logic.model.dao.AccountDAOImpl;
 import logic.model.dao.PersonDAOImpl;
 /*
  * 
- * TESTING BY @author Francesco Dalena
+ * Test by @author Francesco Dalena
  * 					  matr. 0266977
  * 
  * */

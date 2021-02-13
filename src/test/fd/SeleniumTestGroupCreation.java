@@ -18,7 +18,12 @@ import logic.controller.GroupController;
 import logic.controller.RegistrationController;
 import logic.exception.DatabaseException;
 import logic.model.dao.AccountDAOImpl;
-
+/*
+ * 
+ * Test by @author Francesco Dalena
+ * 					  matr. 0266977
+ * 
+ * */
 
 public class SeleniumTestGroupCreation {
 	static final String PASSWORD="pincopallo";

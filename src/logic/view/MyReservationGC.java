@@ -119,7 +119,7 @@ public class MyReservationGC implements Initializable{
 			super.updateItem(item, empty);
 			if (!empty) {
 				VBox v = new VBox();
-				Label title = new Label("Room Name+ "+item.getLinkedRoom().getName());
+				Label title = new Label("Room Name: "+item.getLinkedRoom().getName());
 				Label host = new Label("Host: ");
 				Label description = new Label(item.getLinkedRoom().getSpecification().getDescription());
 				Label address = new Label ("Address: " + item.getLinkedRoom().getAddress());

@@ -18,6 +18,13 @@ import logic.exception.DatabaseException;
 import logic.model.dao.AccountDAOImpl;
 import logic.model.dao.PersonDAOImpl;
 
+/*
+ * 
+ * Test by @author Francesco Dalena
+ * 					  matr. 0266977
+ * 
+ * */
+
 public class TestGroupControllerAddMemberSize {
 	int idAdmin;
 	@Before
