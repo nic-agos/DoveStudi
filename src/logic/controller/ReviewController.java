@@ -60,12 +60,16 @@ public class ReviewController {
 				if(res != 0) {
 					
 					if(revBean.getTag().equals("HOST")) {
+
+//						update user's host rating
 						rating = calculateHostRating(personBean);
 						persBean.setHostRating(rating);
 						return (personDao.updateHostRating(persBean) != 0);
 					}
 					
 					if(revBean.getTag().equals("GUEST")) {
+						
+//						update user's guest rating
 						rating = calculateGuestRating(personBean);
 						persBean.setGuestRating(rating);
 						return (personDao.updateGuestRating(persBean) != 0);
@@ -222,15 +226,20 @@ public class ReviewController {
 		PersonBean persBean;
 		
 		try {
+
+//			getting Person's info from db
 			persBean = personDao.getPersonByUsername(personBean);
 			
 			if(persBean != null) {
-				
+
+//				getting all user's review as host from db
 				reviewsHost = reviewDao.getAllPersonReviewsAsHost(persBean);
 				size = reviewsHost.size();
 				
 				if(!reviewsHost.isEmpty()) {
+					
 					for(ReviewBean revBean : reviewsHost) {
+						
 						ratingSum = ratingSum + revBean.getRating();
 					}
 					
@@ -261,15 +270,20 @@ public class ReviewController {
 		PersonBean persBean;
 		
 		try {
+
+//			getting Person's info from db
 			persBean = personDao.getPersonByUsername(personBean);
 			
 			if(persBean != null) {
 				
+//				getting all user's review as guest from db				
 				reviewsGuest = reviewDao.getAllPersonReviewsAsGuest(persBean);
 				size = reviewsGuest.size();
 				
 				if(!reviewsGuest.isEmpty()) {
+					
 					for(ReviewBean revBean : reviewsGuest) {
+						
 						ratingSum = ratingSum + revBean.getRating();
 					}
 					

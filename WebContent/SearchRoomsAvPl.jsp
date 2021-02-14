@@ -30,7 +30,8 @@
 	if(request.getParameter("searchBtn") != null){
 		
 		try{
-	
+			
+//			getting list of rooms with the filter applied	
 			allRoomsList = rContr.searchRoomByAvailableSeats(roomBean);
 	
 			if(!allRoomsList.isEmpty()){

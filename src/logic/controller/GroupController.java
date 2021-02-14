@@ -40,6 +40,8 @@ public class GroupController {
 			grBean.setName(groupBean.getName());
 			
 			accountBean.setCf(groupBean.getAdmin());
+			
+//			getting group's admin Person info from db
 			persBean = personDao.getPersonFromAccount(accountBean);
 			grBean.setNumParticipants(1);
 			grBean.setParticipant(persBean.getId());
@@ -71,6 +73,7 @@ public class GroupController {
 				groupParticipants = personDao.getGroupParticipants(groupBean);
 				
 				for(PersonBean perBean : groupParticipants) {
+					
 					if(persBean.getId() == perBean.getId()) {
 						throw new AccountException("User with username " + personBean.getUsername() + " is already in the group");
 					}
@@ -81,8 +84,11 @@ public class GroupController {
 				
 				grBean.setName(groupBean.getName());
 				grBean.setAdmin(groupBean.getAdmin());
-				grBean.setNumParticipants(groupDao.getAdministeredGroup(tempGroupBean).getNumParticipants()+1);
 				
+//				updating num. participants
+				grBean.setNumParticipants(groupDao.getAdministeredGroup(tempGroupBean).getNumParticipants()+1);
+
+//				getting Person's info of new participant from db
 				tempPersBean = personDao.getPersonByUsername(personBean);
 				grBean.setParticipant(tempPersBean.getId());
 				
@@ -122,6 +128,7 @@ public class GroupController {
 		GroupBean tempGroupBean;
 			
 		try {
+//			check if user correctly left the group
 			if(groupDao.leaveGroup(groupBean) != 0) {
 				gBean.setName(groupBean.getName());
 				gBean.setAdmin(groupBean.getAdmin());
@@ -129,6 +136,7 @@ public class GroupController {
 				tempGroupBean = groupDao.getAdministeredGroup(groupBean);
 				
 				gBean.setNumParticipants(tempGroupBean.getNumParticipants()-1);
+//				updating group's num. participants
 				return (groupDao.updateNumParticipantsGroup(gBean) != 0);
 				
 			}else {
@@ -211,6 +219,8 @@ public class GroupController {
 
 					reservationDao.createReservation(resBean);
 				}
+
+//				update num. available seats for the room
 				rBean.setNumParticipants(rBean.getNumParticipants());
 				rBean.setNumAvailableSeats(rBean.getNumAvailableSeats()-participantsList.size());
 				roomDao.updateRoom(rBean);
@@ -225,6 +235,7 @@ public class GroupController {
 		}
 	}
 	
+//	take sin input the id of a Person on the db
 	public List<Group> getParticipatingGroups(PersonBean personBean) throws DatabaseException {
 		
 		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
@@ -256,20 +267,26 @@ public class GroupController {
 					accBean.setCf(g.getAdmin());
 					
 					admin = new Account(accountDao.getAccount(accBean));
+					
+//					getting the Person's info of the group's admin from db
 					personAdmin = new Person(personDao.getPersonFromAccount(accBean));
 					admin.setPerson(personAdmin);
-					
+							
 					partBean.setId(g.getParticipant());
-					
+
+//					getting the Person's info of the group's participant from db
 					tempPersBean = personDao.getPerson(partBean);
 					participant = new Person(tempPersBean);
-					
+
+//					getting the Account's info of the group's participants from db
 					tempAccBean.setCf(tempPersBean.getAccount());
 					accParticipant = new Account(accountDao.getAccount(tempAccBean));
 					participant.setAccount(accParticipant);
 					
 					group.setAdmin(admin);
 					group.setParticipant(participant);
+					
+//					getting group's participants list
 					group.setParticipants(getGroupParticipants(g));
 					groupParticipants.add(group);
 					
@@ -284,7 +301,8 @@ public class GroupController {
 		}
 		
 	}
-	
+
+//	takes in input the cf of the user
 	public List<Group> getAdministeredGroups(AccountBean accountBean) throws DatabaseException {
 		
 		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
@@ -316,20 +334,26 @@ public class GroupController {
 					accBean.setCf(g.getAdmin());
 					
 					admin = new Account(accountDao.getAccount(accBean));
+
+//					getting the Person's info of the group's admin from db
 					personAdmin = new Person(personDao.getPersonFromAccount(accBean));
 					admin.setPerson(personAdmin);
 					
 					partBean.setId(g.getParticipant());
-					
+
+//					getting the Person's info of the group's participant from db
 					tempPersBean = personDao.getPerson(partBean);
 					participant = new Person(tempPersBean);
-					
+
+//					getting the Account's info of the group's participants from db
 					tempAccBean.setCf(tempPersBean.getAccount());
 					accParticipant = new Account(accountDao.getAccount(tempAccBean));
 					participant.setAccount(accParticipant);
 					
 					group.setAdmin(admin);
 					group.setParticipant(participant);
+					
+//					getting group's participants list
 					group.setParticipants(getGroupParticipants(g));
 					groupParticipants.add(group);
 					
@@ -344,6 +368,7 @@ public class GroupController {
 		}
 	}
 
+//	takes in input the name and the admin of the group
 	public List<Person> getGroupParticipants(GroupBean groupBean) throws DatabaseException {
 		
 		PersonDAOImpl personDao = PersonDAOImpl.getInstance();
@@ -366,6 +391,8 @@ public class GroupController {
 				for(PersonBean p : groupBeanParticipants) {
 					
 					tempPersBean.setUsername(p.getUsername());
+
+//					getting the Person's info of the group's participant from db
 					persBean = personDao.getPersonByUsername(tempPersBean);
 					person = new Person(persBean);
 					
@@ -406,12 +433,18 @@ public class GroupController {
 				specificGroup = new Group(grBean);
 				
 				accBean.setCf(grBean.getAdmin());
+				
+//				getting the Account's info of the group's admin from db				
 				accountAdmin = new Account(accountDao.getAccount(accBean));
+				
+//				getting the Person's info of the group's admin from db
 				personAdmin = new Person(personDao.getPersonFromAccount(accBean));
 				
 				accountAdmin.setPerson(personAdmin);
 				
 				specificGroup.setAdmin(accountAdmin);
+
+//				getting group's participants from db
 				specificGroup.setParticipants(getGroupParticipants(grBean));
 				
 			}

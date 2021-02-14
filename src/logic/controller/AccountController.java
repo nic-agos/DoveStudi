@@ -35,8 +35,12 @@ public class AccountController {
 		AccountBean accBean = new AccountBean();
 		
 		try {
+
+//			getting Person's info from db
 			personBean = personDao.getPersonFromAccount(accountBean);
 			person = new Person(personBean);
+
+//			getting Account's info from db
 			accBean = accountDao.getAccount(accountBean);
 			account = new Account(accBean);
 			person.setAccount(account);
@@ -61,9 +65,13 @@ public class AccountController {
 		AccountBean tempAccountBean = new AccountBean();
 		
 		try {
+
+//			getting Person's info from db
 			persBean = personDao.getPersonByUsername(personBean);
 			person = new Person(persBean);
 			tempAccountBean.setCf(persBean.getAccount());
+
+//			getting Account's info from db
 			accountBean = accountDao.getAccount(tempAccountBean);
 			account = new Account(accountBean);
 			person.setAccount(account);

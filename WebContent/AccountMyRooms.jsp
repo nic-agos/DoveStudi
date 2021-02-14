@@ -27,6 +27,8 @@ Person person = (Person)session.getAttribute("accPerson");
 		
 		try{
 			accBean.setCf(person.getAccount().getCf());
+			
+//			getting list of my rooms 
 			roomsList = rContr.getMyRooms(accBean);
 			
 			request.setAttribute("roomsList", roomsList);

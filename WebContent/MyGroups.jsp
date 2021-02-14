@@ -36,7 +36,8 @@
 			adminGroups = gContr.getAdministeredGroups(accBean);
 	
 			request.setAttribute("adminGroups", adminGroups);
-	
+
+//			getting participating groups 
 			partGroups = gContr.getParticipatingGroups(persBean);
 
 //			remove the groups of which the user is admin from the partecipating group
@@ -117,7 +118,8 @@
 				tempGroupBean.setName(g.getName());
 		
 				try{
-	
+
+//					getting group info
 					group = gContr.getSpecificAdministeredGroup(tempGroupBean);
 					session.setAttribute("groupBook", group);
 

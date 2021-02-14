@@ -21,7 +21,8 @@
 		reviewBean.setReviewer(person.getAccount().getCf());
 		
 		try{
-			
+
+//			check if all data are correct
 			reviewBean.validate();
 			
 			rContr.makeReview(reviewBean, persBean);

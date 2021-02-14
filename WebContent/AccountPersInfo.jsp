@@ -15,7 +15,8 @@
 	AccountController aContr = AccountController.getInstance();
 	
 	try{
-		
+
+//		getting user info
 		Person per = aContr.getAccountInfo(accBean);
 		
 		session.setAttribute("personInfo", per);

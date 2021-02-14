@@ -15,6 +15,7 @@
 	
 	try {
 
+//		getting other account info
 		person = aContr.getOtherAccountInfo(persBean);
 		session.setAttribute("person", person);
 			

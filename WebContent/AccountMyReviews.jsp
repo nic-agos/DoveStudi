@@ -27,8 +27,11 @@
 		List<Review> doneList = new ArrayList<>();
 		
 		try{
-			
+
+//			getting list of received reviews
 			receivedList = revContr.getReceivedReviews(accBean);
+
+//			getting list of done reviews
 			doneList = revContr.getDoneReviews(accBean);
 			
 			request.setAttribute("receivedList", receivedList);

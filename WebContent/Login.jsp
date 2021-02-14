@@ -21,7 +21,8 @@
 		LoginController lContr = LoginController.getInstance();
 		
 		try{
-			
+
+//			try to make login 
 			res = lContr.login(accountBean);
 			
 			if (res != null) {

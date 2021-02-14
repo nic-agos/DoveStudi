@@ -33,12 +33,16 @@ public class LoginController {
 			AccountBean res = accountDao.login(accountBean);
 			
 			if(res != null) {
+				
 				Account account = new Account(res);
 				PersonDAOImpl personDao = PersonDAOImpl.getInstance();
 				AccountBean temp1 = new AccountBean();
 				temp1.setCf(account.getCf());
+				
+//				getting Person's info from db
 				PersonBean temp2 = personDao.getPersonFromAccount(temp1);
 				Person person = new Person(temp2);
+				
 				person.setAccount(account);
 				return person;
 				

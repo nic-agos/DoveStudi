@@ -26,8 +26,10 @@
 	List<Review> reviewList = null;
 			
 	try{
-		 reviewList = rContr.getReceivedReviews(accBean);
-		 request.setAttribute("reviewList", reviewList);
+
+//		getting other account received reviews
+		reviewList = rContr.getReceivedReviews(accBean);
+		request.setAttribute("reviewList", reviewList);
 		
 	}catch(DatabaseException de){
 		out.println("<div class=\"alert alert-info\" style=\" text-align:center;position: fixed; bottom: 5px;left:2%;width: 96%;\"role=\"alert\"><strong>"+de.getMessage()+"</strong><button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"> <span aria-hidden=\"true\">&times;</span></button></div>");

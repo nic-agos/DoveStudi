@@ -28,13 +28,16 @@ public class RegistrationController {
 		try {
 			AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
 			accountBean.setNumberToken(5);
+
+//			create a new Account on db
 			accountDao.createAccount(accountBean);
 			
 			personBean.setAccount(accountBean.getCf());
 			PersonDAOImpl personDao = PersonDAOImpl.getInstance();
 			personBean.setHostRating(0);
 			personBean.setGuestRating(0);
-			
+
+//			create a new Person on db
 			int res = personDao.createPerson(personBean);
 			
 			return (res != 0);

@@ -19,6 +19,8 @@
 	if(request.getParameter("registerBtn")!=null){
 	
 		try{
+
+//			check if all data are correct
 			accountBean.validate();
 			personBean.validate();
 			

@@ -40,7 +40,8 @@ public class RoomController {
 		
 		try{
 			RoomSpecDAOImpl roomSpecDao = RoomSpecDAOImpl.getInstance();
-			
+
+//			creating room's spec on db
 			int spec = roomSpecDao.createRoomSpec(roomSpecBean);
 			
 			roomBean.setSpecification(spec);
@@ -53,10 +54,12 @@ public class RoomController {
 			int id = roomDao.createRoom(roomBean);
 			
 			if(id != 0) {
-				tempAccBean.setCf(roomBean.getOwner());
-				
+
+//				adding 2 tokens to the room's host
+				tempAccBean.setCf(roomBean.getOwner());				
 				accBean = accountDao.getAccount(tempAccBean) ;
 				accBean.setNumberToken(accBean.getNumberToken()+2);
+				
 				return (accountDao.updateNumberToken(accBean) != 0);
 			
 			}else {
@@ -89,7 +92,8 @@ public class RoomController {
 		LocalDateTime currentDate = LocalDateTime.now();
 		
 		try {
-			
+
+//			getting Host's info from db
 			person = personDao.getPersonByUsername(personBean);
 			
 			if(person != null) {
@@ -99,30 +103,39 @@ public class RoomController {
 				temp1.setCf(cf);
 				
 				RoomDAOImpl roomDao = RoomDAOImpl.getInstance();
-				
+
+//				getting all host's rooms from db
 				roomBeans = roomDao.getAllAccountRooms(temp1);
+				
 				RoomSpecDAOImpl roomSpecDao = RoomSpecDAOImpl.getInstance();
 				AccountDAOImpl accountDao = AccountDAOImpl.getInstance();
 				
 				if(!roomBeans.isEmpty()) {
 					
 					for(RoomBean roomB: roomBeans) {
-						
+
+//						getting roomSpec linked to the room from db
 						roomSpec = new RoomSpec(roomSpecDao.getRoomSpec(roomB));
 						
 						String dateTemp = roomSpec.getDate() + " " + roomSpec.getStartTime();
 						LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
-						
+
+//						check if the room's date is future
 						if(currentDate.compareTo(resDateTime) < 0) {
 							
 							room = new Room(roomB);
 							room.setSpecification(roomSpec);
-							owner = new Account(accountDao.getAccount(temp1));
 							
+//							getting owner Account's info from db
+							owner = new Account(accountDao.getAccount(temp1));
+
+//							getting owner Person's info from db
 							ownerPerson = new Person(personDao.getPersonFromAccount(temp1));
 							owner.setPerson(ownerPerson);
 							
 							room.setOwner(owner);
+
+//							getting list of room's participants
 							room.setParticipants(getAllRoomParticipants(roomB));
 							rooms.add(room);
 						}
@@ -170,23 +183,29 @@ public class RoomController {
 					
 					String dateTemp = rSpecBean.getDate() + " " + rSpecBean.getStartTime();
 					LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
-					
+
+//					check if the room's date is future
 					if(currentDate.compareTo(resDateTime) < 0) {
-						
+
+//						getting room linked to the roomSpec from db
 						roomBean = roomDao.getRoomFromSpec(rSpecBean);
 						
 						room = new Room(roomBean);
+						
 						room.setSpecification(new RoomSpec(rSpecBean));
+
+//						getting owner Account's info from db
 						temp1.setCf(roomBean.getOwner()); 
 						ownerBean = accountDao.getAccount(temp1);
-						
 						ownerAccount = new Account(ownerBean);
 						
+//						getting owner Person's info from db
 						ownerPerson = new Person(personDao.getPersonFromAccount(temp1));
 						ownerAccount.setPerson(ownerPerson);
 						
-					
 						room.setOwner(ownerAccount);
+						
+//						getting list of room's participants
 						room.setParticipants(getAllRoomParticipants(roomBean));
 						rooms.add(room);
 					}	
@@ -235,26 +254,33 @@ public class RoomController {
 					
 					String dateTemp = rSpecBean.getDate() + " " + rSpecBean.getStartTime();
 					LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
-					
+
+//					check if the room's date is future
 					if(currentDate.compareTo(resDateTime) < 0) {
-						
+
+//						getting room linked to the roomSpec from db
 						roomBean = roomDao.getRoomFromSpec(rSpecBean);
 						room = new Room(roomBean);
 						room.setSpecification(new RoomSpec(rSpecBean));
+						
+//						getting owner Account's info from db						
 						temp1.setCf(roomBean.getOwner()); 
 						ownerBean = accountDao.getAccount(temp1);
 						
 						ownerAccount = new Account(ownerBean);
 						
+//						getting owner Person's info from db						
 						ownerPerson = new Person(personDao.getPersonFromAccount(temp1));
 						ownerAccount.setPerson(ownerPerson);
 						
 						room.setOwner(ownerAccount);
+
+//						getting list of room's participants
 						room.setParticipants(getAllRoomParticipants(roomBean));
 						rooms.add(room);
 					}
-					
 				}
+				
 			return rooms;
 			
 			}else {
@@ -302,20 +328,25 @@ public class RoomController {
 					
 					String dateTemp = rSpecBean.getDate() + " " + rSpecBean.getStartTime();
 					LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
-					
+
+//					check if the room's date is future
 					if(currentDate.compareTo(resDateTime) < 0) {
 						
 						room = new Room(rBean);
 						room.setSpecification(new RoomSpec(rSpecBean));
+
+//						getting owner Account's info from db						
 						temp2.setCf(rBean.getOwner()); 
 						owner = accountDao.getAccount(temp2);
-						
 						ownerAccount = new Account(owner);
-						
+
+//						getting owner Person's info from db
 						ownerPerson = new Person(personDao.getPersonFromAccount(temp2));
 						ownerAccount.setPerson(ownerPerson);
 						
 						room.setOwner(ownerAccount);
+						
+//						getting list of room's participants						
 						room.setParticipants(getAllRoomParticipants(rBean));
 						rooms.add(room);
 					}
@@ -347,7 +378,8 @@ public class RoomController {
 		
 		try {
 			RoomDAOImpl roomDao = RoomDAOImpl.getInstance();
-			
+
+//			getting all user's rooms from db
 			roomBeans = roomDao.getAllAccountRooms(accountBean);
 				
 			RoomSpecDAOImpl roomSpecDao = RoomSpecDAOImpl.getInstance();
@@ -357,15 +389,20 @@ public class RoomController {
 				for(RoomBean rBean: roomBeans) {
 					
 					temp1.setSpecification(rBean.getSpecification());
+
+//					getting room spec linked to the room from db
 					rSpecBean = roomSpecDao.getRoomSpec(temp1);
 					
 					String dateTemp = rSpecBean.getDate() + " " + rSpecBean.getStartTime();
 					LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
-					
+
+//					check if the room's date is future
 					if(currentDate.compareTo(resDateTime) < 0) {
 						
 						room = new Room(rBean);
 						room.setSpecification(new RoomSpec(rSpecBean));
+						
+//						getting list of room's participants						
 						room.setParticipants(getAllRoomParticipants(rBean));
 						rooms.add(room);
 					}
@@ -412,21 +449,27 @@ public class RoomController {
 					
 					String dateTemp = rSpecBean.getDate() + " " + rSpecBean.getStartTime();
 					LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
-						
+
+//					check if the room's date is future
 					if(currentDate.compareTo(resDateTime) < 0) {
-							
+
+//						getting room spec linked to the room from db
 						roomBean = roomDao.getRoomFromSpec(rSpecBean);
 						room = new Room(roomBean);
 						room.setSpecification(new RoomSpec(rSpecBean));
-							
+
+//						getting owner Account's info from db
 						temp1.setCf(roomBean.getOwner()); 
 						ownerBean = accountDao.getAccount(temp1);
 						owner = new Account(ownerBean);
-							
+
+//						getting owner Person's info from db
 						persBean = personDao.getPersonFromAccount(ownerBean);
 						owner.setPerson(new Person(persBean));
 							
 						room.setOwner(owner);
+						
+//						getting list of room's participants						
 						room.setParticipants(getAllRoomParticipants(roomBean));	
 						rooms.add(room);
 					}
@@ -454,6 +497,8 @@ public class RoomController {
 		
 		try{
 			rBean = roomDao.getRoom(roomBean);
+
+//			getting roomSpec linked to the room form db
 			rsBean = roomSpecDao.getRoomSpec(rBean);
 			
 			return roomSpecDao.removeRoomSpec(rsBean) != 0;
@@ -480,15 +525,19 @@ public class RoomController {
 		Person person;
 		
 		try {
-			
+
+//			getting all reservations for the room
 			roomParticipantsBean = reservationDao.getRoomReservations(roomBean);
 			
 				for(ReservationBean resBean : roomParticipantsBean) {
 					
 					tempAccBean.setCf(resBean.getReservingUser());
+
+//					getting Account's info of participant from db 
 					accBean = accountDao.getAccount(tempAccBean);
 					account = new Account(accBean);
-					
+
+//					getting Person's info of participant from db 
 					persBean = personDao.getPersonFromAccount(accBean);
 					person = new Person(persBean);
 

@@ -45,14 +45,25 @@ public class ReservationController {
 		ReservationBean resBean = new ReservationBean();
 		
 		try {
+			
+//			getting Room's info from db
 			rBean = roomDao.getRoom(roomBean);
+			
+//			getting user's info from db
 			a2Bean = accountDao.getAccount(accountBean);
+
+//			check if the user has enough tokens
 			if(a2Bean.getNumberToken() > 0) {
-				
+			
+//				check if the room has enough free seats
 				if ((rBean.getNumAvailableSeats()-1) >=0) {
 					
 					aBean.setCf(rBean.getOwner());
+					
+//					getting Person's info of room's owner fromdb
 					pBean = personDao.getPersonFromAccount(aBean);
+					
+//					getting linked roomSpec from db
 					rsBean = roomSpecDao.getRoomSpec(rBean);
 					
 					resBean.setReservingUser(accountBean.getCf());
@@ -104,14 +115,17 @@ public class ReservationController {
 		ReservationBean resBean;
 		
 		try {
-			
+
+//			getting Reservation's info from db
 			resBean = reservationDao.getReservation(reservationBean);
 			tempRoomBean.setId(resBean.getLinkedRoom());
 			
 			if(reservationDao.removeReservation(reservationBean) != 0) {
-			
+
+//				updating number of seats for the room
 				roomBean = roomDao.getRoom(tempRoomBean);
 				roomBean.setNumAvailableSeats(roomBean.getNumAvailableSeats()+1);
+				
 				return (roomDao.updateRoom(roomBean)!=0);
 				
 			}else {
@@ -155,6 +169,8 @@ public class ReservationController {
 		LocalDateTime currentDate = LocalDateTime.now();
 		
 		try {
+			
+//			getting all user's reservations from db
 			reservationsList = reservationDao.getAllAccountReservations(accountBean);
 			
 			if(!reservationsList.isEmpty()) {
@@ -163,7 +179,8 @@ public class ReservationController {
 			  
 					String dateTemp = resBean.getDate() + " " + resBean.getEndTime();
 					LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
-				  
+
+//					checking reservation's date to know if is past
 					if(currentDate.compareTo(resDateTime) > 0) {
 						Reservation reservation = new Reservation(resBean);
 
@@ -252,6 +269,8 @@ public class ReservationController {
 		LocalDateTime currentDate = LocalDateTime.now();
 		
 		try {
+			
+//			getting all user's reservations from db
 			reservationsList = reservationDao.getAllAccountReservations(accountBean);
 			
 			if(!reservationsList.isEmpty()) {
@@ -260,7 +279,8 @@ public class ReservationController {
 					  
 					String dateTemp = resBean.getDate() + " " + resBean.getEndTime();
 					LocalDateTime resDateTime = LocalDateTime.parse(dateTemp, formatter);
-				  
+
+//					checking reservation's date to know if is future
 					if(currentDate.compareTo(resDateTime) < 0) {
 						Reservation reservation = new Reservation(resBean);
 

@@ -31,11 +31,13 @@
 	try{
 		
 		rBean.setNumAvailableSeats(group.getNumParticipants());
-		
+
+//		getting list of rooms with the filter applied
 		tempList = rContr.searchRoomByAvailableSeats(rBean);
 		
 		if(!roomsList.isEmpty()){
-			
+
+//			create a new list withous user rooms
 			for(Room r : roomsList) {
 				
 				if(r.getOwner().getCf().compareTo(group.getAdmin().getCf()) != 0){
