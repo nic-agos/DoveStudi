@@ -19,7 +19,7 @@ import logic.exception.DatabaseException;
 import logic.model.Person;
 import logic.util.Session;
 
-/*Linked FXML file: */
+/*Linked FXML file: MyAccount.fxml*/
 public class MyAccountGC implements Initializable{
 	
 	@FXML
@@ -53,6 +53,7 @@ public class MyAccountGC implements Initializable{
 	private Person p;
 	private Person curr;
 	
+	/*Constructor to get all the account info*/
 	public MyAccountGC() {
 		curr = Session.getSession().getCurrUser();
 		AccountBean bean = new AccountBean();
@@ -66,7 +67,7 @@ public class MyAccountGC implements Initializable{
 		}
 	}
 	
-	@Override
+	@Override /*Initialize all the fields*/
 	public void initialize(URL location, ResourceBundle resources) {
 		usernameLbl.setText(p.getUsername());
 		emailLbl.setText(p.getAccount().getEmail());
@@ -82,7 +83,7 @@ public class MyAccountGC implements Initializable{
 		tokensLbl.setText(String.valueOf(p.getAccount().getNumberToken()));	
 	}
 	
-	@FXML
+	@FXML /*Action associated to the buyTokensBtn*/
 	public void buyTokens() {
 		Stage pop = new Stage();
 		pop.setTitle("Buy Your Tokens");

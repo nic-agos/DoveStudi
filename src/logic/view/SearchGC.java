@@ -58,7 +58,7 @@ public class SearchGC implements Initializable{
 	private String search;
 	
 	private ObservableList<Room> searchResult;
-	
+	/*Default controller clean the list*/
 	public SearchGC() {
 		searchResult.clear();
 	}
@@ -83,7 +83,7 @@ public class SearchGC implements Initializable{
 		}
 		
 	}
-	@Override
+	@Override // Initialize the search list based on the search
 	public void initialize(URL location, ResourceBundle resources) {
 		searchBar.setText(search);
 		if(searchResult!=null && !searchResult.isEmpty())
@@ -92,13 +92,14 @@ public class SearchGC implements Initializable{
 			roomList.setCellFactory(list -> new RoomCell());
 		}
 	}
-	
+	// Room Cell layout
 	class RoomCell extends ListCell<Room>{
 		@Override
 		public void updateItem(Room item, boolean empty) {
 			super.updateItem(item,empty);
 			if(!empty) {
 				VBox v = new VBox();
+				// Room infos
 				Label title = new Label("Room Name "+item.getName());
 				Label description = new Label(item.getSpecification().getDescription());
 				Label address = new Label ("Address: ********");
@@ -110,7 +111,7 @@ public class SearchGC implements Initializable{
 				Label availableSeats = new Label ("Available Seats: "+ String.valueOf(item.getNumAvailableSeats()));
 
 				description.setWrapText(true);
-				
+				// Host link
 				Hyperlink hostLink = new Hyperlink();
 				hostLink.setText(item.getOwner().getPerson().getUsername());
 				hostLink.setOnAction(e-> {
@@ -118,6 +119,7 @@ public class SearchGC implements Initializable{
 					stage.setScene(ViewSwitcher.switchTo(Views.OTHERACCOUNT, new OtherAccountGC(hostLink.getText())));
 				});
 				
+				//Partecipants List of links
 				ObservableList<Hyperlink> linkList = FXCollections.observableArrayList();
 				
 				for (Person p : item.getParticipants()) {
@@ -135,7 +137,7 @@ public class SearchGC implements Initializable{
 				partecipants.setOrientation(Orientation.HORIZONTAL);
 				partecipants.setPrefHeight(25);
 				partecipants.setMaxHeight(USE_PREF_SIZE);
-				
+				// Book button and his logic
 				Button book = new Button("Book This Room");
 				book.setOnAction(e->{
 					RoomBean rBean = new RoomBean();
@@ -159,7 +161,7 @@ public class SearchGC implements Initializable{
 					Stage stage = (Stage) main.getScene().getWindow();
 					stage.setScene(ViewSwitcher.switchTo(Views.MYRESERVATIONS, null));
 				});
-				
+				// if the user is not logged book button is disabled
 				if(!Session.getSession().isLogged()) {
 					book.setDisable(true);
 				}
@@ -173,33 +175,33 @@ public class SearchGC implements Initializable{
 		}
 	}
 	
-	@FXML
+	@FXML /*Action associated to the allBtn*/
 	public void allAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.ALL,"")));
 	}
-	@FXML
+	@FXML/*Action associated to the capBtn*/
 	public void capAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.CAP,searchBar.getText())));
 	}
-	@FXML
+	@FXML/*Action associated to the dateBtn*/
 	public void dateAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.DATE,searchBar.getText())));
 	}
-	@FXML
+	@FXML/*Action associated to the setsBtn*/
 	public void seatsAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.SEATS,searchBar.getText())));
 	}
-	@FXML
+	@FXML/*Action associated to the hostBtn*/
 	public void hostAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.HOST,searchBar.getText())));
 	}
 	
-	@FXML
+	@FXML /*Action associated to the backBtn*/
 	public void back() {
 		if(Session.getSession().isLogged()) {
 			Stage stage = (Stage) main.getScene().getWindow();
@@ -212,7 +214,7 @@ public class SearchGC implements Initializable{
 		}
 		
 	}
-	
+	/*This method get a list of all the available rooms that match the cap in search*/
 	public void searchByCap() {
 		
 		RoomSpecBean bean = new RoomSpecBean();
@@ -247,7 +249,8 @@ public class SearchGC implements Initializable{
 			JOptionPane.showMessageDialog(null,ne.getMessage(),ERROR,JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
+	/*This method get a list of all the available rooms that match the Host in search*/
+
 	public void searchByUser() {
 		
 		PersonBean bean = new PersonBean();
@@ -282,7 +285,8 @@ public class SearchGC implements Initializable{
 			JOptionPane.showMessageDialog(null,ne.getMessage(),ERROR,JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
+	/*This method get a list of all the available rooms that match the number of
+	 * Available seats in search*/
 	public void searchBySeats() {
 		
 		RoomBean bean = new RoomBean();
@@ -328,7 +332,8 @@ public class SearchGC implements Initializable{
 			JOptionPane.showMessageDialog(null,re.getMessage(),ERROR,JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
+	/*This method get a list of all the available rooms that match the date in search*/
+
 	public void searchByDate() {
 		
 		RoomSpecBean bean = new RoomSpecBean();
@@ -368,7 +373,8 @@ public class SearchGC implements Initializable{
 			JOptionPane.showMessageDialog(null,re.getMessage(),ERROR,JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
+	/*This method get a list of all the available rooms*/
+
 	public void searchRooms() {
 		RoomController rContr = RoomController.getInstance();
 		

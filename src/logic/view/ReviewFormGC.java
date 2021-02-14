@@ -25,7 +25,7 @@ import logic.util.Session;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 
-/*Linked FXML file: */
+/*Linked FXML file: ReviewFrom.fxml*/
 public class ReviewFormGC implements Initializable{
 	
 	@FXML
@@ -52,22 +52,22 @@ public class ReviewFormGC implements Initializable{
 	private static final String ERROR = "ERROR";
 	
 	String username; 
-	
+	// constructor get the reviewd user's username
 	public ReviewFormGC(String username) {
 		this.username = username;
 	}
 	
-	@Override
+	@Override // Set the reviewd user's username label
 	public void initialize(URL location, ResourceBundle resources) {
 		reviewdUserLbl.setText(username);
 		reviewArea.setWrapText(true);
 	}
 	
-	@FXML
+	@FXML /*Action associated to the submitBtn*/
 	public void submit() {
 		ReviewBean r = new ReviewBean();
 		PersonBean p = new PersonBean();
-		
+		// Set the beans with the form informations
 		p.setUsername(username);
 		
 		r.setTitle(reviewTitle.getText());
@@ -82,10 +82,12 @@ public class ReviewFormGC implements Initializable{
 			r.setTag("HOST");
 		
 		try {
+			// validate the informations
 			r.validate();
 			ReviewController ctrl = ReviewController.getInstance();
-			
+			// send all and get the return value
 			boolean value = ctrl.makeReview(r,p);
+			// if all ok go to my reviews
 			if(value) {
 				Stage stage = (Stage) main.getScene().getWindow();
 				stage.setScene(ViewSwitcher.switchTo(Views.MYREVIEWS, null));
@@ -103,7 +105,7 @@ public class ReviewFormGC implements Initializable{
 		}	
 	}
 	
-	@FXML
+	@FXML /*Action associated to the backBtn*/
 	public void back() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.switchTo(Views.OTHERACCOUNT,new OtherAccountGC(reviewdUserLbl.getText())));

@@ -12,6 +12,15 @@ import javafx.scene.layout.VBox;
 
 
 import java.io.IOException;
+/*
+ * 
+ * This class has only static methods and it's used to switch between scene
+ * This class only returns scenes generated from FXML files, not full stages
+ * FXML files package -> logic.view.fxml 
+ * 
+ * 
+ * */
+
 
 public class ViewSwitcher {
 	private static final String PATH="../view/fxml/";
@@ -21,6 +30,10 @@ public class ViewSwitcher {
 	
 	private ViewSwitcher() {/*Nothing to do here*/}
 	
+/*	 This method is used to load the FXML file
+	 when the file is loaded, the associated controller is created, the constructor is called, the @FXML fields are populated
+	 and then the initialize() method
+*/
 	public static FXMLLoader loadFXML(Views view) {
 		switch(view) {
 		
@@ -58,7 +71,7 @@ public class ViewSwitcher {
 			return new FXMLLoader(ViewSwitcher.class.getResource(PATH + "Home.fxml"));
 		}
 	}
-	
+	/*This method load and return the navbar*/
 	private static BorderPane getNavbar() throws IOException {
 		if (navbar == null) {
 			FXMLLoader loader = loadFXML(Views.NAVBAR);
@@ -68,7 +81,7 @@ public class ViewSwitcher {
 		}
 		return navbar;
 	}
-	
+	/*This method return the nextView scene with the default controller specified in the FXML file if the second field is null*/
 	public static Scene switchTo (Views nextView, Initializable controller){
 		Session.getSession().setCurrView(nextView);
 	try {
@@ -93,6 +106,7 @@ public class ViewSwitcher {
 	
 	}
 }
+	/*Load the previous scene*/
 	public static Scene back(){
 		if(Session.getSession().getPrevView().equals(Views.ROOMSEARCH))
 			return (ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC()));
@@ -100,6 +114,7 @@ public class ViewSwitcher {
 			return ViewSwitcher.switchTo(Session.getSession().getPrevView(), null);
 	}
 	
+	/*404 Page nothing special*/
 	private static VBox create404Page(String view) {
 		
 		VBox box = new VBox();

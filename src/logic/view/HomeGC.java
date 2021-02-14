@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import logic.util.enumeration.Search;
 import logic.util.enumeration.Views;
 
-/*Linked FXML file: */
+/*Linked FXML file: Home.fxml */
 public class HomeGC implements Initializable {
 	
 	@FXML
@@ -25,15 +25,15 @@ public class HomeGC implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		/*probably nothing to do here*/
+		/* nothing to do here*/
 	}
 	
-	@FXML
+	@FXML /*Action associated to the lookBtn*/
 	public void lookAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.switchTo(Views.ROOMSEARCH, new SearchGC(Search.ALL,"")));
 	}
-	@FXML
+	@FXML /*Action associated to the loginBtn*/
 	public void logInAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.switchTo(Views.LOGIN, null));

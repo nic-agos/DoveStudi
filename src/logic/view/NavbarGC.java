@@ -12,7 +12,7 @@ import logic.util.enumeration.Views;
 /*Linked FXML file: Navbar.fxml
  * This is the graphic controller for the left navbar
  * This is added to the scene only in some cases (look at ViewSwitcher in package utils)
- * */
+ */
 public class NavbarGC {
 	@FXML
 	private Button myAccountBtn;

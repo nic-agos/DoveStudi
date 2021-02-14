@@ -19,7 +19,7 @@ import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 import javax.swing.JOptionPane;
 
-/*Linked FXML file: */
+/*Linked FXML file: Login.fxml*/
 public class LogInGC implements Initializable{
 	
 	@FXML
@@ -42,7 +42,7 @@ public class LogInGC implements Initializable{
 		/*nothing to do here for now*/
 	}
 	
-	@FXML
+	@FXML /*Action associated to the logInBtn*/
 	public void logIn() {
 		Person p;
 		AccountBean bean = new AccountBean();
@@ -53,8 +53,10 @@ public class LogInGC implements Initializable{
 		try {
 			p=ctrl.login(bean);
 			if(p!=null) {
+				//Update session informations
 				Session.getSession().setCurrUser(p);
 				Session.getSession().setLogged(true);
+				
 				Stage stage = (Stage) main.getScene().getWindow();
 				stage.setScene(ViewSwitcher.switchTo(Views.MYACCOUNT,null));
 			}
@@ -67,13 +69,13 @@ public class LogInGC implements Initializable{
 		}
 	}
 	
-	@FXML
+	@FXML /*Action associated to the backBtn*/
 	public void back() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.switchTo(Views.HOME, null));
 	}
 	
-	@FXML
+	@FXML /*Action associated to the regBtn*/
 	public void registration() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.switchTo(Views.REGISTRATION,null));

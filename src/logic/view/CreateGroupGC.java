@@ -18,7 +18,7 @@ import logic.util.Session;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 
-/*Linked FXML file: */
+/*Linked FXML file: CreateGroup.fxml*/
 public class CreateGroupGC implements Initializable{
 	
 	@FXML
@@ -37,7 +37,7 @@ public class CreateGroupGC implements Initializable{
 		/*nothing to do here for now*/
 	}
 	
-	@FXML
+	@FXML /*Action associated to the "createBtn"*/
 	public void createGroup() {
 		GroupBean gBean = new GroupBean();
 		boolean value;
@@ -63,7 +63,7 @@ public class CreateGroupGC implements Initializable{
 		}
 	}
 	
-	@FXML
+	@FXML /*Action associated to the "backBtn" Button*/
 	public void backAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.back());

@@ -18,7 +18,7 @@ import logic.util.Session;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 
-/*Linked FXML file: */
+/*Linked FXML file: AddGroupMember.fxml*/
 public class AddGroupMemberGC implements Initializable{
 	
 	@FXML
@@ -36,14 +36,14 @@ public class AddGroupMemberGC implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		/**/
+		/*nothing to initialize*/
 		}
 	
 	public AddGroupMemberGC(String gName) {
 		this.groupName = gName;
 	}
 	
-	@FXML
+	@FXML /*Action associated to the addBtn button*/
 	public void addMember() {
 		
 		GroupBean gBean = new GroupBean();
@@ -72,7 +72,7 @@ public class AddGroupMemberGC implements Initializable{
 		}
 	}
 	
-	@FXML
+	@FXML /*Action associated to the "backBtn" Button*/
 	public void back() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.back());

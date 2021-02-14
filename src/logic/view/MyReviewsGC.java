@@ -40,6 +40,7 @@ public class MyReviewsGC implements Initializable{
 	private ObservableList<Review> doneReviews;
 	private ObservableList<Review> receivedReviews;
 	
+	/*Initialize the ListViews with the current user's reviews*/
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setDone();setReceived();
@@ -54,7 +55,7 @@ public class MyReviewsGC implements Initializable{
 			receivedList.setCellFactory(list -> new RecRevCell());
 		}
 	}
-	
+	/*Done Reviews cell layout*/
 	class DoneRevCell extends ListCell<Review>{
 		@Override
 		public void updateItem(Review item, boolean empty) {
@@ -83,7 +84,7 @@ public class MyReviewsGC implements Initializable{
 			}
 			}
 	}
-	
+	/*Received reviews cell layout*/
 	class RecRevCell extends ListCell<Review>{
 		@Override
 		public void updateItem(Review item, boolean empty) {

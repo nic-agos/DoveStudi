@@ -46,6 +46,7 @@ public class MyReservationGC implements Initializable{
 	
 	private static final String ERROR = "Error";
 	
+	//Initialize the ListViews with the reservations
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setAllPast();
@@ -61,7 +62,7 @@ public class MyReservationGC implements Initializable{
 			future.setCellFactory(list -> new FutureResCell());
 		}
 	}
-	
+	/*Cell style of the past ListView*/
 	class PastResCell extends ListCell<Reservation>{
 		@Override
 		public void updateItem(Reservation item, boolean empty) {
@@ -112,7 +113,7 @@ public class MyReservationGC implements Initializable{
 			}
 		}
 	}
-	
+	/*Cell style of the future ListView*/
 	class FutureResCell extends ListCell<Reservation>{
 		@Override
 		public void updateItem(Reservation item, boolean empty) {

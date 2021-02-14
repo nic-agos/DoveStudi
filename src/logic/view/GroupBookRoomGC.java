@@ -29,7 +29,7 @@ import logic.util.Session;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 
-/*Linked FXML file: */
+/*Linked FXML file: GroupBookRoom.fxml */
 public class GroupBookRoomGC implements Initializable{
 	
 	@FXML
@@ -45,24 +45,26 @@ public class GroupBookRoomGC implements Initializable{
 	
 	private ObservableList<Room> roomsForGroup;
 	
+/*Constructor that take the groupname as a string and call a method*/
 	public GroupBookRoomGC(String groupName) {
 		this.gName=groupName;
 		getRoomsForGroup(gName);
 	}
-	
+/*Initialize the list view with the available rooms for the group*/
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		roomForGroupsList.setFocusTraversable(false);
 		roomForGroupsList.setItems(roomsForGroup);
 		roomForGroupsList.setCellFactory(list -> new RoomCell());
 	}
-	
+/*Cell style of the ListView*/
 	class RoomCell extends ListCell<Room>{
 		@Override
 		public void updateItem(Room item, boolean empty) {
 			super.updateItem(item,empty);
 			if(!empty) {
 				VBox v = new VBox();
+				//Room Informations
 				Label title = new Label("Room Name: "+item.getName());
 				Label description = new Label(item.getSpecification().getDescription());
 				Label address = new Label ("Address: ********");
@@ -75,6 +77,7 @@ public class GroupBookRoomGC implements Initializable{
 				
 				description.setWrapText(true);
 				
+				// Host Link
 				Hyperlink hostLink = new Hyperlink();
 				hostLink.setText(item.getOwner().getPerson().getUsername());
 				hostLink.setOnAction(e-> {
@@ -82,6 +85,7 @@ public class GroupBookRoomGC implements Initializable{
 					stage.setScene(ViewSwitcher.switchTo(Views.OTHERACCOUNT, new OtherAccountGC(hostLink.getText())));
 				});
 				
+				//List of Link, room partecipants
 				ObservableList<Hyperlink> linkList = FXCollections.observableArrayList();
 				
 				for (Person p : item.getParticipants()) {
@@ -100,6 +104,7 @@ public class GroupBookRoomGC implements Initializable{
 				partecipants.setPrefHeight(30);
 				partecipants.setMaxHeight(USE_PREF_SIZE);
 				
+				//Book button
 				Button book = new Button("Book This Room");
 				book.setOnAction(e->{
 					RoomBean rBean = new RoomBean();
@@ -126,6 +131,7 @@ public class GroupBookRoomGC implements Initializable{
 					stage.setScene(ViewSwitcher.switchTo(Views.MYRESERVATIONS, null));
 				});
 				
+				//set the layout
 				v.getChildren().addAll(title,description,address,cap,date,start,end,totalSeats,availableSeats,partecipants,book);
 				v.setAlignment(Pos.CENTER);
 				v.setSpacing(5);
@@ -135,12 +141,13 @@ public class GroupBookRoomGC implements Initializable{
 		}
 	}
 	
-	@FXML
+	@FXML /*Action associated to the backBtn button*/
 	public void backAction() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.back());
 	}
 	
+	/*This method take the group name and set a list of Available rooms for the group*/
 	private void getRoomsForGroup(String groupName) {
 		
 		GroupBean gBean = new GroupBean();

@@ -29,7 +29,7 @@ import logic.util.Session;
 import logic.util.ViewSwitcher;
 import logic.util.enumeration.Views;
 
-/*Linked FXML file: */
+/*Linked FXML file: MyGroups.fxml*/
 public class MyGroupsGC implements Initializable{
 	
 	@FXML
@@ -41,7 +41,7 @@ public class MyGroupsGC implements Initializable{
 	private static final String ERROR = "ERROR";
 	private ObservableList<Group> groups;	
 	
-	@Override
+	@Override /*Initialize the ListView*/
 	public void initialize(URL location, ResourceBundle resources) {
 		setGroups();
 		
@@ -52,16 +52,20 @@ public class MyGroupsGC implements Initializable{
 		}
 		
 	}
+	
+	//Cell Style of the ListView
 	class GroupCell extends ListCell<Group>{
 		@Override
 		public void updateItem(Group item, boolean empty) {
 			super.updateItem(item,empty);
 			if(!empty) {
 				VBox v = new VBox();
+				//Group informations
 				Label name = new Label(item.getName());
 				Label admin = new Label("Admin: "); 
 				Label numPartecipants = new Label("Partecipants: "+ String.valueOf(item.getNumParticipants()));
-		
+				
+					//List of Link, group partecipants
 				ObservableList<Hyperlink> linkList = FXCollections.observableArrayList();
 				
 				for (Person p : item.getParticipants()) {
@@ -80,12 +84,13 @@ public class MyGroupsGC implements Initializable{
 				partecipants.setPrefHeight(30);
 				partecipants.setMaxHeight(USE_PREF_SIZE);
 				
+				//Admin Link
 				Hyperlink adminLink = new Hyperlink(item.getAdmin().getPerson().getUsername());
 				adminLink.setOnAction(e-> {
 					Stage stage = (Stage) main.getScene().getWindow();
 					stage.setScene(ViewSwitcher.switchTo(Views.OTHERACCOUNT, new OtherAccountGC(adminLink.getText())));
 				});
-				
+				//Buttons and their actions
 				Button book = new Button("Book Room");
 				Button add = new Button("Add Member");
 				Button delete = new Button("Delete Group");
@@ -135,10 +140,11 @@ public class MyGroupsGC implements Initializable{
 					Stage stage = (Stage) main.getScene().getWindow();
 					stage.setScene(ViewSwitcher.switchTo(Views.MYGROUPS,null));
 				});
-				
+				//If the current user is the admin, add the book, delete and add buttons 
 				if(Session.getSession().getCurrUser().getUsername().compareTo(item.getAdmin().getPerson().getUsername())==0) {
 					v.getChildren().addAll(name, admin, adminLink, numPartecipants, partecipants,add,delete,book);
 				}
+				//Else add the leave button
 				else {
 					v.getChildren().addAll(name, admin, adminLink, numPartecipants, partecipants,leave);
 				}
@@ -149,13 +155,13 @@ public class MyGroupsGC implements Initializable{
 			}
 		}
 	}
-	@FXML
+	@FXML /*Action associated to the createBtn*/
 	public void createGroup() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.switchTo(Views.GROUPCREATION, null));
 	}
 	
-
+	/*Get all the groups of an account and set an ObservableList*/
 	private void setGroups() {
 		PersonBean pBean = new PersonBean();
 		AccountBean aBean = new AccountBean();

@@ -3,7 +3,7 @@ package logic.util;
 import logic.model.Person;
 import logic.util.enumeration.Views;
 
-/**
+/*
  * Astrazione del concetto di Sessione applicativa (implementazione Singleton)
  */
 public class Session {

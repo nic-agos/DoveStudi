@@ -75,7 +75,9 @@ public class OtherAccountGC implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		if(!Session.getSession().isLogged()) {
 			makeReviewBtn.setDisable(true);
+			//Disable make review button if you're not logged
 		}
+		// populate the view
 		if(this.person != null) {
 			usernameLbl.setText(person.getUsername());
 			emailLbl.setText(person.getAccount().getEmail());
@@ -85,33 +87,35 @@ public class OtherAccountGC implements Initializable {
 			hRateLbl.setText(String.valueOf(person.getHostRating()));
 			gRateLbl.setText(String.valueOf(person.getGuestRating()));
 		}
+		// populate the list view with the received reviews
 		if(!reviews.isEmpty()) {
 			reviewsList.setFocusTraversable(false);
 			reviewsList.setItems(reviews);
 			reviewsList.setCellFactory(list -> new RecRevCell());
 		}
 	}
-	
+	// Received reviews cell layout
 	class RecRevCell extends ListCell<Review>{
 		@Override
 		public void updateItem(Review item, boolean empty) {
 			super.updateItem(item,empty);
 			if(!empty) {
 				VBox v = new VBox();
+				//review info
 				Label rate = new Label("Rate: " + String.valueOf(item.getRating()));
 				Label description = new Label("Description: " + item.getDescription());
 				Label title = new Label(item.getTitle());
 				Label tag = new Label(item.getTag());
 				
 				description.setWrapText(true);
-				
+				// Link to the reviewing user
 				Hyperlink reviewingUser = new Hyperlink();
 				reviewingUser.setText(item.getReviewer().getPerson().getUsername());
 				reviewingUser.setOnAction(e ->{
 					Stage stage = (Stage) main.getScene().getWindow();
 					stage.setScene(ViewSwitcher.switchTo(Views.OTHERACCOUNT, new OtherAccountGC(reviewingUser.getText())));
 				});
-			
+				//set all
 				v.getChildren().addAll(reviewingUser,title,description,tag,rate);
 				v.setSpacing(5);
 				v.setAlignment(Pos.CENTER);
@@ -123,13 +127,13 @@ public class OtherAccountGC implements Initializable {
 		
 	}
 	
-	@FXML
+	@FXML /* Button associated to the makeReviewBtn*/
 	public void makeReview() {
 		Stage stage = (Stage) main.getScene().getWindow();
 		stage.setScene(ViewSwitcher.switchTo(Views.REVIEWFORM, new ReviewFormGC(person.getUsername())));
 	}
 	
-	@FXML
+	@FXML /* Button associated to the backBtn*/
 	public void back() {
 		if(Session.getSession().getPrevView().equals(Views.ROOMSEARCH))
 		{

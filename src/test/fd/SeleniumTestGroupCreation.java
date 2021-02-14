@@ -31,7 +31,7 @@ public class SeleniumTestGroupCreation {
 	static final String GROUPNAME="TestGroup";
 	WebDriver driver;
 	@Before
-	public void init() {
+	public void init() /*create an account*/ {
 		PersonBean adminPBean = new PersonBean("Maciste","Middle School", "Massaia", "WWVVDO87H12H625A",4,4);
 		AccountBean adminABean = new AccountBean("WWVVDO87H12H625A","Di Nome", "Di Fatto", EMAIL, PASSWORD, "1999/01/01",0);
 		RegistrationController regCtrl = RegistrationController.getInstance();
@@ -68,7 +68,7 @@ public class SeleniumTestGroupCreation {
 			driver.close();
 	}
 	
-	@After /* Delete the two accounts created*/
+	@After /* Delete the account and group created*/
 	public void tearDown() {
 		AccountBean adminABean = new AccountBean("WWVVDO87H12H625A","Di Nome", "Di Fatto", "maciste@gmail.com", "pincopallo", "1999/01/01",0);
 		try {

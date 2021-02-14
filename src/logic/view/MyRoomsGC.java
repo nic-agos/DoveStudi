@@ -39,7 +39,7 @@ public class MyRoomsGC implements Initializable {
 	
 	private ObservableList<Room> myRooms;
 	
-	@Override
+	@Override /*initialize the ListView with the current user's Rooms*/
 	public void initialize(URL location, ResourceBundle resources) {
 		setRooms();
 		if(!myRooms.isEmpty()) {
@@ -48,13 +48,14 @@ public class MyRoomsGC implements Initializable {
 			myRoomsList.setCellFactory(list -> new RoomCell());
 		}
 	}
-	
+	/*ListView cell layout*/
 	class RoomCell extends ListCell<Room>{
 		@Override
 		public void updateItem(Room item, boolean empty) {
 			super.updateItem(item,empty);
 			if(!empty) {
 				VBox v = new VBox();
+				//Room informations
 				Label title = new Label("Room Name: "+item.getName());
 				Label description = new Label(item.getSpecification().getDescription());
 				Label address = new Label ("Address: " + item.getAddress());
@@ -78,7 +79,7 @@ public class MyRoomsGC implements Initializable {
 					});
 					linkList.add(link);
 				}
-				// Populate the ListView with the links
+				// Populate a ListView with the links
 				ListView<Hyperlink> partecipants = new ListView<>();
 				partecipants.setFocusTraversable(false);
 				partecipants.setItems(linkList);
