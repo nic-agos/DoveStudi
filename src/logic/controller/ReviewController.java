@@ -218,7 +218,7 @@ public class ReviewController {
 		
 		double ratingSum = 0;
 		int size = 0;
-		List<ReviewBean> reviewsHost = new ArrayList();
+		List<ReviewBean> reviewsHost = new ArrayList<>();
 		PersonBean persBean;
 		
 		try {

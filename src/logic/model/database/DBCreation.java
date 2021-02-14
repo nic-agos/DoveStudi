@@ -210,7 +210,28 @@ public class DBCreation {
 			d.executeQuery(CREATE_TABLE_RESERVATION);
 			d.executeQuery(CREATE_TABLE_REVIEW);
 			d.executeQuery(CREATE_TABLE_GROUP);
+			
+			d.executeQuery("INSERT INTO `account` VALUES ('CSSNTN82L12A662C','Antonio','Cassano','antonio.cassano@gmail.com','beri','1982-07-12',7),"
+					+ "('DLNFNC99S30H501B','Francesco','Dalena','kecco9939@gmail.com','pincopallo','1999-11-30',6),"
+					+ "('GSTNCL99C23H501K','Niccolo','Agostinelli','niccolo.agostinelli@gmail.com','password','1999-03-23',6),"
+					+ "('MGNFLV96L44B352G','Flavia','Magnoni','flavia.magnoni@gmail.com','asd','1996-07-04',6)");
+			
+			d.executeQuery("INSERT INTO `person` VALUES (1,'flaps496','University','Tor Vergata','MGNFLV96L44B352G',0,3.5),"
+					+ "(2,'nicco2303','University','Tor Vergata','GSTNCL99C23H501K',3,3),"
+					+ "(3,'Anarion','University','Tor Vergata','DLNFNC99S30H501B',2.5,0),"
+					+ "(4,'fantantonio82','Elementary School','Ungaretti','CSSNTN82L12A662C',0,0)");
+			
+			d.executeQuery("INSERT INTO `group_a` VALUES (1,'Develop','DLNFNC99S30H501B',3,3),(2,'Develop','DLNFNC99S30H501B',3,1),(3,'Develop','DLNFNC99S30H501B',3,2)");
+			
+			d.executeQuery("INSERT INTO `roomspec` VALUES (1,'Stanza con ampio tavolo e connessione Wi-Fi disponibile','2021-02-22','16:00:00','20:00:00','00133'),(2,'Stanza silenziosa dotata di Wi-Fi e riscaldamento','2021-02-22','14:00:00','17:00:00','00012'),(3,'Stanza pulita e accogliente, climatizzata, con ampio spazio per tutti. Offro inoltre ripetizioni e aiuti per ragazzi delle superiori in Matematica, Fisica, Chimica e Scienze Biologiche','2021-02-22','10:00:00','16:00:00','00172'),(4,'Spazio enorme per talenti sprecati','2021-02-10','07:00:00','14:00:00','00161')");
+			
+			d.executeQuery("INSERT INTO `room` VALUES (1,'Stanza Niccolò','Via dei centauri 32',4,4,'GSTNCL99C23H501K',1),(2,'Stanza Flavia','via nomentana 410',3,3,'MGNFLV96L44B352G',2),(3,'Stanza Francesco','via Onorato Ardoino 67',10,10,'DLNFNC99S30H501B',3),(4,'Stanza di Antonio','Via bari 89',7,4,'CSSNTN82L12A662C',4)");
 		
+			d.executeQuery("INSERT INTO `reservation` VALUES (1,'GSTNCL99C23H501K',4,4,'2021-02-10','07:00:00','14:00:00'),(2,'MGNFLV96L44B352G',4,4,'2021-02-10','07:00:00','14:00:00'),(3,'DLNFNC99S30H501B',4,4,'2021-02-10','07:00:00','14:00:00')");
+			
+			d.executeQuery("INSERT INTO `review` VALUES (1,'Brava ragazza','DLNFNC99S30H501B',1,4,'Un po\\' fuori di testa','GUEST'),(2,'Pronto? Falco mi senti?','DLNFNC99S30H501B',2,3,'Dove sei? A casa di ciccio','GUEST'),(3,'Hey Francè','MGNFLV96L44B352G',3,3,'Rispondi ancora che voi','HOST'),(4,'Bravo ragazzo','MGNFLV96L44B352G',2,3,'in un brutto quartiere','HOST'),(5,'dopo si abbracciano','GSTNCL99C23H501K',3,2,'come a c\\'è posta per te','HOST'),(6,'Ma siamo sulla Nomentana','GSTNCL99C23H501K',1,3,' e ti sei addormentata','GUEST')");
+			
+
 		}catch(NullPointerException ne) {
 			ne.printStackTrace();
 		}

@@ -20,6 +20,7 @@ import org.junit.BeforeClass;
 /*
  * JUnit test class Agostinelli Niccolò matr. 0269776
  */
+
 public class TestReviewController {
 	
 	@BeforeClass
@@ -41,7 +42,8 @@ public class TestReviewController {
 			e.printStackTrace();
 		}
 	}
-	
+
+//	test that check the correct creation of a review on the db
 	@Test
 	public void testMakeReview() {
 		
@@ -68,7 +70,8 @@ public class TestReviewController {
 		
 		assertEquals(true, result);
 	}
-	
+
+//	test that check the correct computation of HostRating after the making of a Host review
 	@Test
 	public void testCalculateHostRating() {
 		
@@ -87,7 +90,8 @@ public class TestReviewController {
 		
 		assertEquals(4, hostRating, 0);
 	}
-	
+
+//	test that check the correct computation of GuestRating (no guest reviews are done before)
 	@Test
 	public void testCalculateGuestRating() {
 		
@@ -106,7 +110,8 @@ public class TestReviewController {
 		
 		assertEquals(0, guestRating, 0);
 	}
-	
+
+//	test that checks if the method correctly get the list of done reviews
 	@Test
 	public void testGetDoneReviews() {
 		
@@ -127,7 +132,8 @@ public class TestReviewController {
 		
 		assertEquals(0,size);
 	}
-	
+
+//	test that checks if the method correctly get the list of received reviews
 	@Test
 	public void testGetReceivedReviews() {
 		
