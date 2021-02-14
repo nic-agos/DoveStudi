@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-02-14T17:01:45.568Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36" etag="2jSLrfeyUvx08U38Bwtj" version="14.3.1" type="github">
+<mxfile host="app.diagrams.net" modified="2021-02-14T17:03:41.439Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36" etag="M2iP_hzNI-WpRQGSasOu" version="14.3.1" type="github">
   <diagram id="blTUcrdXGkkVZ_vQHdCE" name="Page-1">
     <mxGraphModel dx="-1712" dy="796" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -493,6 +493,9 @@
         </mxCell>
         <mxCell id="xUtdAc4jDOqCrs5di9a9-37" value="0..*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=15;" vertex="1" parent="1">
           <mxGeometry x="4580" y="1370" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="xUtdAc4jDOqCrs5di9a9-41" value="BookRoom" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=25;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="3380" y="300" width="160" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
