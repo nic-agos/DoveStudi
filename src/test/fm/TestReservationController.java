@@ -16,7 +16,6 @@ import logic.model.Reservation;
 import logic.controller.RegistrationController;
 import logic.controller.ReservationController;
 import logic.controller.RoomController;
-import logic.controller.RoomController;
 import logic.exception.AccountException;
 import logic.exception.DatabaseException;
 import logic.exception.ReservationException;
@@ -42,18 +41,18 @@ public class TestReservationController {
 		
 		RoomController roomContr = RoomController.getInstance();
 		
-		AccountBean a1 = new AccountBean("MMMFFF96IJOP2", "Mario", "Rossi", "mario.rossi@gmail.it", "asdfgh", "1997:08:27", 0);
-		PersonBean p1 = new PersonBean("mario97", "High School", "AB", "MMMFFF96IJOP2", 0, 0);
+		AccountBean a1 = new AccountBean("RSSMTN02T18F205M", "Mario", "Rossi", "mario.rossi@gmail.it", "asdfgh", "1997:08:27", 0);
+		PersonBean p1 = new PersonBean("mario97", "High School", "AB", "RSSMTN02T18F205M", 0, 0);
 		
-		AccountBean a2 = new AccountBean("MMMVVV999OPLYUTY", "Marta", "Verdi", "marta.verdi@gmail.com", "abcdef", "1983:07:24", 0);
-		PersonBean p2 = new PersonBean("marta83", "High School", "CD", "MMMVVV999OPLYUTY", 0, 0);
+		AccountBean a2 = new AccountBean("MRUFBL08R47A662B", "Marta", "Verdi", "marta.verdi@gmail.com", "abcdef", "1983:07:24", 0);
+		PersonBean p2 = new PersonBean("marta83", "High School", "CD", "MRUFBL08R47A662B", 0, 0);
 		
 		
 		RoomBean rBean = new RoomBean();
-		rBean.setName("bella stanza");
-		rBean.setAddress("via test 21");
+		rBean.setName("Beautiful room");
+		rBean.setAddress("Via Nomentana");
 		rBean.setNumParticipants(3);
-		rBean.setOwner("MMMVVV999OPLYUTY");
+		rBean.setOwner("MRUFBL08R47A662B");
 
 		RoomSpecBean rs = new RoomSpecBean();
 		rs.setCap("00100");
@@ -86,7 +85,7 @@ public class TestReservationController {
 	public void testMakeReservation() {
 		ReservationController resContr = ReservationController.getInstance();
 		
-		AccountBean accBean = new AccountBean("MMMFFF96IJOP2", "Mario", "Rossi", "mario.rossi@gmail.it", "asdfgh", "1997:08:27", 0);
+		AccountBean accBean = new AccountBean("RSSMTN02T18F205M", "Mario", "Rossi", "mario.rossi@gmail.it", "asdfgh", "1997:08:27", 0);
 		
 		ReservationDAOImpl reservationDAO = ReservationDAOImpl.getInstance();
 		
@@ -96,13 +95,13 @@ public class TestReservationController {
 		int id;
 		boolean res = false;
 		try {
-			roomBean.setName("bella stanza");
+			roomBean.setName("Beautiful room");
 			id = roomDAO.getRoomId(roomBean);
 			roomBean2.setId(id);
 			res = resContr.makeReservation(roomBean2, accBean);	
 			
 			ReservationBean resBean = new ReservationBean();
-			resBean.setReservingUser("MMMFFF96IJOP2");
+			resBean.setReservingUser("RSSMTN02T18F205M");
 			resBean.setLinkedRoom(id);
 			resBean.setRoomOwner(persId);
 			resId = reservationDAO.getReservationId(resBean);
@@ -126,7 +125,7 @@ public class TestReservationController {
 	@Test
 	public void testGetMyFutureReservations() {
 		ReservationController resContr = ReservationController.getInstance();
-		AccountBean accBean = new AccountBean("MMMFFF96IJOP2", "Mario", "Rossi", "mario.rossi@gmail.it", "asdfgh", "1997:08:27", 0);
+		AccountBean accBean = new AccountBean("RSSMTN02T18F205M", "Mario", "Rossi", "mario.rossi@gmail.it", "asdfgh", "1997:08:27", 0);
 		List<Reservation> listRes = new ArrayList<>();
 		int size = 0;
 		try {
@@ -169,17 +168,31 @@ public class TestReservationController {
 		AccountBean a1 = new AccountBean();
 		AccountBean a2 = new AccountBean();
 		
-		a1.setCf("MMMFFF96IJOP2");
-		a2.setCf("MMMVVV999OPLYUTY");
+		a1.setCf("RSSMTN02T18F205M");
+		a2.setCf("MRUFBL08R47A662B");
+		
+		RoomDAOImpl rDAO = RoomDAOImpl.getInstance();
+		RoomBean roomBean = new RoomBean();
+		roomBean.setName("Beautiful room");
+		try {
+			roomBean.setId(rDAO.getRoomId(roomBean));
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		RoomController rContr = RoomController.getInstance();
+		try {
+			rContr.deleteRoom(roomBean);
+		} catch (DatabaseException e1) {
+			e1.printStackTrace();
+		}
 		
 		try {
-			
 			accountDao.removeAccount(a1);
 			accountDao.removeAccount(a2);
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-	}
 	
+	}
 }
