@@ -70,7 +70,7 @@ public class SeleniumTestGroupCreation {
 	
 	@After /* Delete the account and group created*/
 	public void tearDown() {
-		AccountBean adminABean = new AccountBean("WWVVDO87H12H625A","Di Nome", "Di Fatto", "maciste@gmail.com", "pincopallo", "1999/01/01",0);
+		AccountBean adminABean = new AccountBean("WWVVDO87H12H625A","Di Nome", "Di Fatto", EMAIL, PASSWORD, "1999/01/01",0);
 		try {
 			AccountDAOImpl.getInstance().removeAccount(adminABean);
 		} catch (SQLException e) {
