@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-02-11T10:18:00.087Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36 Edg/88.0.705.63" etag="t18-DQrrJ8116JnP7kCj" version="14.3.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-02-14T10:07:00.807Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36 Edg/88.0.705.68" etag="kB9suq8v-jdF8ySz0fsN" version="14.3.1" type="github">
   <diagram id="nZC7xLcd_EgV5DrBVxYe" name="Page-1">
-    <mxGraphModel dx="703" dy="366" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1363" dy="731" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -58,53 +58,36 @@
         <mxCell id="G_O7UL8QgGPdSmfOtHH6-19" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="G_O7UL8QgGPdSmfOtHH6-17" vertex="1">
           <mxGeometry y="66" width="350" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="G_O7UL8QgGPdSmfOtHH6-20" value="+ getInstance(): GroupController&#xa;+ createGroup(GroupBean): boolean&#xa;+ addGroupParticipant(GroupBean, PersonBean): boolean&#xa;+ deleteGroup(GroupBean): boolean&#xa;+ bookRoomGroup(GroupBean, RoomBean): void&#xa;+ getParticipatingGroups(PersonBean): List&lt;Group&gt;&#xa;+ getAdministeredGroups(AccountBean): List&lt;Group&gt;&#xa;+ getGroupParticipants(GroupBean): List&lt;Person&gt;&#xa;+ getSpecificAdministeredGroup(GroupBean)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="G_O7UL8QgGPdSmfOtHH6-17" vertex="1">
+        <mxCell id="G_O7UL8QgGPdSmfOtHH6-20" value="+ getInstance(): GroupController&#xa;+ createGroup(GroupBean): boolean&#xa;+ addGroupParticipant(GroupBean, PersonBean): boolean&#xa;+ deleteGroup(GroupBean): boolean&#xa;+ bookRoomGroup(GroupBean, RoomBean): void&#xa;+ getParticipatingGroups(PersonBean): List&lt;Group&gt;&#xa;+ getAdministeredGroups(AccountBean): List&lt;Group&gt;&#xa;+ getGroupParticipants(GroupBean): List&lt;Person&gt;&#xa;+ getSpecificAdministeredGroup(GroupBean)&#xa;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" parent="G_O7UL8QgGPdSmfOtHH6-17" vertex="1">
           <mxGeometry y="74" width="350" height="146" as="geometry" />
         </mxCell>
         <mxCell id="G_O7UL8QgGPdSmfOtHH6-33" value="&lt;&lt;interface&gt;&gt;&#xa;PersonDAO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
-          <mxGeometry x="1600" y="230" width="160" height="100" as="geometry">
+          <mxGeometry x="1490" y="200" width="310" height="230" as="geometry">
             <mxRectangle x="490" y="250" width="160" height="40" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="G_O7UL8QgGPdSmfOtHH6-34" value="+ field: type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="G_O7UL8QgGPdSmfOtHH6-33" vertex="1">
-          <mxGeometry y="40" width="160" height="26" as="geometry" />
+          <mxGeometry y="40" width="310" height="26" as="geometry" />
         </mxCell>
         <mxCell id="G_O7UL8QgGPdSmfOtHH6-35" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="G_O7UL8QgGPdSmfOtHH6-33" vertex="1">
-          <mxGeometry y="66" width="160" height="8" as="geometry" />
+          <mxGeometry y="66" width="310" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="G_O7UL8QgGPdSmfOtHH6-36" value="+ method(type): type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="G_O7UL8QgGPdSmfOtHH6-33" vertex="1">
-          <mxGeometry y="74" width="160" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="G_O7UL8QgGPdSmfOtHH6-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=blockThin;endFill=0;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.003;entryY=0.295;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="G_O7UL8QgGPdSmfOtHH6-33" target="hAOO4oHdrQAnsh8myjye-8" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1820" y="310" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="1760" y="282" />
-              <mxPoint x="1820" y="282" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="G_O7UL8QgGPdSmfOtHH6-36" value="+ createPerson(PersonBean): Integer&#xa;+ removePerson(PersonBean): Integer&#xa;+ getPersonId(PersonBean): Integer&#xa;+ getAllPersons(): List&lt;PersonBean&gt;&#xa;+ updateGuestRating(PersonBean): Integer&#xa;+ updateHostRating(PersonBean): Integer&#xa;+ getPerson(PersonBean): PersonBean&#xa;+ getPersonByUsername(PersonBean): PersonBean&#xa;+ getPersonFromAccount(AccountBean): PersonBean&#xa;+ getGroupParticipants(GroupBean): List&lt;PersonBean&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="G_O7UL8QgGPdSmfOtHH6-33" vertex="1">
+          <mxGeometry y="74" width="310" height="156" as="geometry" />
         </mxCell>
         <mxCell id="G_O7UL8QgGPdSmfOtHH6-42" value="&lt;&lt;interface&gt;&gt;&#xa;GroupDAO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
-          <mxGeometry x="1600" y="635" width="160" height="100" as="geometry">
+          <mxGeometry x="1520" y="607" width="340" height="260" as="geometry">
             <mxRectangle x="490" y="250" width="160" height="40" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="G_O7UL8QgGPdSmfOtHH6-43" value="+ field: type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="G_O7UL8QgGPdSmfOtHH6-42" vertex="1">
-          <mxGeometry y="40" width="160" height="26" as="geometry" />
+          <mxGeometry y="40" width="340" height="26" as="geometry" />
         </mxCell>
         <mxCell id="G_O7UL8QgGPdSmfOtHH6-44" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="G_O7UL8QgGPdSmfOtHH6-42" vertex="1">
-          <mxGeometry y="66" width="160" height="8" as="geometry" />
+          <mxGeometry y="66" width="340" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="G_O7UL8QgGPdSmfOtHH6-45" value="+ method(type): type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="G_O7UL8QgGPdSmfOtHH6-42" vertex="1">
-          <mxGeometry y="74" width="160" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="G_O7UL8QgGPdSmfOtHH6-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=blockThin;endFill=0;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.001;entryY=0.277;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="G_O7UL8QgGPdSmfOtHH6-43" target="hAOO4oHdrQAnsh8myjye-4" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1760" y="685" />
-            </Array>
-            <mxPoint x="1830" y="685" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="G_O7UL8QgGPdSmfOtHH6-45" value="+ getInstance(): GroupDAOImpl&#xa;+ createGroup(GroupBean): Integer&#xa;+ removeGroup(GroupBean): Integer&#xa;+ getGroupId(GroupBean): Integer&#xa;+ getAllGroups(): List&lt;GroupBean&gt;&#xa;+ getAllAdministeredGroups(AccountBean): List&lt;GroupBean&gt;&#xa;+ getAdministeredGroup(GroupBean): GroupBean&#xa;+ getAllParticipatingGroups(PersonBean): List&lt;GroupBean&gt;&#xa;+ addGroupParticipant(GroupBean): Integer&#xa;+ updateNumParticipantsGroup(GroupBean): Integer&#xa;+ leaveGroup(GroupBean): Integer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="G_O7UL8QgGPdSmfOtHH6-42" vertex="1">
+          <mxGeometry y="74" width="340" height="186" as="geometry" />
         </mxCell>
         <mxCell id="G_O7UL8QgGPdSmfOtHH6-51" value="&lt;&lt;interface&gt;&gt;&#xa;AccountDAO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
           <mxGeometry x="1600" y="1000" width="160" height="100" as="geometry">
@@ -233,32 +216,32 @@
           <mxGeometry x="1320" y="493" width="100" height="20" as="geometry" />
         </mxCell>
         <mxCell id="hAOO4oHdrQAnsh8myjye-1" value="GroupDAOImpl" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
-          <mxGeometry x="1840" y="565" width="340" height="240" as="geometry">
+          <mxGeometry x="1970" y="565" width="340" height="238" as="geometry">
             <mxRectangle x="490" y="250" width="160" height="40" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="hAOO4oHdrQAnsh8myjye-2" value="+ instance: GroupDAOImpl" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="hAOO4oHdrQAnsh8myjye-1" vertex="1">
-          <mxGeometry y="40" width="340" height="26" as="geometry" />
+        <mxCell id="hAOO4oHdrQAnsh8myjye-2" value="- instance: GroupDAOImpl&#xa;- CREATE_GROUP_QUERY: String&#xa;- DELETE_GROUP_QUERY: String&#xa;- GET_GROUP_ID_QUERY: String&#xa;- GET_ALL_GROUPS_QUERY: String&#xa;- GET_ALL_ADMINISTERED_GROUPS_QUERY: String&#xa;- GET_ADMINISTERED_GROUP_QUERY: String&#xa;- GET_PARTICIPATING_GROUPS_QUERY: String&#xa;- ADD_GROUP_PARTICIPANT_QUERY: String&#xa;- UPDATE_NUM_PARTICIPANTS_GROUP: String&#xa;- LEAVE_GROUP_QUERY: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="hAOO4oHdrQAnsh8myjye-1" vertex="1">
+          <mxGeometry y="40" width="340" height="160" as="geometry" />
         </mxCell>
         <mxCell id="hAOO4oHdrQAnsh8myjye-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="hAOO4oHdrQAnsh8myjye-1" vertex="1">
-          <mxGeometry y="66" width="340" height="8" as="geometry" />
+          <mxGeometry y="200" width="340" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="hAOO4oHdrQAnsh8myjye-4" value="+ getInstance(): GroupDAOImpl&#xa;+ createGroup(GroupBean): Integer&#xa;+ removeGroup(GroupBean): Integer&#xa;+ getGroupId(GroupBean): Integer&#xa;+ getAllGroups(): List&lt;GroupBean&gt;&#xa;+ getAllAdministeredGroups(AccountBean): List&lt;GroupBean&gt;&#xa;+ getAdministeredGroup(GroupBean): GroupBean&#xa;+ getAllParticipatingGroups(PersonBean): List&lt;GroupBean&gt;&#xa;+ addGroupParticipant(GroupBean): Integer&#xa;+ updateNumParticipantsGroup(GroupBean): Integer&#xa;+ leaveGroup(GroupBean): Integer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="hAOO4oHdrQAnsh8myjye-1" vertex="1">
-          <mxGeometry y="74" width="340" height="166" as="geometry" />
+        <mxCell id="hAOO4oHdrQAnsh8myjye-4" value="+ getInstance(): GroupDAOImpl&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="hAOO4oHdrQAnsh8myjye-1" vertex="1">
+          <mxGeometry y="208" width="340" height="30" as="geometry" />
         </mxCell>
         <mxCell id="hAOO4oHdrQAnsh8myjye-5" value="PersonDAOImpl" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
-          <mxGeometry x="1840" y="160" width="320" height="240" as="geometry">
+          <mxGeometry x="1920" y="190" width="320" height="238" as="geometry">
             <mxRectangle x="490" y="250" width="160" height="40" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="hAOO4oHdrQAnsh8myjye-6" value="+ instance: PersonDAOImpl" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="hAOO4oHdrQAnsh8myjye-5" vertex="1">
-          <mxGeometry y="40" width="320" height="26" as="geometry" />
+        <mxCell id="hAOO4oHdrQAnsh8myjye-6" value="- instance: PersonDAOImpl&#xa;- CREATE_PERSON_QUERY: String&#xa;- DELETE_PERSON_QUERY: String&#xa;- GET_PERSON_ID_QUERY: String&#xa;- GETALL_PERSONS_QUERY: String&#xa;- UPDATE_HOST_RATING_QUERY: String&#xa;- UPDATE_GUEST_RATING_QUERY: String&#xa;- GET_PERSON_QUERY: String&#xa;- GET_PERSON_ACCOUNT_QUERY: String&#xa;- GET_GROUP_PARTICIPANTS_QUERY: String&#xa;- GET_PERSON_BY_USERNAME_QUERY: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="hAOO4oHdrQAnsh8myjye-5" vertex="1">
+          <mxGeometry y="40" width="320" height="160" as="geometry" />
         </mxCell>
         <mxCell id="hAOO4oHdrQAnsh8myjye-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="hAOO4oHdrQAnsh8myjye-5" vertex="1">
-          <mxGeometry y="66" width="320" height="8" as="geometry" />
+          <mxGeometry y="200" width="320" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="hAOO4oHdrQAnsh8myjye-8" value="+ getInstance(): PersonDAOImpl&#xa;+ createPerson(PersonBean): Integer&#xa;+ removePerson(PersonBean): Integer&#xa;+ getPersonId(PersonBean): Integer&#xa;+ getAllPersons(): List&lt;PersonBean&gt;&#xa;+ updateGuestRating(PersonBean): Integer&#xa;+ updateHostRating(PersonBean): Integer&#xa;+ getPerson(PersonBean): PersonBean&#xa;+ getPersonByUsername(PersonBean): PersonBean&#xa;+ getPersonFromAccount(AccountBean): PersonBean&#xa;+ getGroupParticipants(GroupBean): List&lt;PersonBean&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="hAOO4oHdrQAnsh8myjye-5" vertex="1">
-          <mxGeometry y="74" width="320" height="166" as="geometry" />
+        <mxCell id="hAOO4oHdrQAnsh8myjye-8" value="+ getInstance(): PersonDAOImpl&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="hAOO4oHdrQAnsh8myjye-5" vertex="1">
+          <mxGeometry y="208" width="320" height="30" as="geometry" />
         </mxCell>
         <mxCell id="hAOO4oHdrQAnsh8myjye-9" value="AccountDAOImpl" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
           <mxGeometry x="1850" y="950" width="270" height="200" as="geometry">
@@ -274,26 +257,44 @@
         <mxCell id="hAOO4oHdrQAnsh8myjye-12" value="+ getInstance(): AccountDAOImpl&#xa;+ createAccount(AccountBean): Integer&#xa;+ removeAccount(AccountBean): Integer&#xa;+ getNumberToken(AccountBean): Integer&#xa;+ updateNumberToken(AccountBean): Integer&#xa;+ getAllAccounts(): List&lt;AccountBean&gt;&#xa;+ getAccount(AccountBean): AccountBean&#xa;+ login(AccountBean): AccountBean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="hAOO4oHdrQAnsh8myjye-9" vertex="1">
           <mxGeometry y="74" width="270" height="126" as="geometry" />
         </mxCell>
-        <mxCell id="Aztx-dJ0y6kB9J82E6_n-1" value="AddGroupMemberGC" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+        <mxCell id="Aztx-dJ0y6kB9J82E6_n-1" value="AddGroupMemberGC" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
           <mxGeometry x="329" y="870" width="255.5" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="Aztx-dJ0y6kB9J82E6_n-2" value="- add: Button&#xa;- back: Button&#xa;- username: TextField" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="Aztx-dJ0y6kB9J82E6_n-1">
+        <mxCell id="Aztx-dJ0y6kB9J82E6_n-2" value="- add: Button&#xa;- back: Button&#xa;- username: TextField" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="Aztx-dJ0y6kB9J82E6_n-1" vertex="1">
           <mxGeometry y="40" width="255.5" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="Aztx-dJ0y6kB9J82E6_n-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="Aztx-dJ0y6kB9J82E6_n-1">
+        <mxCell id="Aztx-dJ0y6kB9J82E6_n-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="Aztx-dJ0y6kB9J82E6_n-1" vertex="1">
           <mxGeometry y="90" width="255.5" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="Aztx-dJ0y6kB9J82E6_n-4" value="+ addMember():void&#xa;+ back():void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="Aztx-dJ0y6kB9J82E6_n-1">
+        <mxCell id="Aztx-dJ0y6kB9J82E6_n-4" value="+ addMember():void&#xa;+ back():void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="Aztx-dJ0y6kB9J82E6_n-1" vertex="1">
           <mxGeometry y="98" width="255.5" height="52" as="geometry" />
         </mxCell>
-        <mxCell id="Aztx-dJ0y6kB9J82E6_n-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.715;entryY=-0.007;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;endArrow=none;endFill=0;" edge="1" parent="1" source="G_O7UL8QgGPdSmfOtHH6-64" target="G_O7UL8QgGPdSmfOtHH6-67">
+        <mxCell id="Aztx-dJ0y6kB9J82E6_n-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.715;entryY=-0.007;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;endArrow=none;endFill=0;" parent="1" source="G_O7UL8QgGPdSmfOtHH6-64" target="G_O7UL8QgGPdSmfOtHH6-67" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Aztx-dJ0y6kB9J82E6_n-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.66;entryY=0.005;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;endArrow=none;endFill=0;" edge="1" parent="1" source="G_O7UL8QgGPdSmfOtHH6-66" target="Aztx-dJ0y6kB9J82E6_n-1">
+        <mxCell id="Aztx-dJ0y6kB9J82E6_n-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.66;entryY=0.005;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;endArrow=none;endFill=0;" parent="1" source="G_O7UL8QgGPdSmfOtHH6-66" target="Aztx-dJ0y6kB9J82E6_n-1" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Aztx-dJ0y6kB9J82E6_n-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.562;entryY=1.005;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="Aztx-dJ0y6kB9J82E6_n-4" target="G_O7UL8QgGPdSmfOtHH6-20">
+        <mxCell id="Aztx-dJ0y6kB9J82E6_n-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.562;entryY=1.005;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" parent="1" source="Aztx-dJ0y6kB9J82E6_n-4" target="G_O7UL8QgGPdSmfOtHH6-20" edge="1">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="G_O7UL8QgGPdSmfOtHH6-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=blockThin;endFill=0;dashed=1;" parent="1" source="hAOO4oHdrQAnsh8myjye-8" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1800" y="283" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1920" y="283" />
+            </Array>
+            <mxPoint x="1840" y="283" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="G_O7UL8QgGPdSmfOtHH6-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=blockThin;endFill=0;dashed=1;exitX=-0.003;exitY=0.531;exitDx=0;exitDy=0;entryX=1.002;entryY=0.052;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" parent="1" source="hAOO4oHdrQAnsh8myjye-2" target="G_O7UL8QgGPdSmfOtHH6-45" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1969" y="691" />
+              <mxPoint x="1968" y="691" />
+            </Array>
+            <mxPoint x="1830" y="685" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
