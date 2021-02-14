@@ -20,7 +20,7 @@ import logic.exception.*;
 import logic.model.dao.*;
 
 /*
- * Selenium test class Agostinelli Niccolò matr. 0269776
+ * Selenium test class Agostinelli Niccolo' matr. 0269776
  */
 
 public class SeleniumTestMakeReview {

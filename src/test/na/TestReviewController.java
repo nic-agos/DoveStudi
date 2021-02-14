@@ -18,7 +18,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 /*
- * JUnit test class Agostinelli Niccolò matr. 0269776
+ * JUnit test class Agostinelli Niccolo' matr. 0269776
  */
 
 public class TestReviewController {
