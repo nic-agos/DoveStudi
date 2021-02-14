@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-02-11T10:56:49.653Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36 Edg/88.0.705.63" etag="0n4UyOMYgzAjDbxNmL1z" version="14.3.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-02-14T17:08:10.696Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36 Edg/88.0.705.68" etag="aHntvy1_QaXCo0Vv7SgK" version="14.3.1" type="github">
   <diagram id="Dc7GeFzG-FcH2cuk2T8l" name="Page-1">
-    <mxGraphModel dx="1019" dy="530" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1635" dy="824" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -81,6 +81,9 @@
         </mxCell>
         <mxCell id="KNe1kGgE7iX2gPEPeiJ8-16" value="+ getInstance(): GroupController&#xa;+ createGroup(GroupBean): boolean&#xa;+ addGroupParticipant(GroupBean, PersonBean): boolean&#xa;+ deleteGroup(GroupBean): boolean&#xa;+ bookRoomGroup(GroupBean, RoomBean): void&#xa;+ getParticipatingGroups(PersonBean): List&lt;Group&gt;&#xa;+ getAdministeredGroups(AccountBean): List&lt;Group&gt;&#xa;+ getGroupParticipants(GroupBean): List&lt;Person&gt;&#xa;+ getSpecificAdministeredGroup(GroupBean)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="KNe1kGgE7iX2gPEPeiJ8-13" vertex="1">
           <mxGeometry y="74" width="350" height="146" as="geometry" />
+        </mxCell>
+        <mxCell id="SFkubs1tai29pwNa28yS-1" value="&lt;b&gt;Use Case:&lt;br&gt;Create Group&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="840" y="635" width="180" height="70" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
